@@ -256,36 +256,36 @@
       <div class="kicker">
         <span class="lbl">Brand Selection</span>
         <span class="ln"></span>
-        <span class="date">展会品牌挑选 · Exhibition Shortlist</span>
+        <span class="date">Exhibition Shortlist · 展会品牌挑选</span>
       </div>
-      <h1>请去掉<em>不符合</em>您展会要求的品牌</h1>
-      <div class="h1en">Please remove the brands that don't meet your exhibition requirements</div>
-      <p class="dek">下面是全部品牌。请把<b>不符合您展会要求</b>的品牌切到「去掉」，符合要求的保持「保留」。选好后填写您的名称，点底部「生成结果」，把链接发回给我们即可。
-        <span class="en">Below are all the brands. Switch any brand that does <b>not</b> meet your exhibition requirements to “Remove”, and keep the ones that fit. Then enter your name, tap “Generate” at the bottom, and send the link back to us.</span>
+      <h1>Please remove the brands that <em>don't meet</em> your exhibition requirements</h1>
+      <div class="h1en">请去掉不符合您展会要求的品牌</div>
+      <p class="dek">Below are all the brands. Switch any brand that does <b>not</b> meet your exhibition requirements to “Remove”, and keep the ones that fit. Then enter your name, tap “Generate” at the bottom, and send the link back to us.
+        <span class="en">下面是全部品牌。请把<b>不符合您展会要求</b>的品牌切到「去掉」，符合要求的保持「保留」。选好后填写您的名称，点底部「生成结果」，把链接发回给我们即可。</span>
       </p>
     </header>
 
     <section class="panel">
       <div class="field">
-        <label for="vendor">您的名称<span class="en">Your name</span></label>
-        <input id="vendor" type="text" placeholder="例如：某某展商 / 张厂长　e.g. your company / name" autocomplete="off">
+        <label for="vendor">Your name<span class="en">您的名称</span></label>
+        <input id="vendor" type="text" placeholder="e.g. your company / name　例如：某某展商 / 张厂长" autocomplete="off">
       </div>
       <div class="bulk">
-        <button id="allKeep">全部保留<span class="en">Keep all</span></button>
-        <button id="allDrop">全部去掉<span class="en">Remove all</span></button>
-        <button id="resetAll">重置<span class="en">Reset</span></button>
+        <button id="allKeep">Keep all<span class="en">全部保留</span></button>
+        <button id="allDrop">Remove all<span class="en">全部去掉</span></button>
+        <button id="resetAll">Reset<span class="en">重置</span></button>
       </div>
-      <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">/ 共 0 个保留 kept</span></div>
+      <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">kept / 0　保留</span></div>
     </section>
 
     <div class="filterbar">
-      <span class="flabel">按类别筛选<span class="en">Filter by category</span></span>
+      <span class="flabel">Filter by category<span class="en">按类别筛选</span></span>
       <div class="chips" id="chips"></div>
     </div>
 
     <div class="legend">
-      <span><i class="sw k"></i> 保留 — 符合展会要求 <span class="en">Keep — meets your requirements</span></span>
-      <span><i class="sw d"></i> 去掉 — 不符合要求 <span class="en">Remove — doesn't fit (card greys out)</span></span>
+      <span><i class="sw k"></i> Keep — meets your requirements <span class="en">保留 · 符合展会要求</span></span>
+      <span><i class="sw d"></i> Remove — doesn't fit <span class="en">去掉 · 不符合（卡片变灰）</span></span>
     </div>
 
     <main class="grid" id="grid"></main>
@@ -293,26 +293,26 @@
 
   <div class="bar">
     <div class="bar-in">
-      <div class="barsum" id="barSum">已保留 <b class="k">0</b> · 去掉 <b class="d">0</b><span class="en">Kept 0 · Removed 0</span></div>
-      <button class="btn btn-primary" id="generate"><span class="tx">生成结果<span class="en">Generate result</span></span> <span class="ar">→</span></button>
+      <div class="barsum" id="barSum">Kept <b class="k">0</b> · Removed <b class="d">0</b><span class="en">已保留 · 去掉</span></div>
+      <button class="btn btn-primary" id="generate"><span class="tx">Generate result<span class="en">生成结果</span></span> <span class="ar">→</span></button>
     </div>
   </div>
 
   <div class="ov" id="ov">
     <div class="modal">
       <div class="ck">Generated</div>
-      <h3>结果已生成 <span class="en">— Done</span> ✅</h3>
-      <p>复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。
-        <span class="en">Copy the link below and send it back to us (WeChat is fine). We'll see your selection as soon as we open it.</span>
+      <h3>Done <span class="en">— 结果已生成</span> ✅</h3>
+      <p>Copy the link below and send it back to us (WeChat is fine). We'll see your selection as soon as we open it.
+        <span class="en">复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。</span>
       </p>
       <div class="linkbox">
         <input id="rlink" readonly>
-        <button class="btn btn-primary" id="copyLink"><span class="tx">复制<span class="en">Copy</span></span></button>
+        <button class="btn btn-primary" id="copyLink"><span class="tx">Copy<span class="en">复制</span></span></button>
       </div>
       <div class="mrow">
-        <button class="btn btn-ghost" id="openR">预览结果<span class="en">Preview</span></button>
-        <button class="btn btn-ghost" id="dl">下载文件备份<span class="en">Download backup</span></button>
-        <button class="btn btn-ghost" id="closeM">关闭<span class="en">Close</span></button>
+        <button class="btn btn-ghost" id="openR">Preview<span class="en">预览结果</span></button>
+        <button class="btn btn-ghost" id="dl">Download backup<span class="en">下载文件备份</span></button>
+        <button class="btn btn-ghost" id="closeM">Close<span class="en">关闭</span></button>
       </div>
       <div class="mok" id="mok"></div>
     </div>
@@ -365,8 +365,8 @@
   function renderChips(){
     const chips=document.getElementById('chips');
     const mk=(key,label,count,on)=>`<button class="chip ${on?'on':''}" data-cat="${escapeHtml(key)}">${label}<span class="n">${count}</span></button>`;
-    let html = mk('all','全部 All', BRANDS.length, activeCat==='all');
-    CATS.forEach(c=>{ const en=CAT_EN[c]?` <span class="cen">${escapeHtml(CAT_EN[c])}</span>`:''; html += mk(c, escapeHtml(c)+en, BRANDS.filter(b=>b.category===c).length, activeCat===c); });
+    let html = mk('all','All 全部', BRANDS.length, activeCat==='all');
+    CATS.forEach(c=>{ const enName=CAT_EN[c]||c; const zh=CAT_EN[c]?` <span class="cen">${escapeHtml(c)}</span>`:''; html += mk(c, escapeHtml(enName)+zh, BRANDS.filter(b=>b.category===c).length, activeCat===c); });
     chips.innerHTML = html;
     chips.parentElement.style.display = CATS.length>0 ? 'flex' : 'none'; // 没有任何类别时才隐藏
   }
@@ -394,7 +394,7 @@
           + (over ? `<button class="prod-more" data-act="gallery" data-id="${b.id}">+${extra}</button>` : '')
           + `</div>`;
       } else {
-        prodHtml = `<div class="noimg">暂无产品图<span class="en">No product image</span></div>`;
+        prodHtml = `<div class="noimg">No product image<span class="en">暂无产品图</span></div>`;
       }
 
       // 编辑中：原因输入框 + 确认/取消；已提交且有原因：只读原因 + 修改
@@ -402,36 +402,40 @@
       if(editing){
         const pc = pending[b.id].choice;
         extra = `<div class="reason-row">
-          <label>${pc?'保留':'去掉'}原因（选填）<span class="en">${pc?'Why keep':'Why remove'} (optional)</span></label>
-          <textarea class="reason-input" data-id="${b.id}" rows="2" placeholder="例如：与展会定位相符 / 价位偏高…　e.g. fits the show / price too high…">${escapeHtml(pending[b.id].reason||'')}</textarea>
+          <label>${pc?'Why keep':'Why remove'} (optional)<span class="en">${pc?'保留':'去掉'}原因（选填）</span></label>
+          <textarea class="reason-input" data-id="${b.id}" rows="2" placeholder="e.g. fits the show / price too high…　例如：与展会定位相符 / 价位偏高…">${escapeHtml(pending[b.id].reason||'')}</textarea>
           <div class="reason-actions">
-            <button class="ra-confirm" data-act="confirm" data-id="${b.id}">确认 ${pc?'保留':'去掉'}<span class="en">Confirm</span></button>
-            <button class="ra-cancel" data-act="cancel" data-id="${b.id}">取消<span class="en">Cancel</span></button>
+            <button class="ra-confirm" data-act="confirm" data-id="${b.id}">Confirm ${pc?'keep':'remove'}<span class="en">确认${pc?'保留':'去掉'}</span></button>
+            <button class="ra-cancel" data-act="cancel" data-id="${b.id}">Cancel<span class="en">取消</span></button>
           </div>
         </div>`;
       } else if((reasons[b.id]||'').trim()){
-        extra = `<div class="cardnote"><b>原因 Reason</b>${escapeHtml(reasons[b.id])}
-          <a class="cardnote-edit" data-act="edit" data-id="${b.id}">修改 Edit</a></div>`;
+        extra = `<div class="cardnote"><b>Reason 原因</b>${escapeHtml(reasons[b.id])}
+          <a class="cardnote-edit" data-act="edit" data-id="${b.id}">Edit 修改</a></div>`;
       }
 
+      const catPrimary = b.categoryEn || b.category;
+      const catSecond = b.categoryEn ? b.category : '';
+      const locPrimary = b.locationEn || b.location;
+      const locSecond = b.locationEn ? b.location : '';
       card.innerHTML = `
-        <div class="stamp">已去掉<span class="en">REMOVED</span></div>
+        <div class="stamp">REMOVED<span class="en">已去掉</span></div>
         <div class="ct">
           <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${logoHtml}</div>
           <div class="nm">
             <div class="name">${escapeHtml(b.name)}</div>
-            ${b.category?`<span class="cat" style="background:${c2};color:${c1}">${escapeHtml(b.category)}${b.categoryEn?`<span class="en"> · ${escapeHtml(b.categoryEn)}</span>`:''}</span>`:''}
+            ${b.category?`<span class="cat" style="background:${c2};color:${c1}">${escapeHtml(catPrimary)}${catSecond?`<span class="en"> · ${escapeHtml(catSecond)}</span>`:''}</span>`:''}
           </div>
         </div>
-        ${b.location?`<div class="loc">📍 ${escapeHtml(b.location)}${b.locationEn?` · <span class="en">${escapeHtml(b.locationEn)}</span>`:''}</div>`:''}
+        ${(b.location||b.locationEn)?`<div class="loc">📍 ${escapeHtml(locPrimary)}${locSecond?` <span class="en">· ${escapeHtml(locSecond)}</span>`:''}</div>`:''}
         ${(b.desc||b.descEn)?`<div class="desc-box" data-id="${b.id}">
-          ${b.desc?`<div class="desc">${escapeHtml(b.desc)}</div>`:''}
-          ${b.descEn?`<div class="descEn">${escapeHtml(b.descEn)}</div>`:''}
+          ${b.descEn?`<div class="desc">${escapeHtml(b.descEn)}</div>`:''}
+          ${b.desc?`<div class="descEn">${escapeHtml(b.desc)}</div>`:''}
         </div>`:''}
         ${prodHtml}
         <div class="seg">
-          <button class="k ${choice?'on':''}" data-id="${b.id}" data-v="1">保留<span class="en">Keep</span></button>
-          <button class="d ${choice?'':'on'}" data-id="${b.id}" data-v="0">去掉<span class="en">Remove</span></button>
+          <button class="k ${choice?'on':''}" data-id="${b.id}" data-v="1">Keep<span class="en">保留</span></button>
+          <button class="d ${choice?'':'on'}" data-id="${b.id}" data-v="0">Remove<span class="en">去掉</span></button>
         </div>
         ${extra}`;
       grid.appendChild(card);
@@ -459,8 +463,8 @@
   function updateGauge(){
     const total=BRANDS.length, kept=BRANDS.filter(b=>state[b.id]!==false).length;
     document.getElementById('gNum').textContent=kept;
-    document.getElementById('gTot').textContent=`/ 共 ${total} 个保留 kept`;
-    document.getElementById('barSum').innerHTML=`已保留 <b class="k">${kept}</b> · 去掉 <b class="d">${total-kept}</b><span class="en">Kept ${kept} · Removed ${total-kept}</span>`;
+    document.getElementById('gTot').textContent=`kept / ${total}　保留`;
+    document.getElementById('barSum').innerHTML=`Kept <b class="k">${kept}</b> · Removed <b class="d">${total-kept}</b><span class="en">已保留 ${kept} · 去掉 ${total-kept}</span>`;
   }
 
   function focusReason(id){ const ta=grid.querySelector(`.reason-input[data-id="${id}"]`); if(ta){ ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } }
@@ -516,7 +520,7 @@
   document.getElementById('allDrop').onclick=()=>bulkSet(false);
   // 重置：清空我的选择与原因，恢复默认全保留（全彩）
   document.getElementById('resetAll').onclick=()=>{
-    if(!confirm('重置我的所有选择和原因，恢复默认（全部保留）？\nReset all your choices and reasons back to default (all kept)?')) return;
+    if(!confirm('Reset all your choices and reasons back to default (all kept)?\n重置我的所有选择和原因，恢复默认（全部保留）？')) return;
     state={}; reasons={}; pending={};
     BRANDS.forEach(b=>state[b.id]=true);
     saveDraft(); render();
@@ -540,7 +544,7 @@
   document.getElementById('generate').onclick=()=>{
     if(!vendorInput.value.trim()){
       vendorInput.focus(); vendorInput.style.borderColor='var(--accent)';
-      alert('请先填写「您的名称」，方便我们区分是哪位展商的选择～\nPlease enter your name first so we can tell whose selection it is.'); return;
+      alert('Please enter your name first so we can tell whose selection it is.\n请先填写「您的名称」，方便我们区分是哪位展商的选择～'); return;
     }
     document.getElementById('rlink').value=resultUrl();
     document.getElementById('mok').textContent='';
@@ -551,7 +555,7 @@
   document.getElementById('copyLink').onclick=async()=>{
     const inp=document.getElementById('rlink');
     try{ await navigator.clipboard.writeText(inp.value); }catch(e){ inp.select(); document.execCommand('copy'); }
-    document.getElementById('mok').textContent='已复制，去微信发给我们就好 ✅  Copied — send it to us on WeChat.';
+    document.getElementById('mok').textContent='Copied — send it to us on WeChat ✅  已复制，去微信发给我们就好';
   };
   document.getElementById('openR').onclick=()=>window.open(document.getElementById('rlink').value,'_blank');
   document.getElementById('dl').onclick=()=>{
@@ -559,7 +563,7 @@
     const blob=new Blob([JSON.stringify(p,null,2)],{type:'application/json'});
     const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
     a.download=`品牌选择_${p.vendor||'未命名'}.json`; a.click();
-    document.getElementById('mok').textContent='文件已下载，可作为备份发给我们 ✅  Backup file downloaded.';
+    document.getElementById('mok').textContent='Backup file downloaded ✅  文件已下载，可作为备份发给我们';
   };
 
   renderChips();
