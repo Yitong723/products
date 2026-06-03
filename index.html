@@ -133,11 +133,18 @@
   .cat .en{font-weight:400; font-style:italic; opacity:.85;}
   .loc{padding:0 20px 10px; font-size:12px; color:var(--muted);}
   .loc .en{font-family:var(--display); font-style:italic;}
-  .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 14px; line-height:1.65; white-space:pre-line;}
-  .descEn{display:block; margin-top:9px; padding-top:9px; border-top:1px dashed var(--rule);
+  .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 6px; line-height:1.65; white-space:pre-line;}
+  .desc.clamp{display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; min-height:calc(1.65em * 4);}
+  .descEn{margin:0 20px 6px; padding-top:9px; border-top:1px dashed var(--rule);
     font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted); font-size:12.5px; line-height:1.6; white-space:pre-line;}
-  .prods{display:flex; gap:7px; padding:0 20px 16px; flex-wrap:wrap;}
-  .prods img{width:66px; height:66px; border-radius:10px; object-fit:cover; cursor:zoom-in; border:1px solid var(--rule); transition:.16s;}
+  .expand-link{display:inline-block; margin:0 20px 14px; padding:0; background:none; border:none; cursor:pointer;
+    font-family:var(--display); font-style:italic; font-size:12px; color:var(--accent);}
+  .expand-link:hover{text-decoration:underline;}
+  .prod-more{width:100%; aspect-ratio:1; border-radius:10px; border:1px solid var(--line); background:#f3ebdd;
+    cursor:pointer; font-family:var(--display); font-weight:600; color:var(--accent); font-size:15px;}
+  .prod-more:hover{border-color:var(--accent); background:#fff;}
+  .prods{display:grid; grid-template-columns:repeat(4,1fr); gap:7px; padding:0 20px 16px;}
+  .prods img{width:100%; aspect-ratio:1; border-radius:10px; object-fit:cover; cursor:zoom-in; border:1px solid var(--rule); transition:.16s;}
   .prods img:hover{transform:scale(1.05); border-color:var(--accent);}
   .noimg{margin:0 20px 16px; padding:9px 0; text-align:center; font-size:12px; color:#b6a98f; border:1px dashed var(--line); border-radius:10px;}
   .noimg .en{font-style:italic; margin-left:4px;}
@@ -328,6 +335,9 @@
 
   let reasons = {};   // id -> 已提交的原因文本（非空才显示只读原因区）
   let pending = {};   // id -> {choice:Boolean, reason:String} 正在编辑、未确认（不持久化）
+  const expDesc = new Set();  // 展开了全文+英文的卡片 id（内存态）
+  const expImg = new Set();   // 展开了全部产品图的卡片 id（内存态）
+  const PROD_CAP = 4;         // 默认每卡显示的产品图数量
   // 用 …/index.html?reset=1 打开 → 自动清空本机草稿，恢复默认全彩（演示/检查用）
   if(/(?:[?&#])reset=1\b/.test(location.search + location.hash)){
     try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
@@ -370,9 +380,20 @@
       const logoHtml = b.logo
         ? `<img src="${b.logo}" alt="" onerror="this.parentNode.textContent='${initials(b.name)}'">`
         : initials(b.name);
-      const prodHtml = (b.products&&b.products.length)
-        ? `<div class="prods">${b.products.map(p=>`<img src="${p}" alt="" data-big="${p}" onerror="this.style.display='none'">`).join('')}</div>`
-        : `<div class="noimg">暂无产品图<span class="en">No product image</span></div>`;
+      let prodHtml;
+      if(b.products&&b.products.length){
+        const showAll = expImg.has(b.id);
+        const over = b.products.length > PROD_CAP;          // 超过一行(4格)
+        // 一行固定 4 格：不超过就全显示；超过则显示前 3 张 + 「+N」
+        const list = showAll ? b.products : (over ? b.products.slice(0, PROD_CAP-1) : b.products);
+        const extra = b.products.length - (PROD_CAP-1);
+        prodHtml = `<div class="prods${showAll?' all':''}">`
+          + list.map(p=>`<img src="${p}" alt="" data-big="${p}" onerror="this.style.display='none'">`).join('')
+          + (!showAll && over ? `<button class="prod-more" data-act="exp-img" data-id="${b.id}">+${extra}</button>` : '')
+          + `</div>`;
+      } else {
+        prodHtml = `<div class="noimg">暂无产品图<span class="en">No product image</span></div>`;
+      }
 
       // 编辑中：原因输入框 + 确认/取消；已提交且有原因：只读原因 + 修改
       let extra = '';
@@ -401,9 +422,10 @@
           </div>
         </div>
         ${b.location?`<div class="loc">📍 ${escapeHtml(b.location)}${b.locationEn?` · <span class="en">${escapeHtml(b.locationEn)}</span>`:''}</div>`:''}
-        ${b.desc?`<div class="desc">${escapeHtml(b.desc)}${b.descEn?`<span class="descEn">${escapeHtml(b.descEn)}</span>`:''}</div>`:''}
+        ${b.desc?`<div class="desc${expDesc.has(b.id)?'':' clamp'}">${escapeHtml(b.desc)}</div>`:''}
+        ${(b.desc&&expDesc.has(b.id)&&b.descEn)?`<div class="descEn">${escapeHtml(b.descEn)}</div>`:''}
+        ${(b.desc||b.descEn)?`<button class="expand-link" data-act="exp-desc" data-id="${b.id}">${expDesc.has(b.id)?'收起 ▴':'展开全文 / English ▾'}</button>`:''}
         ${prodHtml}
-        ${b.link?`<div class="linkr"><a href="${escapeHtml(b.link)}" target="_blank" rel="noopener">${b.link.includes('xhslink')?'了解更多 Learn more':'官网 Website'} ↗</a></div>`:''}
         <div class="seg">
           <button class="k ${choice?'on':''}" data-id="${b.id}" data-v="1">保留<span class="en">Keep</span></button>
           <button class="d ${choice?'':'on'}" data-id="${b.id}" data-v="0">去掉<span class="en">Remove</span></button>
@@ -437,6 +459,10 @@
         delete pending[id]; render();                       // 不改 state/reasons
       } else if(act.dataset.act==='edit'){
         pending[id]={choice:state[id]!==false, reason:reasons[id]||''}; render(); focusReason(id);
+      } else if(act.dataset.act==='exp-desc'){
+        expDesc.has(id) ? expDesc.delete(id) : expDesc.add(id); render();
+      } else if(act.dataset.act==='exp-img'){
+        expImg.add(id); render();
       }
       return;
     }
