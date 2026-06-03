@@ -4,319 +4,348 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>品牌挑选 · 请勾选您想保留的品牌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f5efe6; --paper:#ffffff; --ink:#1a1a1a; --muted:#6b6357;
-    --rule:#e6dfd2; --accent:#c8451e; --accent-soft:#fde9d8;
-    --keep:#2e7d32; --keep-soft:#e8f5e9; --drop:#9a9a9a; --drop-soft:#efefef;
+    --bg:#f3ebdd; --bg2:#efe4d2; --paper:#fffdf8; --ink:#221c14; --ink-soft:#4a4034;
+    --muted:#8c7f6c; --rule:#e2d6c0; --line:#d8c9ad;
+    --accent:#bd3c1e; --accent-deep:#992c12; --accent-soft:#fbe6da;
+    --keep:#4a6b3f; --keep-soft:#e6efe0; --keep-line:#bcd0ad;
+    --drop:#a89a84; --drop-soft:#efe9dd;
+    --shadow:0 1px 2px rgba(60,40,20,.04), 0 8px 24px -12px rgba(80,50,20,.18);
+    --shadow-lift:0 2px 4px rgba(60,40,20,.06), 0 20px 40px -16px rgba(120,60,20,.28);
+    --serif:"Noto Serif SC", serif;
+    --sans:"Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+    --display:"Fraunces", "Noto Serif SC", serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{
-    background:var(--bg); color:var(--ink);
-    font-family:-apple-system,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.6;
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.6; position:relative;
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(189,60,30,.06), transparent 60%),
+      radial-gradient(800px 460px at 100% 0%, rgba(74,107,63,.05), transparent 55%);
+    background-attachment:fixed;
   }
-  body{max-width:1080px; margin:0 auto; padding:36px 20px 140px;}
+  /* 颗粒纸纹 */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:40px 22px 160px;}
 
-  /* Header */
-  .hero{border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:24px;}
-  .eyebrow{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px;}
-  h1{font-size:30px; line-height:1.2; font-weight:800; letter-spacing:-.01em; margin-bottom:10px;}
-  .sub{font-size:14px; color:var(--muted); max-width:680px;}
+  /* ===== Masthead ===== */
+  .mast{position:relative; padding-bottom:26px; margin-bottom:30px;}
+  .mast::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:linear-gradient(90deg, var(--ink) 0 64px, transparent 64px),
+               linear-gradient(90deg, var(--rule), var(--rule)); background-size:100% 3px,100% 1px;
+    background-position:0 0,0 2px; background-repeat:no-repeat;}
+  .kicker{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .kicker .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px;
+    letter-spacing:.04em; color:var(--accent);}
+  .kicker .ln{flex:1; height:1px; background:var(--line);}
+  .kicker .date{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted);}
+  h1{font-family:var(--serif); font-weight:900; font-size:clamp(30px,5.2vw,50px); line-height:1.08;
+    letter-spacing:-.01em; color:var(--ink);}
+  h1 em{font-family:var(--display); font-style:italic; font-weight:600; color:var(--accent); font-size:.96em;}
+  .dek{margin-top:16px; max-width:640px; font-size:15px; color:var(--ink-soft); line-height:1.75;}
+  .dek b{color:var(--accent-deep); font-weight:700;}
 
-  /* Vendor + controls */
-  .panel{
-    background:var(--paper); border:1px solid var(--rule); border-radius:14px;
-    padding:18px 20px; margin-bottom:22px; display:flex; flex-wrap:wrap;
-    align-items:center; gap:14px 22px;
-  }
-  .field{display:flex; align-items:center; gap:10px;}
-  .field label{font-size:14px; font-weight:600; white-space:nowrap;}
-  .field input{
-    font-size:15px; padding:9px 12px; border:1px solid var(--rule); border-radius:9px;
-    min-width:200px; background:#fff; color:var(--ink);
-  }
-  .field input:focus{outline:none; border-color:var(--accent);}
-  .counter{font-size:15px; font-weight:700; color:var(--accent); margin-left:auto;}
-  .bulk{display:flex; gap:8px;}
-  .bulk button{
-    font-size:13px; padding:7px 12px; border:1px solid var(--rule); background:#fff;
-    border-radius:8px; cursor:pointer; color:var(--muted);
-  }
-  .bulk button:hover{border-color:var(--accent); color:var(--accent);}
+  /* ===== Control panel ===== */
+  .panel{display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; margin:26px 0 14px;
+    padding:18px 22px; background:var(--paper); border:1px solid var(--rule); border-radius:16px;
+    box-shadow:var(--shadow);}
+  .field{display:flex; align-items:center; gap:11px; flex:1; min-width:240px;}
+  .field label{font-family:var(--serif); font-weight:700; font-size:14px; white-space:nowrap; color:var(--ink);}
+  .field input{flex:1; font-family:var(--sans); font-size:15px; padding:11px 14px; color:var(--ink);
+    background:#fbf6ec; border:1px solid var(--line); border-radius:11px; transition:.18s;}
+  .field input::placeholder{color:#b3a791;}
+  .field input:focus{outline:none; border-color:var(--accent); background:#fff;
+    box-shadow:0 0 0 4px var(--accent-soft);}
+  .bulk{display:flex; gap:9px;}
+  .bulk button{font-family:var(--sans); font-size:13px; font-weight:500; padding:9px 15px; color:var(--ink-soft);
+    background:transparent; border:1px solid var(--line); border-radius:30px; cursor:pointer; transition:.16s;}
+  .bulk button:hover{border-color:var(--accent); color:var(--accent); background:#fff;}
+  .gauge{display:flex; align-items:baseline; gap:8px; font-family:var(--display); white-space:nowrap;}
+  .gauge .big{font-size:30px; font-weight:600; color:var(--accent); line-height:1; font-feature-settings:"tnum";}
+  .gauge .sm{font-size:13px; color:var(--muted); letter-spacing:.04em;}
 
-  .hint{font-size:13px; color:var(--muted); margin:-6px 0 18px; display:flex; align-items:center; gap:8px;}
-  .hint .dot-keep,.hint .dot-drop{width:10px;height:10px;border-radius:50%;display:inline-block;}
-  .hint .dot-keep{background:var(--keep);} .hint .dot-drop{background:var(--drop);}
+  .legend{display:flex; align-items:center; gap:18px; font-size:13px; color:var(--muted); margin:6px 2px 22px;}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .legend .sw{width:11px; height:11px; border-radius:3px;}
+  .sw.k{background:var(--keep);} .sw.d{background:var(--drop);}
 
-  /* Grid */
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
-  .card{
-    background:var(--paper); border:1px solid var(--rule); border-radius:14px;
-    overflow:hidden; display:flex; flex-direction:column; transition:all .18s;
-    position:relative;
-  }
-  .card.keep{border-color:var(--keep); box-shadow:0 2px 0 0 var(--keep-soft);}
-  .card.drop{opacity:.5; filter:grayscale(.7);}
-  .card-top{display:flex; align-items:center; gap:12px; padding:16px 16px 10px;}
-  .logo{
-    width:48px; height:48px; border-radius:10px; object-fit:cover; flex-shrink:0;
-    background:var(--accent-soft); display:flex; align-items:center; justify-content:center;
-    font-weight:800; color:var(--accent); font-size:18px; overflow:hidden;
-  }
-  .logo img{width:100%;height:100%;object-fit:cover;display:block;}
-  .name-wrap{flex:1; min-width:0;}
-  .name{font-size:16px; font-weight:700; line-height:1.3;}
-  .cat{display:inline-block; margin-top:4px; font-size:11px; color:var(--accent);
-    background:var(--accent-soft); padding:2px 8px; border-radius:20px;}
-  .desc{font-size:13px; color:var(--muted); padding:0 16px 12px; line-height:1.55;}
-  .products{display:flex; gap:6px; padding:0 16px 12px; flex-wrap:wrap;}
-  .products img{width:62px; height:62px; border-radius:8px; object-fit:cover; cursor:zoom-in; border:1px solid var(--rule);}
+  /* ===== Grid & cards ===== */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;}
+  .card{position:relative; background:var(--paper); border:1px solid var(--rule); border-radius:18px;
+    display:flex; flex-direction:column; overflow:hidden; box-shadow:var(--shadow);
+    transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s, opacity .22s, filter .22s;
+    opacity:0; transform:translateY(14px);}
+  .card.in{opacity:1; transform:none;}
+  .card.keep:hover{transform:translateY(-4px); box-shadow:var(--shadow-lift);}
+  .card.keep{border-color:var(--keep-line);}
+  .card.keep::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+    background:linear-gradient(var(--keep), #6f8c5f);}
+  .card.drop{opacity:.62; filter:grayscale(.85) contrast(.97);}
+  .card.drop .stamp{display:flex;}
 
-  .toggle{display:flex; border-top:1px solid var(--rule); margin-top:auto;}
-  .toggle button{
-    flex:1; padding:11px 0; border:none; background:transparent; cursor:pointer;
-    font-size:14px; font-weight:600; color:var(--muted); transition:all .15s;
-  }
-  .toggle button.t-keep.on{background:var(--keep-soft); color:var(--keep);}
-  .toggle button.t-drop.on{background:var(--drop-soft); color:#555;}
-  .toggle button:first-child{border-right:1px solid var(--rule);}
-  .toggle button:hover{background:#faf6ef;}
+  .stamp{display:none; position:absolute; top:14px; right:-30px; transform:rotate(8deg);
+    background:var(--drop); color:#fff; font-size:11px; font-weight:700; letter-spacing:.2em;
+    padding:5px 36px; box-shadow:0 4px 10px rgba(0,0,0,.15); z-index:3;}
 
-  /* Footer action bar */
-  .actionbar{
-    position:fixed; left:0; right:0; bottom:0; background:rgba(245,239,230,.96);
-    backdrop-filter:blur(8px); border-top:1px solid var(--rule); padding:14px 20px;
-    display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; z-index:20;
-  }
-  .actionbar .summary{font-size:14px; color:var(--muted);}
-  .actionbar .summary b{color:var(--ink);}
-  .btn{
-    font-size:15px; font-weight:700; padding:12px 26px; border-radius:10px; cursor:pointer; border:none;
-  }
-  .btn-primary{background:var(--accent); color:#fff;}
-  .btn-primary:hover{background:#a8380f;}
-  .btn-ghost{background:#fff; color:var(--ink); border:1px solid var(--rule);}
+  .ct{display:flex; gap:14px; align-items:center; padding:20px 20px 12px;}
+  .mono{width:54px; height:54px; border-radius:14px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-family:var(--serif); font-weight:900; font-size:24px; color:#fff;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.25), 0 6px 14px -6px rgba(0,0,0,.3); overflow:hidden;}
+  .mono img{width:100%; height:100%; object-fit:cover;}
+  .nm{flex:1; min-width:0;}
+  .nm .name{font-family:var(--serif); font-weight:700; font-size:18px; line-height:1.3; color:var(--ink);}
+  .cat{display:inline-block; margin-top:6px; font-size:11px; font-weight:700; letter-spacing:.04em;
+    padding:3px 11px; border-radius:30px;}
+  .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 14px; line-height:1.65;}
+  .prods{display:flex; gap:7px; padding:0 20px 16px; flex-wrap:wrap;}
+  .prods img{width:66px; height:66px; border-radius:10px; object-fit:cover; cursor:zoom-in;
+    border:1px solid var(--rule); transition:.16s;}
+  .prods img:hover{transform:scale(1.05); border-color:var(--accent);}
+  .noimg{margin:0 20px 16px; padding:9px 0; text-align:center; font-size:12px; color:#b6a98f;
+    border:1px dashed var(--line); border-radius:10px;}
+
+  /* segmented toggle */
+  .seg{display:flex; margin:auto 16px 16px; background:#f3ebdd; border-radius:12px; padding:4px; gap:4px;}
+  .seg button{flex:1; border:none; background:transparent; cursor:pointer; padding:10px 0; border-radius:9px;
+    font-family:var(--sans); font-weight:700; font-size:14px; color:var(--muted); transition:.16s;}
+  .seg button.k.on{background:var(--keep); color:#fff; box-shadow:0 3px 8px -2px rgba(74,107,63,.5);}
+  .seg button.d.on{background:#fff; color:var(--ink); box-shadow:var(--shadow);}
+  .seg button:not(.on):hover{color:var(--ink);}
+
+  /* ===== Action bar ===== */
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:30;
+    background:rgba(243,235,221,.86); backdrop-filter:blur(14px) saturate(1.2);
+    border-top:1px solid var(--line); box-shadow:0 -8px 30px -20px rgba(80,40,10,.5);}
+  .bar-in{max-width:1120px; margin:0 auto; padding:14px 22px; display:flex; align-items:center;
+    gap:18px; flex-wrap:wrap;}
+  .barsum{font-size:14px; color:var(--ink-soft);}
+  .barsum b{font-family:var(--display); font-size:17px; color:var(--ink); font-feature-settings:"tnum";}
+  .barsum .k{color:var(--keep);} .barsum .d{color:var(--accent);}
+  .btn{font-family:var(--sans); font-weight:700; cursor:pointer; border:none; border-radius:12px; transition:.16s;}
+  .btn-primary{margin-left:auto; font-size:15px; padding:13px 30px; color:#fff;
+    background:linear-gradient(135deg, var(--accent), var(--accent-deep));
+    box-shadow:0 6px 18px -6px rgba(189,60,30,.6); display:inline-flex; align-items:center; gap:9px;}
+  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 10px 24px -8px rgba(189,60,30,.7);}
+  .btn-primary .ar{transition:transform .2s;} .btn-primary:hover .ar{transform:translateX(4px);}
+  .btn-ghost{background:#fff; color:var(--ink); border:1px solid var(--line); font-size:14px; padding:11px 18px;}
   .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
 
-  /* Modal */
-  .overlay{position:fixed; inset:0; background:rgba(20,16,12,.7); display:none;
-    align-items:center; justify-content:center; z-index:40; padding:20px;}
-  .overlay.show{display:flex;}
-  .modal{background:var(--paper); border-radius:16px; max-width:520px; width:100%; padding:26px;}
-  .modal h3{font-size:20px; margin-bottom:6px;}
-  .modal p{font-size:13px; color:var(--muted); margin-bottom:16px;}
-  .link-box{display:flex; gap:8px; margin-bottom:14px;}
-  .link-box input{flex:1; font-size:13px; padding:11px 12px; border:1px solid var(--rule);
-    border-radius:9px; background:#faf6ef; color:var(--ink);}
-  .modal .row{display:flex; gap:10px; flex-wrap:wrap;}
-  .modal .ok{font-size:13px; color:var(--keep); margin-top:10px; min-height:18px; font-weight:600;}
-  .img-overlay{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none;
-    align-items:center; justify-content:center; z-index:60; cursor:zoom-out;}
-  .img-overlay.show{display:flex;}
-  .img-overlay img{max-width:92vw; max-height:92vh; border-radius:10px;}
+  /* ===== Modal ===== */
+  .ov{position:fixed; inset:0; z-index:50; background:rgba(34,28,20,.55); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; padding:20px;}
+  .ov.show{display:flex; animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{background:var(--paper); border-radius:20px; max-width:540px; width:100%; padding:30px;
+    box-shadow:0 30px 80px -20px rgba(40,20,0,.5); border:1px solid var(--rule);
+    animation:pop .26s cubic-bezier(.2,.8,.2,1);}
+  @keyframes pop{from{opacity:0; transform:translateY(16px) scale(.97)}to{opacity:1; transform:none}}
+  .modal .ck{font-family:var(--display); font-style:italic; color:var(--keep); font-size:14px; margin-bottom:6px;}
+  .modal h3{font-family:var(--serif); font-weight:700; font-size:23px; margin-bottom:8px;}
+  .modal p{font-size:13.5px; color:var(--ink-soft); margin-bottom:18px; line-height:1.7;}
+  .linkbox{display:flex; gap:9px; margin-bottom:16px;}
+  .linkbox input{flex:1; font-size:13px; padding:12px 13px; border:1px solid var(--line); border-radius:11px;
+    background:#fbf6ec; color:var(--ink-soft); font-family:ui-monospace,monospace;}
+  .mrow{display:flex; gap:10px; flex-wrap:wrap;}
+  .mok{font-size:13px; color:var(--keep); font-weight:700; margin-top:12px; min-height:18px;}
+  .imgov{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.88); display:none;
+    align-items:center; justify-content:center; cursor:zoom-out; padding:20px;}
+  .imgov.show{display:flex;}
+  .imgov img{max-width:92vw; max-height:92vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.6);}
+
+  @media(max-width:560px){
+    .panel{flex-direction:column; align-items:stretch;}
+    .gauge{justify-content:center;}
+    .btn-primary{margin-left:0; flex:1; justify-content:center;}
+  }
 </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="eyebrow">Brand Selection · 品牌挑选</div>
-    <h1>请挑选您想<span style="color:var(--accent)">保留</span>的品牌</h1>
-    <p class="sub">下面是全部品牌清单。默认每个品牌都是「保留」。把您不需要的点成「去掉」即可。
-      选完后填写您的名称，点底部「生成结果」，把链接发回给我们就好。</p>
-  </div>
+  <div class="wrap">
+    <header class="mast">
+      <div class="kicker">
+        <span class="lbl">Brand Selection</span>
+        <span class="ln"></span>
+        <span class="date">品牌挑选清单</span>
+      </div>
+      <h1>请挑选您想<em>保留</em>的品牌</h1>
+      <p class="dek">下面是全部品牌。每个品牌默认都是<b>保留</b>状态，把您<b>不需要</b>的切到「去掉」即可。
+        选好后填写您的名称，点底部「生成结果」，把链接发回给我们就完成了。</p>
+    </header>
 
-  <div class="panel">
-    <div class="field">
-      <label for="vendor">您的名称</label>
-      <input id="vendor" type="text" placeholder="例如：某某陶瓷厂 / 张厂长" autocomplete="off">
+    <section class="panel">
+      <div class="field">
+        <label for="vendor">您的名称</label>
+        <input id="vendor" type="text" placeholder="例如：某某陶瓷厂 / 张厂长" autocomplete="off">
+      </div>
+      <div class="bulk">
+        <button id="allKeep">全部保留</button>
+        <button id="allDrop">全部去掉</button>
+      </div>
+      <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">/ 共 0 个保留</span></div>
+    </section>
+
+    <div class="legend">
+      <span><i class="sw k"></i> 保留 — 您想要的</span>
+      <span><i class="sw d"></i> 去掉 — 不需要（卡片变灰盖章）</span>
     </div>
-    <div class="bulk">
-      <button id="allKeep">全部保留</button>
-      <button id="allDrop">全部去掉</button>
+
+    <main class="grid" id="grid"></main>
+  </div>
+
+  <div class="bar">
+    <div class="bar-in">
+      <div class="barsum" id="barSum">已保留 <b class="k">0</b> 个 · 去掉 <b class="d">0</b> 个</div>
+      <button class="btn btn-primary" id="generate">生成结果 <span class="ar">→</span></button>
     </div>
-    <div class="counter" id="counter">保留 0 / 共 0</div>
   </div>
 
-  <div class="hint">
-    <span class="dot-keep"></span> 保留 = 您想要的
-    <span style="width:14px"></span>
-    <span class="dot-drop"></span> 去掉 = 不需要（卡片会变灰）
-  </div>
-
-  <div class="grid" id="grid"></div>
-
-  <div class="actionbar">
-    <div class="summary" id="barSummary">保留 <b>0</b> 个，去掉 <b>0</b> 个</div>
-    <button class="btn btn-primary" id="generate">生成结果 →</button>
-  </div>
-
-  <!-- 结果弹窗 -->
-  <div class="overlay" id="overlay">
+  <div class="ov" id="ov">
     <div class="modal">
-      <h3>✅ 结果已生成</h3>
-      <p>把下面这个链接复制，发回给我们（微信发即可）。我们一打开就能看到您的选择。</p>
-      <div class="link-box">
-        <input id="resultLink" readonly>
-        <button class="btn btn-primary" id="copyLink" style="padding:11px 16px;font-size:14px;">复制</button>
+      <div class="ck">Generated</div>
+      <h3>结果已生成 ✅</h3>
+      <p>复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。</p>
+      <div class="linkbox">
+        <input id="rlink" readonly>
+        <button class="btn btn-primary" id="copyLink" style="margin:0;padding:12px 18px;font-size:14px;">复制</button>
       </div>
-      <div class="row">
-        <button class="btn btn-ghost" id="openResult">预览结果</button>
-        <button class="btn btn-ghost" id="downloadJson">下载文件备份</button>
-        <button class="btn btn-ghost" id="closeModal">关闭</button>
+      <div class="mrow">
+        <button class="btn btn-ghost" id="openR">预览结果</button>
+        <button class="btn btn-ghost" id="dl">下载文件备份</button>
+        <button class="btn btn-ghost" id="closeM">关闭</button>
       </div>
-      <div class="ok" id="modalOk"></div>
+      <div class="mok" id="mok"></div>
     </div>
   </div>
 
-  <div class="img-overlay" id="imgOverlay"><img id="bigImg" alt=""></div>
+  <div class="imgov" id="imgov"><img id="bigImg" alt=""></div>
 
 <script src="data/brands.js"></script>
 <script>
   const DRAFT_KEY = "collect_draft_v1";
   const grid = document.getElementById('grid');
   const vendorInput = document.getElementById('vendor');
-  // 状态：id -> true(保留) / false(去掉)。默认全保留。
   let state = {};
 
-  // 读取草稿
+  // 分类配色（确定性：同分类同色）
+  const PALETTE = [
+    ['#bd3c1e','#fbe6da'], ['#4a6b3f','#e6efe0'], ['#9a6b1c','#f6e8cf'],
+    ['#2f6173','#dceaef'], ['#7a4a8c','#ece0f1'], ['#a83b52','#f8e1e6'],
+    ['#5a6536','#eaeede'], ['#3f5a8c','#e0e6f3']
+  ];
+  function catColor(cat){
+    let h=0; const s=cat||'•'; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0;
+    return PALETTE[h % PALETTE.length];
+  }
+
   (function loadDraft(){
-    try{
-      const raw = localStorage.getItem(DRAFT_KEY);
-      if(raw){
-        const d = JSON.parse(raw);
-        if(d.vendor) vendorInput.value = d.vendor;
-        if(d.state) state = d.state;
-      }
+    try{ const raw=localStorage.getItem(DRAFT_KEY);
+      if(raw){ const d=JSON.parse(raw); if(d.vendor) vendorInput.value=d.vendor; if(d.state) state=d.state; }
     }catch(e){}
-    // 补齐：新品牌默认保留
-    BRANDS.forEach(b=>{ if(!(b.id in state)) state[b.id] = true; });
+    BRANDS.forEach(b=>{ if(!(b.id in state)) state[b.id]=true; });
   })();
+  function saveDraft(){ try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({vendor:vendorInput.value.trim(), state})); }catch(e){} }
 
-  function saveDraft(){
-    try{
-      localStorage.setItem(DRAFT_KEY, JSON.stringify({vendor:vendorInput.value.trim(), state}));
-    }catch(e){}
-  }
-
-  function initials(name){
-    const s = (name||"").replace(/^示例品牌\s*·\s*/,'').trim();
-    return s ? s.slice(0,1) : "牌";
-  }
+  function initials(name){ const s=(name||'').replace(/^示例品牌\s*·\s*/,'').trim(); return s? s.slice(0,1):'牌'; }
+  function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
   function render(){
-    grid.innerHTML = '';
-    BRANDS.forEach(b=>{
-      const keep = state[b.id] !== false;
-      const card = document.createElement('div');
-      card.className = 'card ' + (keep ? 'keep':'drop');
-
+    grid.innerHTML='';
+    BRANDS.forEach((b,i)=>{
+      const keep = state[b.id]!==false;
+      const [c1,c2] = catColor(b.category);
+      const card=document.createElement('div');
+      card.className='card '+(keep?'keep':'drop');
       const logoHtml = b.logo
         ? `<img src="${b.logo}" alt="" onerror="this.parentNode.textContent='${initials(b.name)}'">`
         : initials(b.name);
-
-      const prodHtml = (b.products && b.products.length)
-        ? `<div class="products">${b.products.map(p=>`<img src="${p}" alt="" data-big="${p}" onerror="this.style.display='none'">`).join('')}</div>`
-        : '';
-
+      const prodHtml = (b.products&&b.products.length)
+        ? `<div class="prods">${b.products.map(p=>`<img src="${p}" alt="" data-big="${p}" onerror="this.style.display='none'">`).join('')}</div>`
+        : `<div class="noimg">暂无产品图</div>`;
       card.innerHTML = `
-        <div class="card-top">
-          <div class="logo">${logoHtml}</div>
-          <div class="name-wrap">
+        <div class="stamp">已去掉</div>
+        <div class="ct">
+          <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${logoHtml}</div>
+          <div class="nm">
             <div class="name">${escapeHtml(b.name)}</div>
-            ${b.category ? `<span class="cat">${escapeHtml(b.category)}</span>`:''}
+            ${b.category?`<span class="cat" style="background:${c2};color:${c1}">${escapeHtml(b.category)}</span>`:''}
           </div>
         </div>
-        ${b.desc ? `<div class="desc">${escapeHtml(b.desc)}</div>`:''}
+        ${b.desc?`<div class="desc">${escapeHtml(b.desc)}</div>`:''}
         ${prodHtml}
-        <div class="toggle">
-          <button class="t-keep ${keep?'on':''}" data-id="${b.id}" data-v="1">保留</button>
-          <button class="t-drop ${keep?'':'on'}" data-id="${b.id}" data-v="0">去掉</button>
+        <div class="seg">
+          <button class="k ${keep?'on':''}" data-id="${b.id}" data-v="1">保留</button>
+          <button class="d ${keep?'':'on'}" data-id="${b.id}" data-v="0">去掉</button>
         </div>`;
       grid.appendChild(card);
+      requestAnimationFrame(()=> setTimeout(()=>card.classList.add('in'), i*45));
     });
-    updateCounter();
+    updateGauge();
   }
 
-  function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-
-  function updateCounter(){
-    const total = BRANDS.length;
-    const kept = BRANDS.filter(b=>state[b.id]!==false).length;
-    document.getElementById('counter').textContent = `保留 ${kept} / 共 ${total}`;
-    document.getElementById('barSummary').innerHTML = `保留 <b>${kept}</b> 个，去掉 <b>${total-kept}</b> 个`;
+  function updateGauge(){
+    const total=BRANDS.length, kept=BRANDS.filter(b=>state[b.id]!==false).length;
+    document.getElementById('gNum').textContent=kept;
+    document.getElementById('gTot').textContent=`/ 共 ${total} 个保留`;
+    document.getElementById('barSum').innerHTML=`已保留 <b class="k">${kept}</b> 个 · 去掉 <b class="d">${total-kept}</b> 个`;
   }
 
-  // 事件代理：切换 / 看大图
   grid.addEventListener('click', e=>{
-    const btn = e.target.closest('.toggle button');
-    if(btn){
-      state[btn.dataset.id] = btn.dataset.v === '1';
-      saveDraft(); render(); return;
-    }
-    const img = e.target.closest('.products img');
-    if(img && img.dataset.big){
-      document.getElementById('bigImg').src = img.dataset.big;
-      document.getElementById('imgOverlay').classList.add('show');
-    }
+    const btn=e.target.closest('.seg button');
+    if(btn){ state[btn.dataset.id]=btn.dataset.v==='1'; saveDraft(); render(); return; }
+    const img=e.target.closest('.prods img');
+    if(img&&img.dataset.big){ document.getElementById('bigImg').src=img.dataset.big; document.getElementById('imgov').classList.add('show'); }
   });
-  document.getElementById('imgOverlay').addEventListener('click',e=>{
-    e.currentTarget.classList.remove('show');
-  });
-
-  document.getElementById('allKeep').onclick = ()=>{BRANDS.forEach(b=>state[b.id]=true); saveDraft(); render();};
-  document.getElementById('allDrop').onclick = ()=>{BRANDS.forEach(b=>state[b.id]=false); saveDraft(); render();};
+  document.getElementById('imgov').addEventListener('click', e=> e.currentTarget.classList.remove('show'));
+  document.getElementById('allKeep').onclick=()=>{BRANDS.forEach(b=>state[b.id]=true); saveDraft(); render();};
+  document.getElementById('allDrop').onclick=()=>{BRANDS.forEach(b=>state[b.id]=false); saveDraft(); render();};
   vendorInput.addEventListener('input', saveDraft);
 
-  // 生成结果
   function buildPayload(){
-    const kept=[], removed=[];
-    BRANDS.forEach(b=> (state[b.id]!==false ? kept:removed).push(b.id));
+    const kept=[],removed=[]; BRANDS.forEach(b=>(state[b.id]!==false?kept:removed).push(b.id));
     return {v:1, vendor:vendorInput.value.trim(), kept, removed, t:nowStamp()};
   }
-  function nowStamp(){
-    // 用本地时间字符串（避免依赖被禁用的 Date.now，浏览器里可用 new Date）
-    const d=new Date(); const p=n=>String(n).padStart(2,'0');
-    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
-  }
-  function encodePayload(obj){
-    // UTF-8 安全的 base64
-    return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
-  }
+  function nowStamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
+  function encodePayload(o){ return btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
   function resultUrl(){
-    const base = location.href.replace(/index\.html.*$/,'').replace(/[#?].*$/,'');
-    return base.replace(/\/?$/,'/') + 'result.html#d=' + encodePayload(buildPayload());
+    const base=location.href.replace(/index\.html.*$/,'').replace(/[#?].*$/,'');
+    return base.replace(/\/?$/,'/')+'result.html#d='+encodePayload(buildPayload());
   }
 
-  const overlay = document.getElementById('overlay');
-  document.getElementById('generate').onclick = ()=>{
+  const ov=document.getElementById('ov');
+  document.getElementById('generate').onclick=()=>{
     if(!vendorInput.value.trim()){
       vendorInput.focus(); vendorInput.style.borderColor='var(--accent)';
-      alert('请先填写「您的名称」，方便我们区分是哪位厂商的选择～');
-      return;
+      alert('请先填写「您的名称」，方便我们区分是哪位厂商的选择～'); return;
     }
-    const url = resultUrl();
-    document.getElementById('resultLink').value = url;
-    document.getElementById('modalOk').textContent='';
-    overlay.classList.add('show');
+    document.getElementById('rlink').value=resultUrl();
+    document.getElementById('mok').textContent='';
+    ov.classList.add('show');
   };
-  document.getElementById('closeModal').onclick = ()=> overlay.classList.remove('show');
-  overlay.addEventListener('click', e=>{ if(e.target===overlay) overlay.classList.remove('show'); });
-
-  document.getElementById('copyLink').onclick = async ()=>{
-    const inp = document.getElementById('resultLink');
-    try{ await navigator.clipboard.writeText(inp.value); }
-    catch(e){ inp.select(); document.execCommand('copy'); }
-    document.getElementById('modalOk').textContent='已复制，去微信发给我们就好 ✅';
+  document.getElementById('closeM').onclick=()=>ov.classList.remove('show');
+  ov.addEventListener('click', e=>{ if(e.target===ov) ov.classList.remove('show'); });
+  document.getElementById('copyLink').onclick=async()=>{
+    const inp=document.getElementById('rlink');
+    try{ await navigator.clipboard.writeText(inp.value); }catch(e){ inp.select(); document.execCommand('copy'); }
+    document.getElementById('mok').textContent='已复制，去微信发给我们就好 ✅';
   };
-  document.getElementById('openResult').onclick = ()=> window.open(document.getElementById('resultLink').value,'_blank');
-  document.getElementById('downloadJson').onclick = ()=>{
-    const p = buildPayload();
-    const blob = new Blob([JSON.stringify(p,null,2)], {type:'application/json'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `品牌选择_${p.vendor||'未命名'}.json`;
-    a.click();
-    document.getElementById('modalOk').textContent='文件已下载，可作为备份发给我们 ✅';
+  document.getElementById('openR').onclick=()=>window.open(document.getElementById('rlink').value,'_blank');
+  document.getElementById('dl').onclick=()=>{
+    const p=buildPayload();
+    const blob=new Blob([JSON.stringify(p,null,2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download=`品牌选择_${p.vendor||'未命名'}.json`; a.click();
+    document.getElementById('mok').textContent='文件已下载，可作为备份发给我们 ✅';
   };
 
   render();

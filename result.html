@@ -4,231 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>厂商选择结果 · 汇总</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f5efe6; --paper:#ffffff; --ink:#1a1a1a; --muted:#6b6357;
-    --rule:#e6dfd2; --accent:#c8451e; --accent-soft:#fde9d8;
-    --keep:#2e7d32; --keep-soft:#e8f5e9; --drop:#9a9a9a; --drop-soft:#efefef;
+    --bg:#f3ebdd; --paper:#fffdf8; --ink:#221c14; --ink-soft:#4a4034;
+    --muted:#8c7f6c; --rule:#e2d6c0; --line:#d8c9ad;
+    --accent:#bd3c1e; --accent-deep:#992c12; --accent-soft:#fbe6da;
+    --keep:#4a6b3f; --keep-soft:#e6efe0; --keep-line:#bcd0ad;
+    --drop:#a89a84; --drop-soft:#efe9dd;
+    --shadow:0 1px 2px rgba(60,40,20,.04), 0 8px 24px -12px rgba(80,50,20,.18);
+    --serif:"Noto Serif SC",serif; --sans:"Noto Sans SC",-apple-system,"PingFang SC",sans-serif;
+    --display:"Fraunces","Noto Serif SC",serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{background:var(--bg); color:var(--ink);
-    font-family:-apple-system,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
-    -webkit-font-smoothing:antialiased; line-height:1.6;}
-  body{max-width:1080px; margin:0 auto; padding:36px 20px 80px;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;
+    line-height:1.6; position:relative;
+    background-image:radial-gradient(900px 500px at 12% -8%, rgba(189,60,30,.06), transparent 60%),
+      radial-gradient(800px 460px at 100% 0%, rgba(74,107,63,.05), transparent 55%); background-attachment:fixed;}
+  body::before{content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");}
+  .wrap{position:relative; z-index:1; max-width:1140px; margin:0 auto; padding:40px 22px 80px;}
 
-  .hero{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
-  .eyebrow{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px;}
-  h1{font-size:28px; font-weight:800; letter-spacing:-.01em;}
-  .sub{font-size:13px; color:var(--muted); margin-top:8px;}
+  .mast{position:relative; padding-bottom:24px; margin-bottom:26px;}
+  .mast::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:linear-gradient(90deg,var(--ink) 0 64px,transparent 64px),linear-gradient(90deg,var(--rule),var(--rule));
+    background-size:100% 3px,100% 1px; background-position:0 0,0 2px; background-repeat:no-repeat;}
+  .kicker{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+  .kicker .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px; color:var(--accent);}
+  .kicker .ln{flex:1; height:1px; background:var(--line);}
+  .kicker .date{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted);}
+  h1{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4.5vw,40px); line-height:1.1; letter-spacing:-.01em;}
+  .dek{margin-top:12px; max-width:680px; font-size:14px; color:var(--ink-soft); line-height:1.7;}
 
-  .layout{display:grid; grid-template-columns:260px 1fr; gap:22px; align-items:start;}
-  @media(max-width:760px){ .layout{grid-template-columns:1fr;} }
+  .layout{display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:start;}
+  @media(max-width:780px){ .layout{grid-template-columns:1fr;} }
 
-  /* 左：厂商列表 */
-  .side{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:14px; position:sticky; top:16px;}
-  .side h2{font-size:14px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:10px;}
-  .vendor-item{display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; cursor:pointer; margin-bottom:6px; border:1px solid transparent;}
-  .vendor-item:hover{background:#faf6ef;}
-  .vendor-item.active{background:var(--accent-soft); border-color:var(--accent);}
-  .vendor-item .vn{flex:1; font-weight:700; font-size:14px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-  .vendor-item .vk{font-size:12px; color:var(--keep); font-weight:700; white-space:nowrap;}
-  .vendor-item .del{font-size:14px; color:#bbb; padding:0 4px; line-height:1;}
-  .vendor-item .del:hover{color:var(--accent);}
-  .empty-side{font-size:13px; color:var(--muted); padding:8px;}
-  .side-actions{display:flex; flex-direction:column; gap:8px; margin-top:12px; border-top:1px solid var(--rule); padding-top:12px;}
-  .side-actions button{font-size:13px; padding:9px; border:1px solid var(--rule); background:#fff; border-radius:9px; cursor:pointer; color:var(--muted);}
-  .side-actions button:hover{border-color:var(--accent); color:var(--accent);}
+  .side{background:var(--paper); border:1px solid var(--rule); border-radius:18px; padding:16px; position:sticky; top:18px; box-shadow:var(--shadow);}
+  .side h2{font-family:var(--display); font-style:italic; font-size:15px; color:var(--accent); margin-bottom:12px;}
+  .vitem{display:flex; align-items:center; gap:9px; padding:11px 13px; border-radius:12px; cursor:pointer;
+    margin-bottom:7px; border:1px solid transparent; transition:.15s;}
+  .vitem:hover{background:#faf4e8;}
+  .vitem.active{background:var(--accent-soft); border-color:var(--accent);}
+  .vitem .dot{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:900;font-size:14px;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-deep));}
+  .vitem .vn{flex:1; font-family:var(--serif); font-weight:700; font-size:14px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .vitem .vk{font-family:var(--display); font-size:12px; color:var(--keep); font-weight:600; white-space:nowrap;}
+  .vitem .del{font-size:13px; color:#c2b7a2; padding:0 3px; line-height:1;}
+  .vitem .del:hover{color:var(--accent);}
+  .eside{font-size:13px; color:var(--muted); padding:10px; line-height:1.6;}
+  .sacts{display:flex; flex-direction:column; gap:8px; margin-top:14px; border-top:1px solid var(--rule); padding-top:14px;}
+  .sacts button{font-family:var(--sans); font-size:13px; font-weight:500; padding:10px; border:1px solid var(--line);
+    background:#fff; border-radius:11px; cursor:pointer; color:var(--ink-soft); transition:.15s;}
+  .sacts button:hover{border-color:var(--accent); color:var(--accent);}
+  .sacts .danger:hover{border-color:#c0392b; color:#c0392b;}
 
-  /* 右：详情 */
-  .detail-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
-  .detail-head .who{font-size:22px; font-weight:800;}
-  .detail-head .meta{font-size:13px; color:var(--muted);}
-  .stat{display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
-  .stat .pill{font-size:13px; font-weight:700; padding:6px 14px; border-radius:20px;}
-  .pill.keep{background:var(--keep-soft); color:var(--keep);}
-  .pill.drop{background:var(--drop-soft); color:#555;}
+  .dhead{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:16px;}
+  .dhead .who{font-family:var(--serif); font-size:26px; font-weight:900;}
+  .dhead .meta{font-size:12.5px; color:var(--muted); letter-spacing:.02em;}
+  .stat{display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap;}
+  .pill{font-family:var(--display); font-size:14px; font-weight:600; padding:8px 18px; border-radius:30px;}
+  .pill.k{background:var(--keep-soft); color:var(--keep);}
+  .pill.d{background:var(--drop-soft); color:#7a6f5c;}
+  .pill.t{background:#fff; color:var(--ink-soft); border:1px solid var(--line);}
 
-  .section-title{font-size:15px; font-weight:800; margin:18px 0 10px; display:flex; align-items:center; gap:8px;}
-  .section-title .tag{font-size:12px; font-weight:700; padding:2px 10px; border-radius:20px;}
-  .tag.keep{background:var(--keep-soft); color:var(--keep);} .tag.drop{background:var(--drop-soft); color:#555;}
+  .stitle{display:flex; align-items:center; gap:10px; margin:22px 0 12px; font-family:var(--serif); font-weight:700; font-size:17px;}
+  .stitle .tag{font-family:var(--display); font-size:12px; font-weight:600; padding:2px 11px; border-radius:30px;}
+  .tag.k{background:var(--keep-soft); color:var(--keep);} .tag.d{background:var(--drop-soft); color:#7a6f5c;}
+  .stitle .rule{flex:1; height:1px; background:var(--line);}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;}
-  .card{background:var(--paper); border:1px solid var(--rule); border-radius:12px; padding:14px; display:flex; gap:11px; align-items:center;}
-  .card.drop{opacity:.55; filter:grayscale(.6);}
-  .logo{width:42px;height:42px;border-radius:9px;flex-shrink:0;background:var(--accent-soft);
-    display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);overflow:hidden;}
-  .logo img{width:100%;height:100%;object-fit:cover;}
-  .c-name{font-size:14px; font-weight:700; line-height:1.3;}
-  .c-cat{font-size:11px; color:var(--accent); margin-top:2px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(236px,1fr)); gap:13px;}
+  .card{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:15px; display:flex;
+    gap:12px; align-items:center; box-shadow:var(--shadow); transition:.18s;}
+  .card.k{border-color:var(--keep-line);} .card.k:hover{transform:translateY(-2px);}
+  .card.d{opacity:.6; filter:grayscale(.8);}
+  .mono{width:44px;height:44px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:900;font-size:18px;color:#fff;overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);}
+  .mono img{width:100%;height:100%;object-fit:cover;}
+  .cn{font-family:var(--serif); font-size:14.5px; font-weight:700; line-height:1.3;}
+  .cc{font-size:11px; margin-top:3px; font-weight:700;}
   .miss{font-size:13px; color:var(--muted); padding:10px 0;}
 
-  .placeholder{background:var(--paper); border:1px dashed var(--rule); border-radius:14px; padding:40px 24px; text-align:center; color:var(--muted);}
-  .placeholder b{color:var(--ink);}
+  .ph{background:var(--paper); border:1px dashed var(--line); border-radius:18px; padding:50px 26px; text-align:center;
+    color:var(--muted); box-shadow:var(--shadow);}
+  .ph .ic{font-size:34px; margin-bottom:14px;}
+  .ph b{color:var(--ink);}
 </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="eyebrow">Results · 厂商选择结果汇总</div>
-    <h1>厂商选择结果</h1>
-    <p class="sub">厂商把链接发给你 → 你点开就会自动收录到下面的列表（保存在你这台设备）。可随时切换查看每个厂商、导出汇总。</p>
-  </div>
+  <div class="wrap">
+    <header class="mast">
+      <div class="kicker"><span class="lbl">Results Archive</span><span class="ln"></span><span class="date">厂商选择汇总</span></div>
+      <h1>厂商选择结果</h1>
+      <p class="dek">厂商把链接发给你 → 你点开就会自动收录到下面列表（保存在这台设备）。可随时切换查看每个厂商、导出汇总表。</p>
+    </header>
 
-  <div class="layout">
-    <div class="side">
-      <h2>已收录厂商</h2>
-      <div id="vendorList"></div>
-      <div class="side-actions">
-        <button id="exportCsv">导出汇总 CSV</button>
-        <button id="exportJson">导出汇总 JSON</button>
-        <button id="clearAll">清空全部</button>
-      </div>
+    <div class="layout">
+      <aside class="side">
+        <h2>已收录厂商</h2>
+        <div id="vlist"></div>
+        <div class="sacts">
+          <button id="exCsv">导出汇总 CSV</button>
+          <button id="exJson">导出汇总 JSON</button>
+          <button class="danger" id="clr">清空全部</button>
+        </div>
+      </aside>
+      <section id="detail"></section>
     </div>
-
-    <div class="detail" id="detail"></div>
   </div>
 
 <script src="data/brands.js"></script>
 <script>
-  const RESULTS_KEY = "collect_results_v1";
-  const byId = {};
-  BRANDS.forEach(b=> byId[b.id]=b);
+  const RESULTS_KEY="collect_results_v1";
+  const byId={}; BRANDS.forEach(b=>byId[b.id]=b);
+  const PALETTE=[['#bd3c1e','#fbe6da'],['#4a6b3f','#e6efe0'],['#9a6b1c','#f6e8cf'],['#2f6173','#dceaef'],
+    ['#7a4a8c','#ece0f1'],['#a83b52','#f8e1e6'],['#5a6536','#eaeede'],['#3f5a8c','#e0e6f3']];
+  function catColor(cat){let h=0;const s=cat||'•';for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return PALETTE[h%PALETTE.length];}
 
   function loadResults(){ try{ return JSON.parse(localStorage.getItem(RESULTS_KEY)||'{}'); }catch(e){ return {}; } }
   function saveResults(r){ localStorage.setItem(RESULTS_KEY, JSON.stringify(r)); }
-  function decodePayload(s){
-    try{ return JSON.parse(decodeURIComponent(escape(atob(s)))); }catch(e){ return null; }
-  }
+  function decodePayload(s){ try{ return JSON.parse(decodeURIComponent(escape(atob(s)))); }catch(e){ return null; } }
   function initials(name){ const s=(name||'').replace(/^示例品牌\s*·\s*/,'').trim(); return s? s.slice(0,1):'牌'; }
   function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+  function nowStamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
 
-  let results = loadResults();
-  let current = null;
+  let results=loadResults(), current=null;
 
-  // 1) 若 URL 带 #d=，解码并收录
   (function ingest(){
-    const m = location.hash.match(/d=(.+)$/);
-    if(!m) return;
-    const p = decodePayload(m[1]);
-    if(!p) { alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。'); return; }
-    const name = (p.vendor||'').trim() || ('未命名_'+ (Object.keys(results).length+1));
-    results[name] = {kept:p.kept||[], removed:p.removed||[], t:p.t||'', received:nowStamp()};
-    saveResults(results);
-    current = name;
-    // 清掉 hash，避免刷新重复提示
+    const m=location.hash.match(/d=(.+)$/); if(!m) return;
+    const p=decodePayload(m[1]);
+    if(!p){ alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。'); return; }
+    const name=(p.vendor||'').trim() || ('未命名_'+(Object.keys(results).length+1));
+    results[name]={kept:p.kept||[], removed:p.removed||[], t:p.t||'', received:nowStamp()};
+    saveResults(results); current=name;
     history.replaceState(null,'',location.pathname);
   })();
 
-  function nowStamp(){const d=new Date();const p=n=>String(n).padStart(2,'0');
-    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
-
   function renderSide(){
-    const list = document.getElementById('vendorList');
-    const names = Object.keys(results);
-    if(!names.length){ list.innerHTML = '<div class="empty-side">还没有任何厂商结果。<br>把厂商发来的链接在浏览器打开即可收录。</div>'; return; }
-    list.innerHTML = names.map(n=>{
-      const r = results[n];
-      return `<div class="vendor-item ${n===current?'active':''}" data-n="${escapeHtml(n)}">
+    const list=document.getElementById('vlist'); const names=Object.keys(results);
+    if(!names.length){ list.innerHTML='<div class="eside">还没有任何厂商结果。<br>把厂商发来的链接在浏览器打开即可收录。</div>'; return; }
+    list.innerHTML=names.map(n=>`<div class="vitem ${n===current?'active':''}" data-n="${escapeHtml(n)}">
+        <span class="dot">${initials(n)}</span>
         <span class="vn" title="${escapeHtml(n)}">${escapeHtml(n)}</span>
-        <span class="vk">保留 ${r.kept.length}</span>
-        <span class="del" data-del="${escapeHtml(n)}" title="删除">✕</span>
-      </div>`;
-    }).join('');
+        <span class="vk">保留 ${results[n].kept.length}</span>
+        <span class="del" data-del="${escapeHtml(n)}" title="删除">✕</span></div>`).join('');
   }
+
+  function card(b,drop){const [c1,c2]=catColor(b.category);
+    return `<div class="card ${drop?'d':'k'}">
+      <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${b.logo?`<img src="${b.logo}" onerror="this.parentNode.textContent='${initials(b.name)}'">`:initials(b.name)}</div>
+      <div><div class="cn">${escapeHtml(b.name)}</div>${b.category?`<div class="cc" style="color:${c1}">${escapeHtml(b.category)}</div>`:''}</div></div>`;}
 
   function renderDetail(){
-    const box = document.getElementById('detail');
-    if(!current || !results[current]){
-      box.innerHTML = `<div class="placeholder">
+    const box=document.getElementById('detail');
+    if(!current||!results[current]){
+      box.innerHTML=`<div class="ph"><div class="ic">📋</div>
         <p>👈 左边点选一个厂商查看详情。</p>
-        <p style="margin-top:10px;font-size:13px;">还没有结果？把厂商发来的<b>链接</b>直接在浏览器打开，就会自动出现在左边列表里。</p>
-      </div>`;
+        <p style="margin-top:10px;font-size:13px;">还没有结果？把厂商发来的<b>链接</b>直接在浏览器打开，就会自动出现在左边列表里。</p></div>`;
       return;
     }
-    const r = results[current];
-    const total = BRANDS.length;
-    const keptCards = r.kept.map(id=>byId[id]).filter(Boolean);
-    const dropCards = r.removed.map(id=>byId[id]).filter(Boolean);
-    const unknown = [...r.kept,...r.removed].filter(id=>!byId[id]);
-
-    const cardHtml = (b,drop)=>`
-      <div class="card ${drop?'drop':''}">
-        <div class="logo">${b.logo?`<img src="${b.logo}" onerror="this.parentNode.textContent='${initials(b.name)}'">`:initials(b.name)}</div>
-        <div><div class="c-name">${escapeHtml(b.name)}</div>${b.category?`<div class="c-cat">${escapeHtml(b.category)}</div>`:''}</div>
-      </div>`;
-
-    box.innerHTML = `
-      <div class="detail-head">
-        <div class="who">${escapeHtml(current)}</div>
-        <div class="meta">提交时间 ${escapeHtml(r.t||'—')} · 收录 ${escapeHtml(r.received||'—')}</div>
-      </div>
+    const r=results[current], total=BRANDS.length;
+    const keep=r.kept.map(id=>byId[id]).filter(Boolean);
+    const drop=r.removed.map(id=>byId[id]).filter(Boolean);
+    const unknown=[...r.kept,...r.removed].filter(id=>!byId[id]);
+    box.innerHTML=`
+      <div class="dhead"><div class="who">${escapeHtml(current)}</div>
+        <div class="meta">提交 ${escapeHtml(r.t||'—')} · 收录 ${escapeHtml(r.received||'—')}</div></div>
       <div class="stat">
-        <span class="pill keep">✅ 保留 ${keptCards.length}</span>
-        <span class="pill drop">❌ 去掉 ${dropCards.length}</span>
-        <span class="pill drop">共 ${total}</span>
-      </div>
-
-      <div class="section-title">想保留的品牌 <span class="tag keep">${keptCards.length}</span></div>
-      ${keptCards.length?`<div class="grid">${keptCards.map(b=>cardHtml(b,false)).join('')}</div>`:'<div class="miss">（无）</div>'}
-
-      <div class="section-title">去掉的品牌 <span class="tag drop">${dropCards.length}</span></div>
-      ${dropCards.length?`<div class="grid">${dropCards.map(b=>cardHtml(b,true)).join('')}</div>`:'<div class="miss">（无）</div>'}
-
-      ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）：${unknown.join(', ')}</div>`:''}
-    `;
+        <span class="pill k">✓ 保留 ${keep.length}</span>
+        <span class="pill d">✕ 去掉 ${drop.length}</span>
+        <span class="pill t">共 ${total}</span></div>
+      <div class="stitle">想保留的品牌 <span class="tag k">${keep.length}</span><span class="rule"></span></div>
+      ${keep.length?`<div class="grid">${keep.map(b=>card(b,false)).join('')}</div>`:'<div class="miss">（无）</div>'}
+      <div class="stitle">去掉的品牌 <span class="tag d">${drop.length}</span><span class="rule"></span></div>
+      ${drop.length?`<div class="grid">${drop.map(b=>card(b,true)).join('')}</div>`:'<div class="miss">（无）</div>'}
+      ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）：${unknown.join(', ')}</div>`:''}`;
   }
 
-  // 默认选中第一个
   if(!current){ const ns=Object.keys(results); if(ns.length) current=ns[0]; }
 
-  document.getElementById('vendorList').addEventListener('click', e=>{
-    const del = e.target.closest('[data-del]');
-    if(del){
-      const n = del.dataset.del;
-      if(confirm(`确定删除「${n}」的结果？`)){
-        delete results[n]; saveResults(results);
-        if(current===n){ const ns=Object.keys(results); current = ns.length?ns[0]:null; }
-        renderSide(); renderDetail();
-      }
-      return;
-    }
-    const item = e.target.closest('.vendor-item');
-    if(item){ current = item.dataset.n; renderSide(); renderDetail(); }
+  document.getElementById('vlist').addEventListener('click', e=>{
+    const del=e.target.closest('[data-del]');
+    if(del){ const n=del.dataset.del;
+      if(confirm(`确定删除「${n}」的结果？`)){ delete results[n]; saveResults(results);
+        if(current===n){ const ns=Object.keys(results); current=ns.length?ns[0]:null; } renderSide(); renderDetail(); }
+      return; }
+    const item=e.target.closest('.vitem'); if(item){ current=item.dataset.n; renderSide(); renderDetail(); }
   });
 
-  // 导出
-  function download(filename, text, type){
-    const blob = new Blob([text], {type});
-    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
-  }
-  document.getElementById('exportJson').onclick = ()=>{
-    if(!Object.keys(results).length) return alert('还没有结果可导出。');
-    download('厂商选择汇总.json', JSON.stringify(results,null,2), 'application/json');
-  };
-  document.getElementById('exportCsv').onclick = ()=>{
-    const names = Object.keys(results);
-    if(!names.length) return alert('还没有结果可导出。');
-    // 行=品牌，列=厂商，单元格 = 保留/去掉
-    let head = ['品牌编号','品牌名称','分类', ...names];
-    const rows = [head];
-    BRANDS.forEach(b=>{
-      const row = [b.id, b.name, b.category||''];
-      names.forEach(n=>{
-        const r = results[n];
-        row.push(r.kept.includes(b.id) ? '保留' : (r.removed.includes(b.id)?'去掉':'—'));
-      });
-      rows.push(row);
-    });
-    const csv = '﻿' + rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-    download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8');
-  };
-  document.getElementById('clearAll').onclick = ()=>{
-    if(confirm('确定清空全部已收录的厂商结果？此操作不可恢复。')){
-      results={}; current=null; saveResults(results); renderSide(); renderDetail();
-    }
-  };
+  function download(fn,txt,type){const b=new Blob([txt],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;a.click();}
+  document.getElementById('exJson').onclick=()=>{ if(!Object.keys(results).length) return alert('还没有结果可导出。');
+    download('厂商选择汇总.json', JSON.stringify(results,null,2),'application/json'); };
+  document.getElementById('exCsv').onclick=()=>{
+    const names=Object.keys(results); if(!names.length) return alert('还没有结果可导出。');
+    const rows=[['品牌编号','品牌名称','分类',...names]];
+    BRANDS.forEach(b=>{ const row=[b.id,b.name,b.category||''];
+      names.forEach(n=>{ const r=results[n]; row.push(r.kept.includes(b.id)?'保留':(r.removed.includes(b.id)?'去掉':'—')); });
+      rows.push(row); });
+    const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8'); };
+  document.getElementById('clr').onclick=()=>{ if(confirm('确定清空全部已收录的厂商结果？此操作不可恢复。')){
+    results={}; current=null; saveResults(results); renderSide(); renderDetail(); } };
 
-  renderSide();
-  renderDetail();
+  renderSide(); renderDetail();
 </script>
 </body>
 </html>
