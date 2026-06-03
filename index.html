@@ -98,6 +98,26 @@
   .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-deep)); color:#fff; border-color:transparent;
     box-shadow:0 4px 12px -4px rgba(189,60,30,.5);}
   .chip.on .n{color:#fff; opacity:.85;}
+  /* 类别下拉筛选 */
+  .filter-dd{position:relative; display:inline-block;}
+  .filter-btn{font-family:var(--sans); font-size:13px; font-weight:600; padding:7px 15px; border-radius:30px;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink-soft); cursor:pointer; transition:.15s;
+    display:inline-flex; align-items:center; gap:8px;}
+  .filter-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .filter-btn.on{background:linear-gradient(135deg,var(--accent),var(--accent-deep)); color:#fff; border-color:transparent;
+    box-shadow:0 4px 12px -4px rgba(189,60,30,.5);}
+  .filter-btn .caret{transition:transform .2s; font-size:11px;}
+  .filter-btn.open .caret{transform:rotate(180deg);}
+  .filter-menu{display:none; position:absolute; top:calc(100% + 8px); left:0; z-index:25; min-width:260px;
+    background:var(--paper); border:1px solid var(--rule); border-radius:14px; box-shadow:var(--shadow-lift);
+    padding:8px; max-height:60vh; overflow:auto;}
+  .filter-menu.open{display:block; animation:fade .15s ease;}
+  .menu-item{display:flex; align-items:center; gap:8px; width:100%; text-align:left; border:none; background:none;
+    cursor:pointer; padding:9px 12px; border-radius:9px; font-family:var(--sans); font-size:14px; font-weight:600; color:var(--ink);}
+  .menu-item:hover{background:#faf4e8;}
+  .menu-item.on{background:var(--accent-soft); color:var(--accent);}
+  .menu-item .mzh{font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted); font-size:12px;}
+  .menu-item .mn{margin-left:auto; font-family:var(--display); font-style:italic; color:var(--muted); font-size:11px;}
 
   .legend{display:flex; align-items:center; gap:22px; font-size:13px; color:var(--ink-soft); margin:8px 2px 22px; flex-wrap:wrap;}
   .legend span{display:inline-flex; align-items:center; gap:8px;}
@@ -362,13 +382,22 @@
   const CAT_EN = {}; BRANDS.forEach(b=>{ if(b.category && !(b.category in CAT_EN)) CAT_EN[b.category]=b.categoryEn||''; });
   function visibleBrands(){ return activeCat==='all' ? BRANDS : BRANDS.filter(b=>b.category===activeCat); }
 
+  let menuOpen = false;
+  function catCount(c){ return BRANDS.filter(b=>b.category===c).length; }
   function renderChips(){
     const chips=document.getElementById('chips');
-    const mk=(key,label,count,on)=>`<button class="chip ${on?'on':''}" data-cat="${escapeHtml(key)}">${label}<span class="n">${count}</span></button>`;
-    let html = mk('all','All 全部', BRANDS.length, activeCat==='all');
-    CATS.forEach(c=>{ const enName=CAT_EN[c]||c; const zh=CAT_EN[c]?` <span class="cen">${escapeHtml(c)}</span>`:''; html += mk(c, escapeHtml(enName)+zh, BRANDS.filter(b=>b.category===c).length, activeCat===c); });
+    const allOn = activeCat==='all';
+    // All 按钮
+    let html = `<button class="chip ${allOn?'on':''}" data-cat="all">All 全部<span class="n">${BRANDS.length}</span></button>`;
+    // 一个筛选按钮：点箭头才展开各类别
+    const btnLabel = allOn ? 'Filter by category 筛选类别' : `${escapeHtml(CAT_EN[activeCat]||activeCat)} <span class="cen">${escapeHtml(activeCat)}</span>`;
+    const items = CATS.map(c=>`<button class="menu-item ${activeCat===c?'on':''}" data-cat="${escapeHtml(c)}">${escapeHtml(CAT_EN[c]||c)} <span class="mzh">${escapeHtml(c)}</span><span class="mn">${catCount(c)}</span></button>`).join('');
+    html += `<div class="filter-dd">
+      <button class="filter-btn ${allOn?'':'on'} ${menuOpen?'open':''}" id="filterBtn">${btnLabel} <span class="caret">▾</span></button>
+      <div class="filter-menu ${menuOpen?'open':''}">${items}</div>
+    </div>`;
     chips.innerHTML = html;
-    chips.parentElement.style.display = CATS.length>0 ? 'flex' : 'none'; // 没有任何类别时才隐藏
+    chips.parentElement.style.display = CATS.length>0 ? 'flex' : 'none';
   }
 
   function render(){
@@ -511,8 +540,13 @@
   });
   document.getElementById('imgov').addEventListener('click', e=> e.currentTarget.classList.remove('show'));
   document.getElementById('chips').addEventListener('click', e=>{
-    const c=e.target.closest('.chip'); if(!c) return;
-    activeCat=c.dataset.cat; renderChips(); render();
+    if(e.target.closest('#filterBtn')){ e.stopPropagation(); menuOpen=!menuOpen; renderChips(); return; }   // 点箭头展开/收起
+    const pick=e.target.closest('[data-cat]');
+    if(pick){ e.stopPropagation(); activeCat=pick.dataset.cat; menuOpen=false; renderChips(); render(); }
+  });
+  // 点别处关闭下拉
+  document.addEventListener('click', e=>{
+    if(menuOpen && !e.target.closest('.filter-dd')){ menuOpen=false; renderChips(); }
   });
   // 「全部保留/去掉」作用于当前筛选出的品牌，即时生效并关闭相关编辑框
   function bulkSet(v){ visibleBrands().forEach(b=>{ state[b.id]=v; delete pending[b.id]; }); saveDraft(); render(); }
