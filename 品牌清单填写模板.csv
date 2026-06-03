@@ -1,4 +1,2 @@
-id,name,logo,category,desc,products
-b01,青瓷工坊,assets/logos/b01.png,陶瓷餐具,手工青瓷餐具主打日式侘寂风,assets/products/b01-1.jpg|assets/products/b01-2.jpg
-b02,棉之白,assets/logos/b02.png,女装,纯棉基础款女装性价比定位,assets/products/b02-1.jpg
-b03,,,分类,这一行起把示例删掉换成你自己的品牌,
+ID,NAME,CATEGORY,DESC,LINK
+1,意澜舟（Penapalne）,箱包服饰,意澜舟（Penapalne）是一家诞生于伦敦、植根于上海的可持续时尚与生活方式品牌。该品牌主打“自然优雅（Naturally Elegant）”理念，将真实掉落的树叶和苹果纤维等纯植物基皮革相结合，手工打造极具环保意义的手袋、卡包及配饰。,https://www.penapalne.com/

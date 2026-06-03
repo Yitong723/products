@@ -3,59 +3,26 @@
 // 字段说明：
 //   id       唯一编号（链接里只传它，务必稳定不变，建议 b01 / b02 ...）
 //   name     品牌名称
-//   logo     品牌 logo 图片路径（放在 assets/logos/，没有就留空 ""）
+//   logo     品牌 logo 图片路径（放在 assets/logos/，没有就留空 ""，会用首字字标）
 //   category 分类
 //   desc     一句话简介
+//   link     品牌官网（可留空 ""）
 //   products 产品图片路径数组（放在 assets/products/，可多张，没有就留 []）
 // 图片可以是本地路径，也可以是网图 https 链接。
 // ========================================================================
 window.BRANDS = [
   {
     id: "b01",
-    name: "示例品牌 · 青瓷工坊",
+    name: "意澜舟（Penapalne）",
     logo: "",
-    category: "陶瓷餐具",
-    desc: "手工青瓷餐具，主打日式侘寂风，客单价中高。",
-    products: []
-  },
-  {
-    id: "b02",
-    name: "示例品牌 · 棉之白",
-    logo: "",
-    category: "女装",
-    desc: "纯棉基础款女装，性价比定位，复购率高。",
-    products: []
-  },
-  {
-    id: "b03",
-    name: "示例品牌 · 木言家居",
-    logo: "",
-    category: "家居",
-    desc: "原木风小家具与收纳，年轻租房群体为主。",
-    products: []
-  },
-  {
-    id: "b04",
-    name: "示例品牌 · 一盏茶",
-    logo: "",
-    category: "茶具",
-    desc: "新中式功能茶具，礼盒装为主，适合送礼场景。",
-    products: []
-  },
-  {
-    id: "b05",
-    name: "示例品牌 · 暖橙小家电",
-    logo: "",
-    category: "小家电",
-    desc: "高颜值厨房小家电，主打颜色营销与社媒种草。",
-    products: []
-  },
-  {
-    id: "b06",
-    name: "示例品牌 · 山野食研",
-    logo: "",
-    category: "食品",
-    desc: "地方特色零食与调味，强调原产地与手作概念。",
-    products: []
+    category: "箱包服饰",
+    desc: "诞生于伦敦、植根于上海的可持续时尚与生活方式品牌。主打「自然优雅（Naturally Elegant）」理念，将真实掉落的树叶与苹果纤维等纯植物基皮革结合，手工打造极具环保意义的手袋、卡包及配饰。",
+    link: "https://www.penapalne.com/",
+    products: [
+      "assets/products/b01-1.png",
+      "assets/products/b01-2.png",
+      "assets/products/b01-3.png",
+      "assets/products/b01-4.png"
+    ]
   }
 ];
