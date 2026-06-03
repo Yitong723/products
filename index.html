@@ -131,9 +131,11 @@
   .nm .name{font-family:var(--serif); font-weight:700; font-size:18px; line-height:1.3; color:var(--ink);}
   .cat{display:inline-block; margin-top:6px; font-size:11px; font-weight:700; letter-spacing:.04em; padding:3px 11px; border-radius:30px;}
   .cat .en{font-weight:400; font-style:italic; opacity:.85;}
-  .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 14px; line-height:1.65;}
+  .loc{padding:0 20px 10px; font-size:12px; color:var(--muted);}
+  .loc .en{font-family:var(--display); font-style:italic;}
+  .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 14px; line-height:1.65; white-space:pre-line;}
   .descEn{display:block; margin-top:9px; padding-top:9px; border-top:1px dashed var(--rule);
-    font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted); font-size:12.5px; line-height:1.6;}
+    font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted); font-size:12.5px; line-height:1.6; white-space:pre-line;}
   .prods{display:flex; gap:7px; padding:0 20px 16px; flex-wrap:wrap;}
   .prods img{width:66px; height:66px; border-radius:10px; object-fit:cover; cursor:zoom-in; border:1px solid var(--rule); transition:.16s;}
   .prods img:hover{transform:scale(1.05); border-color:var(--accent);}
@@ -398,9 +400,10 @@
             ${b.category?`<span class="cat" style="background:${c2};color:${c1}">${escapeHtml(b.category)}${b.categoryEn?`<span class="en"> · ${escapeHtml(b.categoryEn)}</span>`:''}</span>`:''}
           </div>
         </div>
+        ${b.location?`<div class="loc">📍 ${escapeHtml(b.location)}${b.locationEn?` · <span class="en">${escapeHtml(b.locationEn)}</span>`:''}</div>`:''}
         ${b.desc?`<div class="desc">${escapeHtml(b.desc)}${b.descEn?`<span class="descEn">${escapeHtml(b.descEn)}</span>`:''}</div>`:''}
         ${prodHtml}
-        ${b.link?`<div class="linkr"><a href="${escapeHtml(b.link)}" target="_blank" rel="noopener">官网 Website ↗</a></div>`:''}
+        ${b.link?`<div class="linkr"><a href="${escapeHtml(b.link)}" target="_blank" rel="noopener">${b.link.includes('xhslink')?'了解更多 Learn more':'官网 Website'} ↗</a></div>`:''}
         <div class="seg">
           <button class="k ${choice?'on':''}" data-id="${b.id}" data-v="1">保留<span class="en">Keep</span></button>
           <button class="d ${choice?'':'on'}" data-id="${b.id}" data-v="0">去掉<span class="en">Remove</span></button>
