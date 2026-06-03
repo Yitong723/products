@@ -6,7 +6,7 @@
 //   category   分类（中文） / categoryEn 分类英文
 //   location   地点（中文） / locationEn 地点英文
 //   desc       简介（中文） / descEn 简介英文（地道）
-//   link       链接（官网或小红书，可留空 ""）
+//   link       链接（官网或小红书，可留空 ""；当前页面不展示，仅留档）
 //   products   产品图片路径数组（assets/products/）
 // ========================================================================
 window.BRANDS = [
@@ -47,7 +47,7 @@ window.BRANDS = [
     location: "上海", locationEn: "Shanghai",
     desc: "品牌名称“WEVE2050”源自英文“We’ve”（我们拥有），寓意“我们已经拥有”，强调人类对地球资源的使用以及个体自身的力量。品牌以2050年为愿景，致力于推动时尚产业向循环、零废弃和伦理方向转型。",
     descEn: "The name “WEVE2050” comes from the English “We’ve” — “we already have” — underscoring humanity’s use of the planet’s resources and the power of the individual. With 2050 as its vision, the brand is committed to driving the fashion industry toward circularity, zero waste and ethical practice.",
-    link: "",
+    link: "https://xhslink.com/m/36TkXN3vxfd",
     products: ["assets/products/b04-1.jpg","assets/products/b04-2.jpg","assets/products/b04-3.jpg","assets/products/b04-4.jpg","assets/products/b04-5.jpg","assets/products/b04-6.jpg","assets/products/b04-7.jpg"]
   },
   {
@@ -59,5 +59,55 @@ window.BRANDS = [
     descEn: "A contemporary ethnic-fashion brand rooted in nomadic style, dedicated to blending traditional nomadic culture with modern living. The name “Namlazé” carries a strong ethnic spirit, celebrating the freedom, boldness and natural beauty of nomadic life. Through original design it modernizes elements of the traditional Mongolian robe — gown, belt and accessories — keeping their warmth and ease of movement while adding contemporary tailoring, colour pairing and everyday wearability, making it a favourite for those seeking both “ethnic flair” and a “power outfit” for work.",
     link: "",
     products: ["assets/products/b05-1.jpg","assets/products/b05-2.jpg","assets/products/b05-3.jpg","assets/products/b05-4.jpg","assets/products/b05-5.jpg","assets/products/b05-6.jpg","assets/products/b05-7.jpg","assets/products/b05-8.jpg","assets/products/b05-9.jpg","assets/products/b05-10.jpg"]
+  },
+  {
+    id: "b06",
+    name: "九首造物",
+    category: "箱包", categoryEn: "Bags & Leather",
+    location: "内蒙古", locationEn: "Inner Mongolia",
+    desc: "是一家专注于原创手工皮具与皮雕艺术的独立手作品牌，以头层牛皮为主要材料，核心特色在于精湛的手工皮雕工艺。\n品牌秉持“拂去城市的喧嚣与浮躁，沉淀下来，重新定义一款皮具”的理念，每一件作品都经过潜心设计、精选材料、手工皮雕、上色、打磨、缝制等全流程匠心制作。皮雕是品牌灵魂所在——刀落之处，皮面浮现出细腻的纹理、图案与故事，让原本平凡的皮革拥有独特的生命力与艺术温度。",
+    descEn: "An independent handmade brand devoted to original leather goods and leather-carving art, working chiefly in full-grain cowhide, with masterful hand-tooled carving at its core.\nGuided by the idea of “brushing away the city’s noise and haste, settling down, and redefining what a leather piece can be”, every item is crafted through a full artisanal process — design, material selection, hand carving, dyeing, polishing and stitching. Leather carving is the brand’s soul: where the blade falls, fine textures, patterns and stories surface on the hide, giving ordinary leather a singular vitality and artistic warmth.",
+    link: "",
+    products: ["assets/products/b06-1.jpg","assets/products/b06-2.jpg","assets/products/b06-3.jpg","assets/products/b06-4.jpg","assets/products/b06-5.jpg"]
+  },
+  {
+    id: "b07",
+    name: "Joker.V Studio",
+    category: "珠宝饰品", categoryEn: "Jewelry",
+    location: "上海", locationEn: "Shanghai",
+    desc: "Joker.V（全称 Joker.V Silver Decoration Studio）是一家专注于原创银饰设计的手工银饰工作室，总部位于上海，以“Joker.V Original Design”为设计理念。\n品牌名称中的“Joker”寓意独特、叛逆与幽默的创造力，“V”代表 Vision（视野）或 Version（版本），强调每件作品都是原创且独一无二的设计。Joker.V 致力于将传统银饰工艺与当代艺术审美结合，打造兼具个性、细节与情感温度的银饰单品。",
+    descEn: "Joker.V (full name Joker.V Silver Decoration Studio) is a handmade silver-jewellery studio based in Shanghai, built around its “Joker.V Original Design” philosophy.\nThe “Joker” in its name stands for a creativity that is distinctive, rebellious and playful, while “V” signals Vision or Version — every piece is original and one of a kind. Joker.V blends traditional silver craft with contemporary aesthetics to create jewellery full of character, detail and emotional warmth.",
+    link: "",
+    products: ["assets/products/b07-1.JPG","assets/products/b07-2.JPG","assets/products/b07-3.JPG","assets/products/b07-4.JPG","assets/products/b07-5.JPG","assets/products/b07-6.JPG","assets/products/b07-7.JPG","assets/products/b07-8.JPG"]
+  },
+  {
+    id: "b08",
+    name: "W DWSW",
+    category: "手工 原创", categoryEn: "Handmade · Original",
+    location: "线上", locationEn: "Online",
+    desc: "一个原创设计师手工品牌，主理人 W 坚持「串珠皆可万物」的理念。",
+    descEn: "An original designer handmade brand whose founder, W, lives by the belief that “with beads, anything is possible.”",
+    link: "",
+    products: ["assets/products/b08-1.jpg","assets/products/b08-2.jpg","assets/products/b08-3.jpg","assets/products/b08-4.jpg","assets/products/b08-5.jpg"]
+  },
+  {
+    id: "b09",
+    name: "Drop studio",
+    category: "家居生活", categoryEn: "Home & Living",
+    location: "上海", locationEn: "Shanghai",
+    desc: "家居艺术原创设计品牌，收集内心流动的底色，珍藏于居所，自然舒展。",
+    descEn: "An original home-art design brand — gathering the shifting hues of the inner self and letting them unfold naturally within the home.",
+    link: "",
+    products: ["assets/products/b09-1.jpg","assets/products/b09-2.jpg","assets/products/b09-3.jpg","assets/products/b09-4.jpg","assets/products/b09-5.jpg","assets/products/b09-6.jpg","assets/products/b09-7.jpg"]
+  },
+  {
+    id: "b10",
+    name: "栖满枝艺廊",
+    category: "手工艺 服饰", categoryEn: "Craft & Apparel",
+    location: "上海 北京", locationEn: "Shanghai · Beijing",
+    desc: "东方美学品牌，专注中式奢华手工艺，原创设计宝石花手工艺品，以及系列成衣。",
+    descEn: "An Eastern-aesthetic brand specialising in Chinese-style luxury craftsmanship — original gemstone-flower handicrafts and ready-to-wear collections.",
+    link: "https://xhslink.com/m/5ExJgrOdVlO",
+    products: ["assets/products/b10-1.jpg","assets/products/b10-2.jpg","assets/products/b10-3.jpg","assets/products/b10-4.jpg","assets/products/b10-5.jpg","assets/products/b10-6.jpg","assets/products/b10-7.jpg","assets/products/b10-8.jpg"]
   }
 ];
