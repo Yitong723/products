@@ -134,7 +134,7 @@
   .loc{padding:0 20px 10px; font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
   .loc .en{font-family:var(--display); font-style:italic;}
   /* 固定高度滚动框：所有卡片简介区等高，长则框内滚动 */
-  .desc-box{height:320px; overflow-y:auto; margin:0 6px 14px; padding:2px 14px; -webkit-overflow-scrolling:touch;}
+  .desc-box{overflow-y:auto; margin:0 6px 14px; padding:2px 14px; -webkit-overflow-scrolling:touch;}
   .desc-box::-webkit-scrollbar{width:6px;}
   .desc-box::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
   .desc-box::-webkit-scrollbar-track{background:transparent;}
@@ -424,7 +424,7 @@
           </div>
         </div>
         ${b.location?`<div class="loc">📍 ${escapeHtml(b.location)}${b.locationEn?` · <span class="en">${escapeHtml(b.locationEn)}</span>`:''}</div>`:''}
-        ${(b.desc||b.descEn)?`<div class="desc-box">
+        ${(b.desc||b.descEn)?`<div class="desc-box" data-id="${b.id}">
           ${b.desc?`<div class="desc">${escapeHtml(b.desc)}</div>`:''}
           ${b.descEn?`<div class="descEn">${escapeHtml(b.descEn)}</div>`:''}
         </div>`:''}
@@ -438,6 +438,22 @@
       requestAnimationFrame(()=> setTimeout(()=>card.classList.add('in'), i*45));
     });
     updateGauge();
+    applyDescHeight();
+  }
+
+  // 以第一个品牌(BRANDS[0])的简介内容高度为准，统一所有简介框高度（它正好不留白、不滚动）
+  let descBoxH = 0;
+  function applyDescHeight(){
+    const boxes = grid.querySelectorAll('.desc-box');
+    if(!boxes.length) return;
+    if(!descBoxH){
+      const firstId = BRANDS[0] && BRANDS[0].id;
+      let ref = null; boxes.forEach(bx=>{ if(bx.dataset.id===firstId) ref=bx; });
+      ref = ref || boxes[0];
+      ref.style.height='auto';
+      descBoxH = ref.scrollHeight;        // 第一个品牌内容的自然高度
+    }
+    boxes.forEach(bx=> bx.style.height = descBoxH+'px');
   }
 
   function updateGauge(){
