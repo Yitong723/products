@@ -83,6 +83,20 @@
   .gauge .big{font-family:var(--display); font-size:30px; font-weight:600; color:var(--accent); line-height:1; font-feature-settings:"tnum";}
   .gauge .sm{font-size:13px; color:var(--muted); letter-spacing:.02em;}
 
+  /* category filter */
+  .filterbar{display:flex; align-items:center; gap:12px; margin:6px 2px 16px; flex-wrap:wrap;}
+  .filterbar .flabel{font-family:var(--serif); font-weight:700; font-size:13px; color:var(--ink); white-space:nowrap;}
+  .filterbar .flabel .en{font-family:var(--display); font-style:italic; font-weight:400; font-size:11px; color:var(--muted); margin-left:5px;}
+  .chips{display:flex; flex-wrap:wrap; gap:9px;}
+  .chip{font-family:var(--sans); font-size:13px; font-weight:600; padding:7px 15px; border-radius:30px;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink-soft); cursor:pointer; transition:.15s;
+    display:inline-flex; align-items:center; gap:7px;}
+  .chip .n{font-family:var(--display); font-style:italic; font-size:11px; opacity:.65;}
+  .chip:hover{border-color:var(--accent); color:var(--accent);}
+  .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-deep)); color:#fff; border-color:transparent;
+    box-shadow:0 4px 12px -4px rgba(189,60,30,.5);}
+  .chip.on .n{color:#fff; opacity:.85;}
+
   .legend{display:flex; align-items:center; gap:22px; font-size:13px; color:var(--ink-soft); margin:8px 2px 22px; flex-wrap:wrap;}
   .legend span{display:inline-flex; align-items:center; gap:8px;}
   .legend .sw{width:11px; height:11px; border-radius:3px; flex-shrink:0;}
@@ -212,6 +226,11 @@
       <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">/ 共 0 个保留 kept</span></div>
     </section>
 
+    <div class="filterbar">
+      <span class="flabel">按类别筛选<span class="en">Filter by category</span></span>
+      <div class="chips" id="chips"></div>
+    </div>
+
     <div class="legend">
       <span><i class="sw k"></i> 保留 — 符合展会要求 <span class="en">Keep — meets your requirements</span></span>
       <span><i class="sw d"></i> 去掉 — 不符合要求 <span class="en">Remove — doesn't fit (card greys out)</span></span>
@@ -277,9 +296,23 @@
   function initials(name){ const s=(name||'').replace(/^示例品牌\s*·\s*/,'').trim(); return s? s.slice(0,1):'牌'; }
   function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
+  // ===== 类别筛选 =====
+  let activeCat = 'all';
+  const CATS = [...new Set(BRANDS.map(b=>b.category).filter(Boolean))];
+  function visibleBrands(){ return activeCat==='all' ? BRANDS : BRANDS.filter(b=>b.category===activeCat); }
+
+  function renderChips(){
+    const chips=document.getElementById('chips');
+    const mk=(key,label,count,on)=>`<button class="chip ${on?'on':''}" data-cat="${escapeHtml(key)}">${label}<span class="n">${count}</span></button>`;
+    let html = mk('all','全部 All', BRANDS.length, activeCat==='all');
+    CATS.forEach(c=>{ html += mk(c, escapeHtml(c), BRANDS.filter(b=>b.category===c).length, activeCat===c); });
+    chips.innerHTML = html;
+    chips.parentElement.style.display = CATS.length>0 ? 'flex' : 'none'; // 没有任何类别时才隐藏
+  }
+
   function render(){
     grid.innerHTML='';
-    BRANDS.forEach((b,i)=>{
+    visibleBrands().forEach((b,i)=>{
       const keep = state[b.id]!==false;
       const [c1,c2] = catColor(b.category);
       const card=document.createElement('div');
@@ -326,8 +359,13 @@
     if(img&&img.dataset.big){ document.getElementById('bigImg').src=img.dataset.big; document.getElementById('imgov').classList.add('show'); }
   });
   document.getElementById('imgov').addEventListener('click', e=> e.currentTarget.classList.remove('show'));
-  document.getElementById('allKeep').onclick=()=>{BRANDS.forEach(b=>state[b.id]=true); saveDraft(); render();};
-  document.getElementById('allDrop').onclick=()=>{BRANDS.forEach(b=>state[b.id]=false); saveDraft(); render();};
+  document.getElementById('chips').addEventListener('click', e=>{
+    const c=e.target.closest('.chip'); if(!c) return;
+    activeCat=c.dataset.cat; renderChips(); render();
+  });
+  // 「全部保留/去掉」作用于当前筛选出的品牌
+  document.getElementById('allKeep').onclick=()=>{visibleBrands().forEach(b=>state[b.id]=true); saveDraft(); render();};
+  document.getElementById('allDrop').onclick=()=>{visibleBrands().forEach(b=>state[b.id]=false); saveDraft(); render();};
   vendorInput.addEventListener('input', saveDraft);
 
   function buildPayload(){
@@ -368,6 +406,7 @@
     document.getElementById('mok').textContent='文件已下载，可作为备份发给我们 ✅  Backup file downloaded.';
   };
 
+  renderChips();
   render();
 </script>
 </body>
