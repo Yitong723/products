@@ -29,7 +29,7 @@
 ## 部署（推荐 GitHub Pages）
 
 push 到 GitHub → 仓库 Settings → Pages → 选分支根目录。
-厂商访问 `https://<用户名>.github.io/<仓库>/collect/index.html`，
-你访问 `.../collect/result.html`。
+厂商访问 `https://yitong723.github.io/brands/index.html`，
+你访问 `https://yitong723.github.io/brands/result.html`。
 
 > 也可以本地直接双击 `index.html` 打开使用（用了 `.js` 数据文件，无需起服务器）。
