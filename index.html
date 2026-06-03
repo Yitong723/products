@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>品牌挑选 · 请勾选您想保留的品牌</title>
+<title>品牌挑选 · 去掉不符合展会要求的品牌 | Brand Selection</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -30,13 +30,15 @@
       radial-gradient(800px 460px at 100% 0%, rgba(74,107,63,.05), transparent 55%);
     background-attachment:fixed;
   }
-  /* 颗粒纸纹 */
   body::before{
     content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
     mix-blend-mode:multiply;
   }
-  .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:40px 22px 160px;}
+  .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:40px 22px 168px;}
+
+  /* bilingual helpers */
+  .en{font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted);}
 
   /* ===== Masthead ===== */
   .mast{position:relative; padding-bottom:26px; margin-bottom:30px;}
@@ -48,36 +50,44 @@
   .kicker .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px;
     letter-spacing:.04em; color:var(--accent);}
   .kicker .ln{flex:1; height:1px; background:var(--line);}
-  .kicker .date{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted);}
-  h1{font-family:var(--serif); font-weight:900; font-size:clamp(30px,5.2vw,50px); line-height:1.08;
+  .kicker .date{font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted);}
+  h1{font-family:var(--serif); font-weight:900; font-size:clamp(28px,5vw,46px); line-height:1.1;
     letter-spacing:-.01em; color:var(--ink);}
-  h1 em{font-family:var(--display); font-style:italic; font-weight:600; color:var(--accent); font-size:.96em;}
-  .dek{margin-top:16px; max-width:640px; font-size:15px; color:var(--ink-soft); line-height:1.75;}
+  h1 em{font-family:var(--serif); font-style:normal; font-weight:900; color:var(--accent);
+    position:relative; white-space:nowrap;}
+  h1 em::after{content:""; position:absolute; left:0; right:0; bottom:2px; height:9px; z-index:-1;
+    background:var(--accent-soft);}
+  .h1en{font-family:var(--display); font-style:italic; font-weight:500; color:var(--muted);
+    font-size:clamp(15px,2.4vw,21px); margin-top:10px; line-height:1.3;}
+  .dek{margin-top:18px; max-width:660px; font-size:15px; color:var(--ink-soft); line-height:1.75;}
   .dek b{color:var(--accent-deep); font-weight:700;}
+  .dek .en{display:block; margin-top:7px; font-size:13px; line-height:1.6;}
 
   /* ===== Control panel ===== */
   .panel{display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; margin:26px 0 14px;
     padding:18px 22px; background:var(--paper); border:1px solid var(--rule); border-radius:16px;
     box-shadow:var(--shadow);}
-  .field{display:flex; align-items:center; gap:11px; flex:1; min-width:240px;}
-  .field label{font-family:var(--serif); font-weight:700; font-size:14px; white-space:nowrap; color:var(--ink);}
+  .field{display:flex; align-items:center; gap:11px; flex:1; min-width:260px;}
+  .field label{font-family:var(--serif); font-weight:700; font-size:14px; white-space:nowrap; color:var(--ink); line-height:1.2;}
+  .field label .en{display:block; font-size:11px; font-weight:400;}
   .field input{flex:1; font-family:var(--sans); font-size:15px; padding:11px 14px; color:var(--ink);
     background:#fbf6ec; border:1px solid var(--line); border-radius:11px; transition:.18s;}
   .field input::placeholder{color:#b3a791;}
-  .field input:focus{outline:none; border-color:var(--accent); background:#fff;
-    box-shadow:0 0 0 4px var(--accent-soft);}
+  .field input:focus{outline:none; border-color:var(--accent); background:#fff; box-shadow:0 0 0 4px var(--accent-soft);}
   .bulk{display:flex; gap:9px;}
-  .bulk button{font-family:var(--sans); font-size:13px; font-weight:500; padding:9px 15px; color:var(--ink-soft);
-    background:transparent; border:1px solid var(--line); border-radius:30px; cursor:pointer; transition:.16s;}
+  .bulk button{font-family:var(--sans); font-size:13px; font-weight:500; padding:8px 15px; color:var(--ink-soft);
+    background:transparent; border:1px solid var(--line); border-radius:30px; cursor:pointer; transition:.16s; line-height:1.25;}
+  .bulk button .en{display:block; font-size:10px; font-style:italic;}
   .bulk button:hover{border-color:var(--accent); color:var(--accent); background:#fff;}
-  .gauge{display:flex; align-items:baseline; gap:8px; font-family:var(--display); white-space:nowrap;}
-  .gauge .big{font-size:30px; font-weight:600; color:var(--accent); line-height:1; font-feature-settings:"tnum";}
-  .gauge .sm{font-size:13px; color:var(--muted); letter-spacing:.04em;}
+  .gauge{display:flex; align-items:baseline; gap:8px; white-space:nowrap;}
+  .gauge .big{font-family:var(--display); font-size:30px; font-weight:600; color:var(--accent); line-height:1; font-feature-settings:"tnum";}
+  .gauge .sm{font-size:13px; color:var(--muted); letter-spacing:.02em;}
 
-  .legend{display:flex; align-items:center; gap:18px; font-size:13px; color:var(--muted); margin:6px 2px 22px;}
-  .legend span{display:inline-flex; align-items:center; gap:7px;}
-  .legend .sw{width:11px; height:11px; border-radius:3px;}
+  .legend{display:flex; align-items:center; gap:22px; font-size:13px; color:var(--ink-soft); margin:8px 2px 22px; flex-wrap:wrap;}
+  .legend span{display:inline-flex; align-items:center; gap:8px;}
+  .legend .sw{width:11px; height:11px; border-radius:3px; flex-shrink:0;}
   .sw.k{background:var(--keep);} .sw.d{background:var(--drop);}
+  .legend .en{font-style:italic;}
 
   /* ===== Grid & cards ===== */
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;}
@@ -88,14 +98,13 @@
   .card.in{opacity:1; transform:none;}
   .card.keep:hover{transform:translateY(-4px); box-shadow:var(--shadow-lift);}
   .card.keep{border-color:var(--keep-line);}
-  .card.keep::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
-    background:linear-gradient(var(--keep), #6f8c5f);}
+  .card.keep::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(var(--keep), #6f8c5f);}
   .card.drop{opacity:.62; filter:grayscale(.85) contrast(.97);}
-  .card.drop .stamp{display:flex;}
-
-  .stamp{display:none; position:absolute; top:14px; right:-30px; transform:rotate(8deg);
-    background:var(--drop); color:#fff; font-size:11px; font-weight:700; letter-spacing:.2em;
-    padding:5px 36px; box-shadow:0 4px 10px rgba(0,0,0,.15); z-index:3;}
+  .card.drop .stamp{display:block;}
+  .stamp{display:none; position:absolute; top:16px; right:-34px; transform:rotate(8deg); text-align:center;
+    background:var(--drop); color:#fff; font-size:10px; font-weight:700; letter-spacing:.14em;
+    padding:5px 40px; box-shadow:0 4px 10px rgba(0,0,0,.15); z-index:3; line-height:1.25;}
+  .stamp .en{display:block; color:#fff; font-style:italic; font-size:9px; letter-spacing:.18em;}
 
   .ct{display:flex; gap:14px; align-items:center; padding:20px 20px 12px;}
   .mono{width:54px; height:54px; border-radius:14px; flex-shrink:0; display:flex; align-items:center;
@@ -104,20 +113,19 @@
   .mono img{width:100%; height:100%; object-fit:cover;}
   .nm{flex:1; min-width:0;}
   .nm .name{font-family:var(--serif); font-weight:700; font-size:18px; line-height:1.3; color:var(--ink);}
-  .cat{display:inline-block; margin-top:6px; font-size:11px; font-weight:700; letter-spacing:.04em;
-    padding:3px 11px; border-radius:30px;}
+  .cat{display:inline-block; margin-top:6px; font-size:11px; font-weight:700; letter-spacing:.04em; padding:3px 11px; border-radius:30px;}
   .desc{font-size:13.5px; color:var(--ink-soft); padding:0 20px 14px; line-height:1.65;}
   .prods{display:flex; gap:7px; padding:0 20px 16px; flex-wrap:wrap;}
-  .prods img{width:66px; height:66px; border-radius:10px; object-fit:cover; cursor:zoom-in;
-    border:1px solid var(--rule); transition:.16s;}
+  .prods img{width:66px; height:66px; border-radius:10px; object-fit:cover; cursor:zoom-in; border:1px solid var(--rule); transition:.16s;}
   .prods img:hover{transform:scale(1.05); border-color:var(--accent);}
-  .noimg{margin:0 20px 16px; padding:9px 0; text-align:center; font-size:12px; color:#b6a98f;
-    border:1px dashed var(--line); border-radius:10px;}
+  .noimg{margin:0 20px 16px; padding:9px 0; text-align:center; font-size:12px; color:#b6a98f; border:1px dashed var(--line); border-radius:10px;}
+  .noimg .en{font-style:italic; margin-left:4px;}
 
   /* segmented toggle */
   .seg{display:flex; margin:auto 16px 16px; background:#f3ebdd; border-radius:12px; padding:4px; gap:4px;}
-  .seg button{flex:1; border:none; background:transparent; cursor:pointer; padding:10px 0; border-radius:9px;
-    font-family:var(--sans); font-weight:700; font-size:14px; color:var(--muted); transition:.16s;}
+  .seg button{flex:1; border:none; background:transparent; cursor:pointer; padding:9px 0; border-radius:9px;
+    font-family:var(--sans); font-weight:700; font-size:14px; color:var(--muted); transition:.16s; line-height:1.2;}
+  .seg button .en{display:block; font-size:10px; font-weight:500; font-style:italic; opacity:.9;}
   .seg button.k.on{background:var(--keep); color:#fff; box-shadow:0 3px 8px -2px rgba(74,107,63,.5);}
   .seg button.d.on{background:#fff; color:var(--ink); box-shadow:var(--shadow);}
   .seg button:not(.on):hover{color:var(--ink);}
@@ -126,18 +134,21 @@
   .bar{position:fixed; left:0; right:0; bottom:0; z-index:30;
     background:rgba(243,235,221,.86); backdrop-filter:blur(14px) saturate(1.2);
     border-top:1px solid var(--line); box-shadow:0 -8px 30px -20px rgba(80,40,10,.5);}
-  .bar-in{max-width:1120px; margin:0 auto; padding:14px 22px; display:flex; align-items:center;
-    gap:18px; flex-wrap:wrap;}
-  .barsum{font-size:14px; color:var(--ink-soft);}
-  .barsum b{font-family:var(--display); font-size:17px; color:var(--ink); font-feature-settings:"tnum";}
-  .barsum .k{color:var(--keep);} .barsum .d{color:var(--accent);}
+  .bar-in{max-width:1120px; margin:0 auto; padding:14px 22px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .barsum{font-size:14px; color:var(--ink-soft); line-height:1.3;}
+  .barsum b{font-family:var(--display); font-size:17px; font-feature-settings:"tnum";}
+  .barsum b.k{color:var(--keep);} .barsum b.d{color:var(--accent);}
+  .barsum .en{display:block; font-size:11px; font-style:italic; color:var(--muted);}
   .btn{font-family:var(--sans); font-weight:700; cursor:pointer; border:none; border-radius:12px; transition:.16s;}
-  .btn-primary{margin-left:auto; font-size:15px; padding:13px 30px; color:#fff;
+  .btn-primary{margin-left:auto; font-size:15px; padding:11px 28px; color:#fff;
     background:linear-gradient(135deg, var(--accent), var(--accent-deep));
-    box-shadow:0 6px 18px -6px rgba(189,60,30,.6); display:inline-flex; align-items:center; gap:9px;}
+    box-shadow:0 6px 18px -6px rgba(189,60,30,.6); display:inline-flex; align-items:center; gap:9px; line-height:1.2;}
+  .btn-primary .tx{display:flex; flex-direction:column; align-items:flex-start;}
+  .btn-primary .tx .en{display:block; font-size:10px; font-style:italic; color:rgba(255,255,255,.8); font-weight:500;}
   .btn-primary:hover{transform:translateY(-1px); box-shadow:0 10px 24px -8px rgba(189,60,30,.7);}
-  .btn-primary .ar{transition:transform .2s;} .btn-primary:hover .ar{transform:translateX(4px);}
-  .btn-ghost{background:#fff; color:var(--ink); border:1px solid var(--line); font-size:14px; padding:11px 18px;}
+  .btn-primary .ar{transition:transform .2s; font-size:18px;} .btn-primary:hover .ar{transform:translateX(4px);}
+  .btn-ghost{background:#fff; color:var(--ink); border:1px solid var(--line); font-size:14px; padding:10px 18px; line-height:1.2;}
+  .btn-ghost .en{display:block; font-size:10px; font-style:italic; color:var(--muted); font-weight:500;}
   .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
 
   /* ===== Modal ===== */
@@ -145,20 +156,21 @@
     display:none; align-items:center; justify-content:center; padding:20px;}
   .ov.show{display:flex; animation:fade .2s ease;}
   @keyframes fade{from{opacity:0}to{opacity:1}}
-  .modal{background:var(--paper); border-radius:20px; max-width:540px; width:100%; padding:30px;
-    box-shadow:0 30px 80px -20px rgba(40,20,0,.5); border:1px solid var(--rule);
-    animation:pop .26s cubic-bezier(.2,.8,.2,1);}
+  .modal{background:var(--paper); border-radius:20px; max-width:560px; width:100%; padding:30px;
+    box-shadow:0 30px 80px -20px rgba(40,20,0,.5); border:1px solid var(--rule); animation:pop .26s cubic-bezier(.2,.8,.2,1);}
   @keyframes pop{from{opacity:0; transform:translateY(16px) scale(.97)}to{opacity:1; transform:none}}
   .modal .ck{font-family:var(--display); font-style:italic; color:var(--keep); font-size:14px; margin-bottom:6px;}
-  .modal h3{font-family:var(--serif); font-weight:700; font-size:23px; margin-bottom:8px;}
-  .modal p{font-size:13.5px; color:var(--ink-soft); margin-bottom:18px; line-height:1.7;}
+  .modal h3{font-family:var(--serif); font-weight:700; font-size:22px; margin-bottom:4px;}
+  .modal h3 .en{font-size:14px; font-weight:400;}
+  .modal p{font-size:13.5px; color:var(--ink-soft); margin:8px 0 18px; line-height:1.7;}
+  .modal p .en{display:block; margin-top:5px; font-size:12px;}
   .linkbox{display:flex; gap:9px; margin-bottom:16px;}
   .linkbox input{flex:1; font-size:13px; padding:12px 13px; border:1px solid var(--line); border-radius:11px;
     background:#fbf6ec; color:var(--ink-soft); font-family:ui-monospace,monospace;}
+  .linkbox .btn-primary{margin:0; padding:12px 18px; font-size:14px;}
   .mrow{display:flex; gap:10px; flex-wrap:wrap;}
   .mok{font-size:13px; color:var(--keep); font-weight:700; margin-top:12px; min-height:18px;}
-  .imgov{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.88); display:none;
-    align-items:center; justify-content:center; cursor:zoom-out; padding:20px;}
+  .imgov{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; cursor:zoom-out; padding:20px;}
   .imgov.show{display:flex;}
   .imgov img{max-width:92vw; max-height:92vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.6);}
 
@@ -175,28 +187,30 @@
       <div class="kicker">
         <span class="lbl">Brand Selection</span>
         <span class="ln"></span>
-        <span class="date">品牌挑选清单</span>
+        <span class="date">展会品牌挑选 · Exhibition Shortlist</span>
       </div>
-      <h1>请挑选您想<em>保留</em>的品牌</h1>
-      <p class="dek">下面是全部品牌。每个品牌默认都是<b>保留</b>状态，把您<b>不需要</b>的切到「去掉」即可。
-        选好后填写您的名称，点底部「生成结果」，把链接发回给我们就完成了。</p>
+      <h1>请去掉<em>不符合</em>您展会要求的品牌</h1>
+      <div class="h1en">Please remove the brands that don't meet your exhibition requirements</div>
+      <p class="dek">下面是全部品牌。请把<b>不符合您展会要求</b>的品牌切到「去掉」，符合要求的保持「保留」。选好后填写您的名称，点底部「生成结果」，把链接发回给我们即可。
+        <span class="en">Below are all the brands. Switch any brand that does <b>not</b> meet your exhibition requirements to “Remove”, and keep the ones that fit. Then enter your name, tap “Generate” at the bottom, and send the link back to us.</span>
+      </p>
     </header>
 
     <section class="panel">
       <div class="field">
-        <label for="vendor">您的名称</label>
-        <input id="vendor" type="text" placeholder="例如：某某陶瓷厂 / 张厂长" autocomplete="off">
+        <label for="vendor">您的名称<span class="en">Your name</span></label>
+        <input id="vendor" type="text" placeholder="例如：某某展商 / 张厂长　e.g. your company / name" autocomplete="off">
       </div>
       <div class="bulk">
-        <button id="allKeep">全部保留</button>
-        <button id="allDrop">全部去掉</button>
+        <button id="allKeep">全部保留<span class="en">Keep all</span></button>
+        <button id="allDrop">全部去掉<span class="en">Remove all</span></button>
       </div>
-      <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">/ 共 0 个保留</span></div>
+      <div class="gauge"><span class="big" id="gNum">0</span><span class="sm" id="gTot">/ 共 0 个保留 kept</span></div>
     </section>
 
     <div class="legend">
-      <span><i class="sw k"></i> 保留 — 您想要的</span>
-      <span><i class="sw d"></i> 去掉 — 不需要（卡片变灰盖章）</span>
+      <span><i class="sw k"></i> 保留 — 符合展会要求 <span class="en">Keep — meets your requirements</span></span>
+      <span><i class="sw d"></i> 去掉 — 不符合要求 <span class="en">Remove — doesn't fit (card greys out)</span></span>
     </div>
 
     <main class="grid" id="grid"></main>
@@ -204,24 +218,26 @@
 
   <div class="bar">
     <div class="bar-in">
-      <div class="barsum" id="barSum">已保留 <b class="k">0</b> 个 · 去掉 <b class="d">0</b> 个</div>
-      <button class="btn btn-primary" id="generate">生成结果 <span class="ar">→</span></button>
+      <div class="barsum" id="barSum">已保留 <b class="k">0</b> · 去掉 <b class="d">0</b><span class="en">Kept 0 · Removed 0</span></div>
+      <button class="btn btn-primary" id="generate"><span class="tx">生成结果<span class="en">Generate result</span></span> <span class="ar">→</span></button>
     </div>
   </div>
 
   <div class="ov" id="ov">
     <div class="modal">
       <div class="ck">Generated</div>
-      <h3>结果已生成 ✅</h3>
-      <p>复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。</p>
+      <h3>结果已生成 <span class="en">— Done</span> ✅</h3>
+      <p>复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。
+        <span class="en">Copy the link below and send it back to us (WeChat is fine). We'll see your selection as soon as we open it.</span>
+      </p>
       <div class="linkbox">
         <input id="rlink" readonly>
-        <button class="btn btn-primary" id="copyLink" style="margin:0;padding:12px 18px;font-size:14px;">复制</button>
+        <button class="btn btn-primary" id="copyLink"><span class="tx">复制<span class="en">Copy</span></span></button>
       </div>
       <div class="mrow">
-        <button class="btn btn-ghost" id="openR">预览结果</button>
-        <button class="btn btn-ghost" id="dl">下载文件备份</button>
-        <button class="btn btn-ghost" id="closeM">关闭</button>
+        <button class="btn btn-ghost" id="openR">预览结果<span class="en">Preview</span></button>
+        <button class="btn btn-ghost" id="dl">下载文件备份<span class="en">Download backup</span></button>
+        <button class="btn btn-ghost" id="closeM">关闭<span class="en">Close</span></button>
       </div>
       <div class="mok" id="mok"></div>
     </div>
@@ -236,7 +252,6 @@
   const vendorInput = document.getElementById('vendor');
   let state = {};
 
-  // 分类配色（确定性：同分类同色）
   const PALETTE = [
     ['#bd3c1e','#fbe6da'], ['#4a6b3f','#e6efe0'], ['#9a6b1c','#f6e8cf'],
     ['#2f6173','#dceaef'], ['#7a4a8c','#ece0f1'], ['#a83b52','#f8e1e6'],
@@ -270,9 +285,9 @@
         : initials(b.name);
       const prodHtml = (b.products&&b.products.length)
         ? `<div class="prods">${b.products.map(p=>`<img src="${p}" alt="" data-big="${p}" onerror="this.style.display='none'">`).join('')}</div>`
-        : `<div class="noimg">暂无产品图</div>`;
+        : `<div class="noimg">暂无产品图<span class="en">No product image</span></div>`;
       card.innerHTML = `
-        <div class="stamp">已去掉</div>
+        <div class="stamp">已去掉<span class="en">REMOVED</span></div>
         <div class="ct">
           <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${logoHtml}</div>
           <div class="nm">
@@ -283,8 +298,8 @@
         ${b.desc?`<div class="desc">${escapeHtml(b.desc)}</div>`:''}
         ${prodHtml}
         <div class="seg">
-          <button class="k ${keep?'on':''}" data-id="${b.id}" data-v="1">保留</button>
-          <button class="d ${keep?'':'on'}" data-id="${b.id}" data-v="0">去掉</button>
+          <button class="k ${keep?'on':''}" data-id="${b.id}" data-v="1">保留<span class="en">Keep</span></button>
+          <button class="d ${keep?'':'on'}" data-id="${b.id}" data-v="0">去掉<span class="en">Remove</span></button>
         </div>`;
       grid.appendChild(card);
       requestAnimationFrame(()=> setTimeout(()=>card.classList.add('in'), i*45));
@@ -295,8 +310,8 @@
   function updateGauge(){
     const total=BRANDS.length, kept=BRANDS.filter(b=>state[b.id]!==false).length;
     document.getElementById('gNum').textContent=kept;
-    document.getElementById('gTot').textContent=`/ 共 ${total} 个保留`;
-    document.getElementById('barSum').innerHTML=`已保留 <b class="k">${kept}</b> 个 · 去掉 <b class="d">${total-kept}</b> 个`;
+    document.getElementById('gTot').textContent=`/ 共 ${total} 个保留 kept`;
+    document.getElementById('barSum').innerHTML=`已保留 <b class="k">${kept}</b> · 去掉 <b class="d">${total-kept}</b><span class="en">Kept ${kept} · Removed ${total-kept}</span>`;
   }
 
   grid.addEventListener('click', e=>{
@@ -326,7 +341,7 @@
   document.getElementById('generate').onclick=()=>{
     if(!vendorInput.value.trim()){
       vendorInput.focus(); vendorInput.style.borderColor='var(--accent)';
-      alert('请先填写「您的名称」，方便我们区分是哪位厂商的选择～'); return;
+      alert('请先填写「您的名称」，方便我们区分是哪位展商的选择～\nPlease enter your name first so we can tell whose selection it is.'); return;
     }
     document.getElementById('rlink').value=resultUrl();
     document.getElementById('mok').textContent='';
@@ -337,7 +352,7 @@
   document.getElementById('copyLink').onclick=async()=>{
     const inp=document.getElementById('rlink');
     try{ await navigator.clipboard.writeText(inp.value); }catch(e){ inp.select(); document.execCommand('copy'); }
-    document.getElementById('mok').textContent='已复制，去微信发给我们就好 ✅';
+    document.getElementById('mok').textContent='已复制，去微信发给我们就好 ✅  Copied — send it to us on WeChat.';
   };
   document.getElementById('openR').onclick=()=>window.open(document.getElementById('rlink').value,'_blank');
   document.getElementById('dl').onclick=()=>{
@@ -345,7 +360,7 @@
     const blob=new Blob([JSON.stringify(p,null,2)],{type:'application/json'});
     const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
     a.download=`品牌选择_${p.vendor||'未命名'}.json`; a.click();
-    document.getElementById('mok').textContent='文件已下载，可作为备份发给我们 ✅';
+    document.getElementById('mok').textContent='文件已下载，可作为备份发给我们 ✅  Backup file downloaded.';
   };
 
   render();

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>厂商选择结果 · 汇总</title>
+<title>厂商选择结果 · 汇总 | Results Archive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
     --display:"Fraunces","Noto Serif SC",serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  .en{font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted);}
   body{background:var(--bg); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;
     line-height:1.6; position:relative;
     background-image:radial-gradient(900px 500px at 12% -8%, rgba(189,60,30,.06), transparent 60%),
@@ -34,17 +35,19 @@
   .kicker{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .kicker .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px; color:var(--accent);}
   .kicker .ln{flex:1; height:1px; background:var(--line);}
-  .kicker .date{font-size:11px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted);}
+  .kicker .date{font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);}
   h1{font-family:var(--serif); font-weight:900; font-size:clamp(26px,4.5vw,40px); line-height:1.1; letter-spacing:-.01em;}
-  .dek{margin-top:12px; max-width:680px; font-size:14px; color:var(--ink-soft); line-height:1.7;}
+  .h1en{font-family:var(--display); font-style:italic; font-weight:500; color:var(--muted); font-size:clamp(14px,2.2vw,18px); margin-top:8px;}
+  .dek{margin-top:14px; max-width:700px; font-size:14px; color:var(--ink-soft); line-height:1.7;}
+  .dek .en{display:block; margin-top:6px; font-size:12.5px; line-height:1.6;}
 
   .layout{display:grid; grid-template-columns:280px 1fr; gap:24px; align-items:start;}
   @media(max-width:780px){ .layout{grid-template-columns:1fr;} }
 
   .side{background:var(--paper); border:1px solid var(--rule); border-radius:18px; padding:16px; position:sticky; top:18px; box-shadow:var(--shadow);}
-  .side h2{font-family:var(--display); font-style:italic; font-size:15px; color:var(--accent); margin-bottom:12px;}
-  .vitem{display:flex; align-items:center; gap:9px; padding:11px 13px; border-radius:12px; cursor:pointer;
-    margin-bottom:7px; border:1px solid transparent; transition:.15s;}
+  .side h2{font-family:var(--serif); font-weight:700; font-size:15px; margin-bottom:2px;}
+  .side h2 .en{display:block; font-size:11px; font-weight:400; margin-bottom:10px;}
+  .vitem{display:flex; align-items:center; gap:9px; padding:11px 13px; border-radius:12px; cursor:pointer; margin-bottom:7px; border:1px solid transparent; transition:.15s;}
   .vitem:hover{background:#faf4e8;}
   .vitem.active{background:var(--accent-soft); border-color:var(--accent);}
   .vitem .dot{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
@@ -54,9 +57,11 @@
   .vitem .del{font-size:13px; color:#c2b7a2; padding:0 3px; line-height:1;}
   .vitem .del:hover{color:var(--accent);}
   .eside{font-size:13px; color:var(--muted); padding:10px; line-height:1.6;}
+  .eside .en{display:block; font-style:italic; margin-top:4px;}
   .sacts{display:flex; flex-direction:column; gap:8px; margin-top:14px; border-top:1px solid var(--rule); padding-top:14px;}
   .sacts button{font-family:var(--sans); font-size:13px; font-weight:500; padding:10px; border:1px solid var(--line);
-    background:#fff; border-radius:11px; cursor:pointer; color:var(--ink-soft); transition:.15s;}
+    background:#fff; border-radius:11px; cursor:pointer; color:var(--ink-soft); transition:.15s; line-height:1.25;}
+  .sacts button .en{display:block; font-size:10px; font-style:italic;}
   .sacts button:hover{border-color:var(--accent); color:var(--accent);}
   .sacts .danger:hover{border-color:#c0392b; color:#c0392b;}
 
@@ -64,51 +69,53 @@
   .dhead .who{font-family:var(--serif); font-size:26px; font-weight:900;}
   .dhead .meta{font-size:12.5px; color:var(--muted); letter-spacing:.02em;}
   .stat{display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap;}
-  .pill{font-family:var(--display); font-size:14px; font-weight:600; padding:8px 18px; border-radius:30px;}
+  .pill{font-family:var(--display); font-size:14px; font-weight:600; padding:8px 18px; border-radius:30px; line-height:1.2;}
+  .pill .en{font-size:10px; font-style:italic;}
   .pill.k{background:var(--keep-soft); color:var(--keep);}
   .pill.d{background:var(--drop-soft); color:#7a6f5c;}
   .pill.t{background:#fff; color:var(--ink-soft); border:1px solid var(--line);}
 
   .stitle{display:flex; align-items:center; gap:10px; margin:22px 0 12px; font-family:var(--serif); font-weight:700; font-size:17px;}
+  .stitle .en{font-family:var(--display); font-style:italic; font-weight:400; font-size:13px; color:var(--muted);}
   .stitle .tag{font-family:var(--display); font-size:12px; font-weight:600; padding:2px 11px; border-radius:30px;}
   .tag.k{background:var(--keep-soft); color:var(--keep);} .tag.d{background:var(--drop-soft); color:#7a6f5c;}
   .stitle .rule{flex:1; height:1px; background:var(--line);}
 
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(236px,1fr)); gap:13px;}
-  .card{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:15px; display:flex;
-    gap:12px; align-items:center; box-shadow:var(--shadow); transition:.18s;}
+  .card{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:15px; display:flex; gap:12px; align-items:center; box-shadow:var(--shadow); transition:.18s;}
   .card.k{border-color:var(--keep-line);} .card.k:hover{transform:translateY(-2px);}
   .card.d{opacity:.6; filter:grayscale(.8);}
   .mono{width:44px;height:44px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:900;font-size:18px;color:#fff;overflow:hidden;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);}
+    font-family:var(--serif);font-weight:900;font-size:18px;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);}
   .mono img{width:100%;height:100%;object-fit:cover;}
   .cn{font-family:var(--serif); font-size:14.5px; font-weight:700; line-height:1.3;}
   .cc{font-size:11px; margin-top:3px; font-weight:700;}
   .miss{font-size:13px; color:var(--muted); padding:10px 0;}
 
-  .ph{background:var(--paper); border:1px dashed var(--line); border-radius:18px; padding:50px 26px; text-align:center;
-    color:var(--muted); box-shadow:var(--shadow);}
+  .ph{background:var(--paper); border:1px dashed var(--line); border-radius:18px; padding:50px 26px; text-align:center; color:var(--muted); box-shadow:var(--shadow);}
   .ph .ic{font-size:34px; margin-bottom:14px;}
-  .ph b{color:var(--ink);}
+  .ph b{color:var(--ink);} .ph .en{display:block; font-style:italic; margin-top:8px; font-size:12.5px;}
 </style>
 </head>
 <body>
   <div class="wrap">
     <header class="mast">
-      <div class="kicker"><span class="lbl">Results Archive</span><span class="ln"></span><span class="date">厂商选择汇总</span></div>
+      <div class="kicker"><span class="lbl">Results Archive</span><span class="ln"></span><span class="date">厂商选择汇总 · Submissions</span></div>
       <h1>厂商选择结果</h1>
-      <p class="dek">厂商把链接发给你 → 你点开就会自动收录到下面列表（保存在这台设备）。可随时切换查看每个厂商、导出汇总表。</p>
+      <div class="h1en">Exhibitors' brand selections</div>
+      <p class="dek">厂商把链接发给你 → 你点开就会自动收录到下面列表（保存在这台设备）。可随时切换查看每个厂商、导出汇总表。
+        <span class="en">When an exhibitor sends you their link, just open it and it's auto-saved to the list below (stored on this device). Switch between exhibitors anytime and export the summary.</span>
+      </p>
     </header>
 
     <div class="layout">
       <aside class="side">
-        <h2>已收录厂商</h2>
+        <h2>已收录厂商<span class="en">Exhibitors collected</span></h2>
         <div id="vlist"></div>
         <div class="sacts">
-          <button id="exCsv">导出汇总 CSV</button>
-          <button id="exJson">导出汇总 JSON</button>
-          <button class="danger" id="clr">清空全部</button>
+          <button id="exCsv">导出汇总 CSV<span class="en">Export CSV</span></button>
+          <button id="exJson">导出汇总 JSON<span class="en">Export JSON</span></button>
+          <button class="danger" id="clr">清空全部<span class="en">Clear all</span></button>
         </div>
       </aside>
       <section id="detail"></section>
@@ -136,7 +143,7 @@
   (function ingest(){
     const m=location.hash.match(/d=(.+)$/); if(!m) return;
     const p=decodePayload(m[1]);
-    if(!p){ alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。'); return; }
+    if(!p){ alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。\nFailed to parse the link — please ask the exhibitor to resend the full link.'); return; }
     const name=(p.vendor||'').trim() || ('未命名_'+(Object.keys(results).length+1));
     results[name]={kept:p.kept||[], removed:p.removed||[], t:p.t||'', received:nowStamp()};
     saveResults(results); current=name;
@@ -145,12 +152,12 @@
 
   function renderSide(){
     const list=document.getElementById('vlist'); const names=Object.keys(results);
-    if(!names.length){ list.innerHTML='<div class="eside">还没有任何厂商结果。<br>把厂商发来的链接在浏览器打开即可收录。</div>'; return; }
+    if(!names.length){ list.innerHTML='<div class="eside">还没有任何厂商结果。把厂商发来的链接在浏览器打开即可收录。<span class="en">No submissions yet. Open an exhibitor\'s link in the browser to collect it.</span></div>'; return; }
     list.innerHTML=names.map(n=>`<div class="vitem ${n===current?'active':''}" data-n="${escapeHtml(n)}">
         <span class="dot">${initials(n)}</span>
         <span class="vn" title="${escapeHtml(n)}">${escapeHtml(n)}</span>
         <span class="vk">保留 ${results[n].kept.length}</span>
-        <span class="del" data-del="${escapeHtml(n)}" title="删除">✕</span></div>`).join('');
+        <span class="del" data-del="${escapeHtml(n)}" title="删除 Delete">✕</span></div>`).join('');
   }
 
   function card(b,drop){const [c1,c2]=catColor(b.category);
@@ -163,7 +170,8 @@
     if(!current||!results[current]){
       box.innerHTML=`<div class="ph"><div class="ic">📋</div>
         <p>👈 左边点选一个厂商查看详情。</p>
-        <p style="margin-top:10px;font-size:13px;">还没有结果？把厂商发来的<b>链接</b>直接在浏览器打开，就会自动出现在左边列表里。</p></div>`;
+        <p style="margin-top:10px;font-size:13px;">还没有结果？把厂商发来的<b>链接</b>直接在浏览器打开，就会自动出现在左边列表里。</p>
+        <span class="en">Pick an exhibitor on the left, or open an exhibitor's link to add them here.</span></div>`;
       return;
     }
     const r=results[current], total=BRANDS.length;
@@ -172,16 +180,16 @@
     const unknown=[...r.kept,...r.removed].filter(id=>!byId[id]);
     box.innerHTML=`
       <div class="dhead"><div class="who">${escapeHtml(current)}</div>
-        <div class="meta">提交 ${escapeHtml(r.t||'—')} · 收录 ${escapeHtml(r.received||'—')}</div></div>
+        <div class="meta">提交 Submitted ${escapeHtml(r.t||'—')} · 收录 Received ${escapeHtml(r.received||'—')}</div></div>
       <div class="stat">
-        <span class="pill k">✓ 保留 ${keep.length}</span>
-        <span class="pill d">✕ 去掉 ${drop.length}</span>
-        <span class="pill t">共 ${total}</span></div>
-      <div class="stitle">想保留的品牌 <span class="tag k">${keep.length}</span><span class="rule"></span></div>
-      ${keep.length?`<div class="grid">${keep.map(b=>card(b,false)).join('')}</div>`:'<div class="miss">（无）</div>'}
-      <div class="stitle">去掉的品牌 <span class="tag d">${drop.length}</span><span class="rule"></span></div>
-      ${drop.length?`<div class="grid">${drop.map(b=>card(b,true)).join('')}</div>`:'<div class="miss">（无）</div>'}
-      ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）：${unknown.join(', ')}</div>`:''}`;
+        <span class="pill k">✓ 保留 Keep ${keep.length}</span>
+        <span class="pill d">✕ 去掉 Remove ${drop.length}</span>
+        <span class="pill t">共 Total ${total}</span></div>
+      <div class="stitle">符合展会要求 · 保留 <span class="en">Meets requirements · Kept</span> <span class="tag k">${keep.length}</span><span class="rule"></span></div>
+      ${keep.length?`<div class="grid">${keep.map(b=>card(b,false)).join('')}</div>`:'<div class="miss">（无 None）</div>'}
+      <div class="stitle">不符合要求 · 去掉 <span class="en">Doesn't fit · Removed</span> <span class="tag d">${drop.length}</span><span class="rule"></span></div>
+      ${drop.length?`<div class="grid">${drop.map(b=>card(b,true)).join('')}</div>`:'<div class="miss">（无 None）</div>'}
+      ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）／ ${unknown.length} brand id(s) not found in current list: ${unknown.join(', ')}</div>`:''}`;
   }
 
   if(!current){ const ns=Object.keys(results); if(ns.length) current=ns[0]; }
@@ -189,24 +197,24 @@
   document.getElementById('vlist').addEventListener('click', e=>{
     const del=e.target.closest('[data-del]');
     if(del){ const n=del.dataset.del;
-      if(confirm(`确定删除「${n}」的结果？`)){ delete results[n]; saveResults(results);
+      if(confirm(`确定删除「${n}」的结果？\nDelete the submission from "${n}"?`)){ delete results[n]; saveResults(results);
         if(current===n){ const ns=Object.keys(results); current=ns.length?ns[0]:null; } renderSide(); renderDetail(); }
       return; }
     const item=e.target.closest('.vitem'); if(item){ current=item.dataset.n; renderSide(); renderDetail(); }
   });
 
   function download(fn,txt,type){const b=new Blob([txt],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;a.click();}
-  document.getElementById('exJson').onclick=()=>{ if(!Object.keys(results).length) return alert('还没有结果可导出。');
+  document.getElementById('exJson').onclick=()=>{ if(!Object.keys(results).length) return alert('还没有结果可导出。 No data to export yet.');
     download('厂商选择汇总.json', JSON.stringify(results,null,2),'application/json'); };
   document.getElementById('exCsv').onclick=()=>{
-    const names=Object.keys(results); if(!names.length) return alert('还没有结果可导出。');
-    const rows=[['品牌编号','品牌名称','分类',...names]];
+    const names=Object.keys(results); if(!names.length) return alert('还没有结果可导出。 No data to export yet.');
+    const rows=[['品牌编号 ID','品牌名称 Brand','分类 Category',...names]];
     BRANDS.forEach(b=>{ const row=[b.id,b.name,b.category||''];
-      names.forEach(n=>{ const r=results[n]; row.push(r.kept.includes(b.id)?'保留':(r.removed.includes(b.id)?'去掉':'—')); });
+      names.forEach(n=>{ const r=results[n]; row.push(r.kept.includes(b.id)?'保留 Keep':(r.removed.includes(b.id)?'去掉 Remove':'—')); });
       rows.push(row); });
     const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
     download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8'); };
-  document.getElementById('clr').onclick=()=>{ if(confirm('确定清空全部已收录的厂商结果？此操作不可恢复。')){
+  document.getElementById('clr').onclick=()=>{ if(confirm('确定清空全部已收录的厂商结果？此操作不可恢复。\nClear ALL collected submissions? This cannot be undone.')){
     results={}; current=null; saveResults(results); renderSide(); renderDetail(); } };
 
   renderSide(); renderDetail();
