@@ -83,8 +83,13 @@
 
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(236px,1fr)); gap:13px;}
   .card{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:15px; display:flex; gap:12px; align-items:center; box-shadow:var(--shadow); transition:.18s;}
+  .card.hasnote{align-items:flex-start;}
   .card.k{border-color:var(--keep-line);} .card.k:hover{transform:translateY(-2px);}
   .card.d{opacity:.6; filter:grayscale(.8);}
+  .cardtx{min-width:0;}
+  .cardnote{margin-top:7px; font-size:12px; color:var(--ink-soft); line-height:1.5; background:#f6efe0;
+    border-left:3px solid var(--line); border-radius:0 7px 7px 0; padding:5px 9px; word-break:break-word;}
+  .cardnote b{font-family:var(--display); font-style:italic; font-weight:600; color:var(--muted); font-size:11px; margin-right:5px;}
   .mono{width:44px;height:44px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-weight:900;font-size:18px;color:#fff;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);}
   .mono img{width:100%;height:100%;object-fit:cover;}
@@ -142,7 +147,7 @@
     const p=decodePayload(m[1]);
     if(!p){ alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。\nFailed to parse the link — please ask the exhibitor to resend the full link.'); return; }
     const name=(p.vendor||'').trim() || ('未命名_'+(Object.keys(results).length+1));
-    results[name]={kept:p.kept||[], removed:p.removed||[], t:p.t||'', received:nowStamp()};
+    results[name]={kept:p.kept||[], removed:p.removed||[], reasons:p.reasons||{}, t:p.t||'', received:nowStamp()};
     saveResults(results); current=name;
     history.replaceState(null,'',location.pathname);
   })();
@@ -157,10 +162,10 @@
         <span class="del" data-del="${escapeHtml(n)}" title="删除 Delete">✕</span></div>`).join('');
   }
 
-  function card(b,drop){const [c1,c2]=catColor(b.category);
-    return `<div class="card ${drop?'d':'k'}">
+  function card(b,drop,reason){const [c1,c2]=catColor(b.category);
+    return `<div class="card ${drop?'d':'k'}${reason?' hasnote':''}">
       <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${b.logo?`<img src="${b.logo}" onerror="this.parentNode.textContent='${initials(b.name)}'">`:initials(b.name)}</div>
-      <div><div class="cn">${escapeHtml(b.name)}</div>${b.category?`<div class="cc" style="color:${c1}">${escapeHtml(b.category)}</div>`:''}</div></div>`;}
+      <div class="cardtx"><div class="cn">${escapeHtml(b.name)}</div>${b.category?`<div class="cc" style="color:${c1}">${escapeHtml(b.category)}</div>`:''}${reason?`<div class="cardnote"><b>原因 Reason</b>${escapeHtml(reason)}</div>`:''}</div></div>`;}
 
   function renderDetail(){
     const box=document.getElementById('detail');
@@ -172,6 +177,7 @@
       return;
     }
     const r=results[current], total=BRANDS.length;
+    const rs=r.reasons||{};
     const keep=r.kept.map(id=>byId[id]).filter(Boolean);
     const drop=r.removed.map(id=>byId[id]).filter(Boolean);
     const unknown=[...r.kept,...r.removed].filter(id=>!byId[id]);
@@ -183,9 +189,9 @@
         <span class="pill d">✕ 去掉 Remove ${drop.length}</span>
         <span class="pill t">共 Total ${total}</span></div>
       <div class="stitle">符合展会要求 · 保留 <span class="en">Meets requirements · Kept</span> <span class="tag k">${keep.length}</span><span class="rule"></span></div>
-      ${keep.length?`<div class="grid">${keep.map(b=>card(b,false)).join('')}</div>`:'<div class="miss">（无 None）</div>'}
+      ${keep.length?`<div class="grid">${keep.map(b=>card(b,false,rs[b.id])).join('')}</div>`:'<div class="miss">（无 None）</div>'}
       <div class="stitle">不符合要求 · 去掉 <span class="en">Doesn't fit · Removed</span> <span class="tag d">${drop.length}</span><span class="rule"></span></div>
-      ${drop.length?`<div class="grid">${drop.map(b=>card(b,true)).join('')}</div>`:'<div class="miss">（无 None）</div>'}
+      ${drop.length?`<div class="grid">${drop.map(b=>card(b,true,rs[b.id])).join('')}</div>`:'<div class="miss">（无 None）</div>'}
       ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）／ ${unknown.length} brand id(s) not found in current list: ${unknown.join(', ')}</div>`:''}`;
   }
 
@@ -205,9 +211,13 @@
     download('厂商选择汇总.json', JSON.stringify(results,null,2),'application/json'); };
   document.getElementById('exCsv').onclick=()=>{
     const names=Object.keys(results); if(!names.length) return alert('还没有结果可导出。 No data to export yet.');
-    const rows=[['品牌编号 ID','品牌名称 Brand','分类 Category',...names]];
+    const head=['品牌编号 ID','品牌名称 Brand','分类 Category'];
+    names.forEach(n=>{ head.push(`${n} 选择 Choice`, `${n} 原因 Reason`); });
+    const rows=[head];
     BRANDS.forEach(b=>{ const row=[b.id,b.name,b.category||''];
-      names.forEach(n=>{ const r=results[n]; row.push(r.kept.includes(b.id)?'保留 Keep':(r.removed.includes(b.id)?'去掉 Remove':'—')); });
+      names.forEach(n=>{ const r=results[n];
+        const choice=r.kept.includes(b.id)?'保留 Keep':(r.removed.includes(b.id)?'去掉 Remove':'—');
+        row.push(choice, (r.reasons&&r.reasons[b.id])?r.reasons[b.id]:''); });
       rows.push(row); });
     const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
     download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8'); };

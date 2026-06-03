@@ -148,6 +148,17 @@
   .seg button.d.on{background:#fff; color:var(--ink); box-shadow:var(--shadow);}
   .seg button:not(.on):hover{color:var(--ink);}
 
+  /* reason note (点击保留/去掉后出现) */
+  .reason-row{margin:0 16px 16px; animation:slideIn .22s ease;}
+  @keyframes slideIn{from{opacity:0; transform:translateY(-4px)}to{opacity:1; transform:none}}
+  .reason-row label{display:block; font-family:var(--serif); font-weight:700; font-size:11.5px; color:var(--muted); margin-bottom:5px;}
+  .reason-row label .en{font-family:var(--display); font-style:italic; font-weight:400; margin-left:4px;}
+  .reason-input{width:100%; font-family:var(--sans); font-size:13px; color:var(--ink); resize:vertical; min-height:38px;
+    padding:9px 11px; background:#fbf6ec; border:1px solid var(--line); border-radius:10px; line-height:1.5; transition:.16s;}
+  .reason-input::placeholder{color:#bbae96;}
+  .reason-input:focus{outline:none; border-color:var(--accent); background:#fff; box-shadow:0 0 0 3px var(--accent-soft);}
+  .card.drop .reason-input:focus{box-shadow:0 0 0 3px var(--drop-soft);}
+
   /* ===== Action bar ===== */
   .bar{position:fixed; left:0; right:0; bottom:0; z-index:30;
     background:rgba(243,235,221,.86); backdrop-filter:blur(14px) saturate(1.2);
@@ -285,13 +296,14 @@
     return PALETTE[h % PALETTE.length];
   }
 
+  let reasons = {};   // id -> 原因文本；某 id 出现在此对象中 = 已点过保留/去掉，显示原因输入框
   (function loadDraft(){
     try{ const raw=localStorage.getItem(DRAFT_KEY);
-      if(raw){ const d=JSON.parse(raw); if(d.vendor) vendorInput.value=d.vendor; if(d.state) state=d.state; }
+      if(raw){ const d=JSON.parse(raw); if(d.vendor) vendorInput.value=d.vendor; if(d.state) state=d.state; if(d.reasons) reasons=d.reasons; }
     }catch(e){}
     BRANDS.forEach(b=>{ if(!(b.id in state)) state[b.id]=true; });
   })();
-  function saveDraft(){ try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({vendor:vendorInput.value.trim(), state})); }catch(e){} }
+  function saveDraft(){ try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({vendor:vendorInput.value.trim(), state, reasons})); }catch(e){} }
 
   function initials(name){ const s=(name||'').replace(/^示例品牌\s*·\s*/,'').trim(); return s? s.slice(0,1):'牌'; }
   function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -338,7 +350,11 @@
         <div class="seg">
           <button class="k ${keep?'on':''}" data-id="${b.id}" data-v="1">保留<span class="en">Keep</span></button>
           <button class="d ${keep?'':'on'}" data-id="${b.id}" data-v="0">去掉<span class="en">Remove</span></button>
-        </div>`;
+        </div>
+        ${b.id in reasons ? `<div class="reason-row">
+          <label>${keep?'保留':'去掉'}原因（选填）<span class="en">${keep?'Why keep':'Why remove'} (optional)</span></label>
+          <textarea class="reason-input" data-id="${b.id}" rows="1" placeholder="例如：与展会定位相符 / 价位偏高…　e.g. fits the show / price too high…">${escapeHtml(reasons[b.id]||'')}</textarea>
+        </div>` : ''}`;
       grid.appendChild(card);
       requestAnimationFrame(()=> setTimeout(()=>card.classList.add('in'), i*45));
     });
@@ -354,9 +370,21 @@
 
   grid.addEventListener('click', e=>{
     const btn=e.target.closest('.seg button');
-    if(btn){ state[btn.dataset.id]=btn.dataset.v==='1'; saveDraft(); render(); return; }
+    if(btn){
+      const id=btn.dataset.id;
+      state[id]=btn.dataset.v==='1';
+      if(!(id in reasons)) reasons[id]='';   // 标记 touched → 渲染出原因输入框
+      saveDraft(); render();
+      const ta=grid.querySelector(`.reason-input[data-id="${id}"]`); if(ta) ta.focus();
+      return;
+    }
     const img=e.target.closest('.prods img');
     if(img&&img.dataset.big){ document.getElementById('bigImg').src=img.dataset.big; document.getElementById('imgov').classList.add('show'); }
+  });
+  // 原因输入：实时存草稿，不重渲染（避免丢焦点）
+  grid.addEventListener('input', e=>{
+    const ta=e.target.closest('.reason-input');
+    if(ta){ reasons[ta.dataset.id]=ta.value; saveDraft(); }
   });
   document.getElementById('imgov').addEventListener('click', e=> e.currentTarget.classList.remove('show'));
   document.getElementById('chips').addEventListener('click', e=>{
@@ -370,7 +398,8 @@
 
   function buildPayload(){
     const kept=[],removed=[]; BRANDS.forEach(b=>(state[b.id]!==false?kept:removed).push(b.id));
-    return {v:1, vendor:vendorInput.value.trim(), kept, removed, t:nowStamp()};
+    const r={}; Object.keys(reasons).forEach(id=>{ const v=(reasons[id]||'').trim(); if(v) r[id]=v; });
+    return {v:1, vendor:vendorInput.value.trim(), kept, removed, reasons:r, t:nowStamp()};
   }
   function nowStamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');
     return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
