@@ -323,6 +323,10 @@
 
   let reasons = {};   // id -> 已提交的原因文本（非空才显示只读原因区）
   let pending = {};   // id -> {choice:Boolean, reason:String} 正在编辑、未确认（不持久化）
+  // 用 …/index.html?reset=1 打开 → 自动清空本机草稿，恢复默认全彩（演示/检查用）
+  if(/(?:[?&#])reset=1\b/.test(location.search + location.hash)){
+    try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
+  }
   (function loadDraft(){
     try{ const raw=localStorage.getItem(DRAFT_KEY);
       if(raw){ const d=JSON.parse(raw); if(d.vendor) vendorInput.value=d.vendor; if(d.state) state=d.state; if(d.reasons) reasons=d.reasons; }
