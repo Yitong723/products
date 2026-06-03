@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>厂商选择结果 · 汇总</title>
+<style>
+  :root{
+    --bg:#f5efe6; --paper:#ffffff; --ink:#1a1a1a; --muted:#6b6357;
+    --rule:#e6dfd2; --accent:#c8451e; --accent-soft:#fde9d8;
+    --keep:#2e7d32; --keep-soft:#e8f5e9; --drop:#9a9a9a; --drop-soft:#efefef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;}
+  body{max-width:1080px; margin:0 auto; padding:36px 20px 80px;}
+
+  .hero{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:22px;}
+  .eyebrow{font-size:12px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:10px;}
+  h1{font-size:28px; font-weight:800; letter-spacing:-.01em;}
+  .sub{font-size:13px; color:var(--muted); margin-top:8px;}
+
+  .layout{display:grid; grid-template-columns:260px 1fr; gap:22px; align-items:start;}
+  @media(max-width:760px){ .layout{grid-template-columns:1fr;} }
+
+  /* 左：厂商列表 */
+  .side{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:14px; position:sticky; top:16px;}
+  .side h2{font-size:14px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:10px;}
+  .vendor-item{display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; cursor:pointer; margin-bottom:6px; border:1px solid transparent;}
+  .vendor-item:hover{background:#faf6ef;}
+  .vendor-item.active{background:var(--accent-soft); border-color:var(--accent);}
+  .vendor-item .vn{flex:1; font-weight:700; font-size:14px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .vendor-item .vk{font-size:12px; color:var(--keep); font-weight:700; white-space:nowrap;}
+  .vendor-item .del{font-size:14px; color:#bbb; padding:0 4px; line-height:1;}
+  .vendor-item .del:hover{color:var(--accent);}
+  .empty-side{font-size:13px; color:var(--muted); padding:8px;}
+  .side-actions{display:flex; flex-direction:column; gap:8px; margin-top:12px; border-top:1px solid var(--rule); padding-top:12px;}
+  .side-actions button{font-size:13px; padding:9px; border:1px solid var(--rule); background:#fff; border-radius:9px; cursor:pointer; color:var(--muted);}
+  .side-actions button:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* 右：详情 */
+  .detail-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+  .detail-head .who{font-size:22px; font-weight:800;}
+  .detail-head .meta{font-size:13px; color:var(--muted);}
+  .stat{display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
+  .stat .pill{font-size:13px; font-weight:700; padding:6px 14px; border-radius:20px;}
+  .pill.keep{background:var(--keep-soft); color:var(--keep);}
+  .pill.drop{background:var(--drop-soft); color:#555;}
+
+  .section-title{font-size:15px; font-weight:800; margin:18px 0 10px; display:flex; align-items:center; gap:8px;}
+  .section-title .tag{font-size:12px; font-weight:700; padding:2px 10px; border-radius:20px;}
+  .tag.keep{background:var(--keep-soft); color:var(--keep);} .tag.drop{background:var(--drop-soft); color:#555;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px;}
+  .card{background:var(--paper); border:1px solid var(--rule); border-radius:12px; padding:14px; display:flex; gap:11px; align-items:center;}
+  .card.drop{opacity:.55; filter:grayscale(.6);}
+  .logo{width:42px;height:42px;border-radius:9px;flex-shrink:0;background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);overflow:hidden;}
+  .logo img{width:100%;height:100%;object-fit:cover;}
+  .c-name{font-size:14px; font-weight:700; line-height:1.3;}
+  .c-cat{font-size:11px; color:var(--accent); margin-top:2px;}
+  .miss{font-size:13px; color:var(--muted); padding:10px 0;}
+
+  .placeholder{background:var(--paper); border:1px dashed var(--rule); border-radius:14px; padding:40px 24px; text-align:center; color:var(--muted);}
+  .placeholder b{color:var(--ink);}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="eyebrow">Results · 厂商选择结果汇总</div>
+    <h1>厂商选择结果</h1>
+    <p class="sub">厂商把链接发给你 → 你点开就会自动收录到下面的列表（保存在你这台设备）。可随时切换查看每个厂商、导出汇总。</p>
+  </div>
+
+  <div class="layout">
+    <div class="side">
+      <h2>已收录厂商</h2>
+      <div id="vendorList"></div>
+      <div class="side-actions">
+        <button id="exportCsv">导出汇总 CSV</button>
+        <button id="exportJson">导出汇总 JSON</button>
+        <button id="clearAll">清空全部</button>
+      </div>
+    </div>
+
+    <div class="detail" id="detail"></div>
+  </div>
+
+<script src="data/brands.js"></script>
+<script>
+  const RESULTS_KEY = "collect_results_v1";
+  const byId = {};
+  BRANDS.forEach(b=> byId[b.id]=b);
+
+  function loadResults(){ try{ return JSON.parse(localStorage.getItem(RESULTS_KEY)||'{}'); }catch(e){ return {}; } }
+  function saveResults(r){ localStorage.setItem(RESULTS_KEY, JSON.stringify(r)); }
+  function decodePayload(s){
+    try{ return JSON.parse(decodeURIComponent(escape(atob(s)))); }catch(e){ return null; }
+  }
+  function initials(name){ const s=(name||'').replace(/^示例品牌\s*·\s*/,'').trim(); return s? s.slice(0,1):'牌'; }
+  function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+  let results = loadResults();
+  let current = null;
+
+  // 1) 若 URL 带 #d=，解码并收录
+  (function ingest(){
+    const m = location.hash.match(/d=(.+)$/);
+    if(!m) return;
+    const p = decodePayload(m[1]);
+    if(!p) { alert('链接解析失败，可能不完整，请让厂商重新发一次完整链接。'); return; }
+    const name = (p.vendor||'').trim() || ('未命名_'+ (Object.keys(results).length+1));
+    results[name] = {kept:p.kept||[], removed:p.removed||[], t:p.t||'', received:nowStamp()};
+    saveResults(results);
+    current = name;
+    // 清掉 hash，避免刷新重复提示
+    history.replaceState(null,'',location.pathname);
+  })();
+
+  function nowStamp(){const d=new Date();const p=n=>String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
+
+  function renderSide(){
+    const list = document.getElementById('vendorList');
+    const names = Object.keys(results);
+    if(!names.length){ list.innerHTML = '<div class="empty-side">还没有任何厂商结果。<br>把厂商发来的链接在浏览器打开即可收录。</div>'; return; }
+    list.innerHTML = names.map(n=>{
+      const r = results[n];
+      return `<div class="vendor-item ${n===current?'active':''}" data-n="${escapeHtml(n)}">
+        <span class="vn" title="${escapeHtml(n)}">${escapeHtml(n)}</span>
+        <span class="vk">保留 ${r.kept.length}</span>
+        <span class="del" data-del="${escapeHtml(n)}" title="删除">✕</span>
+      </div>`;
+    }).join('');
+  }
+
+  function renderDetail(){
+    const box = document.getElementById('detail');
+    if(!current || !results[current]){
+      box.innerHTML = `<div class="placeholder">
+        <p>👈 左边点选一个厂商查看详情。</p>
+        <p style="margin-top:10px;font-size:13px;">还没有结果？把厂商发来的<b>链接</b>直接在浏览器打开，就会自动出现在左边列表里。</p>
+      </div>`;
+      return;
+    }
+    const r = results[current];
+    const total = BRANDS.length;
+    const keptCards = r.kept.map(id=>byId[id]).filter(Boolean);
+    const dropCards = r.removed.map(id=>byId[id]).filter(Boolean);
+    const unknown = [...r.kept,...r.removed].filter(id=>!byId[id]);
+
+    const cardHtml = (b,drop)=>`
+      <div class="card ${drop?'drop':''}">
+        <div class="logo">${b.logo?`<img src="${b.logo}" onerror="this.parentNode.textContent='${initials(b.name)}'">`:initials(b.name)}</div>
+        <div><div class="c-name">${escapeHtml(b.name)}</div>${b.category?`<div class="c-cat">${escapeHtml(b.category)}</div>`:''}</div>
+      </div>`;
+
+    box.innerHTML = `
+      <div class="detail-head">
+        <div class="who">${escapeHtml(current)}</div>
+        <div class="meta">提交时间 ${escapeHtml(r.t||'—')} · 收录 ${escapeHtml(r.received||'—')}</div>
+      </div>
+      <div class="stat">
+        <span class="pill keep">✅ 保留 ${keptCards.length}</span>
+        <span class="pill drop">❌ 去掉 ${dropCards.length}</span>
+        <span class="pill drop">共 ${total}</span>
+      </div>
+
+      <div class="section-title">想保留的品牌 <span class="tag keep">${keptCards.length}</span></div>
+      ${keptCards.length?`<div class="grid">${keptCards.map(b=>cardHtml(b,false)).join('')}</div>`:'<div class="miss">（无）</div>'}
+
+      <div class="section-title">去掉的品牌 <span class="tag drop">${dropCards.length}</span></div>
+      ${dropCards.length?`<div class="grid">${dropCards.map(b=>cardHtml(b,true)).join('')}</div>`:'<div class="miss">（无）</div>'}
+
+      ${unknown.length?`<div class="miss">⚠️ 有 ${unknown.length} 个品牌编号在当前清单里找不到（可能清单已更新）：${unknown.join(', ')}</div>`:''}
+    `;
+  }
+
+  // 默认选中第一个
+  if(!current){ const ns=Object.keys(results); if(ns.length) current=ns[0]; }
+
+  document.getElementById('vendorList').addEventListener('click', e=>{
+    const del = e.target.closest('[data-del]');
+    if(del){
+      const n = del.dataset.del;
+      if(confirm(`确定删除「${n}」的结果？`)){
+        delete results[n]; saveResults(results);
+        if(current===n){ const ns=Object.keys(results); current = ns.length?ns[0]:null; }
+        renderSide(); renderDetail();
+      }
+      return;
+    }
+    const item = e.target.closest('.vendor-item');
+    if(item){ current = item.dataset.n; renderSide(); renderDetail(); }
+  });
+
+  // 导出
+  function download(filename, text, type){
+    const blob = new Blob([text], {type});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+  }
+  document.getElementById('exportJson').onclick = ()=>{
+    if(!Object.keys(results).length) return alert('还没有结果可导出。');
+    download('厂商选择汇总.json', JSON.stringify(results,null,2), 'application/json');
+  };
+  document.getElementById('exportCsv').onclick = ()=>{
+    const names = Object.keys(results);
+    if(!names.length) return alert('还没有结果可导出。');
+    // 行=品牌，列=厂商，单元格 = 保留/去掉
+    let head = ['品牌编号','品牌名称','分类', ...names];
+    const rows = [head];
+    BRANDS.forEach(b=>{
+      const row = [b.id, b.name, b.category||''];
+      names.forEach(n=>{
+        const r = results[n];
+        row.push(r.kept.includes(b.id) ? '保留' : (r.removed.includes(b.id)?'去掉':'—'));
+      });
+      rows.push(row);
+    });
+    const csv = '﻿' + rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8');
+  };
+  document.getElementById('clearAll').onclick = ()=>{
+    if(confirm('确定清空全部已收录的厂商结果？此操作不可恢复。')){
+      results={}; current=null; saveResults(results); renderSide(); renderDetail();
+    }
+  };
+
+  renderSide();
+  renderDetail();
+</script>
+</body>
+</html>
