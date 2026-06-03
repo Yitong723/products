@@ -5,7 +5,8 @@
 //   name     品牌名称
 //   logo     品牌 logo 图片路径（放在 assets/logos/，没有就留空 ""，会用首字字标）
 //   category 分类
-//   desc     一句话简介
+//   desc     一句话简介（中文）
+//   descEn   简介的英文翻译（地道；可留空 ""，我可代翻）
 //   link     品牌官网（可留空 ""）
 //   products 产品图片路径数组（放在 assets/products/，可多张，没有就留 []）
 // 图片可以是本地路径，也可以是网图 https 链接。
@@ -17,6 +18,7 @@ window.BRANDS = [
     logo: "",
     category: "箱包服饰",
     desc: "诞生于伦敦、植根于上海的可持续时尚与生活方式品牌。主打「自然优雅（Naturally Elegant）」理念，将真实掉落的树叶与苹果纤维等纯植物基皮革结合，手工打造极具环保意义的手袋、卡包及配饰。",
+    descEn: "Born in London and rooted in Shanghai, Penapalne is a sustainable fashion and lifestyle brand. Guided by its “Naturally Elegant” philosophy, it pairs real fallen leaves with plant-based leathers such as apple fibre to handcraft eco-conscious handbags, card holders and accessories.",
     link: "https://www.penapalne.com/",
     products: [
       "assets/products/b01-1.png",
