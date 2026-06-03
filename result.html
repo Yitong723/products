@@ -165,7 +165,7 @@
   function card(b,drop,reason){const [c1,c2]=catColor(b.category);
     return `<div class="card ${drop?'d':'k'}${reason?' hasnote':''}">
       <div class="mono" style="background:linear-gradient(135deg,${c1},${c1}cc)">${b.logo?`<img src="${b.logo}" onerror="this.parentNode.textContent='${initials(b.name)}'">`:initials(b.name)}</div>
-      <div class="cardtx"><div class="cn">${escapeHtml(b.name)}</div>${b.category?`<div class="cc" style="color:${c1}">${escapeHtml(b.category)}</div>`:''}${reason?`<div class="cardnote"><b>原因 Reason</b>${escapeHtml(reason)}</div>`:''}</div></div>`;}
+      <div class="cardtx"><div class="cn">${escapeHtml(b.name)}</div>${b.category?`<div class="cc" style="color:${c1}">${escapeHtml(b.category)}${b.categoryEn?` · <span style="font-style:italic;font-weight:400;opacity:.85">${escapeHtml(b.categoryEn)}</span>`:''}</div>`:''}${reason?`<div class="cardnote"><b>原因 Reason</b>${escapeHtml(reason)}</div>`:''}</div></div>`;}
 
   function renderDetail(){
     const box=document.getElementById('detail');
