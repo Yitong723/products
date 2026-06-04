@@ -152,6 +152,15 @@
     if(!window.SYNC_URL) return Promise.resolve(null);
     return fetch(window.SYNC_URL,{method:'POST', body:JSON.stringify(obj)}).then(r=>r.json());
   }
+  // Google 表格会把时间戳串自动转成 Date；统一归一化回 "YYYY-MM-DD HH:mm" 以便比较和显示
+  function normT(t){
+    t=String(t||''); if(!t) return '';
+    if(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}/.test(t)) return t.slice(0,16);
+    const d=new Date(t);
+    if(!isNaN(d)){ const p=n=>String(n).padStart(2,'0');
+      return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+    return t;
+  }
   // 拉取云端 ↔ 本机双向合并：同名厂商以提交时间 t 新者为准；本机独有/更新的再补传上去
   async function syncCloud(){
     const st=document.getElementById('cloudSt');
@@ -162,12 +171,12 @@
       const cloud=await fetch(window.SYNC_URL+'?t='+Date.now(),{signal:ctl.signal}).then(r=>r.json());
       clearTimeout(tm);
       Object.keys(cloud).forEach(n=>{                       // 云端 → 本机
-        const c=cloud[n], l=results[n];
-        if(!l || String(c.t||'')>String(l.t||''))
-          results[n]={kept:c.kept||[], removed:c.removed||[], reasons:c.reasons||{}, t:c.t||'', received:c.received||(l&&l.received)||''};
+        const c=cloud[n], l=results[n], ct=normT(c.t);
+        if(!l || ct>String(l.t||''))
+          results[n]={kept:c.kept||[], removed:c.removed||[], reasons:c.reasons||{}, t:ct, received:normT(c.received)||(l&&l.received)||''};
       });
       const toUp=Object.keys(results).filter(n=>{           // 本机 → 云端
-        const c=cloud[n]; return !c || String(results[n].t||'')>String(c.t||'');
+        const c=cloud[n]; return !c || String(results[n].t||'')>normT(c.t);
       });
       saveResults(results);
       if(!current){ const ns=Object.keys(results); if(ns.length) current=ns[0]; }

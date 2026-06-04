@@ -84,8 +84,9 @@ function doPost(e) {
     }
     var vals = [vendor, String(d.t || ''), JSON.stringify(d.kept || []),
       JSON.stringify(d.removed || []), JSON.stringify(d.reasons || {}), new Date().toISOString()];
-    if (row) sh.getRange(row, 1, 1, 6).setValues([vals]);
-    else sh.appendRow(vals);
+    if (!row) row = sh.getLastRow() + 1;
+    // setNumberFormat('@') 强制文本，防止表格把时间戳自动转成 Date
+    sh.getRange(row, 1, 1, 6).setNumberFormat('@').setValues([vals]);
     return out_({ ok: true });
   } finally {
     lock.releaseLock();
