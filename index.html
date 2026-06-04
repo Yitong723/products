@@ -59,7 +59,7 @@
     background:var(--accent-soft);}
   .h1en{font-family:var(--display); font-style:italic; font-weight:500; color:var(--muted);
     font-size:clamp(15px,2.4vw,21px); margin-top:10px; line-height:1.3;}
-  .dek{margin-top:18px; max-width:660px; font-size:15px; color:var(--ink-soft); line-height:1.75;}
+  .dek{margin-top:18px; font-size:15px; color:var(--ink-soft); line-height:1.75;}
   .dek b{color:var(--accent-deep); font-weight:700;}
   .dek .en{display:block; margin-top:7px; font-size:13px; line-height:1.6;}
 
@@ -127,6 +127,14 @@
 
   /* ===== Grid & cards ===== */
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; align-items:start;}
+  /* 分页器 */
+  .pager{display:flex; justify-content:center; align-items:center; gap:8px; margin:26px 0 6px; flex-wrap:wrap;}
+  .pager button{border:1px solid var(--rule); background:var(--paper); border-radius:10px; padding:8px 14px;
+    font-family:var(--sans); font-size:13.5px; font-weight:600; color:var(--ink-soft); cursor:pointer;}
+  .pager button:hover:not(:disabled){border-color:var(--accent); color:var(--accent);}
+  .pager button.cur{background:var(--accent); border-color:var(--accent); color:#fff; cursor:default;}
+  .pager button:disabled{opacity:.4; cursor:default;}
+  .pager .pinfo{font-family:var(--display); font-style:italic; font-size:12.5px; color:var(--muted); margin:0 6px;}
   .card{position:relative; background:var(--paper); border:1px solid var(--rule); border-radius:18px;
     display:flex; flex-direction:column; overflow:hidden; box-shadow:var(--shadow);
     transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s, opacity .22s, filter .22s;
@@ -280,7 +288,7 @@
       </div>
       <h1>Please remove the brands that <em>don't meet</em> your exhibition requirements</h1>
       <div class="h1en">请去掉不符合您展会要求的品牌</div>
-      <p class="dek">Below are all the brands. Switch any brand that does <b>not</b> meet your exhibition requirements to “Remove”, and keep the ones that fit. Then enter your name, tap “Generate” at the bottom, and send the link back to us.
+      <p class="dek">Below are all the brands. Switch any brand that does <b>not</b> meet your exhibition requirements to "Remove", and keep the ones that fit. Then enter your name, tap "Generate" at the bottom, and send the link back to us.
         <span class="en">下面是全部品牌。请把<b>不符合您展会要求</b>的品牌切到「去掉」，符合要求的保持「保留」。选好后填写您的名称，点底部「生成结果」，把链接发回给我们即可。</span>
       </p>
     </header>
@@ -308,6 +316,7 @@
     </div>
 
     <main class="grid" id="grid"></main>
+    <div class="pager" id="pager"></div>
   </div>
 
   <div class="bar">
@@ -381,6 +390,29 @@
   const CAT_EN = {}; BRANDS.forEach(b=>{ if(b.category && !(b.category in CAT_EN)) CAT_EN[b.category]=b.categoryEn||''; });
   function visibleBrands(){ return activeCat==='all' ? BRANDS : BRANDS.filter(b=>b.category===activeCat); }
 
+  // ===== 分页（每页 9 个品牌）=====
+  const PER_PAGE = 9;
+  let page = 1;
+  function renderPager(totalPages){
+    const pager=document.getElementById('pager');
+    if(totalPages<=1){ pager.innerHTML=''; return; }
+    let html = `<button data-pg="prev" ${page===1?'disabled':''}>‹ Prev 上一页</button>`;
+    for(let p=1;p<=totalPages;p++) html += `<button data-pg="${p}" class="${p===page?'cur':''}">${p}</button>`;
+    html += `<button data-pg="next" ${page===totalPages?'disabled':''}>Next 下一页 ›</button>`;
+    html += `<span class="pinfo">Page ${page} / ${totalPages}　第 ${page} 页 · 共 ${totalPages} 页</span>`;
+    pager.innerHTML = html;
+  }
+  document.getElementById('pager').addEventListener('click', e=>{
+    const btn=e.target.closest('button[data-pg]');
+    if(!btn||btn.disabled) return;
+    const total=Math.max(1, Math.ceil(visibleBrands().length/PER_PAGE));
+    const v=btn.dataset.pg;
+    const next = v==='prev'? page-1 : v==='next'? page+1 : parseInt(v,10);
+    if(next<1||next>total||next===page) return;
+    page=next; render();
+    grid.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
   let menuOpen = false;
   function catCount(c){ return BRANDS.filter(b=>b.category===c).length; }
   function renderChips(){
@@ -401,7 +433,10 @@
 
   function render(){
     grid.innerHTML='';
-    visibleBrands().forEach((b,i)=>{
+    const vis = visibleBrands();
+    const totalPages = Math.max(1, Math.ceil(vis.length/PER_PAGE));
+    if(page>totalPages) page=totalPages;
+    vis.slice((page-1)*PER_PAGE, page*PER_PAGE).forEach((b,i)=>{
       const editing = b.id in pending;
       const committedKeep = state[b.id]!==false;
       const choice = editing ? pending[b.id].choice : committedKeep;  // seg 高亮用
@@ -471,6 +506,7 @@
     });
     updateGauge();
     applyDescHeight();
+    renderPager(totalPages);
   }
 
   // 以第一个品牌(BRANDS[0])的简介内容高度为准，统一所有简介框高度（它正好不留白、不滚动）
@@ -541,7 +577,7 @@
   document.getElementById('chips').addEventListener('click', e=>{
     if(e.target.closest('#filterBtn')){ e.stopPropagation(); menuOpen=!menuOpen; renderChips(); return; }   // 点箭头展开/收起
     const pick=e.target.closest('[data-cat]');
-    if(pick){ e.stopPropagation(); activeCat=pick.dataset.cat; menuOpen=false; renderChips(); render(); }
+    if(pick){ e.stopPropagation(); activeCat=pick.dataset.cat; menuOpen=false; page=1; renderChips(); render(); }
   });
   // 点别处关闭下拉
   document.addEventListener('click', e=>{
