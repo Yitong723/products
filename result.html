@@ -56,6 +56,8 @@
   .vitem .vk{font-family:var(--display); font-size:12px; color:var(--keep); font-weight:600; white-space:nowrap;}
   .vitem .del{font-size:13px; color:#c2b7a2; padding:0 3px; line-height:1;}
   .vitem .del:hover{color:var(--accent);}
+  .cloudst{font-size:12px; font-weight:600; margin:0 0 10px; line-height:1.5;}
+  .cloudst.ok{color:var(--keep);} .cloudst.fail{color:#a8552e;} .cloudst.wait{color:var(--muted);}
   .eside{font-size:13px; color:var(--muted); padding:10px; line-height:1.6;}
   .eside .en{display:block; font-style:italic; margin-top:4px;}
   .sacts{display:flex; flex-direction:column; gap:8px; margin-top:14px; border-top:1px solid var(--rule); padding-top:14px;}
@@ -113,8 +115,10 @@
     <div class="layout">
       <aside class="side">
         <h2>Exhibitors collected<span class="en">已收录厂商</span></h2>
+        <div class="cloudst" id="cloudSt"></div>
         <div id="vlist"></div>
         <div class="sacts">
+          <button id="syncBtn">↻ Sync now<span class="en">同步云端</span></button>
           <button id="exCsv">Export CSV<span class="en">导出汇总</span></button>
           <button id="exJson">Export JSON<span class="en">导出汇总</span></button>
           <button class="danger" id="clr">Clear all<span class="en">清空全部</span></button>
@@ -125,6 +129,7 @@
   </div>
 
 <script>document.write('<scr'+'ipt src="data/brands.js?t='+Date.now()+'"><\/scr'+'ipt>');</script>
+<script>document.write('<scr'+'ipt src="data/sync.js?t='+Date.now()+'"><\/scr'+'ipt>');</script>
 <script>
   const RESULTS_KEY="collect_results_v1";
   const byId={}; BRANDS.forEach(b=>byId[b.id]=b);
@@ -141,6 +146,40 @@
     return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
 
   let results=loadResults(), current=null;
+
+  // ===== 云端同步（Google Apps Script，SYNC_URL 为空则全部禁用）=====
+  function cloudPost(obj){
+    if(!window.SYNC_URL) return Promise.resolve(null);
+    return fetch(window.SYNC_URL,{method:'POST', body:JSON.stringify(obj)}).then(r=>r.json());
+  }
+  // 拉取云端 ↔ 本机双向合并：同名厂商以提交时间 t 新者为准；本机独有/更新的再补传上去
+  async function syncCloud(){
+    const st=document.getElementById('cloudSt');
+    if(!window.SYNC_URL){ st.style.display='none'; document.getElementById('syncBtn').style.display='none'; return; }
+    st.className='cloudst wait'; st.textContent='☁ Syncing… 正在同步云端…';
+    try{
+      const ctl=new AbortController(); const tm=setTimeout(()=>ctl.abort(), 12000);
+      const cloud=await fetch(window.SYNC_URL+'?t='+Date.now(),{signal:ctl.signal}).then(r=>r.json());
+      clearTimeout(tm);
+      Object.keys(cloud).forEach(n=>{                       // 云端 → 本机
+        const c=cloud[n], l=results[n];
+        if(!l || String(c.t||'')>String(l.t||''))
+          results[n]={kept:c.kept||[], removed:c.removed||[], reasons:c.reasons||{}, t:c.t||'', received:c.received||(l&&l.received)||''};
+      });
+      const toUp=Object.keys(results).filter(n=>{           // 本机 → 云端
+        const c=cloud[n]; return !c || String(results[n].t||'')>String(c.t||'');
+      });
+      saveResults(results);
+      if(!current){ const ns=Object.keys(results); if(ns.length) current=ns[0]; }
+      renderSide(); renderDetail();
+      for(const n of toUp){
+        try{ await cloudPost({vendor:n, t:results[n].t, kept:results[n].kept, removed:results[n].removed, reasons:results[n].reasons}); }catch(e){}
+      }
+      st.className='cloudst ok'; st.textContent=`☁ Synced 云端已同步 · ${Object.keys(results).length} vendors 家`;
+    }catch(e){
+      st.className='cloudst fail'; st.textContent='☁ Offline 云端不可用 · 仅显示本机数据';
+    }
+  }
 
   (function ingest(){
     const m=location.hash.match(/d=(.+)$/); if(!m) return;
@@ -200,7 +239,8 @@
   document.getElementById('vlist').addEventListener('click', e=>{
     const del=e.target.closest('[data-del]');
     if(del){ const n=del.dataset.del;
-      if(confirm(`Delete the submission from "${n}"?\n确定删除「${n}」的结果？`)){ delete results[n]; saveResults(results);
+      if(confirm(`Delete the submission from "${n}"? (also removed from cloud)\n确定删除「${n}」的结果？（云端记录会一并删除）`)){ delete results[n]; saveResults(results);
+        cloudPost({action:'delete', vendor:n}).catch(()=>{});
         if(current===n){ const ns=Object.keys(results); current=ns.length?ns[0]:null; } renderSide(); renderDetail(); }
       return; }
     const item=e.target.closest('.vitem'); if(item){ current=item.dataset.n; renderSide(); renderDetail(); }
@@ -221,10 +261,12 @@
       rows.push(row); });
     const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
     download('厂商选择汇总.csv', csv, 'text/csv;charset=utf-8'); };
-  document.getElementById('clr').onclick=()=>{ if(confirm('Clear ALL collected submissions? This cannot be undone.\n确定清空全部已收录的厂商结果？此操作不可恢复。')){
-    results={}; current=null; saveResults(results); renderSide(); renderDetail(); } };
+  document.getElementById('clr').onclick=()=>{ if(confirm('Clear ALL collected submissions? (cloud records too) This cannot be undone.\n确定清空全部已收录的厂商结果？（云端记录一并清空）此操作不可恢复。')){
+    results={}; current=null; saveResults(results); cloudPost({action:'clear'}).catch(()=>{}); renderSide(); renderDetail(); } };
+  document.getElementById('syncBtn').onclick=()=>syncCloud();
 
   renderSide(); renderDetail();
+  syncCloud();   // 页面加载即同步云端：任何设备打开都能看到全部厂商结果
 </script>
 </body>
 </html>

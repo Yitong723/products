@@ -264,6 +264,8 @@
   .linkbox .btn-primary{margin:0; padding:12px 18px; font-size:14px;}
   .mrow{display:flex; gap:10px; flex-wrap:wrap;}
   .mok{font-size:13px; color:var(--keep); font-weight:700; margin-top:12px; min-height:18px;}
+  .syncstat{font-size:13px; font-weight:700; margin:10px 0 2px; min-height:18px;}
+  .syncstat.ok{color:var(--keep);} .syncstat.fail{color:var(--accent-deep);} .syncstat.wait{color:var(--muted);}
   .imgov{position:fixed; inset:0; z-index:70; background:rgba(0,0,0,.88); display:none; align-items:center; justify-content:center; cursor:zoom-out; padding:24px;}
   .imgov.show{display:flex;}
   .imgov-box{max-width:100%; max-height:100%;}
@@ -333,6 +335,7 @@
       <p>Copy the link below and send it back to us (WeChat is fine). We'll see your selection as soon as we open it.
         <span class="en">复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。</span>
       </p>
+      <div class="syncstat" id="syncStat"></div>
       <div class="linkbox">
         <input id="rlink" readonly>
         <button class="btn btn-primary" id="copyLink"><span class="tx">Copy<span class="en">复制</span></span></button>
@@ -349,6 +352,7 @@
   <div class="imgov" id="imgov"><div class="imgov-box" id="imgovBox"></div></div>
 
 <script>document.write('<scr'+'ipt src="data/brands.js?t='+Date.now()+'"><\/scr'+'ipt>');</script>
+<script>document.write('<scr'+'ipt src="data/sync.js?t='+Date.now()+'"><\/scr'+'ipt>');</script>
 <script>
   const DRAFT_KEY = "collect_draft_v1";
   const grid = document.getElementById('grid');
@@ -618,7 +622,23 @@
     document.getElementById('rlink').value=resultUrl();
     document.getElementById('mok').textContent='';
     ov.classList.add('show');
+    autoSubmit();
   };
+  // 云端自动提交（尽力而为；失败不影响链接流程）
+  function autoSubmit(){
+    const st=document.getElementById('syncStat');
+    if(!window.SYNC_URL){ st.textContent=''; return; }
+    st.className='syncstat wait'; st.textContent='Submitting automatically… 正在自动提交…';
+    const ctl=new AbortController(); const tm=setTimeout(()=>ctl.abort(), 8000);
+    fetch(window.SYNC_URL,{method:'POST', body:JSON.stringify(buildPayload()), signal:ctl.signal})
+      .then(r=>r.json()).then(r=>{
+        clearTimeout(tm);
+        if(r&&r.ok){ st.className='syncstat ok'; st.textContent='✓ Submitted automatically — sending the link back is just a backup.  已自动提交成功，链接发回仅作备用。'; }
+        else throw 0;
+      })
+      .catch(()=>{ clearTimeout(tm); st.className='syncstat fail';
+        st.textContent='⚠ Auto-submit failed — please DO send the link below back to us.  自动提交失败，请务必把下面的链接发回给我们。'; });
+  }
   document.getElementById('closeM').onclick=()=>ov.classList.remove('show');
   ov.addEventListener('click', e=>{ if(e.target===ov) ov.classList.remove('show'); });
   document.getElementById('copyLink').onclick=async()=>{
