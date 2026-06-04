@@ -158,7 +158,7 @@
   .desc-box::-webkit-scrollbar{width:6px;}
   .desc-box::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
   .desc-box::-webkit-scrollbar-track{background:transparent;}
-  .desc{font-size:13.5px; color:var(--ink-soft); line-height:1.65; white-space:pre-line; text-align:justify; text-justify:inter-word;}
+  .desc{font-size:13.5px; color:var(--ink-soft); line-height:1.65; white-space:pre-line; text-align:justify; text-justify:inter-word; -webkit-hyphens:auto; hyphens:auto;}
   .descEn{margin-top:10px; padding-top:10px; border-top:1px dashed var(--rule);
     font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted); font-size:12.5px; line-height:1.6; white-space:pre-line; text-align:justify; text-justify:inter-word;}
   .prod-more{width:100%; aspect-ratio:1; border-radius:10px; border:1px solid var(--line); background:#f3ebdd;
@@ -458,7 +458,7 @@
         </div>
         ${(b.location||b.locationEn)?`<div class="loc">📍 ${escapeHtml(locPrimary)}${locSecond?` <span class="en">· ${escapeHtml(locSecond)}</span>`:''}</div>`:''}
         ${(b.desc||b.descEn)?`<div class="desc-box" data-id="${b.id}">
-          ${b.descEn?`<div class="desc">${escapeHtml(b.descEn)}</div>`:''}
+          ${b.descEn?`<div class="desc" lang="en">${escapeHtml(b.descEn)}</div>`:''}
           ${b.desc?`<div class="descEn">${escapeHtml(b.desc)}</div>`:''}
         </div>`:''}
         ${prodHtml}
