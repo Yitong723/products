@@ -332,8 +332,8 @@
     <div class="modal">
       <div class="ck">Generated</div>
       <h3>Done <span class="en">— 结果已生成</span> ✅</h3>
-      <p>Copy the link below and send it back to us (WeChat is fine). We'll see your selection as soon as we open it.
-        <span class="en">复制下面的链接，发回给我们（微信发即可）。我们一打开就能看到您的选择。</span>
+      <p>Copy the link below and send it back to us (WeChat / Email / WhatsApp all work). We'll see your selection as soon as we open it.
+        <span class="en">复制下面的链接，发回给我们（微信 / 邮件 / WhatsApp 都可以）。我们一打开就能看到您的选择。</span>
       </p>
       <div class="syncstat" id="syncStat"></div>
       <div class="linkbox">
@@ -644,7 +644,7 @@
   document.getElementById('copyLink').onclick=async()=>{
     const inp=document.getElementById('rlink');
     try{ await navigator.clipboard.writeText(inp.value); }catch(e){ inp.select(); document.execCommand('copy'); }
-    document.getElementById('mok').textContent='Copied — send it to us on WeChat ✅  已复制，去微信发给我们就好';
+    document.getElementById('mok').textContent='Copied — send it to us via WeChat / Email / WhatsApp ✅  已复制，微信 / 邮件 / WhatsApp 发给我们都可以';
   };
   document.getElementById('openR').onclick=()=>window.open(document.getElementById('rlink').value,'_blank');
   document.getElementById('dl').onclick=()=>{
