@@ -109,5 +109,25 @@ window.BRANDS = [
     descEn: "An Eastern-aesthetic brand specialising in Chinese-style luxury craftsmanship, offering original gemstone-flower handicrafts and ready-to-wear collections.",
     link: "https://xhslink.com/m/5ExJgrOdVlO",
     products: ["assets/products/b10-1.jpg","assets/products/b10-2.jpg","assets/products/b10-3.jpg","assets/products/b10-4.jpg","assets/products/b10-5.jpg","assets/products/b10-6.jpg","assets/products/b10-7.jpg","assets/products/b10-8.jpg"]
+  },
+  {
+    id: "b11",
+    name: "荷言",
+    category: "服饰", categoryEn: "Apparel",
+    location: "江苏", locationEn: "Jiangsu",
+    desc: "一家专注于原创设计师旗袍的高端新国风服饰品牌，2013年创立于中国苏州，由创始人兼首席设计师周立言创立。\n品牌名称“荷言”取自“荷之有言，舒卷于形，灵动于心，内有大美而不言”，寓意内敛而富有诗意的东方女性之美。荷言从中国传统诗词文化中汲取灵感，融合苏州传统丝织工艺（如缂丝、罗、锦）和手工技艺，致力于将古典旗袍与当代女性生活方式结合，定义“闺秀旗袍”与“旗袍新国风”。",
+    descEn: "A high-end new-Chinese-style fashion brand devoted to original designer qipao, founded in Suzhou in 2013 by founder and chief designer Zhou Liyan. The name \"Heyan\" comes from the verse \"the lotus has its own words: graceful in form, alive in spirit, holding great beauty within without saying a word\", evoking the understated, poetic beauty of Eastern women. Drawing inspiration from classical Chinese poetry, Heyan weaves together Suzhou's traditional silk crafts, such as kesi tapestry, luo gauze and brocade, with fine handwork, uniting the classic qipao with the lifestyles of contemporary women and defining the \"refined-lady qipao\" and the \"new Chinese qipao style\".",
+    link: "https://xhslink.com/m/9xERmGuWFza",
+    products: ["assets/products/b11-1.jpg","assets/products/b11-2.jpg","assets/products/b11-3.jpg","assets/products/b11-4.jpg","assets/products/b11-5.jpg"]
+  },
+  {
+    id: "b12",
+    name: "骨乐亨Bonenanza",
+    category: "宠物用品", categoryEn: "Pet Supplies",
+    location: "上海", locationEn: "Shanghai",
+    desc: "一家高端宠物奢侈时尚品牌，致力于为宠物打造“与人类一样丰富”的衣橱。品牌名称 Bonenanza 由 “Bone”（骨头，代表宠物）与 “Bonanza”（富矿、幸运、丰盛）组合而成，寓意为毛孩子带来好运、丰盛与优雅生活。中文名“骨乐亨”谐音自然，传递快乐与奢享的理念。",
+    descEn: "A high-end pet luxury fashion brand dedicated to giving pets a wardrobe \"as rich as their humans'\". The name Bonenanza combines \"Bone\", standing for pets, with \"Bonanza\", meaning fortune and abundance, wishing furry kids good luck, plenty and an elegant life. Its Chinese name \"Gu Le Heng\" echoes the sound naturally and conveys a spirit of joy and indulgent living.",
+    link: "https://bonenanza.com/",
+    products: ["assets/products/b12-1.jpg","assets/products/b12-2.jpg","assets/products/b12-3.jpg","assets/products/b12-4.jpg","assets/products/b12-5.jpg","assets/products/b12-6.jpg","assets/products/b12-7.jpg"]
   }
 ];
