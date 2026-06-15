@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展会服务手册 · 东南亚出海测试市场</title>
+
+<!--
+╔══════════════════════════════════════════════════════════════════════╗
+║  展会服务手册（招商版）· 可打印 / 导出 PDF                              ║
+║  改字方法：直接在下方正文里改文字即可，CSS 在 <style> 内一般不用动。     ║
+║  想导出 PDF：浏览器打开本页 → Ctrl/Cmd+P → 目标选"另存为 PDF" →         ║
+║             勾选"背景图形" → 纸张 A4 纵向。                              ║
+║                                                                        ║
+║  ★ 待填清单（搜索 TODO 可逐个跳到）：                                    ║
+║    1. 公司名 / Logo                  —— 搜 TODO-BRAND                    ║
+║    2. 具体展会名称、城市、时间        —— 搜 TODO-FAIR                     ║
+║    3. 各项价格 / 价格区间             —— 搜 TODO-PRICE                    ║
+║    4. 服务费率 / 价格区间             —— 搜 TODO-PRICE                    ║
+║    5. 联系方式（微信 / 电话 / 邮箱）  —— 搜 TODO-CONTACT                  ║
+║    6. 问卷题目样例（如需放出）        —— 搜 TODO-SURVEY                   ║
+╚══════════════════════════════════════════════════════════════════════╝
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#f3ebdd; --bg2:#efe4d2; --paper:#fffdf8; --ink:#221c14; --ink-soft:#4a4034;
+    --muted:#8c7f6c; --rule:#e2d6c0; --line:#d8c9ad;
+    --accent:#bd3c1e; --accent-deep:#992c12; --accent-soft:#fbe6da;
+    --keep:#4a6b3f; --keep-soft:#e6efe0; --keep-line:#bcd0ad;
+    --gold:#a8772e; --gold-soft:#f4e9d3;
+    --shadow:0 1px 2px rgba(60,40,20,.04), 0 8px 24px -12px rgba(80,50,20,.18);
+    --shadow-lift:0 2px 4px rgba(60,40,20,.06), 0 20px 40px -16px rgba(120,60,20,.28);
+    --serif:"Noto Serif SC", serif;
+    --sans:"Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+    --display:"Fraunces", "Noto Serif SC", serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    -webkit-font-smoothing:antialiased; line-height:1.7; position:relative;
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(189,60,30,.06), transparent 60%),
+      radial-gradient(800px 460px at 100% 0%, rgba(74,107,63,.05), transparent 55%);
+    background-attachment:fixed;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  .wrap{position:relative; z-index:1; max-width:880px; margin:0 auto; padding:0 22px 120px;}
+
+  .en{font-family:var(--display); font-style:italic; font-weight:400; color:var(--muted);}
+
+  /* ===== 通用 section / 标题 ===== */
+  .section{padding:40px 0 14px;}
+  .sec-kicker{display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+  .sec-no{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px;
+    color:var(--accent); letter-spacing:.04em;}
+  .sec-kicker .ln{flex:1; height:1px; background:var(--line);}
+  .sec-kicker .en-tag{font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);}
+  h2{font-family:var(--serif); font-weight:900; font-size:clamp(23px,3.6vw,32px); line-height:1.18;
+    letter-spacing:-.01em; color:var(--ink); margin-bottom:6px;}
+  h2 em{font-style:normal; color:var(--accent); position:relative; white-space:nowrap;}
+  h2 em::after{content:""; position:absolute; left:0; right:0; bottom:1px; height:8px; z-index:-1;
+    background:var(--accent-soft);}
+  .lead{color:var(--ink-soft); font-size:15.5px; max-width:62ch; margin-bottom:8px;}
+  h3{font-family:var(--serif); font-weight:700; font-size:18px; color:var(--ink); margin:4px 0;}
+  p{color:var(--ink-soft);}
+  strong{color:var(--ink); font-weight:700;}
+  .hl{background:linear-gradient(transparent 58%, var(--accent-soft) 58%); padding:0 1px;}
+
+  /* 正文两端对齐：每行铺满、右边不留空（标题/CTA 不受影响）*/
+  .lead, .cover .sub, .why .v p, .row .v, .gain, .star p,
+  .after-grid .c p, .faq .q p, .note-cost,
+  .steps li, .flow .stage li, .mini2 .m li, table.cmp td{
+    text-align:justify; text-justify:inter-ideograph;
+  }
+  /* 移除所有英文装饰标签 */
+  .sec-kicker .en-tag, .row .k .ken, footer .en{display:none !important;}
+
+  /* ===== 封面 ===== */
+  .cover{padding:48px 0 40px; display:grid; grid-template-columns:1.05fr .95fr; gap:40px;
+    align-items:center;}
+  .cover-art img{width:100%; height:auto; display:block; border-radius:18px;
+    box-shadow:var(--shadow-lift);}
+  .cover .kick{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
+  .cover .kick .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px;
+    color:var(--accent);}
+  .cover .kick .ln{flex:1; height:1px; background:var(--line);}
+  .cover .kick .biz{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);}
+  .cover h1{font-family:var(--serif); font-weight:900; font-size:clamp(32px,6.2vw,56px); line-height:1.12;
+    letter-spacing:-.015em; margin-bottom:18px;}
+  .cover h1 em{font-style:normal; color:var(--accent); position:relative; white-space:nowrap;}
+  .cover h1 em::after{content:""; position:absolute; left:0; right:0; bottom:3px; height:12px; z-index:-1;
+    background:var(--accent-soft);}
+  .cover .sub{font-size:18px; color:var(--ink-soft); max-width:56ch; line-height:1.65;}
+  .cover .sub b{color:var(--accent-deep);}
+  .cover-en{font-family:var(--display); font-style:italic; font-weight:500; color:var(--muted);
+    font-size:18px; margin:14px 0 26px;}
+  .cover-meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;}
+  .pill{display:inline-flex; align-items:center; gap:7px; background:var(--paper);
+    border:1px solid var(--line); border-radius:30px; padding:8px 16px; font-size:13px;
+    font-weight:500; color:var(--ink-soft); box-shadow:var(--shadow);}
+  .pill b{color:var(--accent);}
+
+  /* ===== 时间轴（服务全景）===== */
+  .flow{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px;}
+  .flow .stage{background:var(--paper); border:1px solid var(--rule); border-radius:18px;
+    padding:20px 18px; box-shadow:var(--shadow); position:relative;}
+  .flow .stage .ph{font-family:var(--display); font-style:italic; font-size:13px; color:var(--accent);
+    font-weight:600; margin-bottom:4px;}
+  .flow .stage h3{font-size:17px; margin-bottom:10px;}
+  .flow .stage ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
+  .flow .stage li{font-size:13.5px; color:var(--ink-soft); padding-left:16px; position:relative;}
+  .flow .stage li::before{content:"›"; position:absolute; left:0; color:var(--accent); font-weight:700;}
+
+  /* ===== 价值点（为什么选展会测试）===== */
+  .why{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px;}
+  .why .v{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px 16px;
+    box-shadow:var(--shadow);}
+  .why .v .ic{font-size:22px; margin-bottom:8px; display:block;}
+  .why .v h3{font-size:15.5px; margin-bottom:5px;}
+  .why .v p{font-size:13px; line-height:1.6;}
+
+  /* ===== 三种方式卡片 ===== */
+  .way{background:var(--paper); border:1px solid var(--rule); border-radius:20px; padding:0;
+    box-shadow:var(--shadow-lift); margin-top:22px; overflow:hidden;}
+  .way > .head{display:flex; align-items:flex-start; gap:16px; padding:24px 26px 20px;
+    border-bottom:1px solid var(--rule);
+    background:linear-gradient(180deg, var(--bg2), transparent);}
+  .way .num{flex:none; width:52px; height:52px; border-radius:15px; display:flex; align-items:center;
+    justify-content:center; font-family:var(--serif); font-weight:900; font-size:24px; color:#fff;
+    box-shadow:0 6px 14px -6px rgba(120,60,20,.5);}
+  .way.w1 .num{background:linear-gradient(135deg,var(--accent),var(--accent-deep));}
+  .way.w2 .num{background:linear-gradient(135deg,#3f6b8c,#2c4e6b);}
+  .way.w3 .num{background:linear-gradient(135deg,var(--keep),#3a5631);}
+  .way .head .tt{flex:1;}
+  .way .head .tag{font-family:var(--display); font-style:italic; font-size:13px; color:var(--accent);
+    font-weight:600;}
+  .way.w2 .head .tag{color:#3f6b8c;} .way.w3 .head .tag{color:var(--keep);}
+  .way .head h3{font-size:21px; font-weight:900; font-family:var(--serif); margin:2px 0 0;}
+  .way .head .one{font-size:13.5px; color:var(--muted); margin-top:4px;}
+  .way .body{padding:6px 26px 24px;}
+  .row{display:grid; grid-template-columns:96px 1fr; gap:14px; padding:15px 0;
+    border-bottom:1px dashed var(--rule);}
+  .row:last-child{border-bottom:none;}
+  .row .k{font-family:var(--serif); font-weight:700; font-size:14px; color:var(--accent-deep);
+    line-height:1.5;}
+  .way.w2 .row .k{color:#2c4e6b;} .way.w3 .row .k{color:#3a5631;}
+  .row .k .ken{display:block; font-family:var(--display); font-style:italic; font-weight:400;
+    font-size:11px; color:var(--muted); margin-top:1px;}
+  .row .v{font-size:14px; color:var(--ink-soft);}
+  .steps{list-style:none; display:flex; flex-direction:column; gap:9px; counter-reset:s;}
+  .steps li{position:relative; padding-left:30px; font-size:14px; color:var(--ink-soft);}
+  .steps li::before{counter-increment:s; content:counter(s); position:absolute; left:0; top:1px;
+    width:20px; height:20px; border-radius:7px; background:var(--accent-soft); color:var(--accent-deep);
+    font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;
+    font-family:var(--display);}
+  .way.w2 .steps li::before{background:#dbe8f1; color:#2c4e6b;}
+  .way.w3 .steps li::before{background:var(--keep-soft); color:#3a5631;}
+  .steps li b{color:var(--ink);}
+  .deliver{list-style:none; display:flex; flex-wrap:wrap; gap:8px;}
+  .deliver li{font-size:12.5px; background:var(--bg2); border:1px solid var(--line); border-radius:9px;
+    padding:6px 11px; color:var(--ink-soft);}
+  .deliver li b{color:var(--ink);}
+  .gain{background:var(--accent-soft); border-radius:12px; padding:13px 16px; font-size:14px;
+    color:var(--accent-deep); font-weight:500; line-height:1.6;}
+  .way.w2 .gain{background:#e8f0f6; color:#2c4e6b;}
+  .way.w3 .gain{background:var(--keep-soft); color:#3a5631;}
+  .note-cost{margin-top:14px; font-size:12.5px; color:var(--muted); background:#fbf6ec;
+    border:1px dashed var(--line); border-radius:10px; padding:11px 14px;}
+  .note-cost b{color:var(--ink-soft);}
+
+  /* highlight 调研员卖点 */
+  .star{background:var(--gold-soft); border:1px solid #e3cd9e; border-radius:12px; padding:13px 16px;
+    margin-top:8px;}
+  .star .lab{font-family:var(--display); font-style:italic; font-weight:600; font-size:12px;
+    color:var(--gold); display:block; margin-bottom:3px;}
+  .star p{font-size:13.5px; color:var(--ink-soft);}
+  .star b{color:#7a5410;}
+
+  /* ===== 展会后服务（额外收费）===== */
+  .paid-banner{display:flex; align-items:center; gap:10px; background:var(--accent);
+    color:#fff; border-radius:12px; padding:11px 18px; font-size:13.5px; font-weight:500;
+    margin-bottom:18px; box-shadow:0 8px 20px -8px rgba(189,60,30,.5);}
+  .paid-banner .tg{font-size:11px; letter-spacing:.05em; background:rgba(255,255,255,.22);
+    padding:3px 9px; border-radius:20px; font-weight:700;}
+  .after-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .after-grid .c{background:var(--paper); border:1px solid var(--rule); border-radius:16px;
+    padding:18px 18px; box-shadow:var(--shadow);}
+  .after-grid .c .no{font-family:var(--display); font-style:italic; font-weight:600; color:var(--accent);
+    font-size:13px;}
+  .after-grid .c h3{font-size:16px; margin:3px 0 6px;}
+  .after-grid .c p{font-size:13.5px; line-height:1.6;}
+  .after-grid .c.span2{grid-column:1 / -1;}
+  .conv{list-style:none; display:flex; flex-wrap:wrap; gap:9px; margin-top:10px;}
+  .conv li{font-size:13px; background:var(--accent-soft); color:var(--accent-deep); border-radius:9px;
+    padding:7px 13px; font-weight:500;}
+
+  /* ===== 对比表 ===== */
+  .cmp-scroll{overflow-x:auto; margin-top:6px; border-radius:16px; box-shadow:var(--shadow);}
+  table.cmp{width:100%; border-collapse:collapse; background:var(--paper); min-width:620px;
+    font-size:13.5px;}
+  table.cmp th, table.cmp td{text-align:left; padding:14px 16px; border-bottom:1px solid var(--rule);
+    vertical-align:top;}
+  table.cmp thead th{background:var(--bg2); font-family:var(--serif); font-weight:900; font-size:14px;
+    color:var(--ink); position:sticky; top:0;}
+  table.cmp thead th .en-s{display:block; font-family:var(--display); font-style:italic; font-weight:400;
+    font-size:11px; color:var(--muted);}
+  table.cmp tbody th{font-family:var(--serif); font-weight:700; color:var(--accent-deep); width:120px;
+    background:#fbf6ec; font-size:13px;}
+  table.cmp td{color:var(--ink-soft); line-height:1.55;}
+  table.cmp .w1c{border-top:3px solid var(--accent);}
+  table.cmp .w2c{border-top:3px solid #3f6b8c;}
+  table.cmp .w3c{border-top:3px solid var(--keep);}
+  table.cmp .price{font-weight:700; color:var(--ink);}
+  .tbd{background:var(--accent-soft); color:var(--accent-deep); border-radius:6px; padding:1px 7px;
+    font-size:12px; font-weight:600; white-space:nowrap;}
+
+  /* ===== 选展标准 / 保障 小卡 ===== */
+  .mini2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px;}
+  .mini2 .m{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px;
+    box-shadow:var(--shadow);}
+  .mini2 .m h3{font-size:16px; margin-bottom:8px;}
+  .mini2 .m ul{list-style:none; display:flex; flex-direction:column; gap:6px;}
+  .mini2 .m li{font-size:13.5px; color:var(--ink-soft); padding-left:18px; position:relative;}
+  .mini2 .m li::before{content:"✓"; position:absolute; left:0; color:var(--keep); font-weight:700;}
+
+  /* ===== FAQ ===== */
+  .faq{display:flex; flex-direction:column; gap:10px; margin-top:8px;}
+  .faq .q{background:var(--paper); border:1px solid var(--rule); border-radius:14px; padding:15px 18px;
+    box-shadow:var(--shadow);}
+  .faq .q h3{font-size:14.5px; margin-bottom:4px; display:flex; gap:8px;}
+  .faq .q h3::before{content:"问"; font-family:var(--serif); color:var(--accent);
+    font-weight:700;}
+  .faq .q p{font-size:13.5px; padding-left:18px;}
+
+  /* ===== CTA ===== */
+  .cta{margin-top:46px; background:linear-gradient(135deg, var(--ink), #2f2719); color:#f3ebdd;
+    border-radius:22px; padding:38px 34px; text-align:center; box-shadow:var(--shadow-lift);}
+  .cta h2{color:#fff; margin-bottom:8px;}
+  .cta h2 em{color:#f0b59d;} .cta h2 em::after{background:rgba(240,181,157,.2);}
+  .cta p{color:#d8c9ad; font-size:15px; max-width:46ch; margin:0 auto 22px;}
+  .cta .contacts{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+  .cta .contacts .c{background:rgba(255,255,255,.08); border:1px solid rgba(243,235,221,.18);
+    border-radius:30px; padding:11px 22px; font-size:14px; color:#f3ebdd;}
+  .cta .contacts .c b{color:#f0b59d;}
+
+  footer{text-align:center; margin-top:34px; font-size:12px; color:var(--muted);}
+  footer .en{font-size:12px;}
+
+  /* ===== 顶部下载提示条（打印时隐藏）===== */
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(243,235,221,.86);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); padding:9px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:12.5px;
+    color:var(--muted);}
+  .topbar .brand{font-family:var(--serif); font-weight:700; color:var(--ink); font-size:13px;}
+  .topbar button{font-family:var(--sans); cursor:pointer; border:none; font-size:12.5px; font-weight:600;
+    color:#fff; background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+    border-radius:9px; padding:7px 15px; box-shadow:0 6px 14px -6px rgba(189,60,30,.6);}
+
+  @media (max-width:680px){
+    .flow,.why,.after-grid,.mini2{grid-template-columns:1fr;}
+    .cover{grid-template-columns:1fr; gap:26px; padding:30px 0 30px;}
+    .cover-art{order:-1;}
+    .row{grid-template-columns:1fr; gap:5px;}
+    .row .k .ken{display:inline; margin-left:6px;}
+    .cover h1{font-size:34px;}
+    .topbar .hint{display:none;}
+  }
+
+  /* ===== 打印 / 导出 PDF ===== */
+  @media print{
+    @page{size:A4 portrait; margin:14mm 12mm;}
+    html,body{background:#fff !important;}
+    body::before{display:none;}
+    .topbar{display:none !important;}
+    .wrap{max-width:100%; padding:0;}
+    *{-webkit-print-color-adjust:exact !important; print-color-adjust:exact !important;}
+    .section{padding:20px 0 6px;}
+    .cover{padding:10px 0 24px;}
+    .way{overflow:visible;}
+    .way .head,.way .row,.star,.gain,.after-grid .c,.flow .stage,.why .v,.mini2 .m,.faq .q,.cta{break-inside:avoid;}
+    .cmp-scroll{overflow:visible;} table.cmp{min-width:0;}
+    .cta{margin-top:24px;}
+    a{color:inherit; text-decoration:none;}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 顶部条：屏幕可见，打印自动隐藏 -->
+<div class="topbar">
+  <!-- TODO-BRAND：把"展会出海服务"换成你的公司/品牌名 -->
+  <span class="brand">展会出海服务</span>
+  <span class="hint">为商家而做的服务手册 · 点右侧按钮可保存为 PDF</span>
+  <button onclick="window.print()">⤓ 保存 / 打印 PDF</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ════════════════════════ 封面 ════════════════════════ -->
+  <header class="cover">
+    <div class="cover-text">
+      <div class="kick">
+        <!-- TODO-BRAND -->
+        <span class="biz">展会出海服务 · 招商手册</span>
+        <span class="ln"></span>
+      </div>
+      <h1>东南亚市场<br><em>展会出海服务</em></h1>
+      <p class="sub">出海第一步，无需先重投入开店、铺货。我们带你的产品走进<strong>东南亚的展会与市集</strong>，<b>以最低成本验证它在真实市场中的表现</b>——消费者是否驻足、是否愿意购买、能接受怎样的价格，再决定下一步是否加码投入。</p>
+    </div>
+    <div class="cover-art">
+      <img src="assets/cover-collage.png" alt="东南亚展会与市集现场实拍">
+    </div>
+  </header>
+
+  <!-- ════════════════════════ 第01节 · 我们是谁 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">01</span><span class="ln"></span><span class="en-tag">Who we are</span></div>
+    <h2>服务<em>定位</em></h2>
+    <p class="lead">我们专注于帮助中国品牌以<strong>最小成本、最快速度</strong>，在东南亚完成一次真实的市场测试——不依赖纸面推演，让产品直接面对当地消费者。</p>
+
+    <div class="why">
+      <div class="v">
+        <span class="ic">💸</span>
+        <h3>成本可控，验证高效</h3>
+        <p>以一个摊位的投入换取真实销售与反馈，远低于直接开店、铺货、投放广告的成本。</p>
+      </div>
+      <div class="v">
+        <span class="ic">👀</span>
+        <h3>基于真实消费行为</h3>
+        <p>消费者是否驻足、是否互动、是否付费——这些一手反馈是线上数据无法替代的。</p>
+      </div>
+      <div class="v">
+        <span class="ic">🧭</span>
+        <h3>形成可落地的决策</h3>
+        <p>不止于销售额，更回答品类如何选择、价格如何制定、是否进入及如何进入。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ 第02节 · 服务全景 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">02</span><span class="ln"></span><span class="en-tag">The journey</span></div>
+    <h2>服务<em>全景</em></h2>
+    <p class="lead">从产品出运、展会现场到展后的持续经营，我们将全程拆解为三个阶段。</p>
+
+    <div class="flow">
+      <div class="stage">
+        <div class="ph">展前</div>
+        <h3>准备与定方案</h3>
+        <ul>
+          <li>产品细节梳理</li>
+          <li>挑选合适的展会 / 市集</li>
+          <li>确定参与方式与物料</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="ph">展中</div>
+        <h3>出摊 · 销售 · 调研</h3>
+        <ul>
+          <li>辅助布展与现场销售</li>
+          <li>实时跟进售卖情况</li>
+          <li>消费者行为与问卷调研</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="ph">展后</div>
+        <h3>报告与长期渠道</h3>
+        <ul>
+          <li>市场报告与结算</li>
+          <li>本地化转化机会</li>
+          <li>独立站 / 长期合作</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ 第03节 · 三种参展方式（核心）════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">03</span><span class="ln"></span><span class="en-tag">2 ways to join</span></div>
+    <h2>两种<em>参展方式</em></h2>
+    <p class="lead">不管你能不能亲自到场、想投入多少，都有一种适合你的方式。</p>
+
+    <!-- ── 方式一 ── -->
+    <article class="way w1">
+      <div class="head">
+        <div class="num">1</div>
+        <div class="tt">
+          <div class="tag">全程陪同</div>
+          <h3>自主参展</h3>
+          <div class="one">品牌亲临现场，我们提供全程陪同与执行保障</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="k">适合谁<span class="ken">Who</span></div>
+          <div class="v">想<strong>亲自到场</strong>、亲眼看市场反应、愿意自己运营的品牌；通常处于出海探索期，创始人或团队能出差。</div>
+        </div>
+        <div class="row">
+          <div class="k">流程怎么走<span class="ken">How</span></div>
+          <div class="v">
+            <ol class="steps">
+              <li><b>机酒安排</b>：可包或不包（按需选择）</li>
+              <li><b>行程前准备</b>：办当地电话卡、行程攻略等</li>
+              <li><b>接机 + 展会提前踩点</b>：商务车接机，开展前先看场地</li>
+              <li><b>布展</b></li>
+              <li><b>现场售卖 + 消费者调研</b></li>
+              <li><b>展会后</b>：本地走访调研、线下商圈考察、消费习惯洞察</li>
+            </ol>
+            <div class="star">
+              <span class="lab">★ 特色服务 · 现场消费者调研</span>
+              <p>我们安排专人<b>驻场观察</b>，记录消费者在摊位前的<b>停留时长</b>、触摸产品时的<b>反应</b>、对定价的<b>真实反馈</b>，并完成<b>结构化问卷</b>，展后交付一份<b>定性分析报告</b>——这是难以从国内远程获取的一手市场洞察。</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">交付清单<span class="ken">Deliverables</span></div>
+          <div class="v">
+            <ul class="deliver">
+              <li><b>定性消费者调研报告</b>（停留 / 反应 / 价格反馈）</li>
+              <li><b>问卷</b>原始数据</li>
+              <li>现场<b>照片素材</b></li>
+              <li>（可选）本地化走访洞察与<b>联名线索</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">你能得到<span class="ken">Outcome</span></div>
+          <div class="v"><div class="gain">亲历真实市场 + 一份扎实的定性消费者调研报告 + 可落地的本地化线索，回国就能拍板下一步。</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── 方式二 ── -->
+    <article class="way w2">
+      <div class="head">
+        <div class="num">2</div>
+        <div class="tt">
+          <div class="tag">全包执行</div>
+          <h3>委托代展</h3>
+          <div class="one">无需亲自到场，由我们全程代为执行</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="row">
+          <div class="k">适合谁<span class="ken">Who</span></div>
+          <div class="v">人<strong>不能到场</strong>、想低成本试水的品牌。可与其他 <strong>3–4 家混合品类合并一个摊位</strong>分摊成本，也可单独包摊。</div>
+        </div>
+        <div class="row">
+          <div class="k">流程怎么走<span class="ken">How</span></div>
+          <div class="v">
+            <ol class="steps">
+              <li><b>你提供</b>：产品 + 物料 + 介绍手册 / 产品价格表 / 优惠最低价</li>
+              <li><b>产品沟通会</b>：我们充分了解你的产品卖点</li>
+              <li><b>出摊 + 实时跟进</b>：开展期间随时同步售卖情况</li>
+              <li><b>代收款</b>：记录每一笔售卖情况</li>
+              <li><b>市场报告</b>：销售情况 + 品类推荐 + 市场进入建议</li>
+              <li><b>产品返还 / 销售额返回</b>：未售产品退回，销售额结算</li>
+            </ol>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">交付清单<span class="ken">Deliverables</span></div>
+          <div class="v">
+            <ul class="deliver">
+              <li><b>市场报告</b>（销售情况 + 品类推荐 + 市场进入建议）</li>
+              <li><b>销售对账记录</b>（记录 + 拍照留证）</li>
+              <li><b>销售额返回</b> + 未售产品返还</li>
+              <li>现场<b>照片素材</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="k">你能得到<span class="ken">Outcome</span></div>
+          <div class="v"><div class="gain">人不到场，也能完成一次真实市场测试，拿到市场报告与透明结算，零差旅成本试水东南亚。</div></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ════════════════════════ 第04节 · 展会后服务（额外收费）════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">04</span><span class="ln"></span><span class="en-tag">After the fair</span></div>
+    <h2>展会后<em>增值服务</em></h2>
+    <div class="paid-banner"><span class="tg">额外收费</span>以下均为可选的增值服务，单独计费，可按需组合在任意一种参展方式之上。</div>
+
+    <div class="after-grid">
+      <div class="c">
+        <div class="no">01</div>
+        <h3>深度市场报告</h3>
+        <p>在基础数据之上，提供更系统的市场分析、品类与定价建议、进入路径规划。</p>
+      </div>
+      <div class="c">
+        <div class="no">02</div>
+        <h3>线上独立站搭建 + 推广</h3>
+        <p>帮你搭建出海独立站并做本地化推广，把线下验证过的产品搬到线上持续卖。</p>
+      </div>
+      <div class="c">
+        <div class="no">03</div>
+        <h3>本地化转化</h3>
+        <p>把展会期间的本地洞察，转化成真正落地的合作机会：</p>
+        <ul class="conv">
+          <li>当地品牌联名合作</li>
+          <li>当地投资机会对接</li>
+          <li>线上出海渠道（独立站 + 本地化营销）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ 第05节 · 三方式对比表 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">05</span><span class="ln"></span><span class="en-tag">Compare</span></div>
+    <h2>参展方式<em>对比</em></h2>
+
+    <div class="cmp-scroll">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th>对比维度</th>
+            <th class="w1c">方式一 · 自己出摊<span class="en-s">全程陪同</span></th>
+            <th class="w2c">方式二 · 代出摊<span class="en-s">全包执行</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>适合品牌</th>
+            <td>能到场、想亲历市场、愿意自己运营的探索期品牌</td>
+            <td>人不能到场、想低成本试水（可合并摊位分摊）</td>
+          </tr>
+          <tr>
+            <th>包含服务</th>
+            <td>机酒/行前准备/接机踩点/布展/现场销售/消费者调研/可选本地化</td>
+            <td>产品沟通会/培训销售/出摊跟进/代收款/市场报告/产品与销售额返还</td>
+          </tr>
+          <tr>
+            <th>交付清单</th>
+            <td>定性调研报告 · 问卷 · 照片 · 可选本地化线索</td>
+            <td>市场报告 · 销售对账(拍照留证) · 销售额+未售品返还 · 照片</td>
+          </tr>
+          <tr>
+            <th>价格 ①<br>不含展后</th>
+            <td class="price"><span class="tbd">价格待定</span></td>
+            <td class="price">合并摊位 <span class="tbd">价格待定</span><br>独立包摊 <span class="tbd">价格待定</span></td>
+          </tr>
+          <tr>
+            <th>价格 ②<br>含展后</th>
+            <td class="price"><span class="tbd">价格待定</span></td>
+            <td class="price"><span class="tbd">价格待定</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- TODO-PRICE：把上表所有 <span class="tbd">价格待定</span> 换成实际价格/区间 -->
+  </section>
+
+  <!-- ════════════════════════ 第06节 · 怎么选展会 + 保障（补充）════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">06</span><span class="ln"></span><span class="en-tag">Trust &amp; how we pick</span></div>
+    <h2>选展标准与<em>保障</em></h2>
+    <div class="mini2">
+      <div class="m">
+        <h3>选展会的标准</h3>
+        <ul>
+          <li>到场客群是否匹配你的目标人群</li>
+          <li>展会品类调性与你的产品是否契合</li>
+          <li>参展费用与预期回报是否划算</li>
+          <li>当地市场对该品类的接受度</li>
+        </ul>
+        <!-- TODO-FAIR：可在此补充具体展会名称、城市、时间 -->
+      </div>
+      <div class="m">
+        <h3>透明结算 · 风险保障</h3>
+        <ul>
+          <li>每一笔售卖记录 + 拍照留证</li>
+          <li>未售出产品如数返还</li>
+          <li>销售额清晰对账后返回</li>
+          <li>过程实时同步</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ 第07节 · 常见问题 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">07</span><span class="ln"></span><span class="en-tag">FAQ</span></div>
+    <h2>常见问题</h2>
+    <div class="faq">
+      <div class="q"><h3>语言不通怎么办？</h3><p>方式二/三由我们配备会当地语言的销售与翻译，方式一现场也有翻译支持，沟通无障碍。</p></div>
+      <div class="q"><h3>产品怎么过去、清关复杂吗？</h3><p>物流与清关由我们协助安排，费用包含在参展费里（详见报价）。<!-- TODO-FAIR：按你们实际清关安排补充 --></p></div>
+      <div class="q"><h3>卖不完的货怎么处理？</h3><p>未售出产品如数返还，对账后退回。</p></div>
+      <div class="q"><h3>钱什么时候结算？</h3><p>展会结束对账后按约定周期结算。<!-- TODO-PRICE：补充具体结算周期，如展后 X 个工作日 --></p></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ 联系我们 / CTA ════════════════════════ -->
+  <section class="cta">
+    <h2>想让你的产品，<em>先去东南亚试一试？</em></h2>
+    <p>告诉我们你的产品和目标，我们帮你挑一场最合适的展会，定一套最划算的方式。</p>
+    <div class="contacts">
+      <!-- TODO-CONTACT：替换为真实联系方式 -->
+      <span class="c">微信 · <b>your-wechat-id</b></span>
+      <span class="c">电话 · <b>000-0000-0000</b></span>
+      <span class="c">邮箱 · <b>hello@example.com</b></span>
+    </div>
+  </section>
+
+  <footer>
+    <!-- TODO-BRAND -->
+    展会出海服务 · 招商手册
+  </footer>
+
+</div>
+</body>
+</html>
