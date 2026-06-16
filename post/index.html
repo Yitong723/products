@@ -266,8 +266,58 @@
     color:#fff; background:linear-gradient(135deg,var(--accent),var(--accent-deep));
     border-radius:9px; padding:7px 15px; box-shadow:0 6px 14px -6px rgba(189,60,30,.6);}
 
+  /* ===== 数字数据 band（客流 / 媒体 / 客质）===== */
+  .databand{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px;}
+  .databand .stat{background:var(--paper); border:1px solid var(--rule); border-radius:16px;
+    padding:18px 16px; box-shadow:var(--shadow); text-align:left;}
+  .databand .stat .big{font-family:var(--display); font-weight:600; font-size:30px; line-height:1.05;
+    color:var(--accent-deep); letter-spacing:-.01em;}
+  .databand .stat .big small{font-size:15px; font-weight:600; margin-left:2px; color:var(--accent);}
+  .databand .stat .cap{font-family:var(--serif); font-weight:700; font-size:13.5px; color:var(--ink);
+    margin-top:6px;}
+  .databand .stat .src{font-size:11px; color:var(--muted); margin-top:3px; line-height:1.45;}
+  .databand .stat.todo .big{color:var(--muted);}
+
+  /* ===== 出海三阶段 · 报价阶梯 ===== */
+  .ladder{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
+  .ladder .tier{background:var(--paper); border:1px solid var(--rule); border-radius:18px;
+    padding:22px 20px; box-shadow:var(--shadow); position:relative; display:flex; flex-direction:column;}
+  .ladder .tier.cur{border-color:var(--accent); box-shadow:var(--shadow-lift);
+    background:linear-gradient(180deg,var(--accent-soft),var(--paper) 42%);}
+  .ladder .tier .st{font-family:var(--display); font-style:italic; font-weight:600; font-size:12px;
+    color:var(--muted); letter-spacing:.04em;}
+  .ladder .tier.cur .st{color:var(--accent);}
+  .ladder .tier h3{font-size:18px; margin:2px 0 2px;}
+  .ladder .tier .en{font-family:var(--display); font-style:italic; font-weight:500; font-size:13px;
+    color:var(--muted); display:block; margin-bottom:8px;}
+  .ladder .tier .pos{font-size:13px; color:var(--ink-soft); line-height:1.55; margin-bottom:12px;
+    min-height:42px;}
+  .ladder .tier .inc{list-style:none; display:flex; flex-direction:column; gap:5px; margin-bottom:14px;}
+  .ladder .tier .inc li{font-size:12.5px; color:var(--ink-soft); padding-left:15px; position:relative;}
+  .ladder .tier .inc li::before{content:"·"; position:absolute; left:3px; color:var(--accent); font-weight:700;}
+  .ladder .tier .price{margin-top:auto; font-family:var(--serif); font-weight:900; font-size:22px;
+    color:var(--ink); padding-top:10px; border-top:1px solid var(--rule);}
+  .ladder .tier.cur .price{color:var(--accent-deep);}
+  .ladder .tier .price small{font-size:12px; font-weight:500; color:var(--muted); margin-left:4px;}
+  .ladder .tier .badge{position:absolute; top:-10px; right:16px; background:var(--accent); color:#fff;
+    font-size:11px; font-weight:700; border-radius:20px; padding:3px 11px;
+    box-shadow:0 6px 14px -6px rgba(189,60,30,.6);}
+
+  /* ===== 我们的不同（差异化板块）===== */
+  .diff{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:14px;}
+  .diff .d{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px;
+    box-shadow:var(--shadow);}
+  .diff .d .ic{font-size:20px; display:block; margin-bottom:6px;}
+  .diff .d h3{font-size:15.5px; margin-bottom:5px;}
+  .diff .d p{font-size:13px; line-height:1.6; color:var(--ink-soft);}
+  .punch{margin-top:16px; background:linear-gradient(135deg,var(--ink),#3a2f1d); color:#f3ebdd;
+    border-radius:14px; padding:18px 22px; font-family:var(--serif); font-weight:700; font-size:16px;
+    line-height:1.6; box-shadow:var(--shadow-lift);}
+  .punch b{color:#f0b59d;}
+
   @media (max-width:680px){
-    .flow,.why,.after-grid,.mini2{grid-template-columns:1fr;}
+    .flow,.why,.after-grid,.mini2,.databand,.ladder,.diff{grid-template-columns:1fr;}
+    .databand{grid-template-columns:repeat(2,1fr);}
     .cover{grid-template-columns:1fr; gap:26px; padding:30px 0 30px;}
     .cover-art{order:-1;}
     .row{grid-template-columns:1fr; gap:5px;}
@@ -287,7 +337,8 @@
     .section{padding:20px 0 6px;}
     .cover{padding:10px 0 24px;}
     .way{overflow:visible;}
-    .way .head,.way .row,.star,.gain,.after-grid .c,.flow .stage,.why .v,.mini2 .m,.faq .q,.cta{break-inside:avoid;}
+    .way .head,.way .row,.star,.gain,.after-grid .c,.flow .stage,.why .v,.mini2 .m,.faq .q,.cta,
+    .databand .stat,.ladder .tier,.diff .d,.punch{break-inside:avoid;}
     .cmp-scroll{overflow:visible;} table.cmp{min-width:0;}
     .cta{margin-top:24px;}
     a{color:inherit; text-decoration:none;}
@@ -299,9 +350,9 @@
 
 <!-- 顶部条：屏幕可见，打印自动隐藏 -->
 <div class="topbar">
-  <!-- TODO-BRAND：把"展会出海服务"换成你的公司/品牌名 -->
-  <span class="brand">展会出海服务</span>
-  <span class="hint">为商家而做的服务手册 · 点右侧按钮可保存为 PDF</span>
+  <!-- TODO-BRAND：把"泰国市场验证"换成你的公司/品牌名 -->
+  <span class="brand">泰国市场验证 · 出海手册</span>
+  <span class="hint">ICONSIAM · 2026/7/22–26 · 点右侧按钮可保存为 PDF</span>
   <button onclick="window.print()">⤓ 保存 / 打印 PDF</button>
 </div>
 
@@ -312,122 +363,186 @@
     <div class="cover-text">
       <div class="kick">
         <!-- TODO-BRAND -->
-        <span class="biz">展会出海服务 · 招商手册</span>
+        <span class="biz">泰国 · ICONSIAM 出海手册</span>
         <span class="ln"></span>
       </div>
-      <h1>东南亚市场<br><em>展会出海服务</em></h1>
-      <p class="sub">出海第一步，无需先重投入开店、铺货。我们带你的产品走进<strong>东南亚的展会与市集</strong>，<b>以最低成本验证它在真实市场中的表现</b>——消费者是否驻足、是否愿意购买、能接受怎样的价格，再决定下一步是否加码投入。</p>
+      <h1>泰国市场验证<br><em>出海第一站</em></h1>
+      <p class="cover-en">Test Before You Invest · 先验证，再投入</p>
+      <p class="sub">出海第一步，无需先重投入开店、铺货。我们带你的产品<strong>走进曼谷 ICONSIAM 的真实消费场景</strong>，<b>以最小成本验证泰国本地消费者是否买单</b>——是否驻足、是否愿意购买、能接受怎样的价格，<b>再决定下一步如何进入东南亚</b>。</p>
+      <div class="cover-meta">
+        <span class="pill"><b>ICONSIAM</b> · 曼谷湄南河畔</span>
+        <span class="pill"><b>2026/7/22–26</b></span>
+        <!-- TODO-FAIR：展期已知，可按最终确认调整 -->
+      </div>
     </div>
     <div class="cover-art">
-      <img src="assets/cover-collage.png" alt="东南亚展会与市集现场实拍">
+      <!-- TODO-IMG：建议替换为 ICONSIAM 现场/场景实拍图 -->
+      <img src="assets/cover-collage.png" alt="ICONSIAM 真实消费场景实拍">
     </div>
   </header>
 
-  <!-- ════════════════════════ 第01节 · 我们是谁 ════════════════════════ -->
+  <!-- ════════════════════════ 第01节 · 为什么是泰国 / ICONSIAM ════════════════════════ -->
   <section class="section">
-    <div class="sec-kicker"><span class="sec-no">01</span><span class="ln"></span><span class="en-tag">Who we are</span></div>
-    <h2>服务<em>定位</em></h2>
-    <p class="lead">我们专注于帮助中国品牌以<strong>最小成本、最快速度</strong>，在东南亚完成一次真实的市场测试——不依赖纸面推演，让产品直接面对当地消费者。</p>
+    <div class="sec-kicker"><span class="sec-no">01</span><span class="ln"></span><span class="en-tag">Why here</span></div>
+    <h2>为什么是<em>泰国 · ICONSIAM</em></h2>
+    <p class="lead">泰国是东南亚核心消费与旅游枢纽，也是中国品牌出海最热门的第一站；<strong>ICONSIAM</strong> 则是曼谷湄南河畔最具影响力的商业地标之一，汇聚国际奢侈品牌、泰国头部品牌、国际游客与本地高消费人群。<strong>对中国品牌而言，泰国不只是一个市场，更是进入东南亚的第一站。</strong></p>
 
     <div class="why">
       <div class="v">
-        <span class="ic">💸</span>
-        <h3>成本可控，验证高效</h3>
-        <p>以一个摊位的投入换取真实销售与反馈，远低于直接开店、铺货、投放广告的成本。</p>
+        <span class="ic">🌏</span>
+        <h3>东南亚消费枢纽</h3>
+        <p>东南亚旅游中心、国际消费品牌聚集地，也是进入东南亚的门户市场。</p>
       </div>
       <div class="v">
-        <span class="ic">👀</span>
-        <h3>基于真实消费行为</h3>
-        <p>消费者是否驻足、是否互动、是否付费——这些一手反馈是线上数据无法替代的。</p>
+        <span class="ic">🏙️</span>
+        <h3>ICONSIAM 地标级客流</h3>
+        <p>本地高消费人群、海外游客、家庭与年轻客群、品牌买手与商业伙伴同场汇聚。</p>
       </div>
       <div class="v">
-        <span class="ic">🧭</span>
-        <h3>形成可落地的决策</h3>
-        <p>不止于销售额，更回答品类如何选择、价格如何制定、是否进入及如何进入。</p>
+        <span class="ic">🎯</span>
+        <h3>面对的是当地消费者</h3>
+        <p>真正验证泰国本地人是否愿意买单，而不只是华人社群的捧场。</p>
+      </div>
+    </div>
+
+    <!-- 数字数据 band：客流 / 媒体露出 / 客质 -->
+    <div class="databand">
+      <!-- TODO-DATA：以下数字请填官方/公开数据（来源建议标注） -->
+      <div class="stat todo">
+        <div class="big">—<small>人次/日</small></div>
+        <div class="cap">ICONSIAM 日均客流</div>
+        <div class="src">TODO-DATA · 填公开数据 + 来源</div>
+      </div>
+      <div class="stat todo">
+        <div class="big">—<small>+</small></div>
+        <div class="cap">活动期媒体露出</div>
+        <div class="src">主办方含 mega PR &amp; 媒体预览（boutiquefairs.com.sg）；具体数字 TODO-DATA</div>
+      </div>
+      <div class="stat">
+        <div class="big">70<small>%</small></div>
+        <div class="cap">国际品牌占比</div>
+        <div class="src">Boutiques Asia 官方（另 30% 泰国本地品牌）</div>
+      </div>
+      <div class="stat todo">
+        <div class="big">—</div>
+        <div class="cap">客质 · 高消费占比</div>
+        <div class="src">TODO-DATA · 客群消费力/家庭客群等</div>
       </div>
     </div>
   </section>
 
-  <!-- ════════════════════════ 第02节 · 服务全景 ════════════════════════ -->
+  <!-- ════════════════════════ 第02节 · 我们的不同（差异化）════════════════════════ -->
   <section class="section">
-    <div class="sec-kicker"><span class="sec-no">02</span><span class="ln"></span><span class="en-tag">The journey</span></div>
-    <h2>服务<em>全景</em></h2>
-    <p class="lead">从产品出运、展会现场到展后的持续经营，我们将全程拆解为三个阶段。</p>
+    <div class="sec-kicker"><span class="sec-no">02</span><span class="ln"></span><span class="en-tag">Why us</span></div>
+    <h2>我们的<em>不同</em></h2>
+    <p class="lead">我们做的不是"帮你倒一个展位"，而是一套<strong>完整的市场验证与出海落地系统</strong>——展会只是其中的第一步。</p>
+
+    <div class="diff">
+      <div class="d">
+        <span class="ic">🛒</span>
+        <h3>进入真实本地消费场景</h3>
+        <p>很多海外活动是"中国品牌→中国主办方→华人消费者→华人社群"；本项目让你直接面对<b>泰国本地消费者、家庭客群、年轻群体、本地买手与渠道商</b>，验证的是本地人是否买单。</p>
+      </div>
+      <div class="d">
+        <span class="ic">🧭</span>
+        <h3>带走可决策的洞察</h3>
+        <p>不只看"今天卖了多少"。我们交付<b>消费者 / 产品 / 价格 / 市场</b>四类验证与一份<b>市场验证报告</b>，回答"为什么卖得出去、如何持续卖下去"。</p>
+      </div>
+      <div class="d">
+        <span class="ic">🤝</span>
+        <h3>连接本地资源</h3>
+        <p>项目期间有机会接触<b>本地零售/买手店、本地品牌联名、媒体与 KOL、采购与渠道合作</b>——这些是单纯一个展位换不来的。</p>
+      </div>
+      <div class="d">
+        <span class="ic">🚀</span>
+        <h3>出海全周期陪跑</h3>
+        <p>从<b>验证 → 进入 → 扩张</b>三阶段成体系陪你走，不止于一次展会，而是帮你把东南亚真正做起来。</p>
+      </div>
+    </div>
+
+    <div class="punch">主办方给你的是<b>一个展位</b>；我们给你的是<b>一套能决策、能落地、能持续的出海系统</b>。</div>
+  </section>
+
+  <!-- ════════════════════════ 第03节 · 你将获得什么（四类验证）════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">03</span><span class="ln"></span><span class="en-tag">What you get</span></div>
+    <h2>你将获得<em>四类验证</em></h2>
+    <p class="lead">让产品直接面对真实市场，带回能拍板的一手答案——而不只是销售额。</p>
+
+    <div class="after-grid">
+      <div class="c">
+        <div class="no">01</div>
+        <h3>真实消费者验证</h3>
+        <p>谁会购买、为什么购买、为什么不购买。</p>
+      </div>
+      <div class="c">
+        <div class="no">02</div>
+        <h3>真实产品验证</h3>
+        <p>产品接受度、SKU 表现、包装与卖点反馈。</p>
+      </div>
+      <div class="c">
+        <div class="no">03</div>
+        <h3>真实价格验证</h3>
+        <p>消费者可接受的价格区间、产品溢价能力、竞争情况。</p>
+      </div>
+      <div class="c">
+        <div class="no">04</div>
+        <h3>真实市场洞察</h3>
+        <p>市场趋势、竞品表现、品类机会与进入路径。</p>
+      </div>
+    </div>
+
+    <div class="paid-banner" style="margin-top:16px;"><span class="tg">Beyond Sales</span>不只是卖货：项目期间同步关注 品牌曝光 · 商业机会 · 本地资源连接——有没有人记住你、关注你、想和你合作。</div>
+  </section>
+
+  <!-- ════════════════════════ 第04节 · 项目包含什么 / 怎么执行 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">04</span><span class="ln"></span><span class="en-tag">How it works</span></div>
+    <h2>项目包含什么 · <em>怎么执行</em></h2>
+    <p class="lead">商家亲自到场，我们提供全程陪同与执行保障，把验证做扎实。</p>
 
     <div class="flow">
       <div class="stage">
         <div class="ph">展前</div>
         <h3>准备与定方案</h3>
         <ul>
-          <li>产品细节梳理</li>
-          <li>挑选合适的展会 / 市集</li>
-          <li>确定参与方式与物料</li>
+          <li>产品评估与卖点梳理</li>
+          <li>SKU / 定价 / 展示建议</li>
+          <li>行前准备、当地电话卡、攻略</li>
         </ul>
       </div>
       <div class="stage">
         <div class="ph">展中</div>
         <h3>出摊 · 销售 · 调研</h3>
         <ul>
-          <li>辅助布展与现场销售</li>
-          <li>实时跟进售卖情况</li>
-          <li>消费者行为与问卷调研</li>
+          <li>接机 + 提前踩点、辅助布展</li>
+          <li>现场销售与实时跟进</li>
+          <li>消费者行为观察与问卷调研</li>
         </ul>
       </div>
       <div class="stage">
         <div class="ph">展后</div>
-        <h3>报告与长期渠道</h3>
+        <h3>报告与本地资源</h3>
         <ul>
-          <li>市场报告与结算</li>
-          <li>本地化转化机会</li>
-          <li>独立站 / 长期合作</li>
+          <li>市场验证报告与结算</li>
+          <li>本地走访、商圈考察</li>
+          <li>本地资源连接与下一步建议</li>
         </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ════════════════════════ 第03节 · 三种参展方式（核心）════════════════════════ -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">03</span><span class="ln"></span><span class="en-tag">2 ways to join</span></div>
-    <h2>两种<em>参展方式</em></h2>
-    <p class="lead">不管你能不能亲自到场、想投入多少，都有一种适合你的方式。</p>
+    <div class="star">
+      <span class="lab">★ 特色服务 · 现场消费者调研</span>
+      <p>我们安排专人<b>驻场观察</b>，记录消费者在摊位前的<b>停留时长</b>、触摸产品时的<b>反应</b>、对定价的<b>真实反馈</b>，并完成<b>结构化问卷</b>，展后交付一份<b>市场验证报告</b>——这是难以从国内远程获取的一手市场洞察。</p>
+    </div>
 
-    <!-- ── 方式一 ── -->
-    <article class="way w1">
-      <div class="head">
-        <div class="num">1</div>
-        <div class="tt">
-          <div class="tag">全程陪同</div>
-          <h3>自主参展</h3>
-          <div class="one">品牌亲临现场，我们提供全程陪同与执行保障</div>
-        </div>
-      </div>
-      <div class="body">
+    <div class="way w1" style="margin-top:18px;">
+      <div class="body" style="padding:18px 26px 22px;">
         <div class="row">
-          <div class="k">适合谁<span class="ken">Who</span></div>
-          <div class="v">想<strong>亲自到场</strong>、亲眼看市场反应、愿意自己运营的品牌；通常处于出海探索期，创始人或团队能出差。</div>
-        </div>
-        <div class="row">
-          <div class="k">流程怎么走<span class="ken">How</span></div>
-          <div class="v">
-            <ol class="steps">
-              <li><b>机酒安排</b>：可包或不包（按需选择）</li>
-              <li><b>行程前准备</b>：办当地电话卡、行程攻略等</li>
-              <li><b>接机 + 展会提前踩点</b>：商务车接机，开展前先看场地</li>
-              <li><b>布展</b></li>
-              <li><b>现场售卖 + 消费者调研</b></li>
-              <li><b>展会后</b>：本地走访调研、线下商圈考察、消费习惯洞察</li>
-            </ol>
-            <div class="star">
-              <span class="lab">★ 特色服务 · 现场消费者调研</span>
-              <p>我们安排专人<b>驻场观察</b>，记录消费者在摊位前的<b>停留时长</b>、触摸产品时的<b>反应</b>、对定价的<b>真实反馈</b>，并完成<b>结构化问卷</b>，展后交付一份<b>定性分析报告</b>——这是难以从国内远程获取的一手市场洞察。</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="k">交付清单<span class="ken">Deliverables</span></div>
+          <div class="k">交付清单</div>
           <div class="v">
             <ul class="deliver">
-              <li><b>定性消费者调研报告</b>（停留 / 反应 / 价格反馈）</li>
+              <li><b>泰国市场验证报告</b>（消费者画像 / 热销 SKU / 产品反馈 / 定价反馈 / 市场机会 / 下一步建议）</li>
               <li><b>问卷</b>原始数据</li>
               <li>现场<b>照片素材</b></li>
               <li>（可选）本地化走访洞察与<b>联名线索</b></li>
@@ -435,78 +550,89 @@
           </div>
         </div>
         <div class="row">
-          <div class="k">你能得到<span class="ken">Outcome</span></div>
-          <div class="v"><div class="gain">亲历真实市场 + 一份扎实的定性消费者调研报告 + 可落地的本地化线索，回国就能拍板下一步。</div></div>
+          <div class="k">你能得到</div>
+          <div class="v"><div class="gain">亲历真实市场 + 一份扎实的市场验证报告 + 可落地的本地资源线索，回国就能拍板下一步。</div></div>
         </div>
       </div>
-    </article>
+    </div>
 
-    <!-- ── 方式二 ── -->
-    <article class="way w2">
-      <div class="head">
-        <div class="num">2</div>
-        <div class="tt">
-          <div class="tag">全包执行</div>
-          <h3>委托代展</h3>
-          <div class="one">无需亲自到场，由我们全程代为执行</div>
-        </div>
-      </div>
-      <div class="body">
-        <div class="row">
-          <div class="k">适合谁<span class="ken">Who</span></div>
-          <div class="v">人<strong>不能到场</strong>、想低成本试水的品牌。可与其他 <strong>3–4 家混合品类合并一个摊位</strong>分摊成本，也可单独包摊。</div>
-        </div>
-        <div class="row">
-          <div class="k">流程怎么走<span class="ken">How</span></div>
-          <div class="v">
-            <ol class="steps">
-              <li><b>你提供</b>：产品 + 物料 + 介绍手册 / 产品价格表 / 优惠最低价</li>
-              <li><b>产品沟通会</b>：我们充分了解你的产品卖点</li>
-              <li><b>出摊 + 实时跟进</b>：开展期间随时同步售卖情况</li>
-              <li><b>代收款</b>：记录每一笔售卖情况</li>
-              <li><b>市场报告</b>：销售情况 + 品类推荐 + 市场进入建议</li>
-              <li><b>产品返还 / 销售额返回</b>：未售产品退回，销售额结算</li>
-            </ol>
-          </div>
-        </div>
-        <div class="row">
-          <div class="k">交付清单<span class="ken">Deliverables</span></div>
-          <div class="v">
-            <ul class="deliver">
-              <li><b>市场报告</b>（销售情况 + 品类推荐 + 市场进入建议）</li>
-              <li><b>销售对账记录</b>（记录 + 拍照留证）</li>
-              <li><b>销售额返回</b> + 未售产品返还</li>
-              <li>现场<b>照片素材</b></li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="k">你能得到<span class="ken">Outcome</span></div>
-          <div class="v"><div class="gain">人不到场，也能完成一次真实市场测试，拿到市场报告与透明结算，零差旅成本试水东南亚。</div></div>
-        </div>
-      </div>
-    </article>
+    <div class="note-cost">说明：项目费用含展位、布展、现场陪同与执行、消费者调研与市场验证报告；<b>国际机票与酒店由品牌自理</b>（可加购代订、酒店升舱按差价补）。<!-- 口径对齐 定价分析.docx，请内部核对毛利 --></div>
   </section>
 
-  <!-- ════════════════════════ 第04节 · 展会后服务（额外收费）════════════════════════ -->
+  <!-- ════════════════════════ 第05节 · 适合哪些品牌 ════════════════════════ -->
   <section class="section">
-    <div class="sec-kicker"><span class="sec-no">04</span><span class="ln"></span><span class="en-tag">After the fair</span></div>
-    <h2>展会后<em>增值服务</em></h2>
-    <div class="paid-banner"><span class="tg">额外收费</span>以下均为可选的增值服务，单独计费，可按需组合在任意一种参展方式之上。</div>
+    <div class="sec-kicker"><span class="sec-no">05</span><span class="ln"></span><span class="en-tag">For whom</span></div>
+    <h2>适合<em>哪些品牌</em></h2>
+    <p class="lead">尤其适合想验证海外市场、面向生活方式与新消费的品牌。</p>
+    <ul class="conv" style="margin-top:6px;">
+      <li>生活方式</li><li>香氛</li><li>设计</li><li>文创</li><li>家居</li>
+      <li>宠物</li><li>食品饮料</li><li>美妆</li><li>母婴</li><li>新消费</li>
+    </ul>
+  </section>
+
+  <!-- ════════════════════════ 第06节 · 出海三阶段 · 报价 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">06</span><span class="ln"></span><span class="en-tag">Pricing</span></div>
+    <h2>出海三阶段 · <em>报价</em></h2>
+    <p class="lead">我们陪你走完出海的完整路径：先<strong>验证</strong>市场是否可做，再<strong>进入</strong>搭建渠道，最后<strong>扩张</strong>成长。展会，是这套系统的第一步。</p>
+
+    <div class="ladder">
+      <div class="tier cur">
+        <span class="badge">第一步</span>
+        <span class="st">Stage 1</span>
+        <h3>市场验证</h3>
+        <span class="en">Market Validation</span>
+        <div class="pos">验证市场是否可做：让产品先进入 ICONSIAM 真实消费场景。</div>
+        <ul class="inc">
+          <li>进入 ICONSIAM 真实消费场景</li>
+          <li>产品 · 价格 · 消费者验证</li>
+          <li>现场消费者调研 + 市场验证报告</li>
+          <li>本地资源连接机会</li>
+        </ul>
+        <div class="price">¥25,000<small>/ 品牌</small></div>
+      </div>
+      <div class="tier">
+        <span class="st">Stage 2</span>
+        <h3>市场进入</h3>
+        <span class="en">Market Entry</span>
+        <div class="pos">验证可做之后，搭建线上线下渠道，把验证过的产品真正卖起来。</div>
+        <ul class="inc">
+          <li>线上独立站搭建 + 本地化推广</li>
+          <li>本地零售 / 买手店渠道对接</li>
+          <li>市场进入路径规划</li>
+        </ul>
+        <div class="price">¥50,000–100,000</div>
+      </div>
+      <div class="tier">
+        <span class="st">Stage 3</span>
+        <h3>市场扩张</h3>
+        <span class="en">Market Expansion</span>
+        <div class="pos">渠道与增长体系：把单点验证扩展成可持续的东南亚增长。</div>
+        <ul class="inc">
+          <li>渠道扩张与增长体系搭建</li>
+          <li>本地品牌联名 / 投资机会对接</li>
+          <li>持续运营与规模化</li>
+        </ul>
+        <div class="price">面议<small>· 按增长体系定制</small></div>
+      </div>
+    </div>
+    <!-- 对外只露阶梯价引流；完整套餐价/成本/毛利见 定价分析.docx（内部，禁止外发） -->
+  </section>
+
+  <!-- ════════════════════════ 第07节 · 增值服务 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">07</span><span class="ln"></span><span class="en-tag">Add-ons</span></div>
+    <h2>增值<em>服务</em></h2>
+    <div class="paid-banner"><span class="tg">可单独加购</span>验证之后想继续往前走，可在任一阶段单独加购以下增长服务。</div>
 
     <div class="after-grid">
       <div class="c">
         <div class="no">01</div>
-        <h3>深度市场报告</h3>
-        <p>在基础数据之上，提供更系统的市场分析、品类与定价建议、进入路径规划。</p>
-      </div>
-      <div class="c">
-        <div class="no">02</div>
         <h3>线上独立站搭建 + 推广</h3>
         <p>帮你搭建出海独立站并做本地化推广，把线下验证过的产品搬到线上持续卖。</p>
       </div>
       <div class="c">
-        <div class="no">03</div>
+        <div class="no">02</div>
         <h3>本地化转化</h3>
         <p>把展会期间的本地洞察，转化成真正落地的合作机会：</p>
         <ul class="conv">
@@ -518,55 +644,9 @@
     </div>
   </section>
 
-  <!-- ════════════════════════ 第05节 · 三方式对比表 ════════════════════════ -->
+  <!-- ════════════════════════ 第08节 · 选展标准 + 保障 ════════════════════════ -->
   <section class="section">
-    <div class="sec-kicker"><span class="sec-no">05</span><span class="ln"></span><span class="en-tag">Compare</span></div>
-    <h2>参展方式<em>对比</em></h2>
-
-    <div class="cmp-scroll">
-      <table class="cmp">
-        <thead>
-          <tr>
-            <th>对比维度</th>
-            <th class="w1c">方式一 · 自己出摊<span class="en-s">全程陪同</span></th>
-            <th class="w2c">方式二 · 代出摊<span class="en-s">全包执行</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>适合品牌</th>
-            <td>能到场、想亲历市场、愿意自己运营的探索期品牌</td>
-            <td>人不能到场、想低成本试水（可合并摊位分摊）</td>
-          </tr>
-          <tr>
-            <th>包含服务</th>
-            <td>机酒/行前准备/接机踩点/布展/现场销售/消费者调研/可选本地化</td>
-            <td>产品沟通会/培训销售/出摊跟进/代收款/市场报告/产品与销售额返还</td>
-          </tr>
-          <tr>
-            <th>交付清单</th>
-            <td>定性调研报告 · 问卷 · 照片 · 可选本地化线索</td>
-            <td>市场报告 · 销售对账(拍照留证) · 销售额+未售品返还 · 照片</td>
-          </tr>
-          <tr>
-            <th>价格 ①<br>不含展后</th>
-            <td class="price"><span class="tbd">价格待定</span></td>
-            <td class="price">合并摊位 <span class="tbd">价格待定</span><br>独立包摊 <span class="tbd">价格待定</span></td>
-          </tr>
-          <tr>
-            <th>价格 ②<br>含展后</th>
-            <td class="price"><span class="tbd">价格待定</span></td>
-            <td class="price"><span class="tbd">价格待定</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <!-- TODO-PRICE：把上表所有 <span class="tbd">价格待定</span> 换成实际价格/区间 -->
-  </section>
-
-  <!-- ════════════════════════ 第06节 · 怎么选展会 + 保障（补充）════════════════════════ -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">06</span><span class="ln"></span><span class="en-tag">Trust &amp; how we pick</span></div>
+    <div class="sec-kicker"><span class="sec-no">08</span><span class="ln"></span><span class="en-tag">Trust &amp; how we pick</span></div>
     <h2>选展标准与<em>保障</em></h2>
     <div class="mini2">
       <div class="m">
@@ -577,7 +657,6 @@
           <li>参展费用与预期回报是否划算</li>
           <li>当地市场对该品类的接受度</li>
         </ul>
-        <!-- TODO-FAIR：可在此补充具体展会名称、城市、时间 -->
       </div>
       <div class="m">
         <h3>透明结算 · 风险保障</h3>
@@ -591,13 +670,14 @@
     </div>
   </section>
 
-  <!-- ════════════════════════ 第07节 · 常见问题 ════════════════════════ -->
+  <!-- ════════════════════════ 第09节 · 常见问题 ════════════════════════ -->
   <section class="section">
-    <div class="sec-kicker"><span class="sec-no">07</span><span class="ln"></span><span class="en-tag">FAQ</span></div>
+    <div class="sec-kicker"><span class="sec-no">09</span><span class="ln"></span><span class="en-tag">FAQ</span></div>
     <h2>常见问题</h2>
     <div class="faq">
-      <div class="q"><h3>语言不通怎么办？</h3><p>方式二/三由我们配备会当地语言的销售与翻译，方式一现场也有翻译支持，沟通无障碍。</p></div>
-      <div class="q"><h3>产品怎么过去、清关复杂吗？</h3><p>物流与清关由我们协助安排，费用包含在参展费里（详见报价）。<!-- TODO-FAIR：按你们实际清关安排补充 --></p></div>
+      <div class="q"><h3>语言不通怎么办？</h3><p>现场配备会当地语言的销售与翻译支持，沟通无障碍。</p></div>
+      <div class="q"><h3>产品怎么过去、清关复杂吗？</h3><p>物流与清关由我们协助安排。<!-- TODO-FAIR：按你们实际清关安排与费用口径补充 --></p></div>
+      <div class="q"><h3>机票酒店包含吗？</h3><p>项目费用含展位、布展、现场陪同与执行、调研与报告；国际机票与酒店由品牌自理，可加购代订。</p></div>
       <div class="q"><h3>卖不完的货怎么处理？</h3><p>未售出产品如数返还，对账后退回。</p></div>
       <div class="q"><h3>钱什么时候结算？</h3><p>展会结束对账后按约定周期结算。<!-- TODO-PRICE：补充具体结算周期，如展后 X 个工作日 --></p></div>
     </div>
@@ -605,8 +685,8 @@
 
   <!-- ════════════════════════ 联系我们 / CTA ════════════════════════ -->
   <section class="cta">
-    <h2>想让你的产品，<em>先去东南亚试一试？</em></h2>
-    <p>告诉我们你的产品和目标，我们帮你挑一场最合适的展会，定一套最划算的方式。</p>
+    <h2>先去泰国，<em>验证一下？</em></h2>
+    <p>Test Before You Invest · 先验证，再投入。让产品先进入真实市场，再决定下一步如何进入东南亚。</p>
     <div class="contacts">
       <!-- TODO-CONTACT：替换为真实联系方式 -->
       <span class="c">微信 · <b>your-wechat-id</b></span>
@@ -617,7 +697,7 @@
 
   <footer>
     <!-- TODO-BRAND -->
-    展会出海服务 · 招商手册
+    泰国市场验证 · 出海手册
   </footer>
 
 </div>
