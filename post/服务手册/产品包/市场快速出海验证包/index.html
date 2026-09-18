@@ -595,12 +595,13 @@
   <span class="hint">一次进入，拿到第一轮市场答案 · 可在线编辑文字、保存 PDF</span>
   <span class="tb-btns">
     <button id="btnReset" class="ghost" onclick="resetEdit()" style="display:none">↺ 还原默认</button>
+    <button id="btnExport" class="ghost" onclick="exportEdited()">⬇️ 导出 HTML</button>
     <button id="btnEdit" onclick="toggleEdit()">✏️ 编辑文字</button>
     <button onclick="window.print()">⤓ 保存 / 打印 PDF</button>
   </span>
 </div>
 
-<div class="edit-tip">✏️ 编辑模式已开启 —— 点任意文字即可直接修改，改动会自动保存在本浏览器。改完点「✅ 完成编辑」，或「↺ 还原默认」恢复原稿。</div>
+<div class="edit-tip">✏️ 编辑模式已开启 —— 点任意文字即可直接修改，改动会自动保存在本浏览器。改完点「✅ 完成编辑」，再点「⬇️ 导出 HTML」把整份文件发回给我们，即可并进正式版。想丢掉改动点「↺ 还原默认」。</div>
 
 <div class="wrap">
 
@@ -978,12 +979,22 @@
     var btnReset = document.getElementById('btnReset');
     var editing = false;
 
+    // 原始稿的指纹：正式版一更新就自动作废本机旧缓存，避免一直看到自己的老版本
+    var BASE = wrap.innerHTML.length;
     try {
       var saved = localStorage.getItem(KEY);
-      if (saved) { wrap.innerHTML = saved; btnReset.style.display = ''; }
+      var base0 = parseInt(localStorage.getItem(KEY + '_base'), 10);
+      if (saved && base0 === BASE) { wrap.innerHTML = saved; btnReset.style.display = ''; }
+      else if (saved) { localStorage.removeItem(KEY); localStorage.removeItem(KEY + '_base'); }
     } catch (e) {}
 
-    function save(){ try { localStorage.setItem(KEY, wrap.innerHTML); btnReset.style.display=''; } catch(e){} }
+    function save(){
+      try {
+        localStorage.setItem(KEY, wrap.innerHTML);
+        localStorage.setItem(KEY + '_base', String(BASE));
+        btnReset.style.display='';
+      } catch(e){}
+    }
 
     window.toggleEdit = function(){
       editing = !editing;
@@ -998,6 +1009,32 @@
       if (!confirm('确定还原为原始文案？你在本浏览器做的所有改动会清空。')) return;
       try { localStorage.removeItem(KEY); } catch(e){}
       location.reload();
+    };
+
+    // ===== 导出整份 HTML：把改动带走，发回给我们即可合并 =====
+    function buildHTML(){
+      var clone = document.documentElement.cloneNode(true);
+      var w = clone.querySelector('.wrap');
+      if (w){ w.innerHTML = wrap.innerHTML; w.removeAttribute('contenteditable'); }
+      var b = clone.querySelector('body'); if (b) b.classList.remove('editing');
+      // 图片转绝对地址，导出的单文件在任何地方打开都能显示
+      var imgs = clone.querySelectorAll('img');
+      for (var i=0;i<imgs.length;i++){
+        var src = imgs[i].getAttribute('src') || '';
+        if (src && !/^(https?:|data:)/.test(src)){
+          try { imgs[i].setAttribute('src', new URL(src, location.href).href); } catch(e){}
+        }
+      }
+      return '<!DOCTYPE html>\n' + clone.outerHTML;
+    }
+
+    window.exportEdited = function(){
+      if (editing) toggleEdit();
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([buildHTML()], {type:'text/html;charset=utf-8'}));
+      var d = new Date(), pad = function(n){ return (n<10?'0':'')+n; };
+      a.download = '市场快速出海验证包_修改版_' + d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + '.html';
+      document.body.appendChild(a); a.click(); a.remove();
     };
 
     wrap.addEventListener('input', function(){ if (editing) save(); });
