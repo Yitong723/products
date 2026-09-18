@@ -449,6 +449,31 @@
   .proc .step h4{font-family:var(--serif); font-weight:700; font-size:16px; color:var(--ink); margin-bottom:7px;}
   .proc .step p{font-size:13.5px; line-height:1.65;}
 
+  /* ===== 常见问题 ===== */
+  .faq{display:flex; flex-direction:column; gap:14px; margin-top:14px;}
+  .faq .q{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px 22px;
+    box-shadow:var(--shadow);}
+  .faq .q h3{font-family:var(--serif); font-weight:700; font-size:16.5px; color:var(--ink);
+    margin-bottom:12px; display:flex; gap:10px; align-items:baseline;}
+  .faq .q h3 .qn{font-family:var(--display); font-style:italic; font-weight:700; color:var(--accent);
+    font-size:14px; flex:none;}
+  .faq .q ul{list-style:none; display:flex; flex-direction:column; gap:11px;}
+  .faq .q li{font-size:14px; color:var(--ink-soft); line-height:1.7; padding-left:17px; position:relative;
+    text-align:justify; text-justify:inter-ideograph;}
+  .faq .q li::before{content:"·"; position:absolute; left:4px; top:0; color:var(--accent); font-weight:700;}
+  .faq .q li b{color:var(--ink); font-weight:700;}
+  .faq .q li .hl2{color:var(--accent-deep); font-weight:700;}
+  .faq .q p{font-size:14px; line-height:1.7; text-align:justify; text-justify:inter-ideograph;}
+  .faq .q p + p{margin-top:10px;}
+  .faq .lead-in{font-size:14.5px; color:var(--ink-soft); line-height:1.72; margin-top:14px;
+    text-align:justify; text-justify:inter-ideograph;}
+  .faq .lead-in b{color:var(--accent-deep);}
+  .layers{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+  .layers .ly{border-left:3px solid var(--accent); padding:2px 0 2px 16px;}
+  .layers .ly .lyt{font-family:var(--serif); font-weight:700; font-size:14.5px; color:var(--accent-deep);
+    margin-bottom:2px;}
+  .layers .ly p{font-size:13.5px; color:var(--ink-soft); line-height:1.65;}
+
   /* 赠送条 */
   .promo{position:relative; margin-top:16px; background:var(--accent-soft); border:1px solid #f0c3b2;
     border-radius:16px; padding:18px 20px; box-shadow:var(--shadow);}
@@ -485,7 +510,7 @@
 
   @media print{
     .cmp-scroll{overflow:visible;} table.cmp{min-width:0;}
-    table.cmp tr, .steps .s, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
+    table.cmp tr, .steps .s, .faq .q, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
     .subh, .sec-kicker{break-after:avoid;}
     p,li,td,th{orphans:2; widows:2;}
   }
@@ -719,6 +744,57 @@
       <img src="assets/marina-bay-aerial.png" alt="新加坡滨海湾核心地带">
       <figcaption>新加坡 · 东南亚人均购买力最高的市场，也是被全区域看见的橱窗</figcaption>
     </figure>
+  </section>
+
+  <!-- ════════════════════════ 06 · 常见问题 ════════════════════════ -->
+  <section class="section">
+    <div class="sec-kicker"><span class="sec-no">06</span><span class="ln"></span><span class="en-tag">FAQ</span></div>
+    <h2>常见<em>问题</em></h2>
+
+    <div class="subh">一、关于费用与项目模式</div>
+    <div class="faq">
+      <div class="q">
+        <h3><span class="qn">Q1</span>项目具体怎么收费？是收展位费还是走销售扣点？有没有押金或额外费用？</h3>
+        <ul>
+          <li><b>收费模式：</b>这个项目不是卖展位，而是以<b>项目费用</b>收取，因此<span class="hl2">不产生销售扣点（0 佣金）</span>。无押金，没有其他隐形费用。</li>
+          <li><b>费用构成：</b>为固定项目费用，可根据展位大小（基础版 / 优享版 / 尊享版 / 定制版）对应价格选择（详见报价表）。品牌可根据自身预算、产品特点选择，让更多致力出海的品牌都能以可承受的投入，获得海外拓展的机会。</li>
+          <li><b>限时补贴：</b><span class="hl2">10 月 30 日前</span>审核通过并下单，可享立减 <b>1,000 元</b>早鸟金，并叠加 <b>500 元</b>跨境物流 + <b>500 元</b>布展专项补贴，帮品牌实打实降低首次出海尝试成本。</li>
+          <li><b>可选加购：</b>如独立站搭建、本地化转化、品牌当地运营等，可根据品牌需要和发展阶段灵活配置，额外咨询加购。无需一次性投入所有市场动作，品牌以更灵活的方式推进海外市场。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subh">二、关于物流、关税、展品与物料搭建</div>
+    <div class="faq">
+      <div class="q">
+        <h3><span class="qn">Q2</span>货寄到海外的物流、清关，以及物料和展台怎么解决？</h3>
+        <ul>
+          <li><b>物流与清关：</b>需品牌方自行安排。我们会提供《落地指引》，如需可协助对接当地物流公司；加上限时福利里的 <b>1,000 元</b>物流与布展补贴，能帮你实打实降低出海成本。</li>
+          <li><b>物料与展台搭建：</b>我们会提供一份《品牌所需准备项和时间节点》，帮助品牌早规划、早准备。物料需品牌方自行准备，我们也可推荐当地物料和搭建团队。</li>
+          <li><b>展品处理：</b>未售出的货和样品，展后可以协助对接物流回运回国；如果有磨损或不想带回的，我们可协助对接本地渠道低价消化或回收方案<span style="color:var(--muted);">（需展前确认）</span>。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subh">三、项目形式与双场景接力</div>
+    <div class="faq">
+      <p class="lead-in">GMA 帮中国品牌<b>用最小成本验证海外市场</b>，找到可落地的进入路径——从「想出海」到「真正进入市场」之间，更轻量、更实际的切入路径。我们把产品放进<b>新加坡真实零售场景</b>，用 <b>4 周</b>时间观察真实消费者买不买、为什么买、什么价格愿意买，然后交付一份《市场验证报告》，告诉品牌<b>这个市场值不值得进、怎么进、进去之后如何发展</b>。</p>
+      <div class="q">
+        <h3><span class="qn">Q3</span>你们是那种偏展会的形式是吗？</h3>
+        <p>我们不是帮品牌「去参展」，而是提供给品牌一次<b>真实进入市场、试卖和验证</b>的路径。简单来说，就是让品牌先到新加坡 / 海外市场<b>真实售卖</b>。</p>
+        <div class="layers">
+          <div class="ly">
+            <div class="lyt">第一层 · 验证市场机会</div>
+            <p>消费者买不买、什么产品有机会、什么价格合适。</p>
+          </div>
+          <div class="ly">
+            <div class="lyt">第二层 · 找到进入和发展的路径</div>
+            <p>真正接近当地市场、当地消费者、渠道和商业资源，并找到适合品牌继续发展的方式。</p>
+          </div>
+        </div>
+        <p style="margin-top:12px;">在线下真实的验证，更是找到「有机会之后，怎么走进去、怎么留下来」的可行性策略。</p>
+      </div>
+    </div>
   </section>
 
   <!-- ════════════════════════ 联系我们 / CTA ════════════════════════ -->
