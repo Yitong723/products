@@ -381,6 +381,62 @@
     table.cmp tbody tr:hover td, table.cmp tbody tr:hover th{background-color:#fcf4e4;}
   }
 
+  /* ===== 价格表（原价格图的 HTML 版）===== */
+  .pricehead{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:22px;
+    font-family:var(--serif); font-weight:900; font-size:clamp(17px,2.4vw,21px); color:var(--ink);
+    text-align:center; line-height:1.4;}
+  .pricehead::before, .pricehead::after{content:""; flex:0 0 46px; height:2px;
+    background:linear-gradient(90deg, transparent, var(--accent)); border-radius:2px;}
+  .pricehead::after{background:linear-gradient(90deg, var(--accent), transparent);}
+
+  table.pricetbl{table-layout:fixed; min-width:820px;}
+  table.pricetbl th, table.pricetbl td{padding:14px 14px; vertical-align:middle; text-align:center;}
+  table.pricetbl tbody th{width:108px; font-size:16px; color:var(--accent); line-height:1.35;
+    font-family:var(--serif); font-weight:900;}
+  table.pricetbl tbody th small{display:block; font-family:var(--sans); font-weight:500; font-size:10.5px;
+    color:var(--muted); margin-top:3px; line-height:1.4;}
+  table.pricetbl thead th{vertical-align:top; padding-top:20px;}
+  table.pricetbl thead th.tierh{font-size:19px; position:relative; white-space:nowrap;}
+  table.pricetbl thead th.tierh small{display:block; font-family:var(--sans); font-weight:500;
+    font-size:12px; color:var(--ink-soft); margin-top:5px; white-space:normal;}
+  table.pricetbl thead th.rec{background:linear-gradient(180deg,#fbe7db,#f5dac8);}
+  table.pricetbl thead th.rec .pick{position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+    background:var(--accent); color:#fff; font-family:var(--sans); font-size:11px; font-weight:700;
+    padding:3px 12px; border-radius:20px; white-space:nowrap;
+    box-shadow:0 5px 12px -4px rgba(189,60,30,.55);}
+  table.pricetbl td.fit{text-align:left; font-size:13.5px; line-height:1.72; color:var(--ink-soft);
+    vertical-align:top;}
+  table.pricetbl .booth img{display:block; margin:0 auto; max-width:100%; height:auto;
+    mix-blend-mode:multiply;}
+  table.pricetbl .booth .bnote{font-family:var(--serif); font-weight:700; font-size:14.5px; color:var(--ink);
+    line-height:1.5; margin-top:6px;}
+  table.pricetbl .area{font-family:var(--serif); font-weight:900; font-size:21px; color:var(--ink);}
+  table.pricetbl .area small{font-family:var(--sans); font-weight:500; font-size:13px; color:var(--ink-soft);}
+  table.pricetbl .comm-n{font-family:var(--serif); font-weight:900; font-size:19px; color:#3a7a33;}
+  table.pricetbl tr.gift-row td{background:#fdeee6; font-size:13px; color:var(--ink-soft); line-height:1.6;}
+  table.pricetbl tr.gift-row .gi{font-size:20px; display:block; margin-bottom:4px;}
+  table.pricetbl tr.row-price td{background:#fcf6ea;}
+  table.pricetbl .pr-old{display:block; font-size:13px; color:var(--muted); text-decoration:line-through;}
+  table.pricetbl .pr-lab{display:block; font-size:14px; font-weight:700; color:var(--accent); margin:2px 0;}
+  table.pricetbl .pr-now{display:block; font-family:var(--serif); font-weight:900; font-size:24px;
+    color:var(--accent-deep); letter-spacing:-.01em;}
+  table.pricetbl .pr-quote{font-family:var(--serif); font-weight:700; font-size:15px; color:var(--ink);
+    line-height:1.6;}
+
+  /* 增值服务 */
+  .addons{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px;}
+  .addons .ad{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px 20px;
+    box-shadow:var(--shadow);}
+  .addons .ad .no{font-family:var(--display); font-style:italic; font-weight:700; font-size:13px;
+    color:var(--accent); margin-bottom:2px;}
+  .addons .ad h3{font-size:16px; margin:0 0 7px;}
+  .addons .ad p{font-size:13.5px; line-height:1.72; text-align:justify; text-justify:inter-ideograph;}
+  .addons .tags2{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+  .addons .tags2 span{background:var(--accent-soft); color:var(--accent-deep); border-radius:8px;
+    padding:5px 11px; font-size:12.5px; font-weight:500;}
+
+  @media (max-width:680px){ .addons{grid-template-columns:1fr;} }
+
   /* 小标题 */
   .subh{font-family:var(--serif); font-weight:900; font-size:18px; color:var(--ink); margin:30px 0 2px;
     display:flex; align-items:center; gap:9px;}
@@ -489,6 +545,13 @@
     font-weight:700;}
   .promo p{font-size:15px; color:var(--accent-deep); line-height:1.62;}
   .promo p b{color:#7a2a12; font-weight:700;}
+  .promo .intro{font-size:15px; color:var(--accent-deep); line-height:1.62; margin-bottom:9px;}
+  .promo ul{list-style:none; display:flex; flex-direction:column; gap:7px;}
+  .promo li{font-size:15px; color:var(--accent-deep); padding-left:24px; position:relative;
+    line-height:1.55;}
+  .promo li::before{content:"✦"; position:absolute; left:2px; top:1px; color:var(--accent);
+    font-weight:700;}
+  .promo li b{color:#7a2a12; font-weight:700;}
 
   /* CTA 二维码 */
   .cta .qr-card{background:#fff; border-radius:18px; padding:14px 14px 10px; width:172px; margin:18px auto 0;
@@ -514,7 +577,7 @@
 
   @media print{
     .cmp-scroll{overflow:visible;} table.cmp{min-width:0;}
-    table.cmp tr, .steps .s, .faq .q, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
+    table.cmp tr, .steps .s, .faq .q, .addons .ad, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
     .subh, .sec-kicker{break-after:avoid;}
     p,li,td,th{orphans:2; widows:2;}
   }
@@ -674,14 +737,96 @@
   <section class="section">
     <div class="sec-kicker"><span class="sec-no">03</span><span class="ln"></span><span class="en-tag">Format &amp; schedule</span></div>
     <h2>项目形式：<em>费用与排期</em></h2>
-    <p class="lead">一次进入 = 一个完整验证周期。四档配置的配套服务完全一致，仅<strong>展位面积与呈现形式</strong>不同。</p>
+    <p class="lead">一次进入 = 一个完整验证周期。四档配置的配套服务完全一致，仅<strong>展位面积与呈现形式</strong>不同，全档位<strong>零销售佣金</strong>。</p>
 
-    <figure class="figimg">
-      <a href="assets/fee-schedule.png" target="_blank" rel="noopener">
-        <img src="assets/fee-schedule.png" alt="费用与排期：四档展位配置、销售佣金、超值赋能与价格">
-      </a>
-      <figcaption>四档展位配置与价格 · 含展后 3 天本地商业空间接力（限时赠送）　<a href="assets/fee-schedule.png" target="_blank" rel="noopener" class="zoom">点击看大图 ↗</a></figcaption>
-    </figure> -->
+    <div class="pricehead">双场景接力，实现「展会曝光 + 本土零售空间」双重转化</div>
+
+    <div class="cmp-scroll">
+      <table class="cmp pricetbl">
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th class="tierh">基础版<small>低门槛试水首选</small></th>
+            <th class="tierh rec">优享版<small>多数品牌初次首选</small><span class="pick">入门首选</span></th>
+            <th class="tierh">尊享版<small>品牌视觉呈现</small></th>
+            <th class="tierh">定制版<small>品牌定制需求</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>适合对象</th>
+            <td class="fit">初次试水东南亚市场、SKU 数量较少、预算有限，希望以较低前期投入快速测试产品海外市场反应的独立主理人或中小型品牌，以及初创品牌。</td>
+            <td class="fit">适合多数品牌首次进入新加坡市场，希望拥有更完整的产品展示与品牌呈现空间，兼顾陈列、曝光与现场销售。</td>
+            <td class="fit">多 SKU、大件产品（如服装、精品家居）、对现场视觉陈列有较高品牌要求，希望在新加坡树立高端国际化品牌形象的品牌。可容纳试衣间、模特展示区及更完整的产品陈列，提升购物体验。</td>
+            <td class="fit">适合需要更大展位面积、特殊陈列形式或独立品牌空间的品牌，根据实际需求定制。</td>
+          </tr>
+          <tr>
+            <th>展位示意</th>
+            <td class="booth"><img src="assets/booth-1.png" alt="基础版展位示意 2m×3m"></td>
+            <td class="booth"><img src="assets/booth-2.png" alt="优享版展位示意 4m×3m"></td>
+            <td class="booth"><img src="assets/booth-3.png" alt="尊享版展位示意 5m×3m"></td>
+            <td class="booth"><img src="assets/booth-4.png" alt="定制版展位示意"><div class="bnote">15㎡ 以上<br>按需求定制</div></td>
+          </tr>
+          <tr>
+            <th>展位面积</th>
+            <td><span class="area">6㎡ <small>(2m × 3m)</small></span></td>
+            <td><span class="area">12㎡ <small>(4m × 3m)</small></span></td>
+            <td><span class="area">15㎡ <small>(5m × 3m)</small></span></td>
+            <td><span class="area">15㎡ 以上<br><small>（按需求定制）</small></span></td>
+          </tr>
+          <tr>
+            <th>销售佣金</th>
+            <td class="comm-n">无</td>
+            <td class="comm-n">无</td>
+            <td class="comm-n">无</td>
+            <td class="comm-n">无</td>
+          </tr>
+          <tr class="gift-row">
+            <th>超值赋能<small>（10.30 前报名限时福利）</small></th>
+            <td><span class="gi">🎁</span>额外赠送 3 天本地商业空间<br>展后接力 · 深拓当地市场</td>
+            <td><span class="gi">🎁</span>额外赠送 3 天本地商业空间<br>展后接力 · 深拓当地市场</td>
+            <td><span class="gi">🎁</span>额外赠送 3 天本地商业空间<br>展后接力 · 深拓当地市场</td>
+            <td><span class="gi">🎁</span>额外赠送 3 天本地商业空间<br>展后接力 · 深拓当地市场</td>
+          </tr>
+          <tr class="row-price">
+            <th>价格</th>
+            <td><span class="pr-old">原价 RMB 28,000</span><span class="pr-lab">优惠价</span><span class="pr-now">RMB 23,000</span></td>
+            <td><span class="pr-old">原价 RMB 45,000</span><span class="pr-lab">优惠价</span><span class="pr-now">RMB 36,000</span></td>
+            <td><span class="pr-old">原价 RMB 51,000</span><span class="pr-lab">优惠价</span><span class="pr-now">RMB 41,000</span></td>
+            <td><span class="pr-quote">根据定制展位面积<br>及需求报价</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="promo">
+      <div class="promo-sticker">🎁</div>
+      <div class="pt"><span class="tg">🎁 限时优惠</span>双重限时加速补贴</div>
+      <p class="intro">为支持新锐品牌迈出全球化第一步，凡在 <b>⏰ 10 月 30 日前</b>审核通过并确定下单的品牌，可叠加双重限时加速补贴：</p>
+      <ul>
+        <li><b>🐦 福利一：</b>早鸟席位立减 <b>1,000 元</b></li>
+        <li><b>📦 福利二：</b>500 元跨境物流专项补贴；500 元布展专项补贴</li>
+      </ul>
+    </div>
+
+    <div class="subh">增值服务</div>
+    <div class="addons">
+      <div class="ad">
+        <div class="no">01</div>
+        <h3>线上独立站搭建（额外加购）</h3>
+        <p>搭建适配本地市场的独立站，把线下验证过的产品延伸至线上，通过本地化运营承接持续销售，逐步建立品牌在当地市场的长期增长渠道。</p>
+      </div>
+      <div class="ad">
+        <div class="no">02</div>
+        <h3>本地化转化（额外加购）</h3>
+        <p>把展会期间的本地洞察，转化成真正落地的合作机会：</p>
+        <div class="tags2">
+          <span>当地品牌联合合作</span>
+          <span>本地零售 / 买手店渠道对接</span>
+          <span>本地化营销</span>
+        </div>
+      </div>
+    </div> -->
 
   </section>
 
