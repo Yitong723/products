@@ -185,7 +185,7 @@ def build(src_path, out_path):
         [title, "\n".join(links), "<style id=\"app-style\">" + style + "</style>", "", TOPBAR, "", tip, "", wrap, "", SCRIPT, ""]
     )
     # 云端版用压缩过的 jpg，页面打开快很多
-    for name in ("cover-collage", "fee-schedule", "marina-bay-aerial"):
+    for name in ("cover-collage", "marina-bay-aerial"):
         out = out.replace("assets/%s.png" % name, "assets/%s.jpg" % name)
 
     open(out_path, "w", encoding="utf-8").write(out)

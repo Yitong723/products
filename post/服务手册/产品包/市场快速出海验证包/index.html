@@ -433,6 +433,10 @@
     box-shadow:var(--shadow-lift); background:var(--paper);}
   .figimg img{width:100%; display:block;}
   .figimg figcaption{font-size:12.5px; color:var(--muted); padding:10px 16px; text-align:center;}
+  .figimg a{display:block; cursor:zoom-in;}
+  .figimg figcaption a.zoom{display:inline; color:var(--accent); text-decoration:none; font-weight:600;
+    cursor:pointer;}
+  @media print{ .figimg figcaption a.zoom{display:none;} }
   .figimg.ph{display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:8px; padding:46px 20px; border-style:dashed; border-color:var(--line); background:var(--bg2);}
   .figimg.ph .ph-ic{font-size:26px;}
@@ -673,8 +677,10 @@
     <p class="lead">一次进入 = 一个完整验证周期。四档配置的配套服务完全一致，仅<strong>展位面积与呈现形式</strong>不同。</p>
 
     <figure class="figimg">
-      <img src="assets/fee-schedule.png" alt="费用与排期：四档展位配置、销售佣金、超值赋能与价格">
-      <figcaption>四档展位配置与价格 · 含展后 3 天本地商业空间接力（限时赠送）</figcaption>
+      <a href="assets/fee-schedule.png" target="_blank" rel="noopener">
+        <img src="assets/fee-schedule.png" alt="费用与排期：四档展位配置、销售佣金、超值赋能与价格">
+      </a>
+      <figcaption>四档展位配置与价格 · 含展后 3 天本地商业空间接力（限时赠送）　<a href="assets/fee-schedule.png" target="_blank" rel="noopener" class="zoom">点击看大图 ↗</a></figcaption>
     </figure> -->
 
   </section>
