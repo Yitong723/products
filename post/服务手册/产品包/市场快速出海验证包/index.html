@@ -330,6 +330,24 @@
     padding:8px 16px; font-size:13px; color:var(--ink-soft); box-shadow:var(--shadow);}
   .cover-meta .pill b{color:var(--accent-deep);}
 
+  /* 竖排步骤列表（无框，细线分隔） */
+  .steps{margin-top:20px; border-top:1px solid var(--rule);}
+  .steps .s{display:grid; grid-template-columns:56px 150px 1fr; gap:0 18px; align-items:baseline;
+    padding:16px 2px; border-bottom:1px solid var(--rule);}
+  .steps .s .n{font-family:var(--display); font-style:italic; font-weight:600; font-size:13px;
+    color:var(--accent); letter-spacing:.04em;}
+  .steps .s h3{font-size:17px; margin:0;}
+  .steps .s p{font-size:14px; line-height:1.62; color:var(--ink-soft); text-align:justify;
+    text-justify:inter-ideograph;}
+
+  /* 纯文字清单（无底色） */
+  .plainlist{margin-top:22px;}
+  .plainlist .lab{font-family:var(--display); font-style:italic; font-weight:600; font-size:13px;
+    color:var(--accent); display:block; margin-bottom:10px;}
+  .plainlist ul{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:9px 28px;}
+  .plainlist li{font-size:14.5px; color:var(--ink); padding-left:22px; position:relative;}
+  .plainlist li::before{content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700;}
+
   /* 索引卡（本页 9 环节） */
   .toc.toc9 li{padding:7px 0; font-size:13.5px;}
 
@@ -456,12 +474,15 @@
 
   @media (max-width:680px){
     .cover-art{order:-1;} .cover-art img{aspect-ratio:16/10;}
+    .steps .s{grid-template-columns:46px 1fr;}
+    .steps .s p{grid-column:2;}
+    .plainlist ul{grid-template-columns:1fr;}
     .kv, .fee2{grid-template-columns:1fr;}
   }
 
   @media print{
     .cmp-scroll{overflow:visible;} table.cmp{min-width:0;}
-    table.cmp tr, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
+    table.cmp tr, .steps .s, .kv .item, .fee2 .fc, .proc .step, .promo, .corepos, .figimg{break-inside:avoid;}
     .subh, .sec-kicker{break-after:avoid;}
     p,li,td,th{orphans:2; widows:2;}
   }
@@ -496,9 +517,9 @@
       <p class="cover-en">Enter Once, Get Your First Market Answers</p>
       <p class="sub">不是先重投入做完整出海，而是<b>先进入一次真实市场</b>，获得<b>第一轮市场答案</b>。</p>
       <div class="cover-meta">
-        <span class="pill"><b>9</b> 个环节 · 一次跑完</span>
-        <span class="pill">新加坡 · 真实消费场景</span>
-        <span class="pill"><b>展后 3 天</b>商业空间接力</span>
+        <span class="pill"><b>9</b> 个环节</span>
+        <span class="pill">新加坡 · 真实场景</span>
+        <span class="pill"><b>展后 3 天</b>接力</span>
       </div>
       <div class="tagline">Test Before You Invest　<span>先验证，再投入</span></div>
     </div>
@@ -519,14 +540,27 @@
     <h2>一次进入，<em>四个环节</em>构成一次完整验证</h2>
     <p class="lead">从进入真实场景，到线上曝光，到消费者和商业端双向反馈，再到展后空间接力——四个环节共同构成一次完整的市场验证。</p>
 
-    <div class="common">
-      <div class="cm"><span class="st">Step 1</span><h3>进入真实场景</h3><p>带产品进当地真实消费场景，直接面对当地人。</p></div>
-      <div class="ar">→</div>
-      <div class="cm"><span class="st">Step 2</span><h3>线上曝光</h3><p>本地社媒内容发布，先拿第一轮市场兴趣反馈。</p></div>
-      <div class="ar">→</div>
-      <div class="cm"><span class="st">Step 3</span><h3>双向反馈</h3><p>C 端消费者行为 + B 端买手渠道反馈同时收。</p></div>
-      <div class="ar">→</div>
-      <div class="cm"><span class="st">Step 4</span><h3>展后接力</h3><p>进入本地零售 / 商业空间，延续线下验证。</p></div>
+    <div class="steps">
+      <div class="s">
+        <span class="n">Step 1</span>
+        <h3>进入真实场景</h3>
+        <p>带产品进当地真实消费场景，直接面对当地人。</p>
+      </div>
+      <div class="s">
+        <span class="n">Step 2</span>
+        <h3>线上曝光</h3>
+        <p>本地社媒内容发布与触达，先拿第一轮市场兴趣反馈。</p>
+      </div>
+      <div class="s">
+        <span class="n">Step 3</span>
+        <h3>双向反馈</h3>
+        <p>C 端消费者行为 + B 端买手、零售商、渠道方反馈同时收。</p>
+      </div>
+      <div class="s">
+        <span class="n">Step 4</span>
+        <h3>展后接力</h3>
+        <p>进入本地零售 / 商业空间继续展示与销售，延续线下验证。</p>
+      </div>
     </div>
 
     <div class="corepos">
@@ -534,7 +568,7 @@
       <p>这不是一次参展，而是一次<b>低成本、高密度的市场验证</b>——一次进入，拿到关于产品、定价、场景与渠道的<b>第一轮真实答案</b>，再决定要不要继续加码。</p>
     </div>
 
-    <div class="gain">
+    <div class="plainlist">
       <span class="lab">跑完这一次，你会知道</span>
       <ul>
         <li>当地人会不会为你的产品买单</li>
