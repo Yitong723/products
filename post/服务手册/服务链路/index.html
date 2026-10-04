@@ -275,6 +275,26 @@ body.lock{overflow:hidden}
 @media (max-width:600px){.contact{grid-template-columns:1fr;padding:24px}}
 footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:center}
 
+/* ========== 全局联系区 ========== */
+.site-foot{margin-top:24px;background:var(--ink);color:var(--bg);padding-block:48px 24px;text-align:left;font-size:inherit}
+.sf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
+.site-foot .eyebrow{color:#7fd4b4}
+.site-foot h2{font-size:clamp(24px,3vw,32px);font-weight:900;margin-top:10px}
+.sf-l>p{margin-top:8px;opacity:.75;font-size:15px}
+.sf-mail{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;max-width:460px}
+.sf-mail li{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.07)}
+.sf-mail span{font-size:13px;opacity:.65}
+.sf-mail b{font-size:15px;font-weight:500;text-align:left;user-select:all;overflow-wrap:anywhere}
+.sf-mail button{font:inherit;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.3);background:none;color:inherit;border-radius:999px;padding:3px 12px;cursor:pointer}
+.sf-mail button:hover{background:rgba(255,255,255,.12)}
+.sf-qr{text-align:center}
+.sf-qr img{width:168px;background:#fff;border-radius:14px;padding:10px;margin:0 auto}
+.sf-qr p{margin-top:10px;font-size:12px;opacity:.8;line-height:1.6}
+.sf-qr p b{font-size:14px;opacity:1}
+.sf-copy{text-align:center;font-size:12px;opacity:.5;margin-top:36px}
+.btn.ghost-inv{background:transparent;color:var(--bg);border:1px solid rgba(255,255,255,.4)}
+@media (max-width:640px){.sf{grid-template-columns:1fr}.sf-qr{text-align:left}.sf-qr img{margin:0}}
+
 /* ========== 看板 ========== */
 .board-h{padding-block:44px 22px}
 .board-h h1{font-size:clamp(26px,4vw,40px);font-weight:900;margin-top:8px}
@@ -465,8 +485,8 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       </div>
     </div>
 
-    <div class="rail-foot" id="contact">
-      <p><b>微信 GMA品牌出海</b>　·　Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p>
+    <div class="rail-foot">
+      <p>不确定从哪一步开始？<b>先聊聊你的产品和目标市场。</b></p>
       <a class="btn" href="#tests">选一个测试场景 →</a>
     </div>
   </section>
@@ -709,6 +729,26 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 <!-- ================= 详情（由数据渲染） ================= -->
 <main class="page" id="p-detail"><div class="wrap" id="detail"></div></main>
 
+<!-- ================= 全局：联系我们 ================= -->
+<footer class="site-foot" id="contact">
+  <div class="wrap sf">
+    <div class="sf-l">
+      <span class="eyebrow">Contact · 联系我们</span>
+      <h2>告诉我们你的产品和目标市场</h2>
+      <p>我们先帮你判断：值不值得测、该测什么、用哪种方式测。</p>
+      <ul class="sf-mail">
+        <li><span>Jade</span><b>1205226717@qq.com</b><button type="button" data-copy="1205226717@qq.com">复制</button></li>
+        <li><span>Carrie</span><b>yt1253082426@163.com</b><button type="button" data-copy="yt1253082426@163.com">复制</button></li>
+      </ul>
+    </div>
+    <div class="sf-qr">
+      <img src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码">
+      <p><b>微信：GMA品牌出海</b><br>扫码添加，备注「品牌名 + 目标市场」</p>
+    </div>
+  </div>
+  <p class="sf-copy">Global Market Accelerator · 先验证，再投入</p>
+</footer>
+
 <script>
 const COLS=[
   {id:"booth",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
@@ -844,22 +884,30 @@ function renderDetail(id){
       <div class="card post"><div class="k">AFTER · 测试后</div><h3>决策与落地</h3><ul><li>《市场验证报告》</li><li>GO / ADJUST / STOP 建议</li><li>买手、零售商匹配洽谈</li><li>进入 GMA 资源库</li></ul></div>
     </div>
   </section>
-  <section class="dt-sec"><div class="contact"><div><h2>${e.invite?"申请邀请资格":"想用这个场景测你的产品？"}</h2><p>${e.invite?"提交品牌介绍和产品图，进入 GMA 会员品牌池，主题揭晓时优先收到邀请。":"发我们品牌介绍和产品图，先帮你判断是否适合、该测什么。"}</p><p class="mail">Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p></div><div><img class="qr" src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码"><p style="font-size:12px;text-align:center;margin-top:6px">备注「${e.short.split(" · ")[0]} + 品牌名」</p></div></div></section>
+  <section class="dt-sec"><div class="contact"><div><h2>${e.invite?"申请邀请资格":"想用这个场景测你的产品？"}</h2><p>${e.invite?"提交品牌介绍和产品图，进入 GMA 会员品牌池，主题揭晓时优先收到邀请。":"发我们品牌介绍和产品图，先帮你判断是否适合、该测什么。"}</p></div><div><a class="btn ghost-inv" href="#contact">${e.invite?"申请邀请":"联系我们"} ↓</a></div></div></section>
   <nav class="dt-nav"><a class="btn ghost" href="#${prev}">← ${EVENTS[prev].short}</a><a class="btn ghost" href="#tests">回到看板</a><a class="btn ghost" href="#${next}">${EVENTS[next].short} →</a></nav>`;
 }
 
+function goContact(){document.getElementById("contact").scrollIntoView({behavior:"smooth"});}
+document.addEventListener("click",ev=>{
+  const a=ev.target.closest('a[href="#contact"]');
+  if(a){ev.preventDefault();if(!$("#reportModal").hidden)closeReport();goContact();return;}
+  const c=ev.target.closest("[data-copy]");
+  if(c){const t=c.dataset.copy;const done=()=>{c.textContent="已复制";setTimeout(()=>c.textContent="复制",1500)};
+    navigator.clipboard?.writeText(t).then(done).catch(()=>{const r=document.createRange();r.selectNodeContents(c.previousElementSibling);getSelection().removeAllRanges();getSelection().addRange(r);});}
+});
 function route(){
   let h=(location.hash||"#home").slice(1);
-  const homeAnchors=["home","contact"];
+  const homeAnchors=["home"];
   let page="home";
   if(h==="tests")page="tests";
   else if(h==="before")page="before";
   else if(EVENTS[h]){page="detail";renderDetail(h);}
+  else if(h==="contact"){setTimeout(goContact,50);}
   else if(!homeAnchors.includes(h))h="home";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
-    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&page==="before")||(a.dataset.nav==="contact"&&h==="contact")));
-  if(page==="home"&&h!=="home"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
+    (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&page==="before")));
   window.scrollTo(0,0);
 }
 renderBoard();
