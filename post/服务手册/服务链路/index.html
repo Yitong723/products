@@ -171,11 +171,13 @@ p{margin:0}
 .dim2 ul.one li{white-space:normal}
 .bx.big.plan{background:var(--surface)}
 .decide-v{flex:1;display:grid;gap:12px;margin:18px 28px 26px;align-content:end}
-.dv{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:20px 20px;border-radius:16px;background:var(--bg);border-left:4px solid var(--c)}
+.dv{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:14px 18px;border-radius:16px;background:var(--bg);border-left:4px solid var(--c)}
 .dv-go{--c:var(--ok)}.dv-ad{--c:var(--warn)}.dv-st{--c:var(--stop)}
 .dv b{grid-row:span 2;font-family:var(--f-mono);font-size:20px;letter-spacing:.06em;color:var(--c)}
 .dv span{font-size:15px;font-weight:700}
-.dv p{font-size:13px;color:var(--ink-2)}
+.dv p{font-size:13px;color:var(--ink-2);line-height:1.6}
+.dv p em{display:block;font-style:normal;color:var(--ink);font-weight:500}
+.dv-h{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:-2px}
 .bf-more{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;padding:6px 4px 0}
 .bf-more p{font-size:14px;color:var(--ink-2)}
 .bf-more p b{color:var(--ink)}
@@ -612,9 +614,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div class="out"><span>你拿到</span><b>一份可落地计划报告</b></div>
         </div>
         <div class="decide-v">
-          <div class="dv dv-go"><b>GO</b><span>信号成立</span><p>进入下一阶段：渠道落地与本地推广</p></div>
-          <div class="dv dv-ad"><b>ADJUST</b><span>调整再测</span><p>调整产品、价格、包装或定位后再测一轮</p></div>
-          <div class="dv dv-st"><b>STOP</b><span>及时止损</span><p>暂停投入，避免更大的预算浪费</p></div>
+          <p class="dv-h">报告最后给出一个明确结论</p>
+          <div class="dv dv-go"><b>GO</b><span>继续进入</span><p>人群清楚、主推款卖得动、价格站得住<em>→ 下一步：渠道对接与本地推广</em></p></div>
+          <div class="dv dv-ad"><b>ADJUST</b><span>调整后再测</span><p>有人买，但产品、价格或卖点还要改<em>→ 下一步：按报告调整，再测一轮</em></p></div>
+          <div class="dv dv-st"><b>STOP</b><span>暂不进入</span><p>需求或利润撑不起这个市场<em>→ 下一步：暂停投入，把预算留给更合适的市场</em></p></div>
         </div>
       </article>
 
