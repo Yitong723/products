@@ -27,17 +27,17 @@
   --on-accent:#ffffff;
   --hl:#f6dc86;
   --green:#0a8a62;
-  --c-booth:#2f5f8f;--c-booth-s:#e3ebf4;--c-invade:#c0582f;--c-invade-s:#f7e6de;--c-orchard:#6b4c9a;--c-orchard-s:#ece6f4;--c-xmas:#b23a3a;--c-xmas-s:#f6e1df;--c-space:#8a6418;--c-space-s:#f3ead8;--c-theme:#6a3fb5;
+  --c-booth:#2f5f8f;--c-booth-s:#e3ebf4;--c-invade:#c0582f;--c-invade-s:#f7e6de;--c-orchard:#6b4c9a;--c-orchard-s:#ece6f4;--c-xmas:#b23a3a;--c-xmas-s:#f6e1df;--c-theme:#6a3fb5;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--hl:rgba(224,178,92,.38);--green:#5fd3a8;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-space:#e0b25c;--c-space-s:#33291a;--c-theme:#b79cf0;color-scheme:dark}}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--hl:rgba(224,178,92,.38);--green:#5fd3a8;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-theme:#b79cf0;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--hl:rgba(224,178,92,.38);--green:#5fd3a8;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-space:#e0b25c;--c-space-s:#33291a;--c-theme:#b79cf0;color-scheme:dark}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--hl:rgba(224,178,92,.38);--green:#5fd3a8;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-theme:#b79cf0;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -107,32 +107,32 @@ p{margin:0}
 /* ========== 测试前 服务页 ========== */
 .bf{position:relative;padding-block:44px 64px}
 .bf::before{content:"";position:absolute;inset:0 -100vw;z-index:-1;background-image:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000 0,transparent 40%);mask-image:linear-gradient(180deg,#000 0,transparent 40%)}
-.bf-hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:32px}
+.bf-hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:24px}
 .bf-hero h1{font-size:clamp(32px,4.6vw,50px);font-weight:900;margin-top:12px;letter-spacing:.01em}
 .bf-hero h1 em{font-style:normal;color:var(--accent)}
 .bf-hero .r{max-width:24em;padding-bottom:8px;color:var(--ink-2);font-size:15px}
 
-.bento{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:20px}
+.bento{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px}
 .bx{background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;min-width:0;position:relative}
-.bx .lab{display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:700;letter-spacing:.06em;color:var(--green)}
+.bx .lab{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--green)}
 .bx .lab i{font-family:var(--f-mono);font-size:15px}
 .bx .lab i{font-style:normal;font-weight:700}
 .bx .lab i::after{content:"·";margin-left:8px;opacity:.6}
-.bx h2{font-size:clamp(22px,2.2vw,28px);font-weight:900;line-height:1.3;margin-top:12px}
-.bx .q{font-size:15px;color:var(--ink-2);margin-top:8px}
-.bx .pts{margin-top:14px;font-size:13px;line-height:1.8;color:var(--ink-2)}
+.bx h2{font-size:clamp(21px,2vw,26px);font-weight:900;line-height:1.3;margin-top:8px}
+.bx .q{font-size:14px;color:var(--ink-2);margin-top:4px}
+.bx .pts{margin-top:10px;font-size:13px;line-height:1.8;color:var(--ink-2)}
 .bx .pts::before{content:"包含：";color:var(--ink);font-weight:700}
 .bx .pts span{white-space:nowrap}
 .bx .pts span+span::before{content:"·";margin:0 7px;color:var(--line)}
-.bx .out{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.bx .out{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:12px}
 .bx .out span{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--accent)}
 .bx .out span::after{content:" →"}
-.bx .out b{font-family:var(--f-display);font-size:23px;font-weight:900;line-height:1.3;color:var(--ink);padding:0 2px;background:linear-gradient(transparent 66%,var(--hl) 66%,var(--hl) 94%,transparent 94%)}
+.bx .out b{font-family:var(--f-display);font-size:20px;font-weight:900;line-height:1.3;color:var(--ink);padding:0 2px;background:linear-gradient(transparent 66%,var(--hl) 66%,var(--hl) 94%,transparent 94%)}
 
 /* 大卡：对标报告 */
 .bx.big{grid-row:span 2;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--surface) 0%,var(--surface) 46%,var(--bg) 100%)}
-.bx.big .txt{padding:30px 32px 0}
-.peek{position:relative;flex:1;min-height:300px;margin:26px 32px 0;cursor:zoom-in;border:0;padding:0;background:none;font:inherit;text-align:left;display:block}
+.bx.big .txt{padding:24px 28px 0}
+.peek{position:relative;flex:1;min-height:170px;margin:18px 28px 0;cursor:zoom-in;border:0;padding:0;background:none;font:inherit;text-align:left;display:block}
 .peek .pg{position:absolute;left:0;right:0;top:0;bottom:0;border-radius:12px 12px 0 0;overflow:hidden;background:#fff;box-shadow:0 -10px 40px -18px rgba(0,0,0,.35);transition:transform .35s}
 .peek .pg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,transparent,var(--bg))}
 .peek .pg>div{transform:scale(.46);transform-origin:top left;width:217%;pointer-events:none}
@@ -142,24 +142,24 @@ p{margin:0}
 .peek:hover .cta{background:var(--accent);color:var(--on-accent)}
 
 /* 横卡：照片 + 文字 */
-.bx.side{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr)}
+.bx.side{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr)}
 .bx.side h2{white-space:nowrap;font-size:clamp(20px,1.9vw,26px)}
-.bx.side .ph{position:relative;min-height:240px;background:var(--muted-chip)}
+.bx.side .ph{position:relative;min-height:0;background:var(--muted-chip)}
 .bx.side .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .bx.side:hover .ph img{transform:scale(1.04)}
-.bx.side .txt{padding:26px 26px 24px;display:flex;flex-direction:column}
-.bx.side .pts{margin-top:12px}
+.bx.side .txt{padding:20px 24px 18px;display:flex;flex-direction:column}
+.bx.side .pts{margin-top:8px}
 .bx.side .sub{margin-top:12px;font-size:13px;color:var(--ink-2);line-height:1.8}
 .bx.side .sub b{color:var(--ink);font-weight:700;margin-right:4px}
-.dim2{margin-top:14px;display:grid;gap:0}
-.dim2>div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:9px 0;border-top:1px dashed var(--line)}
+.dim2{margin-top:10px;display:grid;gap:0}
+.dim2>div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:6px 0;border-top:1px dashed var(--line)}
 .dim2>div:last-child{border-bottom:1px dashed var(--line)}
 .dim2 b{font-size:13px;font-weight:700;color:var(--green);padding-top:1px}
 .dim2 ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 12px}
 .dim2 li{font-size:13px;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:6px}
 .dim2 li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-2);opacity:.6}
 .bx.side .out{margin-top:auto}
-.bx.side .txt>*:nth-last-child(2){margin-bottom:18px}
+.bx.side .txt>*:nth-last-child(2){margin-bottom:12px}
 @media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
 @media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
 
@@ -278,11 +278,11 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .board-h p{color:var(--ink-2);margin-top:10px;max-width:44em}
 .crumb{font-size:13px;color:var(--ink-2)}
 .crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
-.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-@media (max-width:1100px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:1000px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.board{grid-template-columns:1fr}}
 .ev{--c:var(--accent);display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;transition:transform .25s,box-shadow .25s,opacity .25s}
-.ev.booth{--c:var(--c-booth)}.ev.invade{--c:var(--c-invade)}.ev.orchard{--c:var(--c-orchard)}.ev.xmas{--c:var(--c-xmas)}.ev.space{--c:var(--c-space)}.ev.theme{--c:var(--c-theme)}
+.ev.booth{--c:var(--c-booth)}.ev.invade{--c:var(--c-invade)}.ev.orchard{--c:var(--c-orchard)}.ev.xmas{--c:var(--c-xmas)}.ev.theme{--c:var(--c-theme)}
 .ev:hover{transform:translateY(-4px);box-shadow:0 24px 40px -26px color-mix(in srgb,var(--c) 70%,transparent)}
 .ev.dim{opacity:.3}
 .ev .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--muted-chip)}
@@ -297,7 +297,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .st.invite::before{content:"✦ "}
 .st.done{color:#5b6662}
 .ev .b{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.ev h3{font-size:18px;font-weight:900;line-height:1.35}
+.ev h3{font-size:20px;font-weight:900;line-height:1.35}
 .ev .meta{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .ev .ft{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line)}
 .ev .vals{display:flex;flex-wrap:wrap;gap:6px}
@@ -316,6 +316,19 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .mys .hint:nth-of-type(2){right:13%;top:30%;transform:rotate(7deg);animation-delay:.6s;background:#f6dc86}
 .mys .hint:nth-of-type(3){left:22%;bottom:18%;transform:rotate(4deg);animation-delay:1.2s}
 .mys .seal{position:absolute;left:-30px;right:-30px;bottom:22px;transform:rotate(-4deg);background:linear-gradient(90deg,#e9c46a,#f6dc86,#e9c46a);color:#3a2a06;text-align:center;font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.3em;padding:5px 0;box-shadow:0 6px 16px -6px rgba(0,0,0,.5)}
+.xart{position:relative;width:100%;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:22px;background:radial-gradient(120% 100% at 70% 10%,#c23a3a 0%,#8e1f26 50%,#4a0f15 100%)}
+.xart .snow{position:absolute;inset:0;background-image:radial-gradient(#fff 1.2px,transparent 1.6px),radial-gradient(rgba(255,255,255,.6) 1px,transparent 1.4px);background-size:34px 34px,22px 22px;background-position:0 0,11px 7px;opacity:.55;animation:snow 9s linear infinite}
+@keyframes snow{to{background-position:0 34px,11px 29px}}
+.xart .tree{position:relative;width:74px;height:104px;display:flex;flex-direction:column;align-items:center}
+.xart .tree span{display:block;width:0;height:0;border-left:solid transparent;border-right:solid transparent;border-bottom:solid #1f6b46;margin-top:-14px}
+.xart .tree span:nth-child(1){border-width:0 22px 34px;margin-top:8px}
+.xart .tree span:nth-child(2){border-width:0 30px 40px}
+.xart .tree span:nth-child(3){border-width:0 37px 44px}
+.xart .tree::before{content:"★";position:absolute;top:-8px;color:#f6dc86;font-size:20px}
+.xart .tree b{width:12px;height:12px;background:#5b3a1e}
+.xart .xt{position:relative;color:#fff}
+.xart .xt small{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;color:#f6dc86}
+.xart .xt b{display:block;font-family:var(--f-display);font-size:28px;font-weight:900;line-height:1.1;margin-top:4px}
 @keyframes bob{50%{translate:0 -6px}}
 .ev.feat{grid-column:span 2;position:relative;min-height:400px;justify-content:flex-end;border:0;color:#fff}
 .ev.feat .ph{position:absolute;inset:0;aspect-ratio:auto}
@@ -335,7 +348,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ctl{margin-top:24px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 28px;border-bottom:1px solid var(--line)}
 .forms{display:flex;flex-wrap:wrap;gap:0 26px}
 .fm{--c:var(--ink);font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:10px 0 12px;margin-bottom:-1px;border:0;border-bottom:2px solid transparent;background:none;color:var(--ink-2);font-size:15px;transition:color .2s,border-color .2s}
-.fm.booth{--c:var(--c-booth)}.fm.invade{--c:var(--c-invade)}.fm.orchard{--c:var(--c-orchard)}.fm.space{--c:var(--c-space)}.fm.theme{--c:var(--c-theme)}.fm.xmas{--c:var(--c-xmas)}
+.fm.booth{--c:var(--c-booth)}.fm.invade{--c:var(--c-invade)}.fm.orchard{--c:var(--c-orchard)}.fm.theme{--c:var(--c-theme)}.fm.xmas{--c:var(--c-xmas)}
 .fm::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
 .fm.all::before{display:none}
 .fm small{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);opacity:.7}
@@ -427,10 +440,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div class="mosaic">
             <div><img src="assets/sg-f1.jpg" alt=""><span>展会</span></div>
             <div><img src="assets/invade-market.jpg" alt=""><span>市集</span></div>
-            <div><img src="assets/orchard.jpg" alt=""><span>Pop-up</span></div>
-            <div><img src="assets/popup.jpg" alt=""><span>慢闪店</span></div>
+            <div><img src="assets/orchard.jpg" alt=""><span>闪卖店</span></div>
+            <div><img src="assets/festival.jpg" alt=""><span>节庆</span></div>
           </div>
-          <div class="yd"><span>6 种方式</span><span>查看 →</span></div>
+          <div class="yd"><span>5 种方式</span><span>查看 →</span></div>
         </a>
         <div class="sg core" role="listitem">
           <span class="en" data-n="03">AFTER</span>
@@ -525,7 +538,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <span class="lab"><i>03</i>问同行</span>
           <h2>本地 Founder 1v1</h2>
           <p class="q">在当地做过品牌的人，踩过哪些坑？</p>
-          <div class="pts"><span>市场实况</span><span>渠道怎么进</span><span>合作条件</span><span>定价意见</span></div>
+          <div class="dim2"><div><b>聊什么</b><ul><li>市场实况</li><li>渠道怎么进</li><li>合作条件</li><li>定价意见</li></ul></div></div>
           <div class="out"><span>你拿到</span><b>一线经验 + 交流纪要</b></div>
         </div>
       </article>
@@ -654,8 +667,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 const COLS=[
   {id:"booth",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
   {id:"invade",name:"本地市集",desc:"INVADE 市集网络，轻量测款测价"},
-  {id:"orchard",name:"Pop-up 快闪",desc:"核心商圈短期开店，测品牌体验与转化"},
-  {id:"space",name:"慢闪店",desc:"进入本地零售空间持续售卖，测动销与渠道"},
+  {id:"orchard",name:"闪卖店",desc:"商圈快闪或零售空间慢闪，测品牌体验与动销"},
   {id:"xmas",name:"节庆活动",desc:"借节日消费高峰，测礼品场景"},
   {id:"theme",name:"限定主题",desc:"邀请制 · 仅限会员品牌，主题揭晓前保密"}
 ];
@@ -687,7 +699,7 @@ const EVENTS={
     timeline:[["测试前","按品类与客群挑选最匹配的市集场次"],["测试中","现场售卖，记录停留、试用、价格反应"],["测试后","多场数据合并对比，找出稳定卖得好的 SKU 和价格"]],
     onsite:["真实售卖，直接面对本地消费者","同一产品可在不同市集反复测，排除偶然","接触本地品牌与主理人"],
     note:"具体场次与日期按年度排期确认，联系我们获取最新排期。"},
-  "ev-orchard":{col:"orchard",title:"乌节路商圈 Pop-up 快闪",short:"新加坡 · Orchard Road",img:"orchard",img2:"popup",
+  "ev-orchard":{col:"orchard",title:"乌节路商圈 · 快闪店",short:"新加坡 · Orchard Road",img:"orchard",img2:"popup",
     status:"open",statusText:"随时定制",city:"新加坡 · 乌节路",when:"随时定制，可接在展会之后",
     vals:["品牌体验","消费者","价格"],
     sub:"乌节路是新加坡最标志性的高端购物大道，也是国际品牌进入新加坡的展示窗口。在这里做短期 Pop-up，测的是品牌体验和持续转化。",
@@ -696,7 +708,7 @@ const EVENTS={
     timeline:[["测试前","确定空间、陈列方案和测试 SKU"],["测试中","连续多天在商圈零售空间展示销售"],["测试后","对比展会与商圈两段数据，判断适合的渠道形态"]],
     onsite:["在核心商业场景建立线下品牌体验","比展会更长的观察周期","接触商场与商业地产方"],
     note:"空间、日期与时长按品牌需求随时定制。"},
-  "ev-space":{col:"space",title:"本地零售空间入驻",short:"新加坡 · 本地零售空间",img:"popup",
+  "ev-space":{col:"orchard",title:"本地零售空间 · 慢闪店",short:"新加坡 · 零售空间慢闪",img:"popup",
     status:"plan",statusText:"筹备中",city:"新加坡 · 乌节路 / 武吉士等商圈",when:"按周期入驻，可接在展会或 Pop-up 之后",
     vals:["消费者","价格","买手"],
     sub:"把产品放进本地零售空间持续售卖。观察周期比展会和快闪更长，能看到真实动销、复购和店方反馈。",
@@ -705,17 +717,26 @@ const EVENTS={
     timeline:[["测试前","匹配空间，确定陈列、SKU 与结算方式"],["测试中","在零售空间持续销售，定期回收动销数据"],["测试后","根据动销和店方反馈，判断是否转为长期合作"]],
     onsite:["持续销售，观察复购","拿到店方买手的一手反馈","为长期寄售或批发合作打基础"],
     note:"具体空间、入驻周期与结算方式按项目确认。"},
-  "ev-xmas":{col:"xmas",title:"圣诞节庆主题活动",short:"新加坡 / 泰国 · 年末节庆",img:"festival",img2:"consumer",
-    status:"plan",statusText:"筹备中",city:"新加坡 / 泰国",when:"2026 年 12 月，具体日期待公布",
+  "ev-xmas":{col:"xmas",art:"xmas",title:"圣诞节庆主题活动",short:"新加坡 · 圣诞节庆",img:"",
+    status:"plan",statusText:"筹备中",city:"新加坡",when:"2026 年 12 月，具体日期待公布",
     vals:["消费者","价格","品牌体验"],
-    sub:"借年末送礼高峰进入节庆消费场景，触达节日人群与游客。适合礼品属性强的品类：香氛、饰品、家居、文创。",
-    facts:[["时段","圣诞至年末消费季"],["形式","节庆市集、商场主题活动、联合快闪"],["适合品类","礼盒、香氛、饰品、家居、文创等送礼类产品"],["可测","礼品包装、节日定价、组合装接受度"]],
+    sub:"借年末送礼高峰进入圣诞消费场景，触达节日人群与游客。适合礼品属性强的品类：香氛、饰品、家居、文创。",
+    facts:[["时段","圣诞至年末消费季"],["形式","圣诞市集、商场主题活动、联合快闪"],["适合品类","礼盒、香氛、饰品、家居、文创等送礼类产品"],["可测","礼品包装、节日定价、组合装接受度"]],
     people:["节日送礼人群","游客","本地家庭与年轻客群"],
-    timeline:[["测试前","设计节日礼品组合与包装，制定节日价"],["测试中","节庆场景售卖与观察"],["测试后","评估礼品场景是否值得做成长期品类"]],
+    timeline:[["测试前","设计圣诞礼品组合与包装，制定节日价"],["测试中","节庆场景售卖与观察"],["测试后","评估礼品场景是否值得做成长期品类"]],
     onsite:["进入高流量节庆场景","结合主题活动提升品牌记忆度","测试礼品装与节日定价"],
-    note:"场地与日期待公布。页面配图为节庆场景示例（狮城新春）。"},
+    note:"场地与日期待公布。"},
+  "ev-cny":{col:"xmas",title:"农历新年节庆活动",short:"新加坡 / 泰国 · 新春节庆",img:"festival",
+    status:"plan",statusText:"筹备中",city:"新加坡 / 泰国",when:"2027 年春节前后，具体日期待公布",
+    vals:["消费者","价格","品牌体验"],
+    sub:"借新春年货与送礼高峰进入华人节庆消费场景。适合有中国文化元素、礼盒属性强的产品。",
+    facts:[["时段","春节前后年货消费季"],["形式","新春市集、商场主题活动"],["适合品类","礼盒、茶饮、文创、手工艺、家居"],["可测","新春礼盒、节日定价、文化元素接受度"]],
+    people:["华人家庭与年货采购人群","游客","本地年轻客群"],
+    timeline:[["测试前","设计新春礼盒与陈列，制定节日价"],["测试中","节庆场景售卖与观察"],["测试后","评估节庆品类是否值得长期做"]],
+    onsite:["进入高流量新春场景","文化元素直接面对本地消费者","测试礼盒与节日定价"],
+    note:"场地与日期待公布。"},
   "ev-theme":{col:"theme",mystery:true,invite:true,hints:["AI？","冬日？","……？"],title:"限定主题 · 会员邀请场",short:"限定主题 · 仅限邀请",img:"",
-    status:"invite",statusText:"仅限邀请",city:"地点待揭晓",when:"主题与时间揭晓前保密",
+    status:"invite",statusText:"仅限邀请 / 会员品牌",city:"地点待揭晓",when:"主题与时间揭晓前保密",
     vals:["消费者","品牌体验","买手"],
     sub:"不公开招募。每期围绕一个限定主题，只邀请 GMA 会员品牌和经过筛选的品牌参与，主题揭晓前保密。可能的方向有 AI、冬日等。",
     facts:[["参与方式","邀请制 · 仅限 GMA 会员品牌与受邀品牌"],["主题","待揭晓（可能是 AI、冬日……）"],["规模","每期少量席位，按主题挑选品类"],["会员权益","主题优先知晓 · 席位优先 · 定向邀约买手与媒体"]],
@@ -727,6 +748,8 @@ const EVENTS={
 
 const $=s=>document.querySelector(s);
 let filter="all",form="all";
+const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i class="snow"></i><div class="tree"><span></span><span></span><span></span><b></b></div><div class="xt"><small>CHRISTMAS</small><b>Merry<br>Market</b></div></div>`;
+const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 function renderBoard(){
   const rank=e=>e.featured?0:e.status==="done"?2:1;
@@ -736,12 +759,12 @@ function renderBoard(){
     const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&!e.vals.includes(filter);
     const vals=`<div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div>`;
     if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期火热</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="cta">查看活动详情 →</span></div></div></a>`;
-    return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph">${e.mystery?mysBox(e):`<img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy">`}<span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
+    return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy">`}<span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
   }).join("");
 }
 function renderForms(){
   const n=id=>Object.values(EVENTS).filter(e=>id==="all"||e.col===id).length;
-  $("#forms").innerHTML=[{id:"all",name:"全部"},...COLS].map(c=>`<button class="fm ${c.id}${form===c.id?" on":""}" data-form="${c.id}" title="${c.desc||"6 种测试方式，按目标组合"}">${c.name}<small>${n(c.id)}</small></button>`).join("");
+  $("#forms").innerHTML=[{id:"all",name:"全部"},...COLS].map(c=>`<button class="fm ${c.id}${form===c.id?" on":""}" data-form="${c.id}" title="${c.desc||"5 种测试方式，按目标组合"}">${c.name}<small>${n(c.id)}</small></button>`).join("");
   $("#forms").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{form=b.dataset.form;renderForms();renderBoard();}));
 }
 renderForms();
@@ -763,7 +786,7 @@ function renderDetail(id){
       <p class="sub" style="margin-top:12px">${e.sub}</p>
       <dl class="facts"><dt>地点</dt><dd>${e.city}</dd><dt>时间</dt><dd>${e.when}</dd>${e.facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join("")}</dl>
     </div>
-    <div class="ph">${e.mystery?mysBox(e):`<img src="assets/${e.img}.jpg" alt="${e.short}">`}</div>
+    <div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}">`}</div>
   </section>
   <section class="dt-sec"><h2>这个场景适合验证</h2><div class="chips">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div></section>
   <section class="dt-sec"><h2>到场人群</h2><div class="chips">${e.people.map(v=>`<span>${v}</span>`).join("")}</div></section>
