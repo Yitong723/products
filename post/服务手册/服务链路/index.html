@@ -754,7 +754,7 @@ const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i cla
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 function renderBoard(){
-  const rank=e=>e.featured?0:e.status==="done"?2:1;
+  const rank=e=>e.featured?0:e.mystery?1:e.status==="done"?3:2;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
   $("#board").innerHTML=list.map(([id,e])=>{
     if(form!=="all"&&e.col!==form) return "";
