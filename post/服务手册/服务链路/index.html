@@ -25,17 +25,17 @@
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --r:14px;
   --on-accent:#ffffff;
-  --c-booth:#2f5f8f;--c-booth-s:#e3ebf4;--c-invade:#c0582f;--c-invade-s:#f7e6de;--c-orchard:#6b4c9a;--c-orchard-s:#ece6f4;--c-xmas:#b23a3a;--c-xmas-s:#f6e1df;
+  --c-booth:#2f5f8f;--c-booth-s:#e3ebf4;--c-invade:#c0582f;--c-invade-s:#f7e6de;--c-orchard:#6b4c9a;--c-orchard-s:#ece6f4;--c-xmas:#b23a3a;--c-xmas-s:#f6e1df;--c-space:#8a6418;--c-space-s:#f3ead8;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;color-scheme:dark}}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-space:#e0b25c;--c-space-s:#33291a;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;color-scheme:dark}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;--c-space:#e0b25c;--c-space-s:#33291a;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -180,10 +180,10 @@ body.lock{overflow:hidden}
 .sheet .ttl h1{font-size:clamp(28px,4vw,40px);font-weight:900;margin-top:10px;line-height:1.3}
 .sheet .ttl p{color:var(--ink-2);margin-top:8px}
 .fld{display:inline-block;padding:0 6px;margin:0 1px;border-radius:4px;background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--ink);font-weight:500;line-height:1.6}
-.meta{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
-.meta div{padding:12px 14px 12px 0;font-size:13px}
-.meta div span{display:block;color:var(--ink-2);font-size:12px}
-@media (max-width:560px){.meta{grid-template-columns:1fr 1fr}}
+.sheet .meta{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.sheet .meta div{padding:12px 14px 12px 0;font-size:13px}
+.sheet .meta div span{display:block;color:var(--ink-2);font-size:12px}
+@media (max-width:560px){.sheet .meta{grid-template-columns:1fr 1fr}}
 .toc{margin-top:40px;background:var(--bg);border-radius:10px;padding:20px 24px}
 .toc h3{font-size:15px;margin-bottom:8px}
 .toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:32px;font-size:14px}
@@ -263,14 +263,14 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .board-h p{color:var(--ink-2);margin-top:10px;max-width:44em}
 .crumb{font-size:13px;color:var(--ink-2)}
 .crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
 .filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-@media (max-width:980px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.board{grid-template-columns:1fr}}
 .ev{--c:var(--accent);display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;transition:transform .25s,box-shadow .25s,opacity .25s}
-.ev.booth{--c:var(--c-booth)}.ev.invade{--c:var(--c-invade)}.ev.orchard{--c:var(--c-orchard)}.ev.xmas{--c:var(--c-xmas)}
+.ev.booth{--c:var(--c-booth)}.ev.invade{--c:var(--c-invade)}.ev.orchard{--c:var(--c-orchard)}.ev.xmas{--c:var(--c-xmas)}.ev.space{--c:var(--c-space)}
 .ev:hover{transform:translateY(-4px);box-shadow:0 24px 40px -26px color-mix(in srgb,var(--c) 70%,transparent)}
 .ev.dim{opacity:.3}
 .ev .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--muted-chip)}
@@ -282,7 +282,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev .ph .st{position:absolute;right:14px;top:14px;z-index:1;background:rgba(255,255,255,.92);border:0}
 .ev .st.open{color:#1f7a4d}.ev .st.plan{color:#a2671a}.ev .st.done{color:#5b6662}
 .ev .b{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.ev h3{font-size:20px;font-weight:900;line-height:1.35}
+.ev h3{font-size:18px;font-weight:900;line-height:1.35}
 .ev .meta{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .ev .ft{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line)}
 .ev .vals{display:flex;flex-wrap:wrap;gap:6px}
@@ -302,14 +302,32 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev.feat .vals span{background:rgba(255,255,255,.16);color:#fff}
 .ev.feat .cta{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;background:#fff;color:var(--ink);transition:transform .2s}
 .ev.feat:hover .cta{transform:translateX(3px)}
-@media (max-width:980px){.ev.feat{grid-column:1 / -1;min-height:400px}}
+@media (max-width:1100px){.ev.feat{grid-column:1 / -1;min-height:400px}}
 @media (max-width:600px){.ev.feat{min-height:420px}.ev.feat .b{padding:22px}}
+.forms{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:22px}
+@media (max-width:1100px){.forms{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fm{--c:var(--ink);font:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;align-content:start;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:border-color .2s,background .2s}
+.fm.booth{--c:var(--c-booth)}.fm.invade{--c:var(--c-invade)}.fm.orchard{--c:var(--c-orchard)}.fm.space{--c:var(--c-space)}.fm.xmas{--c:var(--c-xmas)}
+.fm b{font-size:14px;display:flex;align-items:center;gap:7px}
+.fm b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.fm.all b::before{display:none}
+.fm small{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.fm span{grid-column:1 / -1;font-size:12px;color:var(--ink-2);line-height:1.5}
+.fm:hover{border-color:color-mix(in srgb,var(--c) 50%,var(--line))}
+.fm.on{background:color-mix(in srgb,var(--c) 10%,var(--surface));border-color:var(--c)}
+.flab{font-size:12px;color:var(--ink-2);margin-right:4px;align-self:center}
+.ev.more{background:var(--accent);border-color:var(--accent);color:var(--on-accent);justify-content:center;padding:26px;gap:12px}
+.ev.more h3{font-size:22px}
+.ev.more p{font-size:14px;opacity:.85}
+.ev.more .go{border-color:currentColor;color:inherit;margin-top:6px}
+.ev.more:hover .go{background:var(--on-accent);color:var(--accent)}
 .st{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 .st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
 .st.done{background:var(--muted-chip);color:var(--ink-2);border:1px solid var(--line)}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin:16px 0 4px}
-.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .board-foot .card{background:var(--accent-soft);border-color:transparent}
 @media (max-width:760px){.board-foot{grid-template-columns:1fr}}
 
@@ -386,10 +404,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div class="mosaic">
             <div><img src="assets/sg-f1.jpg" alt=""><span>展会</span></div>
             <div><img src="assets/invade-market.jpg" alt=""><span>市集</span></div>
-            <div><img src="assets/orchard.jpg" alt=""><span>商圈</span></div>
-            <div><img src="assets/festival.jpg" alt=""><span>节庆</span></div>
+            <div><img src="assets/orchard.jpg" alt=""><span>Pop-up</span></div>
+            <div><img src="assets/popup.jpg" alt=""><span>空间入驻</span></div>
           </div>
-          <div class="yd"><span>4 种场景</span><span>查看 →</span></div>
+          <div class="yd"><span>5 种方式（含节庆）</span><span>查看 →</span></div>
         </a>
         <div class="sg core" role="listitem">
           <span class="en" data-n="03">AFTER</span>
@@ -420,7 +438,8 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="eyebrow t" style="margin-top:14px">On-site testing board</div>
     <h1>实地测试方式</h1>
     <p>每个场景能测的东西不同。先看你想验证什么，再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
-    <div class="filters" role="group" aria-label="按验证目标筛选">
+    <div class="forms" role="group" aria-label="按测试方式筛选" id="forms"></div>
+    <div class="filters" role="group" aria-label="按验证目标筛选"><span class="flab">验证目标</span>
       <button class="on" data-f="all">全部</button>
       <button data-f="消费者">测消费者</button>
       <button data-f="价格">测价格</button>
@@ -434,7 +453,6 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="board-foot">
       <div class="card"><h3>每个场景前后都一样</h3><p>无论选哪种场景，测试前的市场判断和测试后的验证报告、渠道对接都是同一套服务。</p></div>
       <div class="card"><h3>可以组合</h3><p>例如展会拿买手反馈，再接商圈 Pop-up 延续销售，两段数据合并进一份报告。</p></div>
-      <div class="card"><h3>没看到合适的场景？</h3><p>英国、欧洲等其他市场的市集、联合活动可按你的测试目标定制，<a href="#contact">联系我们</a>。</p></div>
     </div>
   </section>
 </main>
@@ -610,9 +628,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 <script>
 const COLS=[
   {id:"booth",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
-  {id:"invade",name:"INVADE 本地市集",desc:"新加坡本地最大的市集网络，轻量测款"},
-  {id:"orchard",name:"乌节路商圈",desc:"核心零售大道，测品牌体验与转化"},
-  {id:"xmas",name:"圣诞节庆",desc:"年末消费高峰，测节日礼品场景"}
+  {id:"invade",name:"本地市集",desc:"INVADE 市集网络，轻量测款测价"},
+  {id:"orchard",name:"Pop-up 快闪",desc:"核心商圈短期开店，测品牌体验与转化"},
+  {id:"space",name:"空间入驻",desc:"进入本地零售空间持续售卖，测动销与渠道"},
+  {id:"xmas",name:"节庆活动",desc:"借节日消费高峰，测礼品场景"}
 ];
 const EVENTS={
   "ev-sg-f1":{featured:true,col:"booth",title:"新加坡站 · F1 Pit Building 国际品牌购物展",short:"新加坡 · F1 Pit Building",img:"sg-f1",img2:"sg-bay",
@@ -642,15 +661,24 @@ const EVENTS={
     timeline:[["测试前","按品类与客群挑选最匹配的市集场次"],["测试中","现场售卖，记录停留、试用、价格反应"],["测试后","多场数据合并对比，找出稳定卖得好的 SKU 和价格"]],
     onsite:["真实售卖，直接面对本地消费者","同一产品可在不同市集反复测，排除偶然","接触本地品牌与主理人"],
     note:"具体场次与日期按年度排期确认，联系我们获取最新排期。"},
-  "ev-orchard":{col:"orchard",title:"乌节路商圈 Pop-up / 零售空间接力",short:"新加坡 · Orchard Road",img:"orchard",img2:"popup",
+  "ev-orchard":{col:"orchard",title:"乌节路商圈 Pop-up 快闪",short:"新加坡 · Orchard Road",img:"orchard",img2:"popup",
     status:"plan",statusText:"筹备中",city:"新加坡 · 乌节路",when:"按项目排期，可接在展会之后",
     vals:["品牌体验","消费者","价格"],
     sub:"乌节路是新加坡最标志性的高端购物大道，也是国际品牌进入新加坡的展示窗口。在这里做短期 Pop-up，测的是品牌体验和持续转化。",
-    facts:[["商圈","ION Orchard、Ngee Ann City、Paragon 等高端物业"],["形式","短期 Pop-up、零售空间入驻、展后接力"],["互补","可搭配武吉士（Bugis）商圈，覆盖大众潮流客群"],["适合","想测品牌陈列与体验、想延续展会销售的品牌"]],
+    facts:[["商圈","ION Orchard、Ngee Ann City、Paragon 等高端物业"],["形式","短期 Pop-up 快闪店，可接在展会之后"],["互补","可搭配武吉士（Bugis）商圈，覆盖大众潮流客群"],["适合","想测品牌陈列与体验、想延续展会销售的品牌"]],
     people:["高净值本地客群","国际游客","对国际品牌敏感的年轻消费者"],
     timeline:[["测试前","确定空间、陈列方案和测试 SKU"],["测试中","连续多天在商圈零售空间展示销售"],["测试后","对比展会与商圈两段数据，判断适合的渠道形态"]],
     onsite:["在核心商业场景建立线下品牌体验","比展会更长的观察周期","接触商场与商业地产方"],
     note:"具体空间、日期与时长待确认。"},
+  "ev-space":{col:"space",title:"本地零售空间入驻",short:"新加坡 · 本地零售空间",img:"popup",
+    status:"plan",statusText:"筹备中",city:"新加坡 · 乌节路 / 武吉士等商圈",when:"按周期入驻，可接在展会或 Pop-up 之后",
+    vals:["消费者","价格","买手"],
+    sub:"把产品放进本地零售空间持续售卖。观察周期比展会和快闪更长，能看到真实动销、复购和店方反馈。",
+    facts:[["空间","本地买手店、Lifestyle Store、商场零售空间"],["商圈","乌节路、武吉士（Bugis）等"],["形式","寄售入驻、店中店、展后空间接力"],["适合","已初步验证，想看持续动销和渠道合作可能的品牌"]],
+    people:["本地日常客流","回头客","店方买手与运营"],
+    timeline:[["测试前","匹配空间，确定陈列、SKU 与结算方式"],["测试中","在零售空间持续销售，定期回收动销数据"],["测试后","根据动销和店方反馈，判断是否转为长期合作"]],
+    onsite:["持续销售，观察复购","拿到店方买手的一手反馈","为长期寄售或批发合作打基础"],
+    note:"具体空间、入驻周期与结算方式按项目确认。"},
   "ev-xmas":{col:"xmas",title:"圣诞节庆主题活动",short:"新加坡 / 泰国 · 年末节庆",img:"festival",img2:"consumer",
     status:"plan",statusText:"筹备中",city:"新加坡 / 泰国",when:"2026 年 12 月，具体日期待公布",
     vals:["消费者","价格","品牌体验"],
@@ -663,17 +691,24 @@ const EVENTS={
 };
 
 const $=s=>document.querySelector(s);
-let filter="all";
+let filter="all",form="all";
 function renderBoard(){
   const rank=e=>e.featured?0:e.status==="done"?2:1;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
   $("#board").innerHTML=list.map(([id,e])=>{
+    if(form!=="all"&&e.col!==form) return "";
     const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&!e.vals.includes(filter);
     const vals=`<div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div>`;
     if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期火热</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="cta">查看活动详情 →</span></div></div></a>`;
     return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
-  }).join("");
+  }).join("")+(form==="all"?`<a class="ev more" href="#contact"><h3>没看到合适的方式？</h3><p>英国、欧洲等其他市场的市集、联合活动可按你的测试目标定制。</p><span class="go" aria-hidden="true">→</span></a>`:"");
 }
+function renderForms(){
+  const n=id=>Object.values(EVENTS).filter(e=>id==="all"||e.col===id).length;
+  $("#forms").innerHTML=[{id:"all",name:"全部方式"},...COLS].map(c=>`<button class="fm ${c.id}${form===c.id?" on":""}" data-form="${c.id}"><b>${c.name}</b><small>${n(c.id)}</small>${c.desc?`<span>${c.desc}</span>`:"<span>5 种测试方式，按目标组合</span>"}</button>`).join("");
+  $("#forms").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{form=b.dataset.form;renderForms();renderBoard();}));
+}
+renderForms();
 document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("on",x===b));
   filter=b.dataset.f;renderBoard();
