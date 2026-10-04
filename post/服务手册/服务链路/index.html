@@ -164,6 +164,10 @@ p{margin:0}
 @media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
 @media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
 
+.bx.side.wide{grid-column:1 / -1;grid-template-columns:minmax(0,.42fr) minmax(0,1fr)}
+.bx.side.wide .dim2{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px}
+.bx.side.wide .dim2>div{grid-template-columns:1fr;gap:4px;border-bottom:1px dashed var(--line)}
+@media (max-width:980px){.bx.side.wide .dim2{grid-template-columns:1fr}}
 .dim2 ul.one{grid-template-columns:1fr}
 .dim2 ul.one li{white-space:normal}
 .bx.big.plan{background:var(--surface)}
@@ -482,7 +486,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         <a class="sg core link" role="listitem" href="#after">
           <span class="en" data-n="03">AFTER</span>
           <h3>测试后<small>把数据变成决定</small></h3>
-          <ul><li>可落地计划报告</li><li>当地品牌交流会</li><li>渠道对接</li></ul>
+          <ul><li>可落地计划报告</li><li>本地专家落地诊断</li><li>品牌交流 · 渠道对接</li></ul>
           <div class="yd"><span class="dots"><em class="g">GO</em><em class="a">ADJUST</em><em class="s">STOP</em></span><span class="more">查看服务 →</span></div>
         </a>
         <div class="sg next" role="listitem">
@@ -592,7 +596,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       <div>
         <p class="crumb"><a href="#home">服务链路</a> / 测试后</p>
         <h1>测试后，<em>把数据变成决定</em></h1>
-        <p class="r">测试结束后，我们把现场数据整理成可执行的计划，再帮你接上当地品牌、买手和推广资源。</p>
+        <p class="r">测试结束后，我们把现场数据整理成计划，请本地专家把关，再帮你接上当地品牌、买手和推广资源。</p>
       </div>
     </section>
 
@@ -613,9 +617,23 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       </article>
 
       <article class="bx side">
+        <div class="ph"><img src="assets/sukoon.jpg" alt="当地零售门店" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>02</i>请专家</span>
+          <h2>本地专家落地诊断</h2>
+          <p class="q">计划在当地真的走得通吗？还差什么？</p>
+          <div class="dim2">
+            <div><b>谁来看</b><ul><li>零售运营</li><li>资深买手</li><li>品牌营销</li><li>物流合规</li></ul></div>
+            <div><b>看什么</b><ul><li>落地可行性</li><li>成本与周期</li><li>风险清单</li><li>优先级</li></ul></div>
+          </div>
+          <div class="out"><span>你拿到</span><b>一份落地可行性诊断</b></div>
+        </div>
+      </article>
+
+      <article class="bx side">
         <div class="ph"><img src="assets/exchange.jpg" alt="GMA 中外品牌交流会现场" loading="lazy"></div>
         <div class="txt">
-          <span class="lab"><i>02</i>找同伴</span>
+          <span class="lab"><i>03</i>找同伴</span>
           <h2>当地品牌交流会</h2>
           <p class="q">和当地品牌坐下来聊，少走弯路。</p>
           <div class="dim2"><div><b>能得到</b><ul><li>经验分享</li><li>联合曝光</li><li>渠道互通</li><li>联名合作</li></ul></div></div>
@@ -623,14 +641,14 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         </div>
       </article>
 
-      <article class="bx side">
+      <article class="bx side wide">
         <div class="ph"><img src="assets/buyer.jpg" alt="买手现场洽谈" loading="lazy"></div>
         <div class="txt">
-          <span class="lab"><i>03</i>接渠道</span>
+          <span class="lab"><i>04</i>接渠道</span>
           <h2>渠道对接</h2>
           <p class="q">买手从哪来？怎么谈？怎么被看见？</p>
           <div class="dim2">
-            <div><b>买手资源</b><ul class="one"><li>INVADE 1 万+ 合作商家网络</li><li>新加坡零售协会 SRA 会员零售商</li><li>本地精品店、Lifestyle Store、区域分销商</li></ul></div>
+            <div><b>买手资源</b><ul class="one"><li>本地 1 万+ 合作商家网络</li><li>新加坡零售协会 SRA 会员零售商</li><li>本地精品店、Lifestyle Store、区域分销商</li></ul></div>
             <div><b>商务洽谈</b><ul class="one"><li>一对一商务洽谈，按品类预约</li></ul></div>
             <div><b>KOL 推广</b><ul class="one"><li>当地 KOL 初步推广与内容露出</li></ul></div>
           </div>
