@@ -279,6 +279,8 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .board-h{padding-block:44px 22px}
 .board-h h1{font-size:clamp(26px,4vw,40px);font-weight:900;margin-top:8px}
 .board-h p{color:var(--ink-2);margin-top:10px;max-width:44em}
+.board-h p.one{max-width:none;white-space:nowrap}
+@media (max-width:1000px){.board-h p.one{white-space:normal}}
 .crumb{font-size:13px;color:var(--ink-2)}
 .crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
 .board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -476,7 +478,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <p class="crumb"><a href="#home">服务链路</a> / 实地测试方式</p>
     <div class="eyebrow t" style="margin-top:14px">On-site testing board</div>
     <h1>实地测试方式</h1>
-    <p>每个场景能测的东西不同。先看你想验证什么，再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
+    <p class="one">每个场景能测的东西不同，先看你想验证什么再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
     <div class="ctl">
       <div class="forms" role="group" aria-label="按测试方式筛选" id="forms"></div>
       <div class="filters" role="group" aria-label="按验证目标筛选"><span class="flab">验证目标：</span>
@@ -672,7 +674,7 @@ const COLS=[
   {id:"invade",name:"本地市集",desc:"INVADE 市集网络，轻量测款测价"},
   {id:"orchard",name:"闪卖店",desc:"商圈快闪或零售空间慢闪，测品牌体验与动销"},
   {id:"xmas",name:"节庆活动",desc:"借节日消费高峰，测礼品场景"},
-  {id:"theme",name:"限定主题",desc:"邀请制 · 仅限会员品牌，主题揭晓前保密"}
+  {id:"theme",name:"GMA 限定主题",desc:"邀请制 · 仅限会员品牌，主题揭晓前保密"}
 ];
 const EVENTS={
   "ev-sg-f1":{featured:true,col:"booth",title:"新加坡站 · F1 Pit Building 国际品牌购物展",short:"新加坡 · F1 Pit Building",img:"sg-f1",img2:"sg-bay",
@@ -738,7 +740,7 @@ const EVENTS={
     timeline:[["测试前","设计新春礼盒与陈列，制定节日价"],["测试中","节庆场景售卖与观察"],["测试后","评估节庆品类是否值得长期做"]],
     onsite:["进入高流量新春场景","文化元素直接面对本地消费者","测试礼盒与节日定价"],
     note:"场地与日期待公布。"},
-  "ev-theme":{col:"theme",mystery:true,invite:true,hints:["AI？","冬日？","……？"],title:"限定主题 · 会员邀请场",short:"限定主题 · 仅限邀请",img:"",
+  "ev-theme":{col:"theme",mystery:true,invite:true,hints:["AI？","冬日？","……？"],title:"GMA 限定主题 · 会员邀请场",short:"GMA 限定主题 · 仅限邀请",img:"",
     status:"invite",statusText:"仅限邀请 / 会员品牌",city:"地点待揭晓",when:"主题与时间揭晓前保密",
     vals:["消费者","品牌体验","买手"],
     sub:"不公开招募。每期围绕一个限定主题，只邀请 GMA 会员品牌和经过筛选的品牌参与，主题揭晓前保密。可能的方向有 AI、冬日等。",
@@ -753,7 +755,7 @@ const $=s=>document.querySelector(s);
 let filter="all",form="all";
 const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i class="snow"></i><div class="tree"><span></span><span></span><span></span><b></b></div><div class="xt"><small>CHRISTMAS</small><b>Merry<br>Market</b></div></div>`;
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
-const mysBox=e=>`<div class="mys" role="img" aria-label="限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
+const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 function renderBoard(){
   const rank=e=>e.featured?0:e.mystery?1:e.status==="done"?3:2;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
