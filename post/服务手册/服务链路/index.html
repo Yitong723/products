@@ -110,7 +110,8 @@ p{margin:0}
 .bf-hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:24px}
 .bf-hero h1{font-size:clamp(32px,4.6vw,50px);font-weight:900;margin-top:12px;letter-spacing:.01em}
 .bf-hero h1 em{font-style:normal;color:var(--accent)}
-.bf-hero .r{max-width:24em;padding-bottom:8px;color:var(--ink-2);font-size:15px}
+.bf-hero .r{margin-top:10px;color:var(--ink-2);font-size:16px;white-space:nowrap}
+@media (max-width:760px){.bf-hero .r{white-space:normal}}
 
 .bento{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px}
 .bx{background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;min-width:0;position:relative}
@@ -504,8 +505,8 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       <div>
         <p class="crumb"><a href="#home">服务链路</a> / 测试前</p>
         <h1>测试前，<em>把方向判断清楚</em></h1>
+        <p class="r">下场之前，从数据、本地用户、本地同行三个来源看清市场，三项服务可单独选，也可组合。</p>
       </div>
-      <p class="r">下场之前，从数据、本地用户、本地同行三个来源看清市场。三项服务可单独选，也可组合。</p>
     </section>
 
     <div class="bento">
