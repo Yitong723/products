@@ -65,46 +65,67 @@ p{margin:0}
 .page.on{display:block}
 
 /* ========== 首页：一张服务链路图 ========== */
-.home{padding-block:56px 40px;min-height:calc(100vh - 58px);display:flex;flex-direction:column}
-.home-h{text-align:left}
-.home-h h1{font-size:clamp(32px,5vw,52px);font-weight:900;margin-top:10px}
+.home{padding-block:48px 56px;position:relative}
+.home::before{content:"";position:absolute;inset:0 -100vw;z-index:-1;background-image:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000 0,transparent 70%);mask-image:linear-gradient(180deg,#000 0,transparent 70%)}
+.home-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.home-h h1{font-size:clamp(34px,5.4vw,58px);font-weight:900;margin-top:10px;letter-spacing:.02em}
 .home-h h1 em{font-style:normal;color:var(--accent)}
-.home-h p{margin-top:12px;font-size:17px;color:var(--ink-2)}
+.home-h p{font-size:17px;color:var(--ink-2);padding-bottom:10px}
+.home-h p b{color:var(--ink);font-weight:700}
 
-.rail{margin-top:48px;position:relative;display:grid;grid-template-columns:1.25fr .9fr 1.25fr .8fr;gap:22px;align-items:start}
-.rail::before{content:"";position:absolute;left:4%;right:6%;top:58px;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 10px,transparent 10px 16px);z-index:0}
-.stn{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;text-decoration:none;color:var(--ink)}
-.disc{width:116px;height:116px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:2px;background:var(--bg)}
-.disc b{font-family:var(--f-display);font-size:24px;font-weight:900;line-height:1.1}
-.disc small{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em}
-.stn.core .disc{width:136px;height:136px;margin-top:-10px;background:var(--accent);color:var(--on-accent);box-shadow:0 0 0 8px var(--bg),0 14px 30px -12px var(--accent)}
-.stn.core .disc b{font-size:28px}
-.stn.mid .disc{border:2px dashed var(--test);color:var(--test);background:var(--test-soft);box-shadow:0 0 0 8px var(--bg);transition:transform .2s}
-.stn.mid:hover .disc{transform:scale(1.05)}
-.stn.next .disc{border:2px solid var(--line);color:var(--ink-2);box-shadow:0 0 0 8px var(--bg)}
-.stn.next .disc b{font-size:20px}
-.kw{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:240px}
-.kw span{font-size:14px;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
-.stn.core .kw span{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
-.stn.mid .kw span{font-size:13px;background:transparent;border-style:dashed;border-color:var(--test);color:var(--test)}
-.yield{font-size:14px;font-weight:700;color:var(--accent)}
-.yield::before{content:"↳ "}
-.stn.mid .yield{color:var(--test)}
-.stn.mid .yield::before{content:""}
-.rail-foot{margin-top:auto;padding-top:48px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);margin-bottom:0}
+.flow{margin-top:36px;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--accent) 45%,transparent)}
+.track{display:grid;grid-template-columns:1.2fr .95fr 1.2fr .8fr;gap:18px;position:relative;margin-bottom:18px}
+.track::before{content:"";position:absolute;left:14px;right:14px;top:13px;height:2px;background:linear-gradient(90deg,var(--accent) 0 30%,var(--test) 30% 52%,var(--accent) 52% 78%,var(--line) 78%)}
+.tk{position:relative;display:flex;align-items:center;gap:0;font-size:13px;font-weight:700;color:var(--ink-2)}
+.tk i{font-style:normal;flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:12px;background:var(--accent);color:var(--on-accent);box-shadow:0 0 0 5px var(--surface)}
+.tk.t i{background:var(--test-soft);color:var(--test);border:1.5px dashed var(--test)}
+.tk.n i{background:var(--surface);color:var(--ink-2);border:1.5px solid var(--line)}
+.tk span{background:var(--surface);padding:0 10px}
+
+.stages{display:grid;grid-template-columns:1.2fr .95fr 1.2fr .8fr;gap:18px;align-items:stretch}
+.sg{border-radius:20px;padding:24px 22px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;text-decoration:none;color:var(--ink)}
+.sg .en{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;opacity:.75}
+.sg h3{font-size:28px;font-weight:900;line-height:1.15}
+.sg h3 small{display:block;font-family:var(--f-body);font-size:14px;font-weight:500;opacity:.8;margin-top:6px}
+.sg ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.sg li{display:flex;align-items:center;gap:10px;font-size:15px}
+.sg li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:color-mix(in srgb,currentColor 16%,transparent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.2l2.6 2.6L13 6.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.sg .yd{margin-top:auto;padding-top:14px;border-top:1px solid color-mix(in srgb,currentColor 22%,transparent);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+.sg .yd b{font-size:15px}
+.sg.core{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff) 0%,var(--accent) 55%,color-mix(in srgb,var(--accent) 80%,#000) 100%);color:var(--on-accent)}
+.dots{display:flex;gap:6px;align-items:center;font-family:var(--f-mono);font-size:12px;font-weight:500}
+.dots em{font-style:normal;display:inline-flex;align-items:center;gap:4px}
+.dots em::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.dots .g::before{background:#6fd3a0}.dots .a::before{background:#f2c46b}.dots .s::before{background:#f2928a}
+
+.sg.mid{background:var(--test-soft);border:1.5px dashed color-mix(in srgb,var(--test) 60%,transparent);padding:20px 18px 18px;transition:transform .25s,box-shadow .25s}
+.sg.mid:hover{transform:translateY(-4px);box-shadow:0 18px 30px -20px var(--test)}
+.sg.mid .en,.sg.mid h3{color:var(--test)}
+.sg.mid h3{font-size:22px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mosaic div{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden}
+.mosaic img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(.95);opacity:.85;transition:filter .3s,opacity .3s}
+.sg.mid:hover .mosaic img{filter:none;opacity:1}
+.mosaic span{position:absolute;left:6px;bottom:6px;font-size:12px;font-weight:700;color:#fff;background:rgba(20,20,20,.55);padding:1px 8px;border-radius:999px}
+.sg.mid .yd{color:var(--test);font-weight:700}
+
+.sg.next{background:var(--bg);border:1px solid var(--line)}
+.sg.next h3{font-size:22px}
+.sg.next li::before{background-color:var(--accent-soft);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.2l2.6 2.6L13 6.4' fill='none' stroke='%230d5c55' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.sg.next .yd{color:var(--ink-2)}
+
+.rail-foot{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:4px 6px 0}
 .rail-foot p{font-size:14px;color:var(--ink-2);min-width:0;overflow-wrap:anywhere}
 .rail-foot p b{color:var(--ink)}
-@media (max-width:860px){
-  .home{min-height:0}
-  .rail{grid-template-columns:1fr;gap:28px;justify-items:start}
-  .rail::before{left:57px;right:auto;top:20px;bottom:20px;width:3px;height:auto;background:repeating-linear-gradient(180deg,var(--line) 0 10px,transparent 10px 16px)}
-  .stn{flex-direction:row;text-align:left;align-items:center;gap:18px}
-  .stn>div:not(.disc){display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-  .kw{justify-content:flex-start}
-  .disc,.stn.core .disc,.stn.next .disc,.stn.mid .disc{flex:none;width:116px;height:116px;margin-top:0}
-  .stn.core .disc b{font-size:24px}
+
+@media (max-width:900px){
+  .flow{padding:18px;border-radius:22px}
+  .track{display:none}
+  .stages{grid-template-columns:1fr;gap:12px}
+  .sg .en::before{content:attr(data-n) "  ";}
+  .mosaic{grid-template-columns:repeat(4,1fr)}
 }
-@media (max-width:420px){.disc,.stn.core .disc,.stn.next .disc,.stn.mid .disc{width:96px;height:96px}.disc b,.stn.core .disc b{font-size:20px}.rail::before{left:47px}}
+@media (max-width:480px){.mosaic{grid-template-columns:1fr 1fr}.sg h3{font-size:24px}}
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
 .card h3{font-size:18px;margin-bottom:8px}
@@ -212,37 +233,49 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 <main class="page" id="p-home">
   <section class="wrap home">
     <div class="home-h">
-      <div class="eyebrow">GMA 服务链路</div>
-      <h1>先验证，<em>再投入</em></h1>
-      <p>测试前帮你判断，测试后帮你决定。</p>
+      <div>
+        <div class="eyebrow">GMA 服务链路</div>
+        <h1>先验证，<em>再投入</em></h1>
+      </div>
+      <p>测试前帮你<b>判断</b>，测试后帮你<b>决定</b>。</p>
     </div>
 
-    <div class="rail" role="list" aria-label="GMA 服务链路">
-      <div class="stn core" role="listitem">
-        <div class="disc"><small>BEFORE</small><b>测试前</b></div>
-        <div>
-          <div class="kw"><span>市场扫描</span><span>产品本地化</span><span>预热 · 约买手</span></div>
-          <p class="yield">测试方案</p>
-        </div>
+    <div class="flow">
+      <div class="track" aria-hidden="true">
+        <div class="tk"><i>01</i><span>判断</span></div>
+        <div class="tk t"><i>02</i><span>取数据</span></div>
+        <div class="tk"><i>03</i><span>决定</span></div>
+        <div class="tk n"><i>04</i><span>延伸</span></div>
       </div>
-      <a class="stn mid" role="listitem" href="#tests">
-        <div class="disc"><small>ON-SITE</small><b>实地测试</b></div>
-        <div>
-          <div class="kw"><span>展会</span><span>市集</span><span>商圈</span><span>节庆</span></div>
-          <p class="yield">查看测试场景 →</p>
+      <div class="stages" role="list" aria-label="GMA 服务链路">
+        <div class="sg core" role="listitem">
+          <span class="en" data-n="01">BEFORE</span>
+          <h3>测试前<small>把方向判断清楚</small></h3>
+          <ul><li>市场扫描</li><li>产品本地化</li><li>预热 · 约买手</li></ul>
+          <div class="yd"><span>产出</span><b>测试方案</b></div>
         </div>
-      </a>
-      <div class="stn core" role="listitem">
-        <div class="disc"><small>AFTER</small><b>测试后</b></div>
-        <div>
-          <div class="kw"><span>验证报告</span><span>渠道对接</span><span>资源库</span></div>
-          <p class="yield">GO · ADJUST · STOP</p>
+        <a class="sg mid" role="listitem" href="#tests">
+          <span class="en" data-n="02">ON-SITE</span>
+          <h3>实地测试</h3>
+          <div class="mosaic">
+            <div><img src="assets/sg-f1.jpg" alt=""><span>展会</span></div>
+            <div><img src="assets/invade-market.jpg" alt=""><span>市集</span></div>
+            <div><img src="assets/orchard.jpg" alt=""><span>商圈</span></div>
+            <div><img src="assets/festival.jpg" alt=""><span>节庆</span></div>
+          </div>
+          <div class="yd"><span>4 种场景</span><span>查看 →</span></div>
+        </a>
+        <div class="sg core" role="listitem">
+          <span class="en" data-n="03">AFTER</span>
+          <h3>测试后<small>把数据变成决定</small></h3>
+          <ul><li>验证报告</li><li>渠道对接</li><li>GMA 资源库</li></ul>
+          <div class="yd"><span>产出</span><span class="dots"><em class="g">GO</em><em class="a">ADJUST</em><em class="s">STOP</em></span></div>
         </div>
-      </div>
-      <div class="stn next" role="listitem">
-        <div class="disc"><small>NEXT</small><b>进入 · 增长</b></div>
-        <div>
-          <div class="kw"><span>渠道落地</span><span>本地运营</span></div>
+        <div class="sg next" role="listitem">
+          <span class="en" data-n="04">NEXT</span>
+          <h3>进入 · 增长</h3>
+          <ul><li>渠道落地</li><li>本地运营</li></ul>
+          <div class="yd"><span>按需继续</span></div>
         </div>
       </div>
     </div>
