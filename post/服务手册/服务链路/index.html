@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GMA 出海服务链路</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 布局：首页 = 一条横向服务链路（测试前 / 实地测试 / 测试后），测试前后做大，中间的实地测试做窄、做成通往看板的入口 */
+:root{
+  --bg:#f3f5f2;          /* 偏绿的冷纸白 */
+  --surface:#ffffff;
+  --ink:#16201d;
+  --ink-2:#47534f;
+  --line:#d5dcd7;
+  --accent:#0d5c55;      /* 深青：测试前 / 测试后 两大服务 */
+  --accent-soft:#e1eeea;
+  --test:#8a6a2f;        /* 暗金：实地测试（场景，刻意弱化） */
+  --test-soft:#f1ebdf;
+  --ok:#1f7a4d; --warn:#a2671a; --stop:#a33a32; --muted-chip:#e8ebe8;
+  --f-display:"Noto Serif SC","Songti SC",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:14px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
+  --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
+  --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.eyebrow.t{color:var(--test)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* 顶栏 */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:58px}
+.brand{font-family:var(--f-display);font-weight:900;font-size:18px;text-decoration:none;letter-spacing:.02em}
+.brand small{font-family:var(--f-body);font-weight:500;font-size:12px;color:var(--ink-2);margin-left:8px;letter-spacing:0}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;color:var(--ink-2)}
+.nav a:hover{background:var(--muted-chip);color:var(--ink)}
+.nav a.on{background:var(--ink);color:var(--bg)}
+@media (max-width:560px){.brand small{display:none}.nav a{padding:6px 9px;font-size:13px}}
+
+.page{display:none}
+.page.on{display:block}
+
+/* ========== 首页 HERO ========== */
+.hero{padding-block:56px 28px}
+.hero h1{font-size:clamp(30px,5.2vw,54px);font-weight:900;letter-spacing:.01em;max-width:16em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{margin-top:16px;font-size:17px;color:var(--ink-2);max-width:40em}
+
+/* 服务链路 */
+.chain{margin-top:36px;display:grid;grid-template-columns:minmax(0,1.3fr) 40px minmax(0,.78fr) 40px minmax(0,1.3fr) 30px minmax(0,.72fr);align-items:stretch}
+.node{border-radius:var(--r);padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;text-decoration:none}
+.node.big{background:var(--accent);color:#fff}
+:root[data-theme="dark"] .node.big{color:#0b1a17}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .node.big{color:#0b1a17}}
+.node .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;opacity:.8}
+.node h3{font-size:24px;font-weight:900}
+.node ul{margin:2px 0 0;padding:0;list-style:none;display:grid;gap:5px;font-size:14px}
+.node li{display:flex;gap:8px}
+.node li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55;margin-top:.62em}
+.node .out{margin-top:auto;padding-top:12px;border-top:1px solid color-mix(in srgb,currentColor 30%,transparent);font-size:13px}
+.node .out b{display:block;font-size:15px}
+.node.mid{background:var(--test-soft);color:var(--ink);border:1.5px dashed var(--test);align-items:flex-start;justify-content:center;transition:transform .2s,box-shadow .2s}
+.node.mid:hover{transform:translateY(-3px);box-shadow:0 10px 24px -14px var(--test)}
+.node.mid h3{font-size:18px;white-space:nowrap;color:var(--test)}
+.node.mid p{font-size:13px;color:var(--ink-2)}
+.node.mid .go{margin-top:6px;font-size:13px;font-weight:700;color:var(--test)}
+.node.next{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.node.next h3{font-size:18px}
+.node.next p{font-size:13px;color:var(--ink-2)}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
+.arrow svg{width:100%;height:20px}
+.chain-note{margin-top:14px;font-size:13px;color:var(--ink-2)}
+.chain-note b{color:var(--ink)}
+@media (max-width:900px){
+  .chain{grid-template-columns:1fr;gap:0}
+  .arrow{height:30px}.arrow svg{transform:rotate(90deg);width:20px}
+}
+
+/* 通用段落 */
+.sec{padding-block:64px;border-top:1px solid var(--line)}
+.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;align-items:end;margin-bottom:32px}
+.sec-h h2{font-size:clamp(24px,3.4vw,36px);font-weight:900;margin-top:8px}
+.sec-h p{color:var(--ink-2)}
+@media (max-width:760px){.sec-h{grid-template-columns:1fr;gap:10px}}
+
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:900px){.g3,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.g3,.g2,.g5{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p,.card li{font-size:14px;color:var(--ink-2)}
+.card ul{margin:6px 0 0;padding-left:18px}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+
+/* 测试前：步骤 */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.step{counter-increment:s;position:relative;padding-top:44px}
+.step::before{content:counter(s,decimal-leading-zero);position:absolute;left:20px;top:16px;font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.deliver{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--accent-soft);border-radius:var(--r);padding:16px 20px}
+.deliver b{font-family:var(--f-display);font-size:16px;margin-right:6px}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
+.formula span{background:var(--surface);border:1px solid var(--line);padding:3px 10px;border-radius:8px}
+
+/* 中间：实地测试带 */
+.testband{background:var(--test-soft);border-block:1px dashed var(--test);padding-block:44px}
+.testband .inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:32px;align-items:center}
+.testband h2{font-size:clamp(22px,3vw,30px);font-weight:900;margin-top:8px}
+.testband p.d{color:var(--ink-2);margin-top:10px;font-size:14px}
+.scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.scene{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;transition:border-color .2s}
+.scene:hover{border-color:var(--test)}
+.scene b{font-size:15px;display:block}
+.scene small{font-size:12px;color:var(--ink-2)}
+.scene .ico{flex:none;width:36px;height:36px;border-radius:10px;background:var(--test-soft);color:var(--test);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;text-decoration:none;padding:11px 20px;border-radius:999px;background:var(--ink);color:var(--bg);border:0;cursor:pointer}
+.btn.t{background:var(--test);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.dual{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px}
+.dual div{background:var(--surface);border-radius:10px;padding:10px 12px;color:var(--ink-2)}
+.dual b{color:var(--ink);display:block;font-size:14px}
+@media (max-width:760px){.testband .inner{grid-template-columns:1fr}.scenes{grid-template-columns:1fr}}
+
+/* 测试后：报告五问 + 决策 */
+.q5 .card{padding:18px}
+.q5 .en{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--accent)}
+.q5 h3{font-size:20px;margin:4px 0 6px}
+.decide{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dc{border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--surface)}
+.dc b{font-family:var(--f-mono);font-size:15px;letter-spacing:.06em;display:block}
+.dc.go b{color:var(--ok)}.dc.ad b{color:var(--warn)}.dc.st b{color:var(--stop)}
+.dc span{font-size:14px;color:var(--ink-2)}
+@media (max-width:560px){.decide{grid-template-columns:1fr}}
+.after-row{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
+.after-row .ph{border-radius:var(--r);overflow:hidden;min-height:220px;background:var(--muted-chip)}
+.after-row .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.after-row{grid-template-columns:1fr}}
+
+/* 延伸 进入 / 增长 */
+.ext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ext .card h3{display:flex;gap:10px;align-items:baseline}
+.ext .card h3 small{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:500}
+@media (max-width:760px){.ext{grid-template-columns:1fr}}
+
+/* 证据 */
+.proof{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.logos div{background:#fff;border-radius:10px;height:64px;display:grid;place-items:center;padding:10px;border:1px solid var(--line)}
+.logos img{max-height:40px;width:auto}
+.case{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:start}
+.case img{border-radius:10px;aspect-ratio:3/4;object-fit:cover;width:100%}
+.stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px}
+.stats div{font-size:12px;color:var(--ink-2)}
+.stats b{display:block;font-family:var(--f-display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+@media (max-width:760px){.proof{grid-template-columns:1fr}}
+@media (max-width:420px){.case{grid-template-columns:1fr}.case img{max-width:180px}}
+
+/* 联系 */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;background:var(--ink);color:var(--bg);border-radius:20px;padding:32px}
+.contact h2{font-size:clamp(22px,3vw,30px)}
+.contact p{opacity:.8;margin-top:8px;font-size:14px}
+.contact .qr{background:#fff;border-radius:12px;padding:8px;width:136px}
+.contact .mail{margin-top:14px;font-size:13px;opacity:.85;user-select:all}
+@media (max-width:600px){.contact{grid-template-columns:1fr;padding:24px}}
+footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:center}
+
+/* ========== 看板 ========== */
+.board-h{padding-block:44px 22px}
+.board-h h1{font-size:clamp(26px,4vw,40px);font-weight:900;margin-top:8px}
+.board-h p{color:var(--ink-2);margin-top:10px;max-width:44em}
+.crumb{font-size:13px;color:var(--ink-2)}
+.crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.board{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:14px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
+.col{background:var(--muted-chip);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:12px;scroll-snap-align:start;min-width:0}
+.col-h{display:flex;justify-content:space-between;align-items:baseline;padding:4px 6px 2px}
+.col-h b{font-size:15px}
+.col-h small{font-size:12px;color:var(--ink-2)}
+.col-d{font-size:12px;color:var(--ink-2);padding:0 6px}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.ev:hover{transform:translateY(-2px);box-shadow:0 12px 24px -16px rgba(0,0,0,.4)}
+.ev.dim{opacity:.35}
+.ev .img{aspect-ratio:16/9;background:var(--muted-chip);overflow:hidden}
+.ev .img img{width:100%;height:100%;object-fit:cover}
+.ev .b{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.ev h3{font-family:var(--f-body);font-size:15px;font-weight:700;line-height:1.4}
+.ev .meta{font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.ev .vals{display:flex;flex-wrap:wrap;gap:4px}
+.ev .vals span{font-size:11px;padding:1px 7px;border-radius:6px;background:var(--test-soft);color:var(--test)}
+.st{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.st.done{background:var(--muted-chip);color:var(--ink-2);border:1px solid var(--line)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin:16px 0 4px}
+.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.board-foot .card{background:var(--accent-soft);border-color:transparent}
+@media (max-width:760px){.board-foot{grid-template-columns:1fr}}
+
+/* ========== 详情 ========== */
+.dt-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;padding-block:36px 28px;align-items:center}
+.dt-hero h1{font-size:clamp(26px,4vw,40px);font-weight:900;margin:10px 0 12px}
+.dt-hero .sub{color:var(--ink-2)}
+.dt-hero .ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--muted-chip)}
+.dt-hero .ph img{width:100%;height:100%;object-fit:cover}
+.facts{margin-top:18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;font-size:14px}
+.facts dt{color:var(--ink-2)}
+.facts dd{margin:0;font-weight:500}
+@media (max-width:760px){.dt-hero{grid-template-columns:1fr}}
+.dt-sec{padding-block:36px;border-top:1px solid var(--line)}
+.dt-sec h2{font-size:22px;font-weight:900;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:14px;padding:6px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.timeline div{position:relative;padding:0 0 16px 20px;font-size:14px}
+.timeline div::before{content:"";position:absolute;left:-7px;top:.5em;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--test)}
+.timeline b{display:block}
+.timeline span{color:var(--ink-2)}
+.wedo{display:grid;grid-template-columns:1fr .7fr 1fr;gap:12px}
+.wedo .card.pre,.wedo .card.post{border-top:4px solid var(--accent)}
+.wedo .card.on{background:var(--test-soft);border-color:transparent;border-top:4px dashed var(--test)}
+.wedo .card .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;color:var(--accent)}
+.wedo .card.on .k{color:var(--test)}
+@media (max-width:760px){.wedo{grid-template-columns:1fr}}
+.note{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--ink)}
+.dt-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:28px 56px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">GMA<small>Global Market Accelerator</small></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#home" data-nav="home">服务链路</a>
+      <a href="#tests" data-nav="tests">实地测试方式</a>
+      <a href="#contact" data-nav="contact">联系我们</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= 首页 ================= -->
+<main class="page" id="p-home">
+  <section class="hero wrap">
+    <div class="eyebrow">Validate · Enter · Grow</div>
+    <h1>进入海外市场之前，<em>先拿到真实答案</em>。</h1>
+    <p class="lede">我们帮中国品牌在测试前做判断、在测试后做决定。中间那一次线下实地测试，只是取得数据的方式。</p>
+
+    <div class="chain" role="list" aria-label="GMA 服务链路">
+      <div class="node big" role="listitem">
+        <span class="k">BEFORE · 测试前</span>
+        <h3>市场判断与准备</h3>
+        <ul>
+          <li>目标市场扫描：竞品、价格带、消费者、渠道</li>
+          <li>产品本地化：卖点、SKU 组合、当地币定价</li>
+          <li>合规、物流清关、出行布展指引</li>
+          <li>本地社媒预热，提前约好买手</li>
+        </ul>
+        <div class="out"><b>你拿到：一份测试方案</b>测什么产品、什么价格、给谁看、在哪个场景</div>
+      </div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 44 20"><path d="M2 10h36m-7-6 7 6-7 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+      <a class="node mid" role="listitem" href="#tests">
+        <span class="eyebrow t">ON-SITE</span>
+        <h3>实地测试方式</h3>
+        <p>展会 Booth、本地市集、商圈 Pop-up、节庆活动，按测试目标选。</p>
+        <span class="go">查看测试场景 →</span>
+      </a>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 44 20"><path d="M2 10h36m-7-6 7 6-7 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+      <div class="node big" role="listitem">
+        <span class="k">AFTER · 测试后</span>
+        <h3>验证决策与渠道落地</h3>
+        <ul>
+          <li>《市场验证报告》：谁买、卖什么、卖多少钱、在哪卖</li>
+          <li>GO / ADJUST / STOP 明确建议</li>
+          <li>匹配本地买手、零售商，安排洽谈</li>
+          <li>进入 GMA 资源库，后续机会持续对接</li>
+        </ul>
+        <div class="out"><b>你拿到：一个能拍板的决定</b>继续进、调整再测，还是及时止损</div>
+      </div>
+      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 20"><path d="M2 10h22m-6-5 6 5-6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/></svg></div>
+      <a class="node next" role="listitem" href="#extend">
+        <span class="eyebrow">NEXT</span>
+        <h3>进入 · 增长</h3>
+        <p>验证成立后，继续做渠道落地和本地运营。</p>
+      </a>
+    </div>
+    <p class="chain-note">你付费买到的是 <b>测试前的判断</b> 和 <b>测试后的决定</b>，场地只是工具。</p>
+  </section>
+
+  <!-- 测试前 -->
+  <section class="sec" id="before">
+    <div class="wrap">
+      <div class="sec-h">
+        <div><div class="eyebrow">Before · 测试前</div><h2>先替你把方向判断清楚</h2></div>
+        <p>很多品牌一上来就订展位、发货，到了现场才发现价格、卖点和人群都没对上。测试前这一段，决定了这次测试能不能拿到有用的答案。</p>
+      </div>
+      <div class="steps">
+        <div class="card step">
+          <h3>市场扫描</h3>
+          <ul>
+            <li>竞品格局：当地已经有谁、卖什么、怎么卖</li>
+            <li>主流价格带与成交区间</li>
+            <li>消费者特征：谁在买、为什么买</li>
+            <li>渠道结构：买手店、百货、Lifestyle Store、电商</li>
+            <li>你的品牌放进去，站在什么位置</li>
+          </ul>
+        </div>
+        <div class="card step">
+          <h3>本地化准备</h3>
+          <ul>
+            <li>卖点梳理，按当地语境重写</li>
+            <li>挑选测试 SKU，搭配产品组合</li>
+            <li>当地币定价建议（如新币、泰铢）</li>
+            <li>准入与产品合规排查</li>
+            <li>物流清关、出行、布展全套指引</li>
+          </ul>
+        </div>
+        <div class="card step">
+          <h3>预热与预约</h3>
+          <ul>
+            <li>本地社媒内容发布，拿到第一轮线上兴趣反馈</li>
+            <li>对接媒体与本地 KOL，提前露出</li>
+            <li>匹配对口采购商名单</li>
+            <li>预先排好现场一对一洽谈时段</li>
+          </ul>
+        </div>
+      </div>
+      <div class="deliver">
+        <b>测试前交付</b>
+        <div class="formula"><span>测什么产品</span>×<span>什么价格</span>×<span>给什么人</span>×<span>在什么场景</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 中间：实地测试方式 -->
+  <section class="testband">
+    <div class="wrap inner">
+      <div>
+        <div class="eyebrow t">On-site · 实地测试方式</div>
+        <h2>把产品放进当地真实的消费场景</h2>
+        <p class="d">按测试目标选场景：想测消费者就去市集和节庆，想见买手就进展会商贸场，想测品牌体验就做商圈 Pop-up。一次测试可以组合多个场景。</p>
+        <div class="dual">
+          <div><b>消费者端</b>谁停下、哪个 SKU 卖得好、什么价格成交、为什么没买</div>
+          <div><b>渠道端</b>买手兴趣、定位反馈、利润空间、进入门槛</div>
+        </div>
+        <p style="margin-top:20px"><a class="btn t" href="#tests">打开测试场景看板 →</a></p>
+      </div>
+      <div class="scenes">
+        <a class="scene" href="#tests"><span class="ico">展</span><span><b>展会 Booth</b><small>新加坡 F1 · 泰国 ICONSIAM</small></span></a>
+        <a class="scene" href="#ev-invade"><span class="ico">集</span><span><b>INVADE 本地市集</b><small>Artbox · Makers' Market 等</small></span></a>
+        <a class="scene" href="#ev-orchard"><span class="ico">铺</span><span><b>乌节路商圈 Pop-up</b><small>新加坡核心零售大道</small></span></a>
+        <a class="scene" href="#ev-xmas"><span class="ico">节</span><span><b>圣诞节庆活动</b><small>年末消费高峰</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 测试后 -->
+  <section class="sec" id="after">
+    <div class="wrap">
+      <div class="sec-h">
+        <div><div class="eyebrow">After · 测试后</div><h2>把现场数据变成一个决定</h2></div>
+        <p>测试跑完，我们不只告诉你卖了多少。《市场验证报告》回答五个问题，最后给出明确建议，包括建议你停下来。</p>
+      </div>
+      <div class="grid g5 q5">
+        <div class="card"><div class="en">TARGET</div><h3>谁会买？</h3><p>最容易产生真实购买的核心人群</p></div>
+        <div class="card"><div class="en">HERO SKU</div><h3>卖什么？</h3><p>最适合做市场切入口的产品</p></div>
+        <div class="card"><div class="en">PRICING</div><h3>卖多少钱？</h3><p>结合接受度、渠道利润、物流成本定价格带</p></div>
+        <div class="card"><div class="en">CHANNEL FIT</div><h3>在哪里卖？</h3><p>买手店、百货、Lifestyle Store 还是电商</p></div>
+        <div class="card"><div class="en">NEXT</div><h3>下一步？</h3><p>怎么调整、追加，还是何时停止</p></div>
+      </div>
+      <div class="decide">
+        <div class="dc go"><b>GO</b><span>市场信号成立，进入下一阶段</span></div>
+        <div class="dc ad"><b>ADJUST</b><span>调整产品、价格、包装或定位后再测</span></div>
+        <div class="dc st"><b>STOP</b><span>暂停投入，避免更大的预算浪费</span></div>
+      </div>
+      <div class="after-row">
+        <div class="card">
+          <h3>报告之外，机会继续跟进</h3>
+          <ul>
+            <li><b>渠道匹配：</b>按定位、价格带、品类匹配本地买手、零售商、分销商，安排洽谈</li>
+            <li><b>本地走访：</b>商圈考察，看清竞品和渠道的真实样子</li>
+            <li><b>中外品牌交流会：</b>与本地品牌交流经验、联合曝光、互通渠道</li>
+            <li><b>GMA 品牌资源库：</b>之后出现匹配的渠道或合作，持续对接给你</li>
+            <li><b>巡回优先权：</b>表现好的品牌优先进入下一站</li>
+          </ul>
+        </div>
+        <div class="ph"><img src="assets/exchange.jpg" alt="GMA 中外品牌交流会，买手洽谈与本地选品现场" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 进入 / 增长 -->
+  <section class="sec" id="extend">
+    <div class="wrap">
+      <div class="sec-h">
+        <div><div class="eyebrow">Enter · Grow</div><h2>验证成立之后，继续陪你走进去</h2></div>
+        <p>结论是 GO 的品牌，可以按需继续。这两段不强制打包，你在哪个阶段就从哪里接。</p>
+      </div>
+      <div class="ext">
+        <div class="card">
+          <h3>精准进入 <small>ENTER</small></h3>
+          <ul>
+            <li>按验证结果调整产品、价格、品牌表达和买手提案</li>
+            <li>匹配精品买手店、Lifestyle Store、百货、分销商、商业地产</li>
+            <li>买手邀约、样品对接、一对一会议、合作条件设计</li>
+            <li>选择进入方式：批发 PO、寄售入驻、阶段 Pop-up、本地伙伴联合</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>本地增长 <small>GROW</small></h3>
+          <ul>
+            <li>本地社媒、KOL / PR、广告，独立站转化</li>
+            <li>已有渠道维护、补货推进、新渠道开发</li>
+            <li>本地供应商协调、物流库存、现场执行</li>
+            <li>不必自建海外团队，按月或按季度配置</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 证据 -->
+  <section class="sec">
+    <div class="wrap proof">
+      <div class="card">
+        <div class="eyebrow">Local network</div>
+        <h3 style="margin-top:6px">场景来自本地零售网络</h3>
+        <p>新加坡侧由本地团队与合作伙伴组成，覆盖市集、零售节、行业协会和核心商圈。</p>
+        <div class="logos">
+          <div><img src="assets/logo-invade.png" alt="INVADE.co"></div>
+          <div><img src="assets/logo-sra.png" alt="Singapore Retailers Association"></div>
+          <div><img src="assets/logo-srf.png" alt="Singapore Retail Festival"></div>
+          <div><img src="assets/logo-capitaland.png" alt="CapitaLand"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Case · 素循 SUKOON</div>
+        <div class="case" style="margin-top:10px">
+          <img src="assets/sukoon.jpg" alt="素循 SUKOON 线下门店陈列" loading="lazy">
+          <div>
+            <h3>香氛家清新品牌，先线下验证再进入</h3>
+            <p>前 7 个月跑了 7 场展会、市集和售卖空间，逐场观察消费者反应、调整卖点与定价，之后拓展到曼谷、香港线下渠道。</p>
+            <div class="stats">
+              <div><b>7 场</b>线下验证</div>
+              <div><b>2 次</b>展卖期间卖空</div>
+              <div><b>≈10%</b>展期内回购占比</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact" style="padding-block:24px 8px">
+    <div class="contact">
+      <div>
+        <h2>告诉我们你的产品和目标市场</h2>
+        <p>我们先帮你判断：值不值得测、该测什么、用哪种场景测。</p>
+        <p class="mail">Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p>
+      </div>
+      <div><img class="qr" src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码"><p style="font-size:12px;text-align:center;margin-top:6px">微信扫码，备注「品牌名 + 目标市场」</p></div>
+    </div>
+  </section>
+  <footer>Global Market Accelerator · 先验证，再投入</footer>
+</main>
+
+<!-- ================= 看板 ================= -->
+<main class="page" id="p-tests">
+  <section class="wrap board-h">
+    <p class="crumb"><a href="#home">服务链路</a> / 实地测试方式</p>
+    <div class="eyebrow t" style="margin-top:14px">On-site testing board</div>
+    <h1>实地测试方式</h1>
+    <p>每个场景能测的东西不同。先看你想验证什么，再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
+    <div class="filters" role="group" aria-label="按验证目标筛选">
+      <button class="on" data-f="all">全部</button>
+      <button data-f="消费者">测消费者</button>
+      <button data-f="价格">测价格</button>
+      <button data-f="买手">见买手</button>
+      <button data-f="品牌体验">测品牌体验</button>
+    </div>
+    <div class="legend"><span class="st open">招募中 / 按期安排</span><span class="st plan">筹备中</span><span class="st done">已结束</span></div>
+  </section>
+  <section class="wrap">
+    <div class="board" id="board"></div>
+    <div class="board-foot">
+      <div class="card"><h3>每个场景前后都一样</h3><p>无论选哪种场景，测试前的市场判断和测试后的验证报告、渠道对接都是同一套服务。</p></div>
+      <div class="card"><h3>可以组合</h3><p>例如展会拿买手反馈，再接商圈 Pop-up 延续销售，两段数据合并进一份报告。</p></div>
+      <div class="card"><h3>没看到合适的？</h3><p>英国、欧洲等其他市场的市集与联合活动可按需安排，<a href="#contact">联系我们</a>。</p></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= 详情（由数据渲染） ================= -->
+<main class="page" id="p-detail"><div class="wrap" id="detail"></div></main>
+
+<script>
+const COLS=[
+  {id:"booth",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
+  {id:"invade",name:"INVADE 本地市集",desc:"新加坡本地最大的市集网络，轻量测款"},
+  {id:"orchard",name:"乌节路商圈",desc:"核心零售大道，测品牌体验与转化"},
+  {id:"xmas",name:"圣诞节庆",desc:"年末消费高峰，测节日礼品场景"}
+];
+const EVENTS={
+  "ev-sg-f1":{col:"booth",title:"新加坡站 · F1 Pit Building 国际品牌购物展",short:"新加坡 · F1 Pit Building",img:"sg-f1",img2:"sg-bay",
+    status:"open",statusText:"招募中",city:"新加坡 · 滨海湾",when:"2026.11.20 – 11.22 公众开放（11.19 商贸闭门场）",
+    vals:["消费者","价格","买手","品牌体验"],
+    sub:"滨海湾核心地标场地，85% 为新加坡本土品牌。在这里测的是新加坡本地人买不买，而不是华人社群捧场。",
+    facts:[["场地","F1 Pit Building，1 Republic Boulevard"],["规模","精选 320+ 设计品牌，85% 本土 / 15% 国际"],["客流","单届 35,000+ 人次"],["品类","服饰、配饰、珠宝、美妆、家居、文创、生活方式、F&B"]],
+    people:["高预算城市白领与创意从业者","双收入家庭、重视设计与可持续的年轻家庭","本地精品集合店、零售商、区域分销商、独立买手","本地时尚媒体、生活方式 KOL、VIP 私域客户"],
+    timeline:[["11.18 周三","进场搭建"],["11.19 周四","媒体、商贸买家与 VIP 闭门预览，定向对接渠道商与 KOL"],["11.20 – 22 周五至周日","连续 3 天公众开放"],["11.22 – 23","撤展"]],
+    onsite:["3 天公众零售，专员驻场记录消费者反应","现场媒体与本地 KOL 曝光","中英文翻译驻场协助","可申请匠人工坊、新品发布、产品品鉴等互动"],
+    note:"每日开放时段以主办方最终公布为准。"},
+  "ev-th-iconsiam":{col:"booth",title:"泰国站 · ICONSIAM 国际品牌购物展",short:"曼谷 · ICONSIAM",img:"th-iconsiam",img2:"th-interior",
+    status:"done",statusText:"已结束",city:"泰国 · 曼谷湄南河畔",when:"2026.07.22 – 07.26（共 5 天）",
+    vals:["消费者","买手","品牌体验"],
+    sub:"曼谷最具标志性的高端零售综合体，国际游客与本地高消费人群同场。适合想以泰国作为东南亚第一站的品牌。",
+    facts:[["场地","ICONSIAM 展馆"],["规模","200+ 国际品牌同台，70+ 独家新品首发"],["门票","普通观众 200 泰铢；当日在 ICONSIAM 消费满 250 泰铢可免费入场"],["专场","B2B、VIP、媒体场次凭邀请函入场"]],
+    people:["曼谷本地高净值消费人群","国际游客","买手、零售商与商业集团","曼谷本地时尚媒体、生活方式 KOL"],
+    timeline:[["7.22 – 7.26","5 天展期，含 B2B / VIP / 媒体专场"]],
+    onsite:["现场零售与消费者观察","买手与零售集团对接","本地媒体曝光"],
+    note:"本届已结束，可作为下一届曼谷站的参考。表现好的新加坡站品牌可优先进入后续曼谷站。"},
+  "ev-invade":{col:"invade",title:"INVADE 本地创意市集",short:"新加坡 · 多个市集品牌",img:"invade-market",img2:"consumer",
+    status:"open",statusText:"按期安排",city:"新加坡 · 多个场地",when:"全年多场，按品牌测试目标匹配场次",
+    vals:["消费者","价格"],
+    sub:"INVADE.co 自 2010 年起在新加坡做零售激活，旗下市集覆盖新锐品牌、设计师、手作和餐饮。投入轻、场次多，适合先低成本测款、测价格。",
+    facts:[["运营方","INVADE.co，深耕新加坡零售激活 15 年以上"],["旗下活动","Artbox 创意嘉年华、Makers' Market 手作市集、Fleawhere 二手市集、Weekend Brew Club、RED LABEL"],["网络","合作商家 1 万+，约覆盖新加坡本地 80% 的线下零售活动"],["流量","Artbox 单场近 5 万付费入场人群"]],
+    people:["新加坡本地年轻客群与家庭","喜欢设计、手作、小众品牌的消费者","本地品牌主理人与潜在合作伙伴"],
+    timeline:[["测试前","按品类与客群挑选最匹配的市集场次"],["测试中","现场售卖，记录停留、试用、价格反应"],["测试后","多场数据合并对比，找出稳定卖得好的 SKU 和价格"]],
+    onsite:["真实售卖，直接面对本地消费者","同一产品可在不同市集反复测，排除偶然","接触本地品牌与主理人"],
+    note:"具体场次与日期按年度排期确认，联系我们获取最新排期。"},
+  "ev-orchard":{col:"orchard",title:"乌节路商圈 Pop-up / 零售空间接力",short:"新加坡 · Orchard Road",img:"orchard",img2:"popup",
+    status:"plan",statusText:"筹备中",city:"新加坡 · 乌节路",when:"按项目排期，可接在展会之后",
+    vals:["品牌体验","消费者","价格"],
+    sub:"乌节路是新加坡最标志性的高端购物大道，也是国际品牌进入新加坡的展示窗口。在这里做短期 Pop-up，测的是品牌体验和持续转化。",
+    facts:[["商圈","ION Orchard、Ngee Ann City、Paragon 等高端物业"],["形式","短期 Pop-up、零售空间入驻、展后接力"],["互补","可搭配武吉士（Bugis）商圈，覆盖大众潮流客群"],["适合","想测品牌陈列与体验、想延续展会销售的品牌"]],
+    people:["高净值本地客群","国际游客","对国际品牌敏感的年轻消费者"],
+    timeline:[["测试前","确定空间、陈列方案和测试 SKU"],["测试中","连续多天在商圈零售空间展示销售"],["测试后","对比展会与商圈两段数据，判断适合的渠道形态"]],
+    onsite:["在核心商业场景建立线下品牌体验","比展会更长的观察周期","接触商场与商业地产方"],
+    note:"具体空间、日期与时长待确认。"},
+  "ev-xmas":{col:"xmas",title:"圣诞节庆主题活动",short:"新加坡 / 泰国 · 年末节庆",img:"festival",img2:"consumer",
+    status:"plan",statusText:"筹备中",city:"新加坡 / 泰国",when:"2026 年 12 月，具体日期待公布",
+    vals:["消费者","价格","品牌体验"],
+    sub:"借年末送礼高峰进入节庆消费场景，触达节日人群与游客。适合礼品属性强的品类：香氛、饰品、家居、文创。",
+    facts:[["时段","圣诞至年末消费季"],["形式","节庆市集、商场主题活动、联合快闪"],["适合品类","礼盒、香氛、饰品、家居、文创等送礼类产品"],["可测","礼品包装、节日定价、组合装接受度"]],
+    people:["节日送礼人群","游客","本地家庭与年轻客群"],
+    timeline:[["测试前","设计节日礼品组合与包装，制定节日价"],["测试中","节庆场景售卖与观察"],["测试后","评估礼品场景是否值得做成长期品类"]],
+    onsite:["进入高流量节庆场景","结合主题活动提升品牌记忆度","测试礼品装与节日定价"],
+    note:"场地与日期待公布。页面配图为节庆场景示例（狮城新春）。"}
+};
+
+const $=s=>document.querySelector(s);
+let filter="all";
+function renderBoard(){
+  $("#board").innerHTML=COLS.map(c=>{
+    const evs=Object.entries(EVENTS).filter(([,e])=>e.col===c.id);
+    return `<div class="col"><div class="col-h"><b>${c.name}</b><small>${evs.length} 个</small></div><p class="col-d">${c.desc}</p>${evs.map(([id,e])=>{
+      const dim=filter!=="all"&&!e.vals.includes(filter);
+      return `<a class="ev${dim?" dim":""}" href="#${id}"><div class="img"><img src="assets/${e.img}.jpg" alt="" loading="lazy"></div><div class="b"><span class="st ${e.status}">${e.statusText}</span><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div></div></a>`}).join("")}</div>`;
+  }).join("");
+}
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("on",x===b));
+  filter=b.dataset.f;renderBoard();
+}));
+
+function renderDetail(id){
+  const e=EVENTS[id],ids=Object.keys(EVENTS),i=ids.indexOf(id);
+  const prev=ids[(i-1+ids.length)%ids.length],next=ids[(i+1)%ids.length];
+  const col=COLS.find(c=>c.id===e.col);
+  $("#detail").innerHTML=`
+  <section class="dt-hero">
+    <div>
+      <p class="crumb"><a href="#home">服务链路</a> / <a href="#tests">实地测试方式</a> / ${col.name}</p>
+      <h1>${e.title}</h1>
+      <span class="st ${e.status}">${e.statusText}</span>
+      <p class="sub" style="margin-top:12px">${e.sub}</p>
+      <dl class="facts"><dt>地点</dt><dd>${e.city}</dd><dt>时间</dt><dd>${e.when}</dd>${e.facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join("")}</dl>
+    </div>
+    <div class="ph"><img src="assets/${e.img}.jpg" alt="${e.short}"></div>
+  </section>
+  <section class="dt-sec"><h2>这个场景适合验证</h2><div class="chips">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div></section>
+  <section class="dt-sec"><h2>到场人群</h2><div class="chips">${e.people.map(v=>`<span>${v}</span>`).join("")}</div></section>
+  <section class="dt-sec"><h2>${e.timeline.length>1?"日程与节奏":"日程"}</h2><div class="timeline">${e.timeline.map(t=>`<div><b>${t[0]}</b><span>${t[1]}</span></div>`).join("")}</div>${e.note?`<p class="note">${e.note}</p>`:""}</section>
+  <section class="dt-sec"><h2>在这个场景里，GMA 做什么</h2>
+    <div class="wedo">
+      <div class="card pre"><div class="k">BEFORE · 测试前</div><h3>判断与准备</h3><ul><li>市场扫描与测试方案</li><li>卖点、SKU、当地币定价</li><li>合规、物流、布展指引</li><li>社媒预热，预约买手</li></ul></div>
+      <div class="card on"><div class="k">ON-SITE · 现场</div><h3>${col.name}</h3><ul>${e.onsite.map(o=>`<li>${o}</li>`).join("")}</ul></div>
+      <div class="card post"><div class="k">AFTER · 测试后</div><h3>决策与落地</h3><ul><li>《市场验证报告》</li><li>GO / ADJUST / STOP 建议</li><li>买手、零售商匹配洽谈</li><li>进入 GMA 资源库</li></ul></div>
+    </div>
+  </section>
+  <section class="dt-sec"><div class="contact"><div><h2>想用这个场景测你的产品？</h2><p>发我们品牌介绍和产品图，先帮你判断是否适合、该测什么。</p><p class="mail">Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p></div><div><img class="qr" src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码"><p style="font-size:12px;text-align:center;margin-top:6px">备注「${e.short.split(" · ")[0]} + 品牌名」</p></div></div></section>
+  <nav class="dt-nav"><a class="btn ghost" href="#${prev}">← ${EVENTS[prev].short}</a><a class="btn ghost" href="#tests">回到看板</a><a class="btn ghost" href="#${next}">${EVENTS[next].short} →</a></nav>`;
+}
+
+function route(){
+  let h=(location.hash||"#home").slice(1);
+  const homeAnchors=["home","before","after","extend","contact"];
+  let page="home";
+  if(h==="tests")page="tests";
+  else if(EVENTS[h]){page="detail";renderDetail(h);}
+  else if(!homeAnchors.includes(h))h="home";
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
+  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
+    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&page!=="home")||(a.dataset.nav==="contact"&&h==="contact")));
+  if(page==="home"&&h!=="home"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
+  window.scrollTo(0,0);
+}
+renderBoard();
+window.addEventListener("hashchange",route);
+route();
+</script>
+</body>
+</html>
