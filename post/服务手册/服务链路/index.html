@@ -103,59 +103,114 @@ p{margin:0}
 .sg .more{font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,currentColor 16%,transparent)}
 
 /* ========== 测试前 服务页 ========== */
-.bf-hero{padding-block:40px 28px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:end}
-.bf-hero h1{font-size:clamp(30px,4.6vw,48px);font-weight:900;margin-top:12px}
+.bf{position:relative;padding-block:44px 64px}
+.bf::before{content:"";position:absolute;inset:0 -100vw;z-index:-1;background-image:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:linear-gradient(180deg,#000 0,transparent 45%);mask-image:linear-gradient(180deg,#000 0,transparent 45%)}
+.bf-hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 40px;margin-bottom:36px}
+.bf-hero h1{font-size:clamp(32px,4.8vw,52px);font-weight:900;margin-top:12px;letter-spacing:.01em}
 .bf-hero h1 em{font-style:normal;color:var(--accent)}
-.bf-hero p{color:var(--ink-2);font-size:16px}
-.angles{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.angles span{font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-@media (max-width:760px){.bf-hero{grid-template-columns:1fr;gap:12px}}
-.svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-@media (max-width:980px){.svcs{grid-template-columns:1fr}}
-.svc{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 24px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.svc .top{display:flex;justify-content:space-between;align-items:center}
-.svc .ang{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:999px}
-.svc .ix{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
-.svc h2{font-size:24px;font-weight:900;line-height:1.3}
-.svc .q{font-size:15px;color:var(--ink-2)}
-.svc .q b{color:var(--ink)}
-.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.svc li{font-size:14px;color:var(--ink-2);display:flex;gap:8px}
-.svc li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.6em}
-.svc .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.svc .two div{background:var(--bg);border-radius:14px;padding:12px 14px}
-.svc .two b{display:block;font-size:14px;margin-bottom:6px}
-.svc .two ul{gap:5px}.svc .two li{font-size:13px}
-@media (max-width:420px){.svc .two{grid-template-columns:1fr}}
-.svc .get{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
-.svc .get b{color:var(--accent);font-size:15px}
-.svc .tpl{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.bf-hero .r{max-width:26em;padding-bottom:6px}
+.bf-hero .r p{color:var(--ink-2);font-size:15px}
+.angles{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--ink-2)}
+.angles b{font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 12px;border-radius:999px}
 
-.tplwrap{margin-top:56px}
-.tplwrap>h2{font-size:26px;font-weight:900}
-.tplwrap>p{color:var(--ink-2);margin-top:6px}
-.doc{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -44px color-mix(in srgb,var(--accent) 50%,transparent)}
-.doc-cover{background:var(--accent);color:var(--on-accent);padding:28px 32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
-.doc-cover small{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;opacity:.8}
-.doc-cover h3{font-size:clamp(20px,2.6vw,28px);font-weight:900;margin-top:6px}
-.doc-cover .fill{font-size:13px;opacity:.85;text-align:right}
-.ph-f{display:inline-block;padding:0 6px;border-radius:4px;background:color-mix(in srgb,currentColor 14%,transparent);font-weight:700}
-.chap{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:22px 32px;border-top:1px solid var(--line)}
-.chap:first-of-type{border-top:0}
-.chap .n{font-family:var(--f-display);font-size:30px;font-weight:900;color:var(--accent);line-height:1}
-.chap h4{font-family:var(--f-display);font-size:18px;margin:0 0 6px}
-.chap p{font-size:14px;color:var(--ink-2)}
-.chap .fields{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chap .fields span{font-size:12px;padding:2px 9px;border-radius:6px;background:var(--bg);border:1px dashed var(--line);color:var(--ink-2)}
-.tbl{margin-top:12px;overflow-x:auto}
-.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
-.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left}
-.tbl th{background:var(--accent-soft);color:var(--accent);font-weight:700}
-.tbl td{color:var(--ink-2)}
-@media (max-width:600px){.chap{grid-template-columns:1fr;gap:6px;padding:18px 20px}.doc-cover{padding:22px 20px}.doc-cover .fill{text-align:left}}
-.bf-more{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--accent-soft);border-radius:18px;padding:18px 22px}
+.svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:980px){.svcs{grid-template-columns:1fr}}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .25s,box-shadow .25s}
+.svc:hover{transform:translateY(-4px);box-shadow:0 26px 44px -30px color-mix(in srgb,var(--accent) 60%,transparent)}
+.vis{position:relative;height:190px;background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 86%,#fff),var(--accent) 60%,color-mix(in srgb,var(--accent) 78%,#000));overflow:hidden;display:grid;place-items:center}
+.vis .ang{position:absolute;left:18px;top:16px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:#fff;padding:3px 11px;border-radius:999px}
+.vis .ix{position:absolute;right:20px;top:14px;font-family:var(--f-display);font-size:34px;font-weight:900;color:rgba(255,255,255,.22);line-height:1}
+/* 示意：文档 */
+.mdoc{width:150px;height:140px;margin-top:40px;background:#fff;border-radius:8px 8px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.18);padding:14px 14px 0;display:flex;flex-direction:column;gap:7px;transform:rotate(-3deg);position:relative}
+.mdoc::after{content:"";position:absolute;inset:8px -14px auto auto;width:150px;height:140px;background:rgba(255,255,255,.35);border-radius:8px;z-index:-1;transform:rotate(7deg)}
+.mdoc i{display:block;height:6px;border-radius:3px;background:#dfe7e3}
+.mdoc i.h{height:9px;width:70%;background:#0d5c55}
+.mdoc i.s{width:55%}
+.mdoc .bars{display:flex;align-items:flex-end;gap:6px;height:38px;margin-top:4px}
+.mdoc .bars span{flex:1;border-radius:3px 3px 0 0;background:#8cc5bb}
+.mdoc .bars span:nth-child(3){background:#0d5c55}
+/* 示意：A/B 偏好 */
+.mab{display:flex;gap:12px;margin-top:30px}
+.mab div{width:96px;background:#fff;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 24px -12px rgba(0,0,0,.35)}
+.mab .pic{height:52px;border-radius:8px;background:linear-gradient(135deg,#e8d9c4,#cfb18c)}
+.mab div:nth-child(2) .pic{background:linear-gradient(135deg,#d6e2ea,#9fb6c7)}
+.mab .bar{height:7px;border-radius:4px;background:#e6ece9;overflow:hidden}
+.mab .bar span{display:block;height:100%;background:#0d5c55;border-radius:4px}
+.mab b{font-family:var(--f-mono);font-size:11px;color:#47534f}
+.mab div:first-child{transform:translateY(-6px) rotate(-2deg)}
+/* 示意：对话 */
+.mtalk{display:flex;flex-direction:column;gap:10px;margin-top:30px;width:200px}
+.mtalk .row{display:flex;align-items:flex-end;gap:8px}
+.mtalk .row.r{flex-direction:row-reverse}
+.mtalk .av{flex:none;width:30px;height:30px;border-radius:50%;background:#f2c46b;display:grid;place-items:center;font-size:12px;font-weight:700;color:#4a3410}
+.mtalk .row.r .av{background:#fff;color:#0d5c55}
+.mtalk .bub{background:#fff;border-radius:14px 14px 14px 4px;padding:9px 12px;display:flex;flex-direction:column;gap:5px;width:130px}
+.mtalk .row.r .bub{border-radius:14px 14px 4px 14px;background:rgba(255,255,255,.85)}
+.mtalk .bub i{display:block;height:5px;border-radius:3px;background:#dfe7e3}
+.mtalk .bub i:last-child{width:60%}
+
+.svc .bd{padding:22px 24px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.svc h2{font-size:24px;font-weight:900;line-height:1.3}
+.svc .q{font-family:var(--f-display);font-size:16px;color:var(--ink);padding-left:12px;border-left:3px solid var(--accent);line-height:1.6}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.svc li{font-size:14px;color:var(--ink-2);display:flex;gap:10px;align-items:baseline}
+.svc li::before{content:"";flex:none;width:16px;height:16px;border-radius:50%;transform:translateY(3px);background:var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-4.8' fill='none' stroke='%230d5c55' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.svc .tags{display:flex;flex-wrap:wrap;gap:6px}
+.svc .tags span{font-size:12px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.svc .tags em{font-style:normal;font-size:12px;font-weight:700;color:var(--accent);padding:3px 0;margin-right:2px}
+.svc .get{margin-top:auto;padding-top:16px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.svc .get b{color:var(--ink);font-size:15px}
+.svc .open{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;text-decoration:none;color:var(--on-accent);background:var(--accent);padding:8px 14px;border-radius:999px}
+.svc .open:hover{filter:brightness(1.1)}
+
+.bf-more{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px 16px 16px 22px}
 .bf-more p{font-size:14px;color:var(--ink-2)}
 .bf-more p b{color:var(--ink)}
+
+/* ========== 报告模板：文档页 ========== */
+.desk{background:color-mix(in srgb,var(--ink) 6%,var(--bg));padding-block:28px 72px;min-height:calc(100vh - 58px)}
+.doc-bar{max-width:860px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.doc-bar .tag{font-size:12px;font-weight:700;color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent);padding:3px 10px;border-radius:999px}
+.sheet{max-width:860px;margin:0 auto;background:var(--surface);border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 24px 60px -28px rgba(0,0,0,.35);padding:64px 72px 72px;font-size:15px;line-height:1.85}
+@media (max-width:700px){.sheet{padding:32px 22px 40px}}
+.sheet .run{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--ink-2);padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sheet .ttl{margin-top:44px}
+.sheet .ttl small{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;color:var(--accent)}
+.sheet .ttl h1{font-size:clamp(28px,4vw,40px);font-weight:900;margin-top:10px;line-height:1.3}
+.sheet .ttl p{color:var(--ink-2);margin-top:8px}
+.fld{display:inline-block;padding:0 6px;margin:0 1px;border-radius:4px;background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--ink);font-weight:500;line-height:1.6}
+.meta{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.meta div{padding:12px 14px 12px 0;font-size:13px}
+.meta div span{display:block;color:var(--ink-2);font-size:12px}
+@media (max-width:560px){.meta{grid-template-columns:1fr 1fr}}
+.toc{margin-top:40px;background:var(--bg);border-radius:10px;padding:20px 24px}
+.toc h3{font-size:15px;margin-bottom:8px}
+.toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:32px;font-size:14px}
+.toc li{display:flex;gap:10px;padding:3px 0;break-inside:avoid}
+.toc li span{font-family:var(--f-mono);color:var(--accent);font-size:13px}
+.toc a{text-decoration:none}
+.toc a:hover{color:var(--accent)}
+@media (max-width:560px){.toc ol{columns:1}}
+.sheet section{margin-top:48px}
+.sheet h2{font-size:22px;font-weight:900;display:flex;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sheet h2 span{font-family:var(--f-mono);font-size:14px;color:var(--accent);font-weight:500}
+.sheet h3.s{font-size:16px;margin:20px 0 6px}
+.sheet p{margin-top:10px}
+.sheet .hint{font-size:13px;color:var(--ink-2);background:var(--bg);border-left:3px solid var(--line);padding:8px 12px;margin-top:12px}
+.sheet ul{margin:10px 0 0;padding-left:20px}
+.sheet li{margin:4px 0}
+.dtbl{margin-top:14px;overflow-x:auto}
+.dtbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px;line-height:1.6}
+.dtbl th,.dtbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.dtbl th{background:var(--bg);font-weight:700}
+.dtbl td{color:var(--ink-2)}
+.quad{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quad div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.quad b{display:block;font-size:13px;margin-bottom:4px}
+.quad .o b{color:var(--ok)}.quad .r b{color:var(--stop)}
+.concl{margin-top:14px;border:1.5px solid var(--accent);border-radius:12px;padding:16px 20px;background:var(--accent-soft)}
+.concl ol{margin:0;padding-left:20px}
+.sheet .end{margin-top:56px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--ink-2);letter-spacing:.08em}
 
 .sg.mid{background:var(--test-soft);border:1.5px dashed color-mix(in srgb,var(--test) 60%,transparent);padding:20px 18px 18px;transition:transform .25s,box-shadow .25s}
 .sg.mid:hover{transform:translateY(-4px);box-shadow:0 18px 30px -20px var(--test)}
@@ -385,87 +440,171 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 
 <!-- ================= 测试前 服务页 ================= -->
 <main class="page" id="p-before">
-  <div class="wrap">
+  <div class="wrap bf">
     <section class="bf-hero">
       <div>
         <p class="crumb"><a href="#home">服务链路</a> / 测试前</p>
         <h1>测试前，<em>把方向判断清楚</em></h1>
       </div>
-      <div>
-        <p>下场之前，我们从三个来源看清目标市场，再决定测什么、怎么测。三项服务可单独选，也可组合。</p>
-        <div class="angles"><span>看数据</span><span>问用户</span><span>问同行</span></div>
+      <div class="r">
+        <p>下场之前，从三个来源看清目标市场。三项服务可单独选，也可组合。</p>
+        <div class="angles"><b>看数据</b>+<b>问用户</b>+<b>问同行</b></div>
       </div>
     </section>
 
     <div class="svcs">
       <article class="svc">
-        <div class="top"><span class="ang">看数据</span><span class="ix">01</span></div>
-        <h2>海外市场对标报告</h2>
-        <p class="q">这个市场里，<b>谁在卖、卖多少钱、谁在买</b>？</p>
-        <ul>
-          <li>选 3–5 个当地对标品牌，拆定位、价格带、主推款、渠道</li>
-          <li>主流成交区间，以及你的定价放进去的位置</li>
-          <li>消费者画像与购买动机</li>
-          <li>渠道结构与进入门槛</li>
-          <li>你的品牌在这个市场的机会点和风险点</li>
-        </ul>
-        <div class="get"><span>你拿到 <b>一份对标报告</b></span><a class="tpl" href="#tpl">看报告模板 ↓</a></div>
-      </article>
-
-      <article class="svc">
-        <div class="top"><span class="ang">问用户</span><span class="ix">02</span></div>
-        <h2>本地用户线上实测</h2>
-        <p class="q">当地人<b>喜不喜欢</b>你的产品？<b>更喜欢什么</b>？</p>
-        <div class="two">
-          <div><b>产品向</b><ul><li>款式、材质、功能偏好</li><li>包装与规格</li><li>价格接受度</li><li>和竞品放一起选哪个</li></ul></div>
-          <div><b>营销向</b><ul><li>哪个卖点最打动人</li><li>视觉与文案偏好</li><li>品牌故事怎么讲</li><li>常用的社媒与购买渠道</li></ul></div>
+        <div class="vis"><span class="ang">看数据</span><span class="ix">01</span>
+          <div class="mdoc"><i class="h"></i><i></i><i class="s"></i><div class="bars"><span style="height:45%"></span><span style="height:70%"></span><span style="height:100%"></span><span style="height:55%"></span></div></div>
         </div>
-        <ul><li>线上招募目标市场的本地用户，看图、看样、对比打分，并做深度访谈</li></ul>
-        <div class="get"><span>你拿到</span><b>本地用户偏好洞察</b></div>
+        <div class="bd">
+          <h2>海外市场对标报告</h2>
+          <p class="q">这个市场里，谁在卖、卖多少钱、谁在买？</p>
+          <ul><li>拆解 3–5 个当地对标品牌</li><li>主流价格带与你的定价位置</li><li>消费者画像与渠道结构</li><li>品牌在当地的机会与风险</li></ul>
+          <div class="get"><span>你拿到<br><b>一份对标报告</b></span><a class="open" href="#report">打开报告模板 →</a></div>
+        </div>
       </article>
 
       <article class="svc">
-        <div class="top"><span class="ang">问同行</span><span class="ix">03</span></div>
-        <h2>本地 Founder 1v1</h2>
-        <p class="q">在当地做过品牌的人，<b>踩过哪些坑</b>？</p>
-        <ul>
-          <li>与当地品牌创始人一对一交流</li>
-          <li>当地市场的真实情况：生意好不好做、客群怎么变</li>
-          <li>渠道怎么进、合作条件、常见坑</li>
-          <li>对你的产品和定价给出一线意见</li>
-          <li>交流后整理成纪要，标出关键结论</li>
-        </ul>
-        <div class="get"><span>你拿到</span><b>一线经验 + 交流纪要</b></div>
+        <div class="vis"><span class="ang">问用户</span><span class="ix">02</span>
+          <div class="mab"><div><span class="pic"></span><span class="bar"><span style="width:72%"></span></span><b>A 款</b></div><div><span class="pic"></span><span class="bar"><span style="width:38%"></span></span><b>B 款</b></div></div>
+        </div>
+        <div class="bd">
+          <h2>本地用户线上实测</h2>
+          <p class="q">当地人喜不喜欢你的产品？更喜欢什么？</p>
+          <ul><li>线上招募目标市场的本地用户</li><li>看图、看样、对比打分 + 深度访谈</li></ul>
+          <div class="tags"><em>产品向</em><span>款式材质</span><span>包装规格</span><span>价格接受度</span><span>竞品对比</span></div>
+          <div class="tags"><em>营销向</em><span>打动人的卖点</span><span>视觉文案</span><span>品牌故事</span><span>社媒渠道</span></div>
+          <div class="get"><span>你拿到<br><b>本地用户偏好洞察</b></span></div>
+        </div>
+      </article>
+
+      <article class="svc">
+        <div class="vis"><span class="ang">问同行</span><span class="ix">03</span>
+          <div class="mtalk"><div class="row"><span class="av">F</span><span class="bub"><i></i><i></i></span></div><div class="row r"><span class="av">你</span><span class="bub"><i></i><i></i></span></div></div>
+        </div>
+        <div class="bd">
+          <h2>本地 Founder 1v1</h2>
+          <p class="q">在当地做过品牌的人，踩过哪些坑？</p>
+          <ul><li>与当地品牌创始人一对一交流</li><li>市场实况、客群变化</li><li>渠道怎么进、合作条件、常见坑</li><li>对你的产品和定价给一线意见</li></ul>
+          <div class="get"><span>你拿到<br><b>一线经验 + 交流纪要</b></span></div>
+        </div>
       </article>
     </div>
-
-    <section class="tplwrap" id="tpl">
-      <div class="eyebrow">Report template</div>
-      <h2>海外市场对标报告 · 模板</h2>
-      <p>以下是报告的章节结构，正式报告会按品牌和目标市场定制填写。</p>
-      <div class="doc">
-        <div class="doc-cover">
-          <div><small>MARKET BENCHMARK REPORT</small><h3><span class="ph-f">品牌名</span> × <span class="ph-f">目标市场</span> 海外市场对标报告</h3></div>
-          <div class="fill">品类：<span class="ph-f">品类</span><br>交付周期：<span class="ph-f">待定</span></div>
-        </div>
-        <div class="chap"><div class="n">01</div><div><h4>市场概览</h4><p>目标市场的品类规模、增长趋势和消费季节性。</p><div class="fields"><span>品类规模</span><span>增长趋势</span><span>消费旺季</span><span>线上线下占比</span></div></div></div>
-        <div class="chap"><div class="n">02</div><div><h4>竞品对标</h4><p>选 3–5 个当地对标品牌，逐项对比。</p>
-          <div class="tbl"><table><thead><tr><th>对标品牌</th><th>定位</th><th>价格带</th><th>主推款</th><th>主要渠道</th><th>社媒表现</th></tr></thead>
-          <tbody><tr><td>对标品牌 A</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>对标品牌 B</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>对标品牌 C</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div></div></div>
-        <div class="chap"><div class="n">03</div><div><h4>价格带分析</h4><p>同类产品的主流成交区间，以及你的定价放进去处在什么位置。</p><div class="fields"><span>主流价格区间</span><span>高 / 中 / 低端分布</span><span>建议定价（当地币）</span></div></div></div>
-        <div class="chap"><div class="n">04</div><div><h4>消费者画像</h4><p>谁在买、为什么买、做决定时看重什么。</p><div class="fields"><span>年龄与收入</span><span>购买动机</span><span>决策因素</span><span>信息来源</span></div></div></div>
-        <div class="chap"><div class="n">05</div><div><h4>渠道结构</h4><p>买手店、百货、Lifestyle Store、电商各占什么位置，进入门槛如何。</p><div class="fields"><span>渠道类型</span><span>代表门店 / 平台</span><span>合作模式</span><span>进入门槛</span></div></div></div>
-        <div class="chap"><div class="n">06</div><div><h4>品牌匹配度</h4><p>你的品牌放进这个市场，站在什么位置。</p><div class="fields"><span>机会点</span><span>风险点</span><span>差异化空间</span></div></div></div>
-        <div class="chap"><div class="n">07</div><div><h4>测试建议</h4><p>基于以上结论，给出下一步实地测试方案。</p><div class="fields"><span>测什么产品</span><span>什么价格</span><span>给什么人</span><span>在什么场景</span></div></div></div>
-      </div>
-    </section>
 
     <div class="bf-more">
-      <p>进入实地测试前，我们还会协助 <b>产品本地化</b>、<b>合规与物流指引</b>、<b>本地预热与约买手</b>。</p>
+      <p>进入实地测试前，还会协助 <b>产品本地化</b> · <b>合规与物流指引</b> · <b>本地预热与约买手</b></p>
       <a class="btn" href="#tests">下一步：选测试场景 →</a>
     </div>
-    <div style="height:56px"></div>
   </div>
+</main>
+
+<!-- ================= 报告模板：文档页 ================= -->
+<main class="page" id="p-report">
+  <div class="desk"><div class="wrap">
+    <div class="doc-bar">
+      <p class="crumb"><a href="#home">服务链路</a> / <a href="#before">测试前</a> / 海外市场对标报告</p>
+      <span class="tag">模板 · 黄色字段为待填写内容</span>
+    </div>
+    <article class="sheet">
+      <div class="run"><span>GMA · GLOBAL MARKET ACCELERATOR</span><span>MARKET BENCHMARK REPORT</span></div>
+      <div class="ttl">
+        <small>海外市场对标报告</small>
+        <h1><span class="fld">品牌名</span> 进入 <span class="fld">目标市场</span> 的市场对标分析</h1>
+        <p>在实地测试之前，判断这个市场值不值得进、该从哪里切入。</p>
+      </div>
+      <div class="meta">
+        <div><span>品牌</span><span class="fld">品牌名</span></div>
+        <div><span>目标市场</span><span class="fld">国家 / 城市</span></div>
+        <div><span>品类</span><span class="fld">品类</span></div>
+        <div><span>报告日期</span><span class="fld">YYYY.MM.DD</span></div>
+        <div><span>编制</span>GMA 市场团队</div>
+        <div><span>版本</span><span class="fld">v1.0</span></div>
+      </div>
+
+      <nav class="toc" aria-label="目录"><h3>目录</h3><ol>
+        <li><span>00</span><a href="#report">核心结论</a></li>
+        <li><span>01</span><a href="#report">市场概览</a></li>
+        <li><span>02</span><a href="#report">竞品对标</a></li>
+        <li><span>03</span><a href="#report">价格带分析</a></li>
+        <li><span>04</span><a href="#report">消费者画像</a></li>
+        <li><span>05</span><a href="#report">渠道结构</a></li>
+        <li><span>06</span><a href="#report">品牌匹配度</a></li>
+        <li><span>07</span><a href="#report">实地测试建议</a></li>
+      </ol></nav>
+
+      <section><h2><span>00</span>核心结论</h2>
+        <div class="concl"><ol>
+          <li>市场判断：<span class="fld">这个市场值不值得进入，一句话结论</span></li>
+          <li>切入机会：<span class="fld">最有机会的产品 / 价格带 / 人群</span></li>
+          <li>主要风险：<span class="fld">最需要注意的风险</span></li>
+          <li>下一步：<span class="fld">建议的实地测试场景与时间</span></li>
+        </ol></div>
+      </section>
+
+      <section><h2><span>01</span>市场概览</h2>
+        <p><span class="fld">目标市场</span> 的 <span class="fld">品类</span> 市场规模约 <span class="fld">金额 / 年</span>，近三年 <span class="fld">增长 / 持平 / 下滑</span>。消费旺季集中在 <span class="fld">月份 / 节日</span>。</p>
+        <ul><li>线上与线下销售占比：<span class="fld">x% / y%</span></li><li>品类正在发生的变化：<span class="fld">趋势 1、趋势 2</span></li></ul>
+        <p class="hint">资料来源：公开行业数据、当地电商平台、本地团队走访。</p>
+      </section>
+
+      <section><h2><span>02</span>竞品对标</h2>
+        <p>选取 3–5 个在当地销售、与 <span class="fld">品牌名</span> 定位接近的品牌逐项对比。</p>
+        <div class="dtbl"><table><thead><tr><th>品牌</th><th>来源国</th><th>定位</th><th>价格带</th><th>主推款</th><th>主要渠道</th><th>社媒表现</th></tr></thead><tbody>
+          <tr><td><span class="fld">对标品牌 A</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><span class="fld">对标品牌 B</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><span class="fld">对标品牌 C</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><b><span class="fld">品牌名</span></b></td><td>中国</td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody></table></div>
+        <h3 class="s">对比结论</h3><p><span class="fld">对标品牌的共同点、空白点，以及你可以差异化的地方</span></p>
+      </section>
+
+      <section><h2><span>03</span>价格带分析</h2>
+        <div class="dtbl"><table><thead><tr><th>价格层级</th><th>当地价格区间</th><th>代表品牌</th><th>主要购买人群</th></tr></thead><tbody>
+          <tr><td>高端</td><td><span class="fld">当地币区间</span></td><td></td><td></td></tr>
+          <tr><td>中端</td><td><span class="fld">当地币区间</span></td><td></td><td></td></tr>
+          <tr><td>大众</td><td><span class="fld">当地币区间</span></td><td></td><td></td></tr>
+        </tbody></table></div>
+        <p>建议 <span class="fld">品牌名</span> 定价在 <span class="fld">当地币区间</span>，处于 <span class="fld">层级</span>，理由：<span class="fld">理由</span>。</p>
+      </section>
+
+      <section><h2><span>04</span>消费者画像</h2>
+        <div class="dtbl"><table><tbody>
+          <tr><th style="width:140px">核心人群</th><td><span class="fld">年龄、收入、职业、居住区域</span></td></tr>
+          <tr><th>购买动机</th><td><span class="fld">为什么买：自用 / 送礼 / 设计 / 功能</span></td></tr>
+          <tr><th>决策因素</th><td><span class="fld">看重什么：价格、品牌、材质、评价</span></td></tr>
+          <tr><th>信息来源</th><td><span class="fld">从哪里知道新品牌：社媒、朋友、门店</span></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section><h2><span>05</span>渠道结构</h2>
+        <div class="dtbl"><table><thead><tr><th>渠道类型</th><th>代表门店 / 平台</th><th>常见合作模式</th><th>进入门槛</th><th>匹配度</th></tr></thead><tbody>
+          <tr><td>精品买手店</td><td></td><td>寄售 / 批发</td><td></td><td></td></tr>
+          <tr><td>百货 / 商场</td><td></td><td>专柜 / 快闪</td><td></td><td></td></tr>
+          <tr><td>Lifestyle Store</td><td></td><td>寄售</td><td></td><td></td></tr>
+          <tr><td>电商平台</td><td></td><td>自营 / 分销</td><td></td><td></td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section><h2><span>06</span>品牌匹配度</h2>
+        <div class="quad">
+          <div class="o"><b>机会点</b><span class="fld">市场空白、人群需求</span></div>
+          <div class="r"><b>风险点</b><span class="fld">竞争、价格、合规</span></div>
+          <div><b>差异化空间</b><span class="fld">你和对标品牌不一样的地方</span></div>
+          <div><b>需要调整</b><span class="fld">产品、包装、卖点、价格</span></div>
+        </div>
+      </section>
+
+      <section><h2><span>07</span>实地测试建议</h2>
+        <div class="dtbl"><table><thead><tr><th>测什么产品</th><th>什么价格</th><th>给什么人</th><th>在什么场景</th></tr></thead><tbody>
+          <tr><td><span class="fld">测试 SKU</span></td><td><span class="fld">测试价格</span></td><td><span class="fld">目标人群</span></td><td><span class="fld">展会 / 市集 / 商圈 / 节庆</span></td></tr>
+        </tbody></table></div>
+        <p>下一步：进入 <a href="#tests">实地测试</a>，用真实销售验证以上判断。</p>
+      </section>
+
+      <div class="end"><span>GMA · 海外市场对标报告</span><span>模板</span></div>
+    </article>
+  </div></div>
 </main>
 
 <!-- ================= 详情（由数据渲染） ================= -->
@@ -578,16 +717,17 @@ function route(){
   let page="home";
   if(h==="tests")page="tests";
   else if(h==="before")page="before";
-  else if(h==="tpl"){page="before";}
+  else if(h==="report")page="report";
   else if(EVENTS[h]){page="detail";renderDetail(h);}
   else if(!homeAnchors.includes(h))h="home";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
-    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&page==="before")||(a.dataset.nav==="contact"&&h==="contact")));
-  if((page==="home"&&h!=="home")||h==="tpl"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
+    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&(page==="before"||page==="report"))||(a.dataset.nav==="contact"&&h==="contact")));
+  if(page==="home"&&h!=="home"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
   window.scrollTo(0,0);
 }
 renderBoard();
+document.querySelectorAll(".toc a").forEach((t,i)=>t.addEventListener("click",ev=>{ev.preventDefault();document.querySelectorAll(".sheet section")[i].scrollIntoView({behavior:"smooth"});}));
 window.addEventListener("hashchange",route);
 route();
 </script>
