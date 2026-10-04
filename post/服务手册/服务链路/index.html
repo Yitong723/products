@@ -151,36 +151,40 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
 .filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.board{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:8px 28px;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--accent) 45%,transparent)}
-.col{--c:var(--accent);display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;padding-block:26px;border-top:1px solid var(--line);min-width:0}
-.col:first-child{border-top:0}
-.col.booth{--c:var(--c-booth)}.col.invade{--c:var(--c-invade)}.col.orchard{--c:var(--c-orchard)}.col.xmas{--c:var(--c-xmas)}
-.sc{display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:3px solid var(--c)}
-.sc .lab{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--c)}
-.sc b{font-family:var(--f-display);font-size:24px;font-weight:900;line-height:1.25}
-.sc p{font-size:13px;color:var(--ink-2)}
-.sc .fit{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.sc .fit span{font-size:12px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);font-weight:500}
-.evs{display:grid;grid-template-columns:1fr;gap:12px;align-content:start;min-width:0}
-.ev{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px;border-radius:16px;background:var(--bg);border:1px solid transparent;text-decoration:none;transition:border-color .2s,background .2s,transform .2s}
-.ev:hover{border-color:color-mix(in srgb,var(--c) 45%,transparent);background:color-mix(in srgb,var(--c) 5%,var(--surface));transform:translateY(-2px)}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:980px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.board{grid-template-columns:1fr}}
+.ev{--c:var(--accent);display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;text-decoration:none;transition:transform .25s,box-shadow .25s,opacity .25s}
+.ev.booth{--c:var(--c-booth)}.ev.invade{--c:var(--c-invade)}.ev.orchard{--c:var(--c-orchard)}.ev.xmas{--c:var(--c-xmas)}
+.ev:hover{transform:translateY(-4px);box-shadow:0 24px 40px -26px color-mix(in srgb,var(--c) 70%,transparent)}
 .ev.dim{opacity:.3}
-.ev .th{width:112px;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--muted-chip)}
-.ev .th img{width:100%;height:100%;object-fit:cover}
-.ev .tx{display:flex;flex-direction:column;gap:4px;min-width:0}
-.ev .tt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ev h3{font-family:var(--f-body);font-size:16px;font-weight:700;line-height:1.4}
+.ev .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--muted-chip)}
+.ev .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.ev:hover .ph img{transform:scale(1.05)}
+.ev.xmas .ph img{object-position:center 85%}
+.ev .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 32%)}
+.ev .scn{position:absolute;left:14px;top:14px;z-index:1;font-size:12px;font-weight:700;color:#fff;background:var(--c);padding:3px 11px;border-radius:999px}
+.ev .ph .st{position:absolute;right:14px;top:14px;z-index:1;background:rgba(255,255,255,.92);border:0}
+.ev .st.open{color:#1f7a4d}.ev .st.plan{color:#a2671a}.ev .st.done{color:#5b6662}
+.ev .b{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ev h3{font-size:20px;font-weight:900;line-height:1.35}
 .ev .meta{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.ev .go{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);background:var(--surface);transition:all .2s}
+.ev .ft{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line)}
+.ev .vals{display:flex;flex-wrap:wrap;gap:6px}
+.ev .vals span{font-size:12px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb,var(--c) 11%,transparent);color:var(--c)}
+.ev .go{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:all .2s}
 .ev:hover .go{background:var(--c);border-color:var(--c);color:#fff}
-@media (max-width:860px){.board{padding:4px 18px;border-radius:22px}.col{grid-template-columns:1fr;gap:16px}}
-@media (max-width:480px){.ev{grid-template-columns:84px minmax(0,1fr) auto;gap:12px}.ev .th{width:84px}}
+.ev.more{background:var(--accent);border-color:var(--accent);color:var(--on-accent);justify-content:center;padding:28px;gap:12px}
+.ev.more h3{font-size:24px}
+.ev.more p{font-size:14px;opacity:.85}
+.ev.more .go{border-color:currentColor;color:inherit;margin-top:8px}
+.ev.more:hover .go{background:var(--on-accent);color:var(--accent)}
 .st{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 .st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
 .st.done{background:var(--muted-chip);color:var(--ink-2);border:1px solid var(--line)}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin:16px 0 4px}
-.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .board-foot .card{background:var(--accent-soft);border-color:transparent}
 @media (max-width:760px){.board-foot{grid-template-columns:1fr}}
 
@@ -305,7 +309,6 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="board-foot">
       <div class="card"><h3>每个场景前后都一样</h3><p>无论选哪种场景，测试前的市场判断和测试后的验证报告、渠道对接都是同一套服务。</p></div>
       <div class="card"><h3>可以组合</h3><p>例如展会拿买手反馈，再接商圈 Pop-up 延续销售，两段数据合并进一份报告。</p></div>
-      <div class="card"><h3>没看到合适的？</h3><p>英国、欧洲等其他市场的市集与联合活动可按需安排，<a href="#contact">联系我们</a>。</p></div>
     </div>
   </section>
 </main>
@@ -371,13 +374,10 @@ const EVENTS={
 const $=s=>document.querySelector(s);
 let filter="all";
 function renderBoard(){
-  $("#board").innerHTML=COLS.map(c=>{
-    const evs=Object.entries(EVENTS).filter(([,e])=>e.col===c.id);
-    const fit=[...new Set(evs.flatMap(([,e])=>e.vals))];
-    return `<section class="col ${c.id}"><div class="sc"><span class="lab">${evs.length} 个活动</span><b>${c.name}</b><p>${c.desc}</p><div class="fit">${fit.map(v=>`<span>${v}</span>`).join("")}</div></div><div class="evs">${evs.map(([id,e])=>{
-      const dim=filter!=="all"&&!e.vals.includes(filter);
-      return `<a class="ev${dim?" dim":""}" href="#${id}"><div class="th"><img src="assets/${e.img}.jpg" alt="" loading="lazy"></div><div class="tx"><div class="tt"><h3>${e.short}</h3><span class="st ${e.status}">${e.statusText}</span></div><div class="meta">${e.when}</div></div><span class="go" aria-hidden="true">→</span></a>`}).join("")}</div></section>`;
-  }).join("");
+  $("#board").innerHTML=Object.entries(EVENTS).map(([id,e])=>{
+    const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&!e.vals.includes(filter);
+    return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft"><div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div><span class="go" aria-hidden="true">→</span></div></div></a>`;
+  }).join("")+`<a class="ev more" href="#contact"><h3>没看到合适的场景？</h3><p>英国、欧洲等其他市场的市集、联合活动可按你的测试目标定制。</p><span class="go" aria-hidden="true">→</span></a>`;
 }
 document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("on",x===b));
