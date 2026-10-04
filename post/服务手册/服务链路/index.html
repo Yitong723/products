@@ -98,6 +98,65 @@ p{margin:0}
 .dots em::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .dots .g::before{background:#6fd3a0}.dots .a::before{background:#f2c46b}.dots .s::before{background:#f2928a}
 
+.sg.link{transition:transform .25s,box-shadow .25s}
+.sg.link:hover{transform:translateY(-4px);box-shadow:0 22px 36px -22px var(--accent)}
+.sg .more{font-weight:700;font-size:13px;padding:4px 12px;border-radius:999px;background:color-mix(in srgb,currentColor 16%,transparent)}
+
+/* ========== 测试前 服务页 ========== */
+.bf-hero{padding-block:40px 28px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:end}
+.bf-hero h1{font-size:clamp(30px,4.6vw,48px);font-weight:900;margin-top:12px}
+.bf-hero h1 em{font-style:normal;color:var(--accent)}
+.bf-hero p{color:var(--ink-2);font-size:16px}
+.angles{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.angles span{font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+@media (max-width:760px){.bf-hero{grid-template-columns:1fr;gap:12px}}
+.svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:980px){.svcs{grid-template-columns:1fr}}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:26px 24px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.svc .top{display:flex;justify-content:space-between;align-items:center}
+.svc .ang{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:999px}
+.svc .ix{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.svc h2{font-size:24px;font-weight:900;line-height:1.3}
+.svc .q{font-size:15px;color:var(--ink-2)}
+.svc .q b{color:var(--ink)}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.svc li{font-size:14px;color:var(--ink-2);display:flex;gap:8px}
+.svc li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.6em}
+.svc .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.svc .two div{background:var(--bg);border-radius:14px;padding:12px 14px}
+.svc .two b{display:block;font-size:14px;margin-bottom:6px}
+.svc .two ul{gap:5px}.svc .two li{font-size:13px}
+@media (max-width:420px){.svc .two{grid-template-columns:1fr}}
+.svc .get{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.svc .get b{color:var(--accent);font-size:15px}
+.svc .tpl{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+
+.tplwrap{margin-top:56px}
+.tplwrap>h2{font-size:26px;font-weight:900}
+.tplwrap>p{color:var(--ink-2);margin-top:6px}
+.doc{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -44px color-mix(in srgb,var(--accent) 50%,transparent)}
+.doc-cover{background:var(--accent);color:var(--on-accent);padding:28px 32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.doc-cover small{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;opacity:.8}
+.doc-cover h3{font-size:clamp(20px,2.6vw,28px);font-weight:900;margin-top:6px}
+.doc-cover .fill{font-size:13px;opacity:.85;text-align:right}
+.ph-f{display:inline-block;padding:0 6px;border-radius:4px;background:color-mix(in srgb,currentColor 14%,transparent);font-weight:700}
+.chap{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding:22px 32px;border-top:1px solid var(--line)}
+.chap:first-of-type{border-top:0}
+.chap .n{font-family:var(--f-display);font-size:30px;font-weight:900;color:var(--accent);line-height:1}
+.chap h4{font-family:var(--f-display);font-size:18px;margin:0 0 6px}
+.chap p{font-size:14px;color:var(--ink-2)}
+.chap .fields{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chap .fields span{font-size:12px;padding:2px 9px;border-radius:6px;background:var(--bg);border:1px dashed var(--line);color:var(--ink-2)}
+.tbl{margin-top:12px;overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.tbl th{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tbl td{color:var(--ink-2)}
+@media (max-width:600px){.chap{grid-template-columns:1fr;gap:6px;padding:18px 20px}.doc-cover{padding:22px 20px}.doc-cover .fill{text-align:left}}
+.bf-more{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--accent-soft);border-radius:18px;padding:18px 22px}
+.bf-more p{font-size:14px;color:var(--ink-2)}
+.bf-more p b{color:var(--ink)}
+
 .sg.mid{background:var(--test-soft);border:1.5px dashed color-mix(in srgb,var(--test) 60%,transparent);padding:20px 18px 18px;transition:transform .25s,box-shadow .25s}
 .sg.mid:hover{transform:translateY(-4px);box-shadow:0 18px 30px -20px var(--test)}
 .sg.mid .en,.sg.mid h3{color:var(--test)}
@@ -174,32 +233,27 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev .vals span{font-size:12px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb,var(--c) 11%,transparent);color:var(--c)}
 .ev .go{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:all .2s}
 .ev:hover .go{background:var(--c);border-color:var(--c);color:#fff}
-.ev.feat{grid-column:span 2;grid-row:span 2;position:relative;min-height:560px;justify-content:flex-end;border:0;color:#fff}
+.ev.feat{grid-column:span 2;position:relative;min-height:400px;justify-content:flex-end;border:0;color:#fff}
 .ev.feat .ph{position:absolute;inset:0;aspect-ratio:auto}
 .ev.feat .ph::after{background:linear-gradient(180deg,rgba(8,14,12,.35) 0%,rgba(8,14,12,0) 30%,rgba(8,14,12,.15) 50%,rgba(8,14,12,.88) 100%)}
-.ev.feat .b{position:relative;z-index:1;padding:32px;gap:12px;flex:0 0 auto}
+.ev.feat .b{position:relative;z-index:1;padding:26px 28px;gap:10px;flex:0 0 auto}
 .ev.feat .hot{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:4px 12px;border-radius:999px;background:#fff;color:var(--ink)}
 .ev.feat .hot::before{content:"";width:8px;height:8px;border-radius:50%;background:#e2564a;box-shadow:0 0 0 3px rgba(226,86,74,.25)}
-.ev.feat h3{font-size:clamp(26px,3vw,38px);color:#fff}
-.ev.feat .sub{font-size:15px;line-height:1.7;opacity:.92;max-width:34em}
+.ev.feat h3{font-size:clamp(22px,2.3vw,28px);color:#fff}
+.ev.feat .sub{font-size:14px;line-height:1.65;opacity:.92;max-width:38em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .ev.feat .meta{color:rgba(255,255,255,.88);font-size:14px}
 .ev.feat .ft{border-top-color:rgba(255,255,255,.25)}
 .ev.feat .vals span{background:rgba(255,255,255,.16);color:#fff}
 .ev.feat .cta{flex:none;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;background:#fff;color:var(--ink);transition:transform .2s}
 .ev.feat:hover .cta{transform:translateX(3px)}
-@media (max-width:980px){.ev.feat{grid-column:1 / -1;grid-row:auto;min-height:480px}}
-@media (max-width:600px){.ev.feat{min-height:440px}.ev.feat .b{padding:22px}}
-.ev.more{background:var(--accent);border-color:var(--accent);color:var(--on-accent);justify-content:center;padding:28px;gap:12px}
-.ev.more h3{font-size:24px}
-.ev.more p{font-size:14px;opacity:.85}
-.ev.more .go{border-color:currentColor;color:inherit;margin-top:8px}
-.ev.more:hover .go{background:var(--on-accent);color:var(--accent)}
+@media (max-width:980px){.ev.feat{grid-column:1 / -1;min-height:400px}}
+@media (max-width:600px){.ev.feat{min-height:420px}.ev.feat .b{padding:22px}}
 .st{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 .st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
 .st.done{background:var(--muted-chip);color:var(--ink-2);border:1px solid var(--line)}
 .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin:16px 0 4px}
-.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .board-foot .card{background:var(--accent-soft);border-color:transparent}
 @media (max-width:760px){.board-foot{grid-template-columns:1fr}}
 
@@ -264,12 +318,12 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         <div class="tk n"><i>04</i><span>延伸</span></div>
       </div>
       <div class="stages" role="list" aria-label="GMA 服务链路">
-        <div class="sg core" role="listitem">
+        <a class="sg core link" role="listitem" href="#before">
           <span class="en" data-n="01">BEFORE</span>
           <h3>测试前<small>把方向判断清楚</small></h3>
-          <ul><li>市场扫描</li><li>产品本地化</li><li>预热 · 约买手</li></ul>
-          <div class="yd"><span>产出</span><b>测试方案</b></div>
-        </div>
+          <ul><li>海外市场对标报告</li><li>本地用户线上实测</li><li>本地 Founder 1v1</li></ul>
+          <div class="yd"><span>产出 <b>测试方案</b></span><span class="more">查看服务 →</span></div>
+        </a>
         <a class="sg mid" role="listitem" href="#tests">
           <span class="en" data-n="02">ON-SITE</span>
           <h3>实地测试</h3>
@@ -324,8 +378,94 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="board-foot">
       <div class="card"><h3>每个场景前后都一样</h3><p>无论选哪种场景，测试前的市场判断和测试后的验证报告、渠道对接都是同一套服务。</p></div>
       <div class="card"><h3>可以组合</h3><p>例如展会拿买手反馈，再接商圈 Pop-up 延续销售，两段数据合并进一份报告。</p></div>
+      <div class="card"><h3>没看到合适的场景？</h3><p>英国、欧洲等其他市场的市集、联合活动可按你的测试目标定制，<a href="#contact">联系我们</a>。</p></div>
     </div>
   </section>
+</main>
+
+<!-- ================= 测试前 服务页 ================= -->
+<main class="page" id="p-before">
+  <div class="wrap">
+    <section class="bf-hero">
+      <div>
+        <p class="crumb"><a href="#home">服务链路</a> / 测试前</p>
+        <h1>测试前，<em>把方向判断清楚</em></h1>
+      </div>
+      <div>
+        <p>下场之前，我们从三个来源看清目标市场，再决定测什么、怎么测。三项服务可单独选，也可组合。</p>
+        <div class="angles"><span>看数据</span><span>问用户</span><span>问同行</span></div>
+      </div>
+    </section>
+
+    <div class="svcs">
+      <article class="svc">
+        <div class="top"><span class="ang">看数据</span><span class="ix">01</span></div>
+        <h2>海外市场对标报告</h2>
+        <p class="q">这个市场里，<b>谁在卖、卖多少钱、谁在买</b>？</p>
+        <ul>
+          <li>选 3–5 个当地对标品牌，拆定位、价格带、主推款、渠道</li>
+          <li>主流成交区间，以及你的定价放进去的位置</li>
+          <li>消费者画像与购买动机</li>
+          <li>渠道结构与进入门槛</li>
+          <li>你的品牌在这个市场的机会点和风险点</li>
+        </ul>
+        <div class="get"><span>你拿到 <b>一份对标报告</b></span><a class="tpl" href="#tpl">看报告模板 ↓</a></div>
+      </article>
+
+      <article class="svc">
+        <div class="top"><span class="ang">问用户</span><span class="ix">02</span></div>
+        <h2>本地用户线上实测</h2>
+        <p class="q">当地人<b>喜不喜欢</b>你的产品？<b>更喜欢什么</b>？</p>
+        <div class="two">
+          <div><b>产品向</b><ul><li>款式、材质、功能偏好</li><li>包装与规格</li><li>价格接受度</li><li>和竞品放一起选哪个</li></ul></div>
+          <div><b>营销向</b><ul><li>哪个卖点最打动人</li><li>视觉与文案偏好</li><li>品牌故事怎么讲</li><li>常用的社媒与购买渠道</li></ul></div>
+        </div>
+        <ul><li>线上招募目标市场的本地用户，看图、看样、对比打分，并做深度访谈</li></ul>
+        <div class="get"><span>你拿到</span><b>本地用户偏好洞察</b></div>
+      </article>
+
+      <article class="svc">
+        <div class="top"><span class="ang">问同行</span><span class="ix">03</span></div>
+        <h2>本地 Founder 1v1</h2>
+        <p class="q">在当地做过品牌的人，<b>踩过哪些坑</b>？</p>
+        <ul>
+          <li>与当地品牌创始人一对一交流</li>
+          <li>当地市场的真实情况：生意好不好做、客群怎么变</li>
+          <li>渠道怎么进、合作条件、常见坑</li>
+          <li>对你的产品和定价给出一线意见</li>
+          <li>交流后整理成纪要，标出关键结论</li>
+        </ul>
+        <div class="get"><span>你拿到</span><b>一线经验 + 交流纪要</b></div>
+      </article>
+    </div>
+
+    <section class="tplwrap" id="tpl">
+      <div class="eyebrow">Report template</div>
+      <h2>海外市场对标报告 · 模板</h2>
+      <p>以下是报告的章节结构，正式报告会按品牌和目标市场定制填写。</p>
+      <div class="doc">
+        <div class="doc-cover">
+          <div><small>MARKET BENCHMARK REPORT</small><h3><span class="ph-f">品牌名</span> × <span class="ph-f">目标市场</span> 海外市场对标报告</h3></div>
+          <div class="fill">品类：<span class="ph-f">品类</span><br>交付周期：<span class="ph-f">待定</span></div>
+        </div>
+        <div class="chap"><div class="n">01</div><div><h4>市场概览</h4><p>目标市场的品类规模、增长趋势和消费季节性。</p><div class="fields"><span>品类规模</span><span>增长趋势</span><span>消费旺季</span><span>线上线下占比</span></div></div></div>
+        <div class="chap"><div class="n">02</div><div><h4>竞品对标</h4><p>选 3–5 个当地对标品牌，逐项对比。</p>
+          <div class="tbl"><table><thead><tr><th>对标品牌</th><th>定位</th><th>价格带</th><th>主推款</th><th>主要渠道</th><th>社媒表现</th></tr></thead>
+          <tbody><tr><td>对标品牌 A</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>对标品牌 B</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>对标品牌 C</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div></div></div>
+        <div class="chap"><div class="n">03</div><div><h4>价格带分析</h4><p>同类产品的主流成交区间，以及你的定价放进去处在什么位置。</p><div class="fields"><span>主流价格区间</span><span>高 / 中 / 低端分布</span><span>建议定价（当地币）</span></div></div></div>
+        <div class="chap"><div class="n">04</div><div><h4>消费者画像</h4><p>谁在买、为什么买、做决定时看重什么。</p><div class="fields"><span>年龄与收入</span><span>购买动机</span><span>决策因素</span><span>信息来源</span></div></div></div>
+        <div class="chap"><div class="n">05</div><div><h4>渠道结构</h4><p>买手店、百货、Lifestyle Store、电商各占什么位置，进入门槛如何。</p><div class="fields"><span>渠道类型</span><span>代表门店 / 平台</span><span>合作模式</span><span>进入门槛</span></div></div></div>
+        <div class="chap"><div class="n">06</div><div><h4>品牌匹配度</h4><p>你的品牌放进这个市场，站在什么位置。</p><div class="fields"><span>机会点</span><span>风险点</span><span>差异化空间</span></div></div></div>
+        <div class="chap"><div class="n">07</div><div><h4>测试建议</h4><p>基于以上结论，给出下一步实地测试方案。</p><div class="fields"><span>测什么产品</span><span>什么价格</span><span>给什么人</span><span>在什么场景</span></div></div></div>
+      </div>
+    </section>
+
+    <div class="bf-more">
+      <p>进入实地测试前，我们还会协助 <b>产品本地化</b>、<b>合规与物流指引</b>、<b>本地预热与约买手</b>。</p>
+      <a class="btn" href="#tests">下一步：选测试场景 →</a>
+    </div>
+    <div style="height:56px"></div>
+  </div>
 </main>
 
 <!-- ================= 详情（由数据渲染） ================= -->
@@ -396,7 +536,7 @@ function renderBoard(){
     const vals=`<div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div>`;
     if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期主推</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="cta">查看活动详情 →</span></div></div></a>`;
     return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
-  }).join("")+`<a class="ev more" href="#contact"><h3>没看到合适的场景？</h3><p>英国、欧洲等其他市场的市集、联合活动可按你的测试目标定制。</p><span class="go" aria-hidden="true">→</span></a>`;
+  }).join("");
 }
 document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filters button").forEach(x=>x.classList.toggle("on",x===b));
@@ -437,12 +577,14 @@ function route(){
   const homeAnchors=["home","contact"];
   let page="home";
   if(h==="tests")page="tests";
+  else if(h==="before")page="before";
+  else if(h==="tpl"){page="before";}
   else if(EVENTS[h]){page="detail";renderDetail(h);}
   else if(!homeAnchors.includes(h))h="home";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
-    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&page!=="home")||(a.dataset.nav==="contact"&&h==="contact")));
-  if(page==="home"&&h!=="home"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
+    (page==="home"&&a.dataset.nav==="home"&&h!=="contact")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&page==="before")||(a.dataset.nav==="contact"&&h==="contact")));
+  if((page==="home"&&h!=="home")||h==="tpl"){const el=document.getElementById(h);if(el){el.scrollIntoView();return;}}
   window.scrollTo(0,0);
 }
 renderBoard();
