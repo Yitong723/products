@@ -234,8 +234,10 @@ body.lock{overflow:hidden}
 .sg.mid h3{font-size:22px}
 .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .mosaic div{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden}
-.mosaic img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(.95);opacity:.85;transition:filter .3s,opacity .3s}
-.sg.mid:hover .mosaic img{filter:none;opacity:1}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mosaic div:nth-child(4) img{object-position:center 85%}
+.sg.mid:hover .mosaic img{transform:scale(1.1)}
+.sg.mid:hover .mosaic div:nth-child(2) img{transition-delay:.05s}.sg.mid:hover .mosaic div:nth-child(3) img{transition-delay:.1s}.sg.mid:hover .mosaic div:nth-child(4) img{transition-delay:.15s}
 .mosaic span{position:absolute;left:6px;bottom:6px;font-size:12px;font-weight:700;color:#fff;background:rgba(20,20,20,.55);padding:1px 8px;border-radius:999px}
 .sg.mid .yd{color:var(--test);font-weight:700}
 
