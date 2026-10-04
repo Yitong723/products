@@ -263,9 +263,6 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .board-h p{color:var(--ink-2);margin-top:10px;max-width:44em}
 .crumb{font-size:13px;color:var(--ink-2)}
 .crumb a{text-decoration:none;border-bottom:1px solid var(--line)}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
-.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 @media (max-width:1100px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.board{grid-template-columns:1fr}}
@@ -304,19 +301,20 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev.feat:hover .cta{transform:translateX(3px)}
 @media (max-width:1100px){.ev.feat{grid-column:1 / -1;min-height:400px}}
 @media (max-width:600px){.ev.feat{min-height:420px}.ev.feat .b{padding:22px}}
-.forms{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:22px}
-@media (max-width:1100px){.forms{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:560px){.forms{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.fm{--c:var(--ink);font:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;align-content:start;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:border-color .2s,background .2s}
+.ctl{margin-top:24px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 28px;border-bottom:1px solid var(--line)}
+.forms{display:flex;flex-wrap:wrap;gap:0 26px}
+.fm{--c:var(--ink);font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:10px 0 12px;margin-bottom:-1px;border:0;border-bottom:2px solid transparent;background:none;color:var(--ink-2);font-size:15px;transition:color .2s,border-color .2s}
 .fm.booth{--c:var(--c-booth)}.fm.invade{--c:var(--c-invade)}.fm.orchard{--c:var(--c-orchard)}.fm.space{--c:var(--c-space)}.fm.xmas{--c:var(--c-xmas)}
-.fm b{font-size:14px;display:flex;align-items:center;gap:7px}
-.fm b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
-.fm.all b::before{display:none}
-.fm small{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
-.fm span{grid-column:1 / -1;font-size:12px;color:var(--ink-2);line-height:1.5}
-.fm:hover{border-color:color-mix(in srgb,var(--c) 50%,var(--line))}
-.fm.on{background:color-mix(in srgb,var(--c) 10%,var(--surface));border-color:var(--c)}
-.flab{font-size:12px;color:var(--ink-2);margin-right:4px;align-self:center}
+.fm::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+.fm.all::before{display:none}
+.fm small{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);opacity:.7}
+.fm:hover{color:var(--ink)}
+.fm.on{color:var(--ink);font-weight:700;border-bottom-color:var(--c)}
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;padding-bottom:12px;font-size:13px}
+.flab{color:var(--ink-2)}
+.filters button{font:inherit;border:0;background:none;cursor:pointer;padding:2px 0;color:var(--ink-2);border-bottom:1.5px solid transparent}
+.filters button:hover{color:var(--ink)}
+.filters button.on{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
 .ev.more{background:var(--accent);border-color:var(--accent);color:var(--on-accent);justify-content:center;padding:26px;gap:12px}
 .ev.more h3{font-size:22px}
 .ev.more p{font-size:14px;opacity:.85}
@@ -326,7 +324,6 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
 .st.done{background:var(--muted-chip);color:var(--ink-2);border:1px solid var(--line)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2);margin:16px 0 4px}
 .board-foot{margin-block:28px 56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .board-foot .card{background:var(--accent-soft);border-color:transparent}
 @media (max-width:760px){.board-foot{grid-template-columns:1fr}}
@@ -438,15 +435,16 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="eyebrow t" style="margin-top:14px">On-site testing board</div>
     <h1>实地测试方式</h1>
     <p>每个场景能测的东西不同。先看你想验证什么，再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
-    <div class="forms" role="group" aria-label="按测试方式筛选" id="forms"></div>
-    <div class="filters" role="group" aria-label="按验证目标筛选"><span class="flab">验证目标</span>
-      <button class="on" data-f="all">全部</button>
+    <div class="ctl">
+      <div class="forms" role="group" aria-label="按测试方式筛选" id="forms"></div>
+      <div class="filters" role="group" aria-label="按验证目标筛选"><span class="flab">验证目标：</span>
+      <button class="on" data-f="all">不限</button>
       <button data-f="消费者">测消费者</button>
       <button data-f="价格">测价格</button>
       <button data-f="买手">见买手</button>
       <button data-f="品牌体验">测品牌体验</button>
     </div>
-    <div class="legend"><span class="st open">招募中 / 按期安排 / 随时定制</span><span class="st plan">筹备中</span><span class="st done">已结束</span></div>
+    </div>
   </section>
   <section class="wrap">
     <div class="board" id="board"></div>
@@ -705,7 +703,7 @@ function renderBoard(){
 }
 function renderForms(){
   const n=id=>Object.values(EVENTS).filter(e=>id==="all"||e.col===id).length;
-  $("#forms").innerHTML=[{id:"all",name:"全部方式"},...COLS].map(c=>`<button class="fm ${c.id}${form===c.id?" on":""}" data-form="${c.id}"><b>${c.name}</b><small>${n(c.id)}</small>${c.desc?`<span>${c.desc}</span>`:"<span>5 种测试方式，按目标组合</span>"}</button>`).join("");
+  $("#forms").innerHTML=[{id:"all",name:"全部"},...COLS].map(c=>`<button class="fm ${c.id}${form===c.id?" on":""}" data-form="${c.id}" title="${c.desc||"5 种测试方式，按目标组合"}">${c.name}<small>${n(c.id)}</small></button>`).join("");
   $("#forms").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{form=b.dataset.form;renderForms();renderBoard();}));
 }
 renderForms();
