@@ -153,9 +153,9 @@ p{margin:0}
 .bx.side .sub{margin-top:12px;font-size:13px;color:var(--ink-2);line-height:1.8}
 .bx.side .sub b{color:var(--ink);font-weight:700;margin-right:4px}
 .dim2{margin-top:10px;display:grid;gap:0}
-.dim2>div{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:6px 0;border-top:1px dashed var(--line)}
+.dim2>div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;padding:6px 0;border-top:1px dashed var(--line)}
 .dim2>div:last-child{border-bottom:1px dashed var(--line)}
-.dim2 b{font-size:13px;font-weight:700;color:var(--green);padding-top:1px}
+.dim2 b{font-size:13px;font-weight:700;color:var(--green);padding-top:1px;white-space:nowrap}
 .dim2 ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 12px}
 .dim2 li{font-size:13px;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:6px}
 .dim2 li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-2);opacity:.6}
@@ -164,6 +164,15 @@ p{margin:0}
 @media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
 @media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
 
+.dim2 ul.one{grid-template-columns:1fr}
+.dim2 ul.one li{white-space:normal}
+.bx.big.plan{background:var(--surface)}
+.decide-v{flex:1;display:grid;gap:12px;margin:18px 28px 26px;align-content:end}
+.dv{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:20px 20px;border-radius:16px;background:var(--bg);border-left:4px solid var(--c)}
+.dv-go{--c:var(--ok)}.dv-ad{--c:var(--warn)}.dv-st{--c:var(--stop)}
+.dv b{grid-row:span 2;font-family:var(--f-mono);font-size:20px;letter-spacing:.06em;color:var(--c)}
+.dv span{font-size:15px;font-weight:700}
+.dv p{font-size:13px;color:var(--ink-2)}
 .bf-more{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;padding:6px 4px 0}
 .bf-more p{font-size:14px;color:var(--ink-2)}
 .bf-more p b{color:var(--ink)}
@@ -276,24 +285,24 @@ body.lock{overflow:hidden}
 footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:center}
 
 /* ========== 全局联系区 ========== */
-.site-foot{margin-top:24px;background:var(--ink);color:var(--bg);padding-block:48px 24px;text-align:left;font-size:inherit}
-.sf{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
-.site-foot .eyebrow{color:#7fd4b4}
-.site-foot h2{font-size:clamp(24px,3vw,32px);font-weight:900;margin-top:10px}
-.sf-l>p{margin-top:8px;opacity:.75;font-size:15px}
-.sf-mail{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px;max-width:460px}
-.sf-mail li{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.07)}
-.sf-mail span{font-size:13px;opacity:.65}
-.sf-mail b{font-size:15px;font-weight:500;text-align:left;user-select:all;overflow-wrap:anywhere}
-.sf-mail button{font:inherit;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.3);background:none;color:inherit;border-radius:999px;padding:3px 12px;cursor:pointer}
+.site-foot{margin-top:24px;background:var(--ink);color:var(--bg);padding-block:24px 18px;text-align:left;font-size:inherit}
+.sf{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+.sf-l{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+.site-foot h2{font-size:18px;font-weight:900;margin:0}
+.site-foot .eyebrow{color:#7fd4b4;display:block;margin-bottom:4px}
+.sf-mail{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.sf-mail li{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 14px;border-radius:999px;background:rgba(255,255,255,.08);font-size:14px}
+.sf-mail span{font-size:12px;opacity:.65}
+.sf-mail b{font-weight:500;user-select:all}
+.sf-mail button{font:inherit;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.3);background:none;color:inherit;border-radius:999px;padding:2px 10px;cursor:pointer}
 .sf-mail button:hover{background:rgba(255,255,255,.12)}
-.sf-qr{text-align:center}
-.sf-qr img{width:168px;background:#fff;border-radius:14px;padding:10px;margin:0 auto}
-.sf-qr p{margin-top:10px;font-size:12px;opacity:.8;line-height:1.6}
-.sf-qr p b{font-size:14px;opacity:1}
-.sf-copy{text-align:center;font-size:12px;opacity:.5;margin-top:36px}
+.sf-qr{display:flex;align-items:center;gap:12px}
+.sf-qr img{width:84px;background:#fff;border-radius:10px;padding:5px}
+.sf-qr p{font-size:12px;opacity:.8;line-height:1.6}
+.sf-qr p b{font-size:13px;opacity:1}
+.sf-copy{text-align:center;font-size:11px;opacity:.45;margin-top:14px}
 .btn.ghost-inv{background:transparent;color:var(--bg);border:1px solid rgba(255,255,255,.4)}
-@media (max-width:640px){.sf{grid-template-columns:1fr}.sf-qr{text-align:left}.sf-qr img{margin:0}}
+@media (max-width:640px){.sf{flex-direction:column;align-items:flex-start}.sf-l{flex-direction:column;align-items:flex-start}.sf-mail{flex-direction:column}}
 
 /* ========== 看板 ========== */
 .board-h{padding-block:44px 22px}
@@ -470,12 +479,12 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           </div>
           <div class="yd"><span>5 种方式</span><span>查看 →</span></div>
         </a>
-        <div class="sg core" role="listitem">
+        <a class="sg core link" role="listitem" href="#after">
           <span class="en" data-n="03">AFTER</span>
           <h3>测试后<small>把数据变成决定</small></h3>
-          <ul><li>验证报告</li><li>渠道对接</li><li>GMA 资源库</li></ul>
-          <div class="yd"><span>产出</span><span class="dots"><em class="g">GO</em><em class="a">ADJUST</em><em class="s">STOP</em></span></div>
-        </div>
+          <ul><li>可落地计划报告</li><li>当地品牌交流会</li><li>渠道对接</li></ul>
+          <div class="yd"><span class="dots"><em class="g">GO</em><em class="a">ADJUST</em><em class="s">STOP</em></span><span class="more">查看服务 →</span></div>
+        </a>
         <div class="sg next" role="listitem">
           <span class="en" data-n="04">NEXT</span>
           <h3>进入 · 增长</h3>
@@ -576,6 +585,67 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
   </div>
 </main>
 
+<!-- ================= 测试后 服务页 ================= -->
+<main class="page" id="p-after">
+  <div class="wrap bf">
+    <section class="bf-hero">
+      <div>
+        <p class="crumb"><a href="#home">服务链路</a> / 测试后</p>
+        <h1>测试后，<em>把数据变成决定</em></h1>
+        <p class="r">测试结束后，我们把现场数据整理成可执行的计划，再帮你接上当地品牌、买手和推广资源。</p>
+      </div>
+    </section>
+
+    <div class="bento">
+      <article class="bx big plan">
+        <div class="txt">
+          <span class="lab"><i>01</i>定方向</span>
+          <h2>可落地计划报告</h2>
+          <p class="q">这个市场要不要继续？下一步具体怎么做？</p>
+          <div class="pts"><span>核心人群</span><span>主推 SKU</span><span>定价建议</span><span>渠道选择</span><span>投入节奏</span></div>
+          <div class="out"><span>你拿到</span><b>一份可落地计划报告</b></div>
+        </div>
+        <div class="decide-v">
+          <div class="dv dv-go"><b>GO</b><span>信号成立</span><p>进入下一阶段：渠道落地与本地推广</p></div>
+          <div class="dv dv-ad"><b>ADJUST</b><span>调整再测</span><p>调整产品、价格、包装或定位后再测一轮</p></div>
+          <div class="dv dv-st"><b>STOP</b><span>及时止损</span><p>暂停投入，避免更大的预算浪费</p></div>
+        </div>
+      </article>
+
+      <article class="bx side">
+        <div class="ph"><img src="assets/exchange.jpg" alt="GMA 中外品牌交流会现场" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>02</i>找同伴</span>
+          <h2>当地品牌交流会</h2>
+          <p class="q">和当地品牌坐下来聊，少走弯路。</p>
+          <div class="dim2"><div><b>能得到</b><ul><li>经验分享</li><li>联合曝光</li><li>渠道互通</li><li>联名合作</li></ul></div></div>
+          <div class="out"><span>你拿到</span><b>当地品牌人脉</b></div>
+        </div>
+      </article>
+
+      <article class="bx side">
+        <div class="ph"><img src="assets/buyer.jpg" alt="买手现场洽谈" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>03</i>接渠道</span>
+          <h2>渠道对接</h2>
+          <p class="q">买手从哪来？怎么谈？怎么被看见？</p>
+          <div class="dim2">
+            <div><b>买手资源</b><ul class="one"><li>INVADE 1 万+ 合作商家网络</li><li>新加坡零售协会 SRA 会员零售商</li><li>本地精品店、Lifestyle Store、区域分销商</li></ul></div>
+            <div><b>商务洽谈</b><ul class="one"><li>一对一商务洽谈，按品类预约</li></ul></div>
+            <div><b>KOL 推广</b><ul class="one"><li>当地 KOL 初步推广与内容露出</li></ul></div>
+          </div>
+          <div class="out"><span>你拿到</span><b>可跟进的渠道机会</b></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="bf-more">
+      <p>结论是 GO 的品牌，可以继续进入 <b>渠道落地</b> 与 <b>本地运营</b> 阶段。</p>
+      <a class="btn" href="#contact">聊聊下一步 →</a>
+    </div>
+  </div>
+</main>
+
 <!-- ================= 报告模板：弹窗 ================= -->
 <div class="modal" id="reportModal" hidden role="dialog" aria-modal="true" aria-label="海外市场对标报告模板">
   <div class="bk" data-close></div>
@@ -607,11 +677,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         <li><span>04</span><a href="#report">SKU 受欢迎程度</a></li>
         <li><span>05</span><a href="#report">定价接受度分析</a></li>
         <li><span>06</span><a href="#report">渠道结构分析</a></li>
-        <li><span>07</span><a href="#report">社媒与内容偏好分析</a></li>
-        <li><span>08</span><a href="#report">合规与准入要求</a></li>
-        <li><span>09</span><a href="#report">进入成本测算</a></li>
-        <li><span>10</span><a href="#report">机会与风险分析</a></li>
-        <li><span>11</span><a href="#report">实地测试建议</a></li>
+        <li><span>07</span><a href="#report">合规与准入要求</a></li>
+        <li><span>08</span><a href="#report">进入成本测算</a></li>
+        <li><span>09</span><a href="#report">机会与风险分析</a></li>
+        <li><span>10</span><a href="#report">实地测试建议</a></li>
       </ol></nav>
 
       <section><h2><span>00</span>核心结论</h2>
@@ -676,16 +745,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         </tbody></table></div>
       </section>
 
-      <section><h2><span>07</span>社媒与内容偏好分析</h2>
-        <div class="dtbl"><table><tbody>
-          <tr><th style="width:140px">主流平台</th><td><span class="fld">Instagram / TikTok / 小红书 / Facebook 等</span></td></tr>
-          <tr><th>受欢迎的内容</th><td><span class="fld">什么类型的内容在当地互动高</span></td></tr>
-          <tr><th>有效卖点</th><td><span class="fld">当地人更在意的卖点表达</span></td></tr>
-          <tr><th>KOL 参考</th><td><span class="fld">同品类当地 KOL 与合作价位</span></td></tr>
-        </tbody></table></div>
-      </section>
-
-      <section><h2><span>08</span>合规与准入要求</h2>
+      <section><h2><span>07</span>合规与准入要求</h2>
         <div class="dtbl"><table><thead><tr><th>事项</th><th>要求</th><th>是否需要</th><th>预计周期</th></tr></thead><tbody>
           <tr><td>产品认证 / 检测</td><td><span class="fld">例如化妆品备案、儿童用品认证</span></td><td><span class="fld">是 / 否</span></td><td></td></tr>
           <tr><td>标签与包装</td><td><span class="fld">语言、成分、产地标注</span></td><td><span class="fld">是 / 否</span></td><td></td></tr>
@@ -693,7 +753,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         </tbody></table></div>
       </section>
 
-      <section><h2><span>09</span>进入成本测算</h2>
+      <section><h2><span>08</span>进入成本测算</h2>
         <p>从出厂价推算到当地终端售价，看每一层成本后还剩多少利润。</p>
         <div class="dtbl"><table><thead><tr><th>项目</th><th>单件金额（当地币）</th><th>说明</th></tr></thead><tbody>
           <tr><td>出厂价</td><td><span class="fld">金额</span></td><td></td></tr>
@@ -704,7 +764,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         </tbody></table></div>
       </section>
 
-      <section><h2><span>10</span>机会与风险分析</h2>
+      <section><h2><span>09</span>机会与风险分析</h2>
         <div class="quad">
           <div class="o"><b>机会点</b><span class="fld">市场空白、人群需求</span></div>
           <div class="r"><b>风险点</b><span class="fld">竞争、价格、合规</span></div>
@@ -713,7 +773,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         </div>
       </section>
 
-      <section><h2><span>11</span>实地测试建议</h2>
+      <section><h2><span>10</span>实地测试建议</h2>
         <div class="dtbl"><table><thead><tr><th>测什么产品</th><th>什么价格</th><th>给什么人</th><th>在什么场景</th></tr></thead><tbody>
           <tr><td><span class="fld">测试 SKU</span></td><td><span class="fld">测试价格</span></td><td><span class="fld">目标人群</span></td><td><span class="fld">展会 / 市集 / 闪卖店 / 节庆</span></td></tr>
         </tbody></table></div>
@@ -733,9 +793,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 <footer class="site-foot" id="contact">
   <div class="wrap sf">
     <div class="sf-l">
-      <span class="eyebrow">Contact · 联系我们</span>
-      <h2>告诉我们你的产品和目标市场</h2>
-      <p>我们先帮你判断：值不值得测、该测什么、用哪种方式测。</p>
+      <div><span class="eyebrow">Contact · 联系我们</span><h2>告诉我们你的产品和目标市场</h2></div>
       <ul class="sf-mail">
         <li><span>Jade</span><b>1205226717@qq.com</b><button type="button" data-copy="1205226717@qq.com">复制</button></li>
         <li><span>Carrie</span><b>yt1253082426@163.com</b><button type="button" data-copy="yt1253082426@163.com">复制</button></li>
@@ -743,7 +801,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     </div>
     <div class="sf-qr">
       <img src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码">
-      <p><b>微信：GMA品牌出海</b><br>扫码添加，备注「品牌名 + 目标市场」</p>
+      <p><b>微信 GMA品牌出海</b><br>扫码备注「品牌名 + 目标市场」</p>
     </div>
   </div>
   <p class="sf-copy">Global Market Accelerator · 先验证，再投入</p>
@@ -902,12 +960,13 @@ function route(){
   let page="home";
   if(h==="tests")page="tests";
   else if(h==="before")page="before";
+  else if(h==="after")page="after";
   else if(EVENTS[h]){page="detail";renderDetail(h);}
   else if(h==="contact"){setTimeout(goContact,50);}
   else if(!homeAnchors.includes(h))h="home";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
-    (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&page==="before")));
+    (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&(page==="before"||page==="after"))));
   window.scrollTo(0,0);
 }
 renderBoard();
