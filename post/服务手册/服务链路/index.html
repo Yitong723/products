@@ -24,16 +24,18 @@
   --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   --r:14px;
+  --on-accent:#ffffff;
+  --c-booth:#2f5f8f;--c-booth-s:#e3ebf4;--c-invade:#c0582f;--c-invade-s:#f7e6de;--c-orchard:#6b4c9a;--c-orchard-s:#ece6f4;--c-xmas:#b23a3a;--c-xmas-s:#f6e1df;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;color-scheme:dark}}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#101614;--surface:#18201d;--ink:#e8eeeb;--ink-2:#a9b6b1;--line:#2c3733;
   --accent:#5fbcae;--accent-soft:#17302c;--test:#d2ad6a;--test-soft:#2b2518;
-  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;color-scheme:dark}
+  --ok:#5cc28f;--warn:#e0a24e;--stop:#e2786e;--muted-chip:#232c29;--on-accent:#0b1a17;--c-booth:#7fb0e0;--c-booth-s:#1a2633;--c-invade:#ec9672;--c-invade-s:#33221b;--c-orchard:#b79be0;--c-orchard-s:#272033;--c-xmas:#ea8a84;--c-xmas-s:#341e1d;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -57,131 +59,60 @@ p{margin:0}
 .nav a{text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;color:var(--ink-2)}
 .nav a:hover{background:var(--muted-chip);color:var(--ink)}
 .nav a.on{background:var(--ink);color:var(--bg)}
-@media (max-width:560px){.brand small{display:none}.nav a{padding:6px 9px;font-size:13px}}
+@media (max-width:560px){.brand small{display:none}.nav a{padding:6px 9px;font-size:13px}.nav a[data-nav="contact"]{display:none}}
 
 .page{display:none}
 .page.on{display:block}
 
-/* ========== 首页 HERO ========== */
-.hero{padding-block:56px 28px}
-.hero h1{font-size:clamp(30px,5.2vw,54px);font-weight:900;letter-spacing:.01em;max-width:16em}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lede{margin-top:16px;font-size:17px;color:var(--ink-2);max-width:40em}
+/* ========== 首页：一张服务链路图 ========== */
+.home{padding-block:56px 40px;min-height:calc(100vh - 58px);display:flex;flex-direction:column}
+.home-h{text-align:left}
+.home-h h1{font-size:clamp(32px,5vw,52px);font-weight:900;margin-top:10px}
+.home-h h1 em{font-style:normal;color:var(--accent)}
+.home-h p{margin-top:12px;font-size:17px;color:var(--ink-2)}
 
-/* 服务链路 */
-.chain{margin-top:36px;display:grid;grid-template-columns:minmax(0,1.3fr) 40px minmax(0,.78fr) 40px minmax(0,1.3fr) 30px minmax(0,.72fr);align-items:stretch}
-.node{border-radius:var(--r);padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;text-decoration:none}
-.node.big{background:var(--accent);color:#fff}
-:root[data-theme="dark"] .node.big{color:#0b1a17}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .node.big{color:#0b1a17}}
-.node .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;opacity:.8}
-.node h3{font-size:24px;font-weight:900}
-.node ul{margin:2px 0 0;padding:0;list-style:none;display:grid;gap:5px;font-size:14px}
-.node li{display:flex;gap:8px}
-.node li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55;margin-top:.62em}
-.node .out{margin-top:auto;padding-top:12px;border-top:1px solid color-mix(in srgb,currentColor 30%,transparent);font-size:13px}
-.node .out b{display:block;font-size:15px}
-.node.mid{background:var(--test-soft);color:var(--ink);border:1.5px dashed var(--test);align-items:flex-start;justify-content:center;transition:transform .2s,box-shadow .2s}
-.node.mid:hover{transform:translateY(-3px);box-shadow:0 10px 24px -14px var(--test)}
-.node.mid h3{font-size:18px;white-space:nowrap;color:var(--test)}
-.node.mid p{font-size:13px;color:var(--ink-2)}
-.node.mid .go{margin-top:6px;font-size:13px;font-weight:700;color:var(--test)}
-.node.next{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
-.node.next h3{font-size:18px}
-.node.next p{font-size:13px;color:var(--ink-2)}
-.arrow{display:flex;align-items:center;justify-content:center;color:var(--ink-2)}
-.arrow svg{width:100%;height:20px}
-.chain-note{margin-top:14px;font-size:13px;color:var(--ink-2)}
-.chain-note b{color:var(--ink)}
-@media (max-width:900px){
-  .chain{grid-template-columns:1fr;gap:0}
-  .arrow{height:30px}.arrow svg{transform:rotate(90deg);width:20px}
+.rail{margin-top:48px;position:relative;display:grid;grid-template-columns:1.25fr .9fr 1.25fr .8fr;gap:22px;align-items:start}
+.rail::before{content:"";position:absolute;left:4%;right:6%;top:58px;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 10px,transparent 10px 16px);z-index:0}
+.stn{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;text-decoration:none;color:var(--ink)}
+.disc{width:116px;height:116px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:2px;background:var(--bg)}
+.disc b{font-family:var(--f-display);font-size:24px;font-weight:900;line-height:1.1}
+.disc small{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em}
+.stn.core .disc{width:136px;height:136px;margin-top:-10px;background:var(--accent);color:var(--on-accent);box-shadow:0 0 0 8px var(--bg),0 14px 30px -12px var(--accent)}
+.stn.core .disc b{font-size:28px}
+.stn.mid .disc{border:2px dashed var(--test);color:var(--test);background:var(--test-soft);box-shadow:0 0 0 8px var(--bg);transition:transform .2s}
+.stn.mid:hover .disc{transform:scale(1.05)}
+.stn.next .disc{border:2px solid var(--line);color:var(--ink-2);box-shadow:0 0 0 8px var(--bg)}
+.stn.next .disc b{font-size:20px}
+.kw{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:240px}
+.kw span{font-size:14px;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.stn.core .kw span{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.stn.mid .kw span{font-size:13px;background:transparent;border-style:dashed;border-color:var(--test);color:var(--test)}
+.yield{font-size:14px;font-weight:700;color:var(--accent)}
+.yield::before{content:"↳ "}
+.stn.mid .yield{color:var(--test)}
+.stn.mid .yield::before{content:""}
+.rail-foot{margin-top:auto;padding-top:48px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);margin-bottom:0}
+.rail-foot p{font-size:14px;color:var(--ink-2);min-width:0;overflow-wrap:anywhere}
+.rail-foot p b{color:var(--ink)}
+@media (max-width:860px){
+  .home{min-height:0}
+  .rail{grid-template-columns:1fr;gap:28px;justify-items:start}
+  .rail::before{left:57px;right:auto;top:20px;bottom:20px;width:3px;height:auto;background:repeating-linear-gradient(180deg,var(--line) 0 10px,transparent 10px 16px)}
+  .stn{flex-direction:row;text-align:left;align-items:center;gap:18px}
+  .stn>div:not(.disc){display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .kw{justify-content:flex-start}
+  .disc,.stn.core .disc,.stn.next .disc,.stn.mid .disc{flex:none;width:116px;height:116px;margin-top:0}
+  .stn.core .disc b{font-size:24px}
 }
-
-/* 通用段落 */
-.sec{padding-block:64px;border-top:1px solid var(--line)}
-.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;align-items:end;margin-bottom:32px}
-.sec-h h2{font-size:clamp(24px,3.4vw,36px);font-weight:900;margin-top:8px}
-.sec-h p{color:var(--ink-2)}
-@media (max-width:760px){.sec-h{grid-template-columns:1fr;gap:10px}}
-
-.grid{display:grid;gap:16px}
-.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
-@media (max-width:900px){.g3,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.g3,.g2,.g5{grid-template-columns:1fr}}
+@media (max-width:420px){.disc,.stn.core .disc,.stn.next .disc,.stn.mid .disc{width:96px;height:96px}.disc b,.stn.core .disc b{font-size:20px}.rail::before{left:47px}}
 
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
 .card h3{font-size:18px;margin-bottom:8px}
 .card p,.card li{font-size:14px;color:var(--ink-2)}
 .card ul{margin:6px 0 0;padding-left:18px}
-.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
-
-/* 测试前：步骤 */
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.step{counter-increment:s;position:relative;padding-top:44px}
-.step::before{content:counter(s,decimal-leading-zero);position:absolute;left:20px;top:16px;font-family:var(--f-mono);font-size:13px;color:var(--accent)}
-@media (max-width:900px){.steps{grid-template-columns:1fr}}
-.deliver{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--accent-soft);border-radius:var(--r);padding:16px 20px}
-.deliver b{font-family:var(--f-display);font-size:16px;margin-right:6px}
-.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px}
-.formula span{background:var(--surface);border:1px solid var(--line);padding:3px 10px;border-radius:8px}
-
-/* 中间：实地测试带 */
-.testband{background:var(--test-soft);border-block:1px dashed var(--test);padding-block:44px}
-.testband .inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:32px;align-items:center}
-.testband h2{font-size:clamp(22px,3vw,30px);font-weight:900;margin-top:8px}
-.testband p.d{color:var(--ink-2);margin-top:10px;font-size:14px}
-.scenes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.scene{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;transition:border-color .2s}
-.scene:hover{border-color:var(--test)}
-.scene b{font-size:15px;display:block}
-.scene small{font-size:12px;color:var(--ink-2)}
-.scene .ico{flex:none;width:36px;height:36px;border-radius:10px;background:var(--test-soft);color:var(--test);display:grid;place-items:center;font-family:var(--f-mono);font-size:13px}
 .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;text-decoration:none;padding:11px 20px;border-radius:999px;background:var(--ink);color:var(--bg);border:0;cursor:pointer}
 .btn.t{background:var(--test);color:#fff}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.dual{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px}
-.dual div{background:var(--surface);border-radius:10px;padding:10px 12px;color:var(--ink-2)}
-.dual b{color:var(--ink);display:block;font-size:14px}
-@media (max-width:760px){.testband .inner{grid-template-columns:1fr}.scenes{grid-template-columns:1fr}}
-
-/* 测试后：报告五问 + 决策 */
-.q5 .card{padding:18px}
-.q5 .en{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--accent)}
-.q5 h3{font-size:20px;margin:4px 0 6px}
-.decide{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.dc{border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--surface)}
-.dc b{font-family:var(--f-mono);font-size:15px;letter-spacing:.06em;display:block}
-.dc.go b{color:var(--ok)}.dc.ad b{color:var(--warn)}.dc.st b{color:var(--stop)}
-.dc span{font-size:14px;color:var(--ink-2)}
-@media (max-width:560px){.decide{grid-template-columns:1fr}}
-.after-row{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
-.after-row .ph{border-radius:var(--r);overflow:hidden;min-height:220px;background:var(--muted-chip)}
-.after-row .ph img{width:100%;height:100%;object-fit:cover}
-@media (max-width:760px){.after-row{grid-template-columns:1fr}}
-
-/* 延伸 进入 / 增长 */
-.ext{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.ext .card h3{display:flex;gap:10px;align-items:baseline}
-.ext .card h3 small{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:500}
-@media (max-width:760px){.ext{grid-template-columns:1fr}}
-
-/* 证据 */
-.proof{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
-.logos div{background:#fff;border-radius:10px;height:64px;display:grid;place-items:center;padding:10px;border:1px solid var(--line)}
-.logos img{max-height:40px;width:auto}
-.case{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;align-items:start}
-.case img{border-radius:10px;aspect-ratio:3/4;object-fit:cover;width:100%}
-.stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px}
-.stats div{font-size:12px;color:var(--ink-2)}
-.stats b{display:block;font-family:var(--f-display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
-@media (max-width:760px){.proof{grid-template-columns:1fr}}
-@media (max-width:420px){.case{grid-template-columns:1fr}.case img{max-width:180px}}
-
-/* 联系 */
 .contact{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;background:var(--ink);color:var(--bg);border-radius:20px;padding:32px}
 .contact h2{font-size:clamp(22px,3vw,30px)}
 .contact p{opacity:.8;margin-top:8px;font-size:14px}
@@ -199,13 +130,19 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .filters button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);padding:5px 12px;border-radius:999px;cursor:pointer}
 .filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.board{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:14px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory}
-.col{background:var(--muted-chip);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:12px;scroll-snap-align:start;min-width:0}
-.col-h{display:flex;justify-content:space-between;align-items:baseline;padding:4px 6px 2px}
-.col-h b{font-size:15px}
-.col-h small{font-size:12px;color:var(--ink-2)}
-.col-d{font-size:12px;color:var(--ink-2);padding:0 6px}
-.ev{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.board{display:grid;grid-template-columns:repeat(4,minmax(250px,1fr));gap:22px;overflow-x:auto;padding:4px 2px 14px;scroll-snap-type:x mandatory}
+.col{--c:var(--accent);--cs:var(--accent-soft);background:var(--cs);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;scroll-snap-align:start;min-width:0;border:1px solid color-mix(in srgb,var(--c) 25%,transparent)}
+.col.booth{--c:var(--c-booth);--cs:var(--c-booth-s)}
+.col.invade{--c:var(--c-invade);--cs:var(--c-invade-s)}
+.col.orchard{--c:var(--c-orchard);--cs:var(--c-orchard-s)}
+.col.xmas{--c:var(--c-xmas);--cs:var(--c-xmas-s)}
+.col-h{background:var(--c);color:var(--bg);padding:16px 16px 14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 12px;align-items:center}
+.col-h .ic{width:42px;height:42px;border-radius:12px;background:color-mix(in srgb,var(--bg) 22%,transparent);display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:20px}
+.col-h b{font-size:17px;line-height:1.3}
+.col-h small{font-size:12px;font-weight:700;background:color-mix(in srgb,var(--bg) 22%,transparent);padding:1px 8px;border-radius:999px}
+.col-d{grid-column:1 / -1;font-size:12px;opacity:.9;line-height:1.5}
+.col-body{padding:14px;display:flex;flex-direction:column;gap:14px}
+.ev{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .ev:hover{transform:translateY(-2px);box-shadow:0 12px 24px -16px rgba(0,0,0,.4)}
 .ev.dim{opacity:.35}
 .ev .img{aspect-ratio:16/9;background:var(--muted-chip);overflow:hidden}
@@ -214,7 +151,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev h3{font-family:var(--f-body);font-size:15px;font-weight:700;line-height:1.4}
 .ev .meta{font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .ev .vals{display:flex;flex-wrap:wrap;gap:4px}
-.ev .vals span{font-size:11px;padding:1px 7px;border-radius:6px;background:var(--test-soft);color:var(--test)}
+.ev .vals span{font-size:11px;padding:1px 7px;border-radius:6px;background:var(--cs);color:var(--c)}
 .st{align-self:flex-start;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 .st.open{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .st.plan{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
@@ -268,227 +205,48 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 
 <!-- ================= 首页 ================= -->
 <main class="page" id="p-home">
-  <section class="hero wrap">
-    <div class="eyebrow">Validate · Enter · Grow</div>
-    <h1>进入海外市场之前，<em>先拿到真实答案</em>。</h1>
-    <p class="lede">我们帮中国品牌在测试前做判断、在测试后做决定。中间那一次线下实地测试，只是取得数据的方式。</p>
+  <section class="wrap home">
+    <div class="home-h">
+      <div class="eyebrow">GMA 服务链路</div>
+      <h1>先验证，<em>再投入</em></h1>
+      <p>测试前帮你判断，测试后帮你决定。</p>
+    </div>
 
-    <div class="chain" role="list" aria-label="GMA 服务链路">
-      <div class="node big" role="listitem">
-        <span class="k">BEFORE · 测试前</span>
-        <h3>市场判断与准备</h3>
-        <ul>
-          <li>目标市场扫描：竞品、价格带、消费者、渠道</li>
-          <li>产品本地化：卖点、SKU 组合、当地币定价</li>
-          <li>合规、物流清关、出行布展指引</li>
-          <li>本地社媒预热，提前约好买手</li>
-        </ul>
-        <div class="out"><b>你拿到：一份测试方案</b>测什么产品、什么价格、给谁看、在哪个场景</div>
+    <div class="rail" role="list" aria-label="GMA 服务链路">
+      <div class="stn core" role="listitem">
+        <div class="disc"><small>BEFORE</small><b>测试前</b></div>
+        <div>
+          <div class="kw"><span>市场扫描</span><span>产品本地化</span><span>预热 · 约买手</span></div>
+          <p class="yield">测试方案</p>
+        </div>
       </div>
-      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 44 20"><path d="M2 10h36m-7-6 7 6-7 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-      <a class="node mid" role="listitem" href="#tests">
-        <span class="eyebrow t">ON-SITE</span>
-        <h3>实地测试方式</h3>
-        <p>展会 Booth、本地市集、商圈 Pop-up、节庆活动，按测试目标选。</p>
-        <span class="go">查看测试场景 →</span>
+      <a class="stn mid" role="listitem" href="#tests">
+        <div class="disc"><small>ON-SITE</small><b>实地测试</b></div>
+        <div>
+          <div class="kw"><span>展会</span><span>市集</span><span>商圈</span><span>节庆</span></div>
+          <p class="yield">查看测试场景 →</p>
+        </div>
       </a>
-      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 44 20"><path d="M2 10h36m-7-6 7 6-7 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-      <div class="node big" role="listitem">
-        <span class="k">AFTER · 测试后</span>
-        <h3>验证决策与渠道落地</h3>
-        <ul>
-          <li>《市场验证报告》：谁买、卖什么、卖多少钱、在哪卖</li>
-          <li>GO / ADJUST / STOP 明确建议</li>
-          <li>匹配本地买手、零售商，安排洽谈</li>
-          <li>进入 GMA 资源库，后续机会持续对接</li>
-        </ul>
-        <div class="out"><b>你拿到：一个能拍板的决定</b>继续进、调整再测，还是及时止损</div>
+      <div class="stn core" role="listitem">
+        <div class="disc"><small>AFTER</small><b>测试后</b></div>
+        <div>
+          <div class="kw"><span>验证报告</span><span>渠道对接</span><span>资源库</span></div>
+          <p class="yield">GO · ADJUST · STOP</p>
+        </div>
       </div>
-      <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 20"><path d="M2 10h22m-6-5 6 5-6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/></svg></div>
-      <a class="node next" role="listitem" href="#extend">
-        <span class="eyebrow">NEXT</span>
-        <h3>进入 · 增长</h3>
-        <p>验证成立后，继续做渠道落地和本地运营。</p>
-      </a>
+      <div class="stn next" role="listitem">
+        <div class="disc"><small>NEXT</small><b>进入 · 增长</b></div>
+        <div>
+          <div class="kw"><span>渠道落地</span><span>本地运营</span></div>
+        </div>
+      </div>
     </div>
-    <p class="chain-note">你付费买到的是 <b>测试前的判断</b> 和 <b>测试后的决定</b>，场地只是工具。</p>
-  </section>
 
-  <!-- 测试前 -->
-  <section class="sec" id="before">
-    <div class="wrap">
-      <div class="sec-h">
-        <div><div class="eyebrow">Before · 测试前</div><h2>先替你把方向判断清楚</h2></div>
-        <p>很多品牌一上来就订展位、发货，到了现场才发现价格、卖点和人群都没对上。测试前这一段，决定了这次测试能不能拿到有用的答案。</p>
-      </div>
-      <div class="steps">
-        <div class="card step">
-          <h3>市场扫描</h3>
-          <ul>
-            <li>竞品格局：当地已经有谁、卖什么、怎么卖</li>
-            <li>主流价格带与成交区间</li>
-            <li>消费者特征：谁在买、为什么买</li>
-            <li>渠道结构：买手店、百货、Lifestyle Store、电商</li>
-            <li>你的品牌放进去，站在什么位置</li>
-          </ul>
-        </div>
-        <div class="card step">
-          <h3>本地化准备</h3>
-          <ul>
-            <li>卖点梳理，按当地语境重写</li>
-            <li>挑选测试 SKU，搭配产品组合</li>
-            <li>当地币定价建议（如新币、泰铢）</li>
-            <li>准入与产品合规排查</li>
-            <li>物流清关、出行、布展全套指引</li>
-          </ul>
-        </div>
-        <div class="card step">
-          <h3>预热与预约</h3>
-          <ul>
-            <li>本地社媒内容发布，拿到第一轮线上兴趣反馈</li>
-            <li>对接媒体与本地 KOL，提前露出</li>
-            <li>匹配对口采购商名单</li>
-            <li>预先排好现场一对一洽谈时段</li>
-          </ul>
-        </div>
-      </div>
-      <div class="deliver">
-        <b>测试前交付</b>
-        <div class="formula"><span>测什么产品</span>×<span>什么价格</span>×<span>给什么人</span>×<span>在什么场景</span></div>
-      </div>
+    <div class="rail-foot" id="contact">
+      <p><b>微信 GMA品牌出海</b>　·　Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p>
+      <a class="btn" href="#tests">选一个测试场景 →</a>
     </div>
   </section>
-
-  <!-- 中间：实地测试方式 -->
-  <section class="testband">
-    <div class="wrap inner">
-      <div>
-        <div class="eyebrow t">On-site · 实地测试方式</div>
-        <h2>把产品放进当地真实的消费场景</h2>
-        <p class="d">按测试目标选场景：想测消费者就去市集和节庆，想见买手就进展会商贸场，想测品牌体验就做商圈 Pop-up。一次测试可以组合多个场景。</p>
-        <div class="dual">
-          <div><b>消费者端</b>谁停下、哪个 SKU 卖得好、什么价格成交、为什么没买</div>
-          <div><b>渠道端</b>买手兴趣、定位反馈、利润空间、进入门槛</div>
-        </div>
-        <p style="margin-top:20px"><a class="btn t" href="#tests">打开测试场景看板 →</a></p>
-      </div>
-      <div class="scenes">
-        <a class="scene" href="#tests"><span class="ico">展</span><span><b>展会 Booth</b><small>新加坡 F1 · 泰国 ICONSIAM</small></span></a>
-        <a class="scene" href="#ev-invade"><span class="ico">集</span><span><b>INVADE 本地市集</b><small>Artbox · Makers' Market 等</small></span></a>
-        <a class="scene" href="#ev-orchard"><span class="ico">铺</span><span><b>乌节路商圈 Pop-up</b><small>新加坡核心零售大道</small></span></a>
-        <a class="scene" href="#ev-xmas"><span class="ico">节</span><span><b>圣诞节庆活动</b><small>年末消费高峰</small></span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 测试后 -->
-  <section class="sec" id="after">
-    <div class="wrap">
-      <div class="sec-h">
-        <div><div class="eyebrow">After · 测试后</div><h2>把现场数据变成一个决定</h2></div>
-        <p>测试跑完，我们不只告诉你卖了多少。《市场验证报告》回答五个问题，最后给出明确建议，包括建议你停下来。</p>
-      </div>
-      <div class="grid g5 q5">
-        <div class="card"><div class="en">TARGET</div><h3>谁会买？</h3><p>最容易产生真实购买的核心人群</p></div>
-        <div class="card"><div class="en">HERO SKU</div><h3>卖什么？</h3><p>最适合做市场切入口的产品</p></div>
-        <div class="card"><div class="en">PRICING</div><h3>卖多少钱？</h3><p>结合接受度、渠道利润、物流成本定价格带</p></div>
-        <div class="card"><div class="en">CHANNEL FIT</div><h3>在哪里卖？</h3><p>买手店、百货、Lifestyle Store 还是电商</p></div>
-        <div class="card"><div class="en">NEXT</div><h3>下一步？</h3><p>怎么调整、追加，还是何时停止</p></div>
-      </div>
-      <div class="decide">
-        <div class="dc go"><b>GO</b><span>市场信号成立，进入下一阶段</span></div>
-        <div class="dc ad"><b>ADJUST</b><span>调整产品、价格、包装或定位后再测</span></div>
-        <div class="dc st"><b>STOP</b><span>暂停投入，避免更大的预算浪费</span></div>
-      </div>
-      <div class="after-row">
-        <div class="card">
-          <h3>报告之外，机会继续跟进</h3>
-          <ul>
-            <li><b>渠道匹配：</b>按定位、价格带、品类匹配本地买手、零售商、分销商，安排洽谈</li>
-            <li><b>本地走访：</b>商圈考察，看清竞品和渠道的真实样子</li>
-            <li><b>中外品牌交流会：</b>与本地品牌交流经验、联合曝光、互通渠道</li>
-            <li><b>GMA 品牌资源库：</b>之后出现匹配的渠道或合作，持续对接给你</li>
-            <li><b>巡回优先权：</b>表现好的品牌优先进入下一站</li>
-          </ul>
-        </div>
-        <div class="ph"><img src="assets/exchange.jpg" alt="GMA 中外品牌交流会，买手洽谈与本地选品现场" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 进入 / 增长 -->
-  <section class="sec" id="extend">
-    <div class="wrap">
-      <div class="sec-h">
-        <div><div class="eyebrow">Enter · Grow</div><h2>验证成立之后，继续陪你走进去</h2></div>
-        <p>结论是 GO 的品牌，可以按需继续。这两段不强制打包，你在哪个阶段就从哪里接。</p>
-      </div>
-      <div class="ext">
-        <div class="card">
-          <h3>精准进入 <small>ENTER</small></h3>
-          <ul>
-            <li>按验证结果调整产品、价格、品牌表达和买手提案</li>
-            <li>匹配精品买手店、Lifestyle Store、百货、分销商、商业地产</li>
-            <li>买手邀约、样品对接、一对一会议、合作条件设计</li>
-            <li>选择进入方式：批发 PO、寄售入驻、阶段 Pop-up、本地伙伴联合</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>本地增长 <small>GROW</small></h3>
-          <ul>
-            <li>本地社媒、KOL / PR、广告，独立站转化</li>
-            <li>已有渠道维护、补货推进、新渠道开发</li>
-            <li>本地供应商协调、物流库存、现场执行</li>
-            <li>不必自建海外团队，按月或按季度配置</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 证据 -->
-  <section class="sec">
-    <div class="wrap proof">
-      <div class="card">
-        <div class="eyebrow">Local network</div>
-        <h3 style="margin-top:6px">场景来自本地零售网络</h3>
-        <p>新加坡侧由本地团队与合作伙伴组成，覆盖市集、零售节、行业协会和核心商圈。</p>
-        <div class="logos">
-          <div><img src="assets/logo-invade.png" alt="INVADE.co"></div>
-          <div><img src="assets/logo-sra.png" alt="Singapore Retailers Association"></div>
-          <div><img src="assets/logo-srf.png" alt="Singapore Retail Festival"></div>
-          <div><img src="assets/logo-capitaland.png" alt="CapitaLand"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="eyebrow">Case · 素循 SUKOON</div>
-        <div class="case" style="margin-top:10px">
-          <img src="assets/sukoon.jpg" alt="素循 SUKOON 线下门店陈列" loading="lazy">
-          <div>
-            <h3>香氛家清新品牌，先线下验证再进入</h3>
-            <p>前 7 个月跑了 7 场展会、市集和售卖空间，逐场观察消费者反应、调整卖点与定价，之后拓展到曼谷、香港线下渠道。</p>
-            <div class="stats">
-              <div><b>7 场</b>线下验证</div>
-              <div><b>2 次</b>展卖期间卖空</div>
-              <div><b>≈10%</b>展期内回购占比</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap" id="contact" style="padding-block:24px 8px">
-    <div class="contact">
-      <div>
-        <h2>告诉我们你的产品和目标市场</h2>
-        <p>我们先帮你判断：值不值得测、该测什么、用哪种场景测。</p>
-        <p class="mail">Jade 1205226717@qq.com　·　Carrie yt1253082426@163.com</p>
-      </div>
-      <div><img class="qr" src="assets/wechat-gma.png" alt="GMA 品牌出海微信二维码"><p style="font-size:12px;text-align:center;margin-top:6px">微信扫码，备注「品牌名 + 目标市场」</p></div>
-    </div>
-  </section>
-  <footer>Global Market Accelerator · 先验证，再投入</footer>
 </main>
 
 <!-- ================= 看板 ================= -->
@@ -522,10 +280,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 
 <script>
 const COLS=[
-  {id:"booth",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
-  {id:"invade",name:"INVADE 本地市集",desc:"新加坡本地最大的市集网络，轻量测款"},
-  {id:"orchard",name:"乌节路商圈",desc:"核心零售大道，测品牌体验与转化"},
-  {id:"xmas",name:"圣诞节庆",desc:"年末消费高峰，测节日礼品场景"}
+  {id:"booth",ic:"展",name:"展会 Booth",desc:"国际品牌购物展，消费者与买手同场"},
+  {id:"invade",ic:"集",name:"INVADE 本地市集",desc:"新加坡本地最大的市集网络，轻量测款"},
+  {id:"orchard",ic:"铺",name:"乌节路商圈",desc:"核心零售大道，测品牌体验与转化"},
+  {id:"xmas",ic:"节",name:"圣诞节庆",desc:"年末消费高峰，测节日礼品场景"}
 ];
 const EVENTS={
   "ev-sg-f1":{col:"booth",title:"新加坡站 · F1 Pit Building 国际品牌购物展",short:"新加坡 · F1 Pit Building",img:"sg-f1",img2:"sg-bay",
@@ -580,9 +338,9 @@ let filter="all";
 function renderBoard(){
   $("#board").innerHTML=COLS.map(c=>{
     const evs=Object.entries(EVENTS).filter(([,e])=>e.col===c.id);
-    return `<div class="col"><div class="col-h"><b>${c.name}</b><small>${evs.length} 个</small></div><p class="col-d">${c.desc}</p>${evs.map(([id,e])=>{
+    return `<div class="col ${c.id}"><div class="col-h"><span class="ic">${c.ic}</span><b>${c.name}</b><small>${evs.length}</small><p class="col-d">${c.desc}</p></div><div class="col-body">${evs.map(([id,e])=>{
       const dim=filter!=="all"&&!e.vals.includes(filter);
-      return `<a class="ev${dim?" dim":""}" href="#${id}"><div class="img"><img src="assets/${e.img}.jpg" alt="" loading="lazy"></div><div class="b"><span class="st ${e.status}">${e.statusText}</span><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div></div></a>`}).join("")}</div>`;
+      return `<a class="ev${dim?" dim":""}" href="#${id}"><div class="img"><img src="assets/${e.img}.jpg" alt="" loading="lazy"></div><div class="b"><span class="st ${e.status}">${e.statusText}</span><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div></div></a>`}).join("")}</div></div>`;
   }).join("");
 }
 document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
@@ -621,7 +379,7 @@ function renderDetail(id){
 
 function route(){
   let h=(location.hash||"#home").slice(1);
-  const homeAnchors=["home","before","after","extend","contact"];
+  const homeAnchors=["home","contact"];
   let page="home";
   if(h==="tests")page="tests";
   else if(EVENTS[h]){page="detail";renderDetail(h);}
