@@ -167,6 +167,19 @@ p{margin:0}
 .bx.side.full{grid-column:1 / -1;grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}
 .bx.side.full .ph{min-height:200px}
 @media (max-width:600px){.bx.side.full{grid-template-columns:1fr}}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:16px}
+@media (max-width:980px){.trio{grid-template-columns:1fr}}
+.bx.side.v{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.bx.side.v .ph{min-height:170px}
+.bx.side.full.mkt{grid-template-columns:minmax(0,.36fr) minmax(0,1fr)}
+.mk{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mk div{padding:12px 14px;border-radius:12px;background:var(--bg)}
+.mk b{display:block;font-size:14px;color:var(--green);margin-bottom:4px}
+.mk p{font-size:13px;color:var(--ink-2);line-height:1.6}
+@media (max-width:980px){.mk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.mk{grid-template-columns:1fr}.bx.side.full.mkt{grid-template-columns:1fr}}
+.sg.next.link:hover{transform:translateY(-4px);box-shadow:0 22px 36px -22px var(--ink-2)}
+.sg.next .more{color:var(--accent)}
 .dim2 ul.one{grid-template-columns:1fr}
 .dim2 ul.one li{white-space:normal}
 .bx.big.plan{background:var(--surface)}
@@ -490,12 +503,12 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <ul><li>本地专家落地诊断</li><li>当地品牌交流会</li><li>渠道对接 · 资源库</li></ul>
           <div class="yd"><span class="dots"><em class="g">GO</em><em class="a">ADJUST</em><em class="s">STOP</em></span><span class="more">查看服务 →</span></div>
         </a>
-        <div class="sg next" role="listitem">
+        <a class="sg next link" role="listitem" href="#grow">
           <span class="en" data-n="04">NEXT</span>
           <h3>进入 · 增长</h3>
-          <ul><li>渠道落地</li><li>本地运营</li></ul>
-          <div class="yd"><span>按需继续</span></div>
-        </div>
+          <ul><li>当地开店</li><li>入驻买手店</li><li>本地运营</li><li>本地营销</li></ul>
+          <div class="yd"><span>按需继续</span><span class="more">查看 →</span></div>
+        </a>
       </div>
     </div>
 
@@ -665,6 +678,87 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     <div class="bf-more">
       <p>结论是 GO 的品牌，可以继续进入 <b>渠道落地</b> 与 <b>本地运营</b> 阶段。</p>
       <a class="btn" href="#contact">聊聊下一步 →</a>
+    </div>
+  </div>
+</main>
+
+<!-- ================= 进入·增长 服务页 ================= -->
+<main class="page" id="p-grow">
+  <div class="wrap bf">
+    <section class="bf-hero">
+      <div>
+        <p class="crumb"><a href="#home">服务链路</a> / 进入 · 增长</p>
+        <h1>进入 · 增长，<em>在当地扎下根</em></h1>
+        <p class="r">验证成立后，从找店、进店到运营和营销，按你的节奏一步步在当地做起来，不必自建海外团队。</p>
+      </div>
+    </section>
+
+    <div class="trio">
+      <article class="bx side v">
+        <div class="ph"><img src="assets/orchard.jpg" alt="新加坡乌节路商圈" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>01</i>开自己的店</span>
+          <h2>当地开店服务</h2>
+          <p class="q">想在当地有一家自己的店，从哪开始？</p>
+          <div class="dim2">
+            <div><b>选址</b><ul><li>商圈评估</li><li>客流分析</li><li>租金区间</li><li>同类店分布</li></ul></div>
+            <div><b>空间合作</b><ul><li>商场合作</li><li>快闪转常驻</li><li>共享店铺</li><li>联合空间</li></ul></div>
+            <div><b>开业落地</b><ul><li>装修与陈列</li><li>证照办理</li><li>开业活动</li><li>门店人员</li></ul></div>
+          </div>
+          <div class="out"><span>你拿到</span><b>一家在当地开得起来的店</b></div>
+        </div>
+      </article>
+
+      <article class="bx side v">
+        <div class="ph"><img src="assets/sukoon.jpg" alt="当地精品买手店" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>02</i>进别人的店</span>
+          <h2>入驻当地买手店</h2>
+          <p class="q">先进成熟的店卖起来，风险更小。</p>
+          <div class="dim2">
+            <div><b>入驻渠道</b><ul><li>精品买手店</li><li>Lifestyle Store</li><li>百货专柜</li><li>概念店</li></ul></div>
+            <div><b>我们来做</b><ul><li>匹配店铺</li><li>提案与样品</li><li>谈寄售 / 批发</li><li>补货跟进</li></ul></div>
+          </div>
+          <div class="out"><span>你拿到</span><b>稳定的线下销售点</b></div>
+        </div>
+      </article>
+
+      <article class="bx side v">
+        <div class="ph"><img src="assets/hero.jpg" alt="门店陈列" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>03</i>日常有人管</span>
+          <h2>本地运营支持</h2>
+          <p class="q">人不在当地，生意也能转起来。</p>
+          <div class="dim2">
+            <div><b>前台</b><ul><li>巡店与陈列</li><li>库存与补货</li><li>客服与售后</li><li>销售周报</li></ul></div>
+            <div><b>后台</b><ul><li>物流清关</li><li>供应商协调</li><li>财税对接</li><li>合同与合规</li></ul></div>
+          </div>
+          <div class="out"><span>你拿到</span><b>一支不用自建的本地团队</b></div>
+        </div>
+      </article>
+    </div>
+
+    <article class="bx side full mkt">
+      <div class="ph"><img src="assets/consumer.jpg" alt="本地消费者互动" loading="lazy"></div>
+      <div class="txt">
+        <span class="lab"><i>04</i>让当地人记住你</span>
+        <h2>本地营销</h2>
+        <p class="q">从被看见，到被记住，再到回头买。</p>
+        <div class="mk">
+          <div><b>社媒运营</b><p>Instagram、TikTok、小红书等本地账号运营，本地化内容拍摄与日常更新</p></div>
+          <div><b>达人合作</b><p>按品类筛选当地 KOL / KOC，探店种草、试用测评、带货合作</p></div>
+          <div><b>公关曝光</b><p>本地媒体报道、新品发布会、品牌故事本地化包装</p></div>
+          <div><b>线下活动</b><p>快闪与节庆营销、会员活动、与当地品牌联名</p></div>
+          <div><b>线上转化</b><p>独立站搭建、电商平台入驻、精准广告投放</p></div>
+          <div><b>复购沉淀</b><p>会员体系、私域社群、复购活动与用户数据分析</p></div>
+        </div>
+        <div class="out"><span>你拿到</span><b>从曝光到复购的完整营销链路</b></div>
+      </div>
+    </article>
+
+    <div class="bf-more">
+      <p>四项服务 <b>按需选择</b>、<b>按月或按季度合作</b>，随生意增长再加。</p>
+      <a class="btn" href="#contact">聊聊你的阶段 →</a>
     </div>
   </div>
 </main>
@@ -984,12 +1078,13 @@ function route(){
   if(h==="tests")page="tests";
   else if(h==="before")page="before";
   else if(h==="after")page="after";
+  else if(h==="grow")page="grow";
   else if(EVENTS[h]){page="detail";renderDetail(h);}
   else if(h==="contact"){setTimeout(goContact,50);}
   else if(!homeAnchors.includes(h))h="home";
   document.querySelectorAll(".page").forEach(p=>p.classList.toggle("on",p.id==="p-"+page));
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
-    (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&(page==="before"||page==="after"))));
+    (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&(page==="before"||page==="after"||page==="grow"))));
   window.scrollTo(0,0);
 }
 renderBoard();
