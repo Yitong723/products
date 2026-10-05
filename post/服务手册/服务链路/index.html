@@ -76,22 +76,20 @@ p{margin:0}
 .page{display:none}
 .page.on{display:block}
 
-/* ========== 首页：关于我们 ========== */
-.about{background:var(--surface);border-bottom:1px solid var(--line)}
-.ab{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:40px}
-.ab h2{font-size:clamp(24px,3vw,34px);font-weight:900;margin-top:10px}
-.ab h2 em{font-style:normal;color:var(--accent)}
-.ab-l>p{margin-top:10px;color:var(--ink-2);font-size:15px;max-width:34em}
-.ab-logos{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
-.ab-logos span{font-size:12px;color:var(--ink-2)}
-.ab-logos img{height:26px;width:auto;border-radius:4px}
-.ab-r{display:grid;gap:10px}
-.ab-r div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:center;gap:14px;padding:12px 16px;border-radius:14px;background:var(--bg)}
-.ab-r b{font-family:var(--f-display);font-size:24px;font-weight:900;color:var(--accent);white-space:nowrap}
-.ab-r span{font-size:13px;color:var(--ink-2);line-height:1.6}
-@media (max-width:860px){.ab{grid-template-columns:1fr;gap:20px;padding-block:28px}}
-:root[data-theme="dark"] .ab-logos img{background:#fff;padding:2px 4px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ab-logos img{background:#fff;padding:2px 4px}}
+/* ========== 首页：介绍 + 主张 ========== */
+.hero2{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 56px;align-items:end}
+.hero2 h1{font-size:clamp(34px,5.4vw,58px);font-weight:900;margin-top:10px;letter-spacing:.02em}
+.hero2 h1 em{font-style:normal;color:var(--accent)}
+.hero2 .lead{margin-top:12px;font-size:16px;color:var(--ink-2);max-width:36em;line-height:1.75}
+.h2r{display:flex;margin:0;padding-bottom:6px}
+.h2r div{padding:0 24px;border-left:1px solid var(--line)}
+.h2r div:first-child{border-left:0;padding-left:0}
+.h2r dt{font-family:var(--f-display);font-size:28px;font-weight:900;color:var(--accent);line-height:1.2;white-space:nowrap}
+.h2r dd{margin:4px 0 0;font-size:13px;color:var(--ink-2);white-space:nowrap}
+.partners{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;font-size:12px;color:var(--ink-2)}
+.partners span{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);opacity:.7}
+.partners span::before{content:"·";margin-right:18px;opacity:.5}
+@media (max-width:900px){.hero2{grid-template-columns:1fr}.h2r div{padding:0 16px}.h2r dt{font-size:22px}}
 
 /* ========== 首页：一张服务链路图 ========== */
 .home{padding-block:36px 56px;position:relative}
@@ -511,30 +509,20 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 
 <!-- ================= 首页 ================= -->
 <main class="page" id="p-home">
-  <section class="about">
-    <div class="wrap ab">
-      <div class="ab-l">
-        <div class="eyebrow">关于 GMA · Global Market Accelerator</div>
-        <h2>中国品牌出海的<em>本地落地伙伴</em></h2>
-        <p>由中国与新加坡两地团队联合发起。我们不卖展位，而是帮品牌用真实的本地市场测试，先拿到答案，再决定怎么进入。</p>
-        <div class="ab-logos"><span>本地合作网络</span><img src="assets/logo-invade.png" alt="INVADE"><img src="assets/logo-sra.png" alt="Singapore Retailers Association"><img src="assets/logo-srf.png" alt="Singapore Retail Festival"><img src="assets/logo-capitaland.png" alt="CapitaLand"></div>
-      </div>
-      <div class="ab-r">
-        <div><b>中 × 新</b><span>两地团队，一边懂中国品牌，一边懂本地市场</span></div>
-        <div><b>1 万+</b><span>本地合作商家网络，覆盖市集、商场与买手店</span></div>
-        <div><b>10%</b><span>案例品牌素循：展期内即出现回购，两次卖空</span></div>
-      </div>
-    </div>
-  </section>
-
   <section class="wrap home">
-    <div class="home-h">
-      <div>
-        <div class="eyebrow">我们的服务链路</div>
+    <div class="hero2">
+      <div class="h2l">
+        <div class="eyebrow">GMA · Global Market Accelerator</div>
         <h1>先验证，<em>再投入</em></h1>
+        <p class="lead">中国品牌出海的本地落地伙伴。由中国与新加坡两地团队联合发起，我们不卖展位，帮品牌用真实的本地市场测试先拿到答案，再决定怎么进入。</p>
       </div>
-      <p>测试前帮你<b>判断</b>，测试后帮你<b>决定</b>。</p>
+      <dl class="h2r">
+        <div><dt>中 × 新</dt><dd>两地团队</dd></div>
+        <div><dt>1 万+</dt><dd>本地合作商家</dd></div>
+        <div><dt>10%</dt><dd>案例品牌展期回购</dd></div>
+      </dl>
     </div>
+    <p class="partners">本地合作网络<span>INVADE</span><span>Singapore Retailers Association</span><span>Singapore Retail Festival</span><span>CapitaLand</span></p>
 
     <div class="flow">
       <div class="track" aria-hidden="true">
