@@ -601,8 +601,12 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 @media (max-width:600px){.est .sum .tot{flex-direction:column;align-items:flex-start;gap:4px}}
 .est .nt{margin-top:22px;font-size:12.5px;color:var(--ink-2);line-height:1.8}
 .est .nt li{margin-left:18px}
-.est .ct{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;display:flex;flex-wrap:wrap;gap:6px 22px}
-.est .ct b{color:var(--accent)}
+.est .ct{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.est .ct ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.est .ct b{display:block;color:var(--accent);font-size:14px;margin-bottom:2px}
+.est .ct figure{margin:0;display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink-2);text-align:right}
+.est .ct figure img{width:96px;height:96px;padding:5px;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.est .ct figure strong{display:block;color:var(--ink);font-size:13px}
 @media print{
   body>*:not(#estModal){display:none!important}
   #estModal{position:static;display:block;padding:0}
@@ -1228,26 +1232,26 @@ const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i cla
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 const BUNDLE={
-  before:{k:"01 · 测试前",n:"测试前三项打包",d:"海外市场对标报告 · 本地用户线上实测 · 本地 Founder 1v1",lo:16800,hi:19800},
-  after:{k:"03 · 测试后",n:"测试后四项打包",d:"本地专家落地诊断 · 当地品牌交流会 · 渠道对接 · GMA 资源库",lo:12800,hi:15800}
+  before:{k:"01 · 测试前",n:"测试前三项打包",d:"海外市场对标报告 · 本地用户线上实测 · 本地 Founder 1v1",lo:6800,hi:8800},
+  after:{k:"03 · 测试后",n:"测试后四项打包",d:"本地专家落地诊断 · 当地品牌交流会 · 渠道对接 · GMA 资源库",lo:5800,hi:7800}
 };
 const GROW={g1:"当地开店服务",g2:"入驻当地买手店",g3:"本地运营支持",g4:"本地营销"};
 const OPT={
-  build:{n:"定制布展升级",d:"按品牌调性设计搭建，替代标准陈列",lo:12000,hi:18000,sub:500,subN:"布展专项补贴"},
-  ship:{n:"跨境物流清关",d:"国内提货、清关、送达现场与回程",lo:6000,hi:9000,sub:500,subN:"跨境物流补贴"},
-  buyer:{n:"买手预约与 B2B 洽谈",d:"提前邀约本地买手、零售商到场洽谈",lo:6000,hi:8000},
-  space:{n:"3 天独立空间",d:"活动现场之外，另一处本地空间再开 3 天",lo:9800,hi:15000},
-  kol:{n:"社媒预热 / KOL",d:"活动前本地社媒预热，达人到场探店",lo:8000,hi:15000},
-  staff:{n:"加派驻场销售",d:"多一位懂产品的本地销售全程驻场",lo:4000,hi:6000},
-  ops:{n:"驻场运营",d:"慢闪期间日常运营、补货与销售周报",lo:8000,hi:12000}
+  build:{n:"定制布展升级",d:"按品牌调性设计搭建，替代标准陈列",lo:4000,hi:6000,sub:500,subN:"布展专项补贴"},
+  ship:{n:"跨境物流清关",d:"国内提货、清关、送达现场与回程",lo:2000,hi:3500,sub:500,subN:"跨境物流补贴"},
+  buyer:{n:"买手预约与 B2B 洽谈",d:"提前邀约本地买手、零售商到场洽谈",lo:2000,hi:3000},
+  space:{n:"3 天独立空间",d:"活动现场之外，另一处本地空间再开 3 天",lo:3800,hi:6800},
+  kol:{n:"社媒预热 / KOL",d:"活动前本地社媒预热，达人到场探店",lo:3000,hi:6000},
+  staff:{n:"加派驻场销售",d:"多一位懂产品的本地销售全程驻场",lo:1500,hi:2500},
+  ops:{n:"驻场运营",d:"慢闪期间日常运营、补货与销售周报",lo:3000,hi:5000}
 };
-const FEST={lo:18000,hi:28000,base:["节庆活动摊位","节日主题陈列","现场执行","现场数据采集"],opts:["build","ship","space","kol"]};
+const FEST={lo:8800,hi:12800,base:["节庆活动摊位","节日主题陈列","现场执行","现场数据采集"],opts:["build","ship","space","kol"]};
 const EVP={
-  "ev-sg-f1":{lo:38000,hi:45000,base:["9㎡ 标准展位","基础布展与陈列","2 人现场执行","现场数据采集"],opts:["build","ship","buyer","space","kol","staff"]},
-  "ev-carnival":{lo:15000,hi:20000,base:["嘉年华摊位","基础陈列","现场执行","现场数据采集"],opts:["build","ship","space","staff","kol"]},
-  "ev-invade":{lo:8000,hi:12000,base:["市集摊位（单期）","基础陈列","现场数据采集"],opts:["ship","space","staff"]},
-  "ev-orchard":{lo:35000,hi:60000,base:["乌节路商圈空间 7 天","基础陈列","现场执行","销售与客流数据"],opts:["build","ship","staff","kol"]},
-  "ev-space":{lo:25000,hi:40000,base:["零售空间 30 天","基础陈列","销售与客流数据"],opts:["ship","ops","kol"]},
+  "ev-sg-f1":{lo:19800,hi:25800,base:["9㎡ 标准展位","基础布展与陈列","2 人现场执行","现场数据采集"],opts:["build","ship","buyer","space","kol","staff"]},
+  "ev-carnival":{lo:8800,hi:12800,base:["嘉年华摊位","基础陈列","现场执行","现场数据采集"],opts:["build","ship","space","staff","kol"]},
+  "ev-invade":{lo:3800,hi:5800,base:["市集摊位（单期）","基础陈列","现场数据采集"],opts:["ship","space","staff"]},
+  "ev-orchard":{lo:18000,hi:28000,base:["乌节路商圈空间 7 天","基础陈列","现场执行","销售与客流数据"],opts:["build","ship","staff","kol"]},
+  "ev-space":{lo:12000,hi:18000,base:["零售空间 30 天","基础陈列","销售与客流数据"],opts:["ship","ops","kol"]},
   "ev-xmas":FEST,"ev-cny":FEST
 };
 const EARLY_END=new Date(2026,9,30,23,59,59);
@@ -1433,7 +1437,7 @@ function openEst(){
       <div class="tot"><b>预估总价${hasTbd?"（不含按需定制项）":""}</b><strong>${yuan(c.tlo)} – ${yuan(c.thi)}</strong></div>
     </div>
     <ul class="nt"><li>本预估仅供参考，以 GMA 正式报价为准；价格为人民币，展位、场地等境外费用按 1 新币 ≈ 5.4 元折算。</li>${hasTbd?"<li>进入 · 增长服务按你的阶段、周期与范围单独估价。</li>":""}<li>早鸟金限 2026 年 10 月 30 日前下单；物流、布展补贴在勾选对应服务时抵扣，每项限一次。</li></ul>
-    <div class="ct"><span><b>联系我们</b></span><span>Jade · 1205226717@qq.com</span><span>Carrie · yt1253082426@163.com</span><span>微信 · GMA品牌出海</span></div>
+    <div class="ct"><ul><li><b>联系我们</b></li><li>Jade · 1205226717@qq.com</li><li>Carrie · yt1253082426@163.com</li></ul><figure><figcaption><strong>微信 GMA品牌出海</strong>扫码备注「品牌名 + 目标市场」</figcaption><img src="${document.querySelector('#contact img[alt*="微信"]').src}" alt="GMA 品牌出海微信二维码"></figure></div>
   </article>`;
   estM.hidden=false;document.body.classList.add("lock");$("#estBody").scrollTop=0;
 }
