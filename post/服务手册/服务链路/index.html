@@ -400,28 +400,35 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 .ev .vals span{font-size:12px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb,var(--c) 11%,transparent);color:var(--c)}
 .ev .go{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);transition:all .2s}
 .ev:hover .go{background:var(--c);border-color:var(--c);color:#fff}
-.addon{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;width:150px;padding:16px 14px;border:1.5px dashed color-mix(in srgb,var(--accent) 60%,transparent);border-radius:18px;background:color-mix(in srgb,var(--accent) 6%,var(--surface));box-shadow:0 18px 40px -24px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:10px;transition:width .25s,padding .25s}
-.addon .tg{align-self:flex-start;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
-.addon .eq{display:flex;align-items:center;gap:4px;font-family:var(--f-mono);font-size:11px}
-.addon .eq .pl{font-size:16px;font-weight:700;color:var(--accent);margin-right:2px}
-.addon .eq span.dd{flex:1;padding:8px 0;text-align:center;border-radius:8px;background:var(--accent);color:var(--on-accent);font-weight:700}
-.addon .eq span.dd:nth-child(3){opacity:.8}.addon .eq span.dd:nth-child(4){opacity:.62}
-.addon h3{font-size:17px;font-weight:900;line-height:1.35}
-.addon h3 em{font-style:normal;color:var(--accent)}
-.addon .sub{font-size:12px;color:var(--ink-2);line-height:1.5}
-.addon ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;padding-top:10px;border-top:1px solid var(--line)}
-.addon li{font-size:12px;color:var(--ink-2);line-height:1.45}
-.addon li b{display:block;font-size:13px;color:var(--ink);font-weight:700}
-.addon .btn{justify-content:center;padding:9px 10px;font-size:13px;white-space:nowrap}
+.addon{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:40;width:196px;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 24px 48px -28px rgba(0,0,0,.45);transition:width .25s}
 .addon .tab{display:none}
-@media (max-width:1420px){
-  .addon{width:46px;padding:14px 0;cursor:pointer;right:0;border-right:0;border-radius:14px 0 0 14px;overflow:hidden}
-  .addon>.tg,.addon>.eq,.addon>h3,.addon>.sub,.addon>ul,.addon>.btn{display:none}
-  .addon:not(:hover):not(.open){background:var(--accent);border-color:var(--accent)}
-  .addon .tab{display:block;writing-mode:vertical-rl;text-orientation:upright;margin:0 auto;font-size:14px;font-weight:900;color:var(--on-accent);letter-spacing:.08em}
-  .addon:hover,.addon.open{width:170px;padding:16px 14px;cursor:auto}
-  .addon:hover>.eq,.addon.open>.eq,.addon:hover>ul,.addon.open>ul,.addon:hover>.btn,.addon.open>.btn{display:flex}
-  .addon:hover>.tg,.addon.open>.tg,.addon:hover>h3,.addon.open>h3,.addon:hover>.sub,.addon.open>.sub{display:block}
+.addon .pic{position:relative;height:104px;overflow:hidden}
+.addon .pic img{width:100%;height:100%;object-fit:cover}
+.addon .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.55))}
+.addon .pic span{position:absolute;left:12px;bottom:9px;z-index:1;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff}
+.addon .pic svg{width:13px;height:13px}
+.addon .in{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px}
+.addon .k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;color:var(--accent)}
+.addon h3{margin-top:4px;font-size:19px;font-weight:900;line-height:1.3}
+.addon h3 em{font-style:normal;color:var(--accent)}
+.addon .route{display:grid;grid-template-columns:10px 1fr;column-gap:9px;row-gap:10px;font-size:12px;color:var(--ink-2);position:relative}
+.addon .route::before{content:"";position:absolute;left:4px;top:8px;bottom:8px;border-left:1.5px dashed color-mix(in srgb,var(--accent) 55%,transparent)}
+.addon .route i{position:relative;width:10px;height:10px;margin-top:3px;border-radius:50%;border:2px solid var(--line);background:var(--surface)}
+.addon .route i.on{border-color:var(--accent);background:var(--accent)}
+.addon .route b{color:var(--ink);font-weight:700}
+.addon ul{list-style:none;padding:12px 0 0;margin:0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:7px}
+.addon li{position:relative;padding-left:16px;font-size:12.5px;color:var(--ink);line-height:1.45}
+.addon li::before{content:"";position:absolute;left:0;top:5px;width:9px;height:5px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.addon .btn{justify-content:center;padding:9px 10px;font-size:13px;white-space:nowrap;background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+@media (max-width:1510px){
+  .addon{width:44px;right:0;border-right:0;border-radius:14px 0 0 14px;background:var(--accent);border-color:var(--accent);cursor:pointer}
+  .addon>.pic,.addon>.in{display:none}
+  .addon .tab{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0;color:var(--on-accent);font-size:14px;font-weight:900}
+  .addon .tab svg{width:16px;height:16px}
+  .addon .tab span{writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.06em}
+  .addon:hover,.addon.open{width:196px;right:16px;border:1px solid var(--line);border-radius:20px;background:var(--surface);cursor:auto}
+  .addon:hover>.pic,.addon.open>.pic{display:block}
+  .addon:hover>.in,.addon.open>.in{display:flex}
   .addon:hover .tab,.addon.open .tab{display:none}
 }
 .dt-addon{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 22px;border:1.5px dashed color-mix(in srgb,var(--accent) 55%,transparent);border-radius:16px;background:color-mix(in srgb,var(--accent) 5%,var(--surface));font-size:15px;color:var(--ink-2)}
@@ -581,7 +588,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
             <div><img src="assets/orchard.jpg" alt=""><span>闪卖店</span></div>
             <div><img src="assets/festival.jpg" alt=""><span>节庆</span></div>
           </div>
-          <div class="yd"><span>5 种方式 · 可加 3 天空间</span><span>查看 →</span></div>
+          <div class="yd"><span>5 种方式 · 另有 3 天空间</span><span>查看 →</span></div>
         </a>
         <a class="sg core link" role="listitem" href="#after">
           <span class="en" data-n="03">AFTER</span>
@@ -624,14 +631,15 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
     </div>
   </section>
   <section class="wrap">
-    <aside class="addon" id="addon" aria-label="加购 3 天空间">
-      <span class="tab">加购3天空间</span>
-      <span class="tg">加购</span>
-      <div class="eq" aria-hidden="true"><span class="pl">+</span><span class="dd">D1</span><span class="dd">D2</span><span class="dd">D3</span></div>
-      <h3>活动结束，再多留 <em>3 天空间</em></h3>
-      <p class="sub">所有活动、展会都能加</p>
-      <ul><li><b>接着卖</b>热度不断档</li><li><b>约买手复谈</b>没谈完的来看货</li><li><b>多 3 天数据</b>并入同一份报告</li></ul>
-      <a class="btn" href="#contact">和活动一起下单 ↓</a>
+    <aside class="addon" id="addon" aria-label="3 天独立空间">
+      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>3天独立空间</span></div>
+      <div class="pic"><img src="assets/sukoon.jpg" alt="本地独立空间"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>另一处本地空间</span></div>
+      <div class="in">
+        <div><div class="k">EXTRA SPACE</div><h3>再开 <em>3 天</em><br>独立空间</h3></div>
+        <div class="route"><i></i><span>活动 / 展会现场</span><i class="on"></i><span><b>另一处空间</b> · 3 天</span></div>
+        <ul><li>换个人群再测一轮</li><li>约买手单独看货</li><li>两处数据并进一份报告</li></ul>
+        <a class="btn" href="#contact">和活动一起安排 →</a>
+      </div>
     </aside>
     <div class="board" id="board"></div>
     <div class="board-foot">
@@ -1155,7 +1163,7 @@ function renderDetail(id){
       <div class="card post"><div class="k">AFTER · 测试后</div><h3>决策与落地</h3><ul><li>《市场验证报告》</li><li>GO / ADJUST / STOP 建议</li><li>买手、零售商匹配洽谈</li><li>进入 GMA 资源库</li></ul></div>
     </div>
   </section>
-  ${e.status!=="done"?`<section class="dt-sec"><div class="dt-addon"><span><b>+ 3 天空间</b>可和这场活动一起下单：结束后在本地空间多留 3 天，接着卖、约买手复谈、补数据。</span><a href="#contact">一起咨询 ↓</a></div></section>`:""}
+  ${e.status!=="done"?`<section class="dt-sec"><div class="dt-addon"><span><b>+ 3 天独立空间</b>活动现场之外，另一处本地空间再开 3 天，可和这场活动一起安排。</span><a href="#contact">一起咨询 ↓</a></div></section>`:""}
   <section class="dt-sec"><div class="contact"><div><h2>${e.invite?"申请邀请资格":"想用这个场景测你的产品？"}</h2><p>${e.invite?"提交品牌介绍和产品图，进入 GMA 会员品牌池，主题揭晓时优先收到邀请。":"发我们品牌介绍和产品图，先帮你判断是否适合、该测什么。"}</p></div><div><a class="btn ghost-inv" href="#contact">${e.invite?"申请邀请":"联系我们"} ↓</a></div></div></section>
   <nav class="dt-nav"><a class="btn ghost" href="#${prev}">← ${EVENTS[prev].short}</a><a class="btn ghost" href="#tests">回到看板</a><a class="btn ghost" href="#${next}">${EVENTS[next].short} →</a></nav>`;
 }
