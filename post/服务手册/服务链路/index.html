@@ -136,11 +136,9 @@ p{margin:0}
 .peek:hover .cta{background:var(--accent);color:var(--on-accent)}
 @media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
 @media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
-.bx .lab{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--green)}
-.bx .lab i{font-family:var(--f-mono);font-size:15px}
-.bx .lab i{font-style:normal;font-weight:700}
-.bx .lab i::after{content:"·";margin-left:8px;opacity:.6}
-.bx h2{font-size:clamp(21px,2vw,26px);font-weight:900;line-height:1.3;margin-top:8px}
+.bx .lab{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:4px 16px 4px 4px;border-radius:999px;background:color-mix(in srgb,var(--green) 12%,transparent);color:var(--green);font-family:var(--f-display);font-size:18px;font-weight:900;letter-spacing:.06em;line-height:1.4}
+.bx .lab i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:var(--on-accent);font-family:var(--f-mono);font-size:12px;font-style:normal;font-weight:700;letter-spacing:0}
+.bx h2{font-size:clamp(21px,2vw,26px);font-weight:900;line-height:1.3;margin-top:12px}
 .bx .q{font-size:14px;color:var(--ink-2);margin-top:4px}
 .bx .pts{margin-top:10px;font-size:13px;line-height:1.8;color:var(--ink-2)}
 .bx .pts::before{content:"包含：";color:var(--ink);font-weight:700}
