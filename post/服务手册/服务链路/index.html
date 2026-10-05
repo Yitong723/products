@@ -1441,7 +1441,11 @@ function closeEst(){estM.hidden=true;if(cfgM.hidden&&modal.hidden)document.body.
 estM.querySelectorAll("[data-eclose]").forEach(b=>b.addEventListener("click",closeEst));
 $("#btnPdf").addEventListener("click",()=>window.print());
 $("#btnImg").addEventListener("click",()=>{
-  const b=$("#btnImg"),go=()=>html2canvas($("#estSheet"),{scale:2,backgroundColor:getComputedStyle(document.body).backgroundColor}).then(cv=>{const a=document.createElement("a");a.download="GMA方案预估.png";a.href=cv.toDataURL("image/png");a.click();b.textContent="保存图片";}).catch(()=>{b.textContent="保存失败，请用 PDF";});
+  const b=$("#btnImg"),go=()=>html2canvas($("#estSheet"),{scale:2,backgroundColor:getComputedStyle(document.body).backgroundColor}).then(cv=>new Promise(r=>cv.toBlob(r,"image/png"))).then(async blob=>{
+    const dl=window.claude?.use?await window.claude.use("downloads").catch(()=>null):null;
+    if(dl){try{await dl.save({filename:"GMA方案预估.png",data:blob});}catch(e){}}
+    else{const a=document.createElement("a");a.download="GMA方案预估.png";a.href=URL.createObjectURL(blob);a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+    b.textContent="保存图片";}).catch(()=>{b.textContent="保存失败，请用 PDF";});
   b.textContent="生成中…";
   if(window.html2canvas)return go();
   const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";sc.onload=go;sc.onerror=()=>{b.textContent="需联网，请用 PDF";};document.head.appendChild(sc);
