@@ -203,21 +203,15 @@ p{margin:0}
 .after-bento .bx.side .ph{min-height:180px}
 .after-bento .bx.side h2{white-space:normal}
 @media (max-width:980px){.after-bento{grid-template-columns:1fr}.after-bento .bx.big{grid-column:auto;grid-row:auto;order:-1}}
-@media (max-width:600px){.pdoc{margin:18px 18px 0;padding:18px}.pd-l{grid-template-columns:1fr}}
-.bx.big.plan2{background:linear-gradient(180deg,var(--surface) 0%,var(--surface) 40%,var(--bg) 100%)}
-.pdoc{flex:1;margin:16px 28px 0;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 -10px 40px -18px rgba(0,0,0,.3);padding:18px 22px 10px;color:#16201d;font-size:12px;position:relative;overflow:hidden}
-.pdoc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(180deg,transparent,var(--bg))}
-.pd-run{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:#47534f;padding-bottom:8px;border-bottom:1px solid #d5dcd7}
-.pdoc h4{font-family:var(--f-display);font-size:17px;margin:14px 0 4px;line-height:1.5}
-.pd-v .vg{background:#1f7a4d}.pd-v .va{background:#a2671a}.pd-v b{font-size:12px}.pdoc .fld{font-size:11px;justify-self:start}
-.pd-l{display:grid;grid-template-columns:64px minmax(0,1fr) ;align-items:center;gap:4px 10px;padding:8px 0;border-bottom:1px dashed #d5dcd7;margin:0}
-.pd-l:last-child{border-bottom:0}
-.after-bento .pdoc::after{display:none}
-.pd-l b{font-size:11px;color:#0a8a62}
-.pd-l:first-of-type{display:flex;flex-wrap:wrap}
-.pd-l:first-of-type b{width:64px}
-.vchip{font-family:var(--f-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;color:#fff}
-.vchip.g{background:#1f7a4d}.vchip.a{background:#a2671a;opacity:.55}.vchip.s{background:#a33a32;opacity:.55}
+.decide-v{flex:1;display:grid;gap:12px;margin:14px 28px 26px;align-content:start}
+.dv{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:14px 18px;border-radius:16px;background:var(--bg);border-left:4px solid var(--c)}
+.dv-go{--c:var(--ok)}.dv-ad{--c:var(--warn)}.dv-st{--c:var(--stop)}
+.dv b{grid-row:span 2;font-family:var(--f-mono);font-size:20px;letter-spacing:.06em;color:var(--c)}
+.dv span{font-size:15px;font-weight:700}
+.dv p{font-size:13px;color:var(--ink-2);line-height:1.6}
+.dv p em{display:block;font-style:normal;color:var(--ink);font-weight:500}
+.dv-h{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:-2px}
+@media (max-width:600px){.decide-v{margin:14px 18px 22px}.dv{grid-template-columns:72px minmax(0,1fr)}}
 .dim2 ul.one{grid-template-columns:1fr}
 .dim2 ul.one li{white-space:normal}
 .bf-more{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;padding:6px 4px 0}
@@ -670,7 +664,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <span class="lab"><i>03</i>接渠道</span>
           <h2>渠道对接</h2>
           <p class="q">买手从哪来？怎么谈？怎么被看见？</p>
-          <div class="dim2"><div><b>买手资源</b><ul class="one"><li>本地 1 万+ 合作商家 · SRA 会员零售商</li><li>本地精品店、分销商</li></ul></div><div><b>洽谈推广</b><ul class="one"><li>一对一商务洽谈 · 当地 KOL 推广</li></ul></div></div>
+          <div class="dim2"><div><b>买手资源</b><ul class="one"><li>本地 1 万+ 合作商家网络</li><li>新加坡零售协会 SRA 会员零售商</li><li>本地精品店、Lifestyle Store、区域分销商</li></ul></div><div><b>商务洽谈</b><ul class="one"><li>一对一商务洽谈，按品类预约</li></ul></div><div><b>KOL 推广</b><ul class="one"><li>当地 KOL 初步推广与内容露出</li></ul></div></div>
           <div class="out"><span>你拿到</span><b>可跟进的渠道机会</b></div>
         </div>
       </article>
@@ -680,19 +674,17 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <span class="lab"><i>01</i>定方向</span>
           <h2>本地专家落地诊断</h2>
           <p class="q">这个市场要不要继续？计划在当地走得通吗？</p>
-          <div class="pts who"><span>零售运营</span><span>资深买手</span><span>品牌营销</span><span>物流合规</span></div>
-          <div class="pts what"><span>核心人群与主推 SKU</span><span>定价与渠道</span><span>成本与风险</span><span>投入节奏</span></div>
+          <div class="dim2">
+            <div><b>谁来看</b><ul><li>零售运营</li><li>资深买手</li><li>品牌营销</li><li>物流合规</li></ul></div>
+            <div><b>看什么</b><ul><li>核心人群与主推 SKU</li><li>定价与渠道选择</li><li>成本、周期与风险</li><li>投入节奏与优先级</li></ul></div>
+          </div>
           <div class="out"><span>你拿到</span><b>一份可落地计划报告</b></div>
         </div>
-        <div class="pdoc" aria-label="可落地计划报告示意">
-          <div class="pd-run"><span>GMA · LAUNCH PLAN</span><span>可落地计划报告</span></div>
-          <h4><span class="fld">品牌名</span> 进入 <span class="fld">目标市场</span> 落地计划</h4>
-          <p class="pd-l"><b>结论</b><span class="vchip g">GO 继续进入</span><span class="vchip a">ADJUST 调整再测</span><span class="vchip s">STOP 暂不进入</span></p>
-          <p class="pd-l"><b>核心人群</b><span class="fld">年龄 · 收入 · 购买动机</span></p>
-          <p class="pd-l"><b>主推 SKU</b><span class="fld">SKU A / SKU B</span></p>
-          <p class="pd-l"><b>定价建议</b><span class="fld">当地币区间</span></p>
-          <p class="pd-l"><b>渠道选择</b><span class="fld">买手店 / 商场 / 电商</span></p>
-          <p class="pd-l"><b>投入节奏</b><span class="fld">第 1–3 个月 · 第 4–6 个月</span></p>
+        <div class="decide-v">
+          <p class="dv-h">报告最后给出一个明确结论</p>
+          <div class="dv dv-go"><b>GO</b><span>继续进入</span><p>人群清楚、主推款卖得动、价格站得住<em>→ 下一步：渠道对接与本地推广</em></p></div>
+          <div class="dv dv-ad"><b>ADJUST</b><span>调整后再测</span><p>有人买，但产品、价格或卖点还要改<em>→ 下一步：按报告调整，再测一轮</em></p></div>
+          <div class="dv dv-st"><b>STOP</b><span>暂不进入</span><p>需求或利润撑不起这个市场<em>→ 下一步：暂停投入，把预算留给更合适的市场</em></p></div>
         </div>
       </article>
     </div>
