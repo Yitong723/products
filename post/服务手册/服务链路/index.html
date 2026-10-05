@@ -198,25 +198,24 @@ p{margin:0}
 .sg.next .more{color:var(--accent)}
 .after-bento{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);margin-bottom:16px}
 .after-bento .bx.big{grid-column:2;grid-row:1 / span 2}
-.after-bento .bx.side .ph{min-height:220px}
+.after-bento .bx.side .ph{min-height:180px}
 .after-bento .bx.side h2{white-space:normal}
 @media (max-width:980px){.after-bento{grid-template-columns:1fr}.after-bento .bx.big{grid-column:auto;grid-row:auto;order:-1}}
-@media (max-width:600px){.pd-v{grid-template-columns:58px minmax(0,1fr)}.pd-v span{grid-column:1 / -1}.pd-rows{grid-template-columns:1fr}.pdoc{margin:18px 18px 0;padding:18px}}
+@media (max-width:600px){.pdoc{margin:18px 18px 0;padding:18px}.pd-l{grid-template-columns:1fr}}
 .bx.big.plan2{background:linear-gradient(180deg,var(--surface) 0%,var(--surface) 40%,var(--bg) 100%)}
-.pdoc{flex:1;margin:18px 28px 0;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 -10px 40px -18px rgba(0,0,0,.3);padding:22px 24px 26px;color:#16201d;font-size:12px;position:relative;overflow:hidden}
+.pdoc{flex:1;margin:16px 28px 0;background:#fff;border-radius:12px 12px 0 0;box-shadow:0 -10px 40px -18px rgba(0,0,0,.3);padding:18px 22px 10px;color:#16201d;font-size:12px;position:relative;overflow:hidden}
 .pdoc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(180deg,transparent,var(--bg))}
 .pd-run{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:#47534f;padding-bottom:8px;border-bottom:1px solid #d5dcd7}
 .pdoc h4{font-family:var(--f-display);font-size:17px;margin:14px 0 4px;line-height:1.5}
-.pd-h{font-size:11px;font-weight:700;color:#47534f;margin:14px 0 6px;letter-spacing:.06em}
-.pd-v{display:grid;grid-template-columns:58px 74px minmax(0,1fr);align-items:center;gap:8px;padding:7px 10px;border-radius:8px;margin-bottom:5px;background:#f3f5f2;opacity:.55}
-.pd-v.on{opacity:1;background:#e7f3ec;box-shadow:inset 3px 0 0 #1f7a4d}
-.pd-v i{font-style:normal;font-family:var(--f-mono);font-size:10px;font-weight:700;color:#fff;padding:1px 0;border-radius:4px;text-align:center}
-.pd-v .vg{background:#1f7a4d}.pd-v .va{background:#a2671a}.pd-v .vs{background:#a33a32}
-.pd-v b{font-size:12px}.pd-v span{color:#47534f;font-size:11px}
-.pd-rows{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.pd-rows div{display:flex;flex-direction:column;gap:3px;padding:7px 10px;border:1px dashed #d5dcd7;border-radius:8px}
-.pd-rows b{font-size:11px;color:#0a8a62}
-.pdoc .fld{font-size:11px}
+.pd-v .vg{background:#1f7a4d}.pd-v .va{background:#a2671a}.pd-v b{font-size:12px}.pdoc .fld{font-size:11px;justify-self:start}
+.pd-l{display:grid;grid-template-columns:64px minmax(0,1fr) ;align-items:center;gap:4px 10px;padding:8px 0;border-bottom:1px dashed #d5dcd7;margin:0}
+.pd-l:last-child{border-bottom:0}
+.after-bento .pdoc::after{display:none}
+.pd-l b{font-size:11px;color:#0a8a62}
+.pd-l:first-of-type{display:flex;flex-wrap:wrap}
+.pd-l:first-of-type b{width:64px}
+.vchip{font-family:var(--f-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;color:#fff}
+.vchip.g{background:#1f7a4d}.vchip.a{background:#a2671a;opacity:.55}.vchip.s{background:#a33a32;opacity:.55}
 .dim2 ul.one{grid-template-columns:1fr}
 .dim2 ul.one li{white-space:normal}
 .bf-more{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;padding:6px 4px 0}
@@ -658,7 +657,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <span class="lab"><i>02</i>找同伴</span>
           <h2>当地品牌交流会</h2>
           <p class="q">和当地品牌坐下来聊，少走弯路。</p>
-          <div class="mk mk-v"><div><b>能得到</b><p><span>经验分享</span><span>联合曝光</span><span>渠道互通</span><span>联名合作</span></p></div></div>
+          <div class="dim2"><div><b>能得到</b><ul><li>经验分享</li><li>联合曝光</li><li>渠道互通</li><li>联名合作</li></ul></div></div>
           <div class="out"><span>你拿到</span><b>当地品牌人脉</b></div>
         </div>
       </article>
@@ -669,7 +668,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <span class="lab"><i>03</i>接渠道</span>
           <h2>渠道对接</h2>
           <p class="q">买手从哪来？怎么谈？怎么被看见？</p>
-          <div class="mk mk-v"><div><b>买手资源</b><p><span>本地 1 万+ 合作商家网络</span><span>新加坡零售协会 SRA 会员零售商</span><span>本地精品店、Lifestyle Store、区域分销商</span></p></div><div><b>商务洽谈</b><p><span>一对一商务洽谈，按品类预约</span></p></div><div><b>KOL 推广</b><p><span>当地 KOL 初步推广与内容露出</span></p></div></div>
+          <div class="dim2"><div><b>买手资源</b><ul class="one"><li>本地 1 万+ 合作商家 · SRA 会员零售商</li><li>本地精品店、分销商</li></ul></div><div><b>洽谈推广</b><ul class="one"><li>一对一商务洽谈 · 当地 KOL 推广</li></ul></div></div>
           <div class="out"><span>你拿到</span><b>可跟进的渠道机会</b></div>
         </div>
       </article>
@@ -686,18 +685,12 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         <div class="pdoc" aria-label="可落地计划报告示意">
           <div class="pd-run"><span>GMA · LAUNCH PLAN</span><span>可落地计划报告</span></div>
           <h4><span class="fld">品牌名</span> 进入 <span class="fld">目标市场</span> 落地计划</h4>
-          <p class="pd-h">报告结论</p>
-          <div class="pd-v on"><i class="vg">GO</i><b>继续进入</b><span>人群、主推款、价格都站得住 → 接渠道与推广</span></div>
-          <div class="pd-v"><i class="va">ADJUST</i><b>调整后再测</b><span>有人买，但产品或卖点要改</span></div>
-          <div class="pd-v"><i class="vs">STOP</i><b>暂不进入</b><span>需求或利润撑不起</span></div>
-          <p class="pd-h">落地计划</p>
-          <div class="pd-rows">
-            <div><b>核心人群</b><span class="fld">年龄 · 收入 · 购买动机</span></div>
-            <div><b>主推 SKU</b><span class="fld">SKU A / SKU B</span></div>
-            <div><b>定价建议</b><span class="fld">当地币区间</span></div>
-            <div><b>渠道选择</b><span class="fld">买手店 / 商场 / 电商</span></div>
-            <div><b>投入节奏</b><span class="fld">第 1–3 个月 · 第 4–6 个月</span></div>
-          </div>
+          <p class="pd-l"><b>结论</b><span class="vchip g">GO 继续进入</span><span class="vchip a">ADJUST 调整再测</span><span class="vchip s">STOP 暂不进入</span></p>
+          <p class="pd-l"><b>核心人群</b><span class="fld">年龄 · 收入 · 购买动机</span></p>
+          <p class="pd-l"><b>主推 SKU</b><span class="fld">SKU A / SKU B</span></p>
+          <p class="pd-l"><b>定价建议</b><span class="fld">当地币区间</span></p>
+          <p class="pd-l"><b>渠道选择</b><span class="fld">买手店 / 商场 / 电商</span></p>
+          <p class="pd-l"><b>投入节奏</b><span class="fld">第 1–3 个月 · 第 4–6 个月</span></p>
         </div>
       </article>
     </div>
