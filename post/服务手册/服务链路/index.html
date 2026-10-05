@@ -524,6 +524,94 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 @media (max-width:760px){.wedo{grid-template-columns:1fr}}
 .note{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:10px;background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--ink)}
 .dt-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:28px 56px;border-top:1px solid var(--line)}
+
+/* ===== 我的方案 / 预估 ===== */
+.sg{position:relative}
+.addc{font:inherit;display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;border:1px solid transparent;transition:background .2s,color .2s,transform .15s}
+.addc:active{transform:scale(.96)}
+.sg .addc{position:absolute;right:16px;top:18px;background:rgba(255,255,255,.18);color:var(--on-accent);border-color:rgba(255,255,255,.35)}
+.sg .addc:hover{background:rgba(255,255,255,.3)}
+.sg .addc.on{background:#fff;color:var(--accent)}
+.ev .ph .addc{position:absolute;right:12px;bottom:12px;z-index:1;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 4px 12px -4px rgba(0,0,0,.4)}
+.ev .ph .addc:hover{background:#fff;color:var(--accent)}
+.ev .ft .addc{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.35)}
+.addc.on,.ev .ph .addc.on,.ev .ft .addc.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.hero-add{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.hero-add small{font-size:12px;color:var(--ink-2)}
+.btn.add{background:var(--accent);color:var(--on-accent)}
+.btn.add.on{background:var(--surface);color:var(--accent);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.addg{margin-top:14px;align-self:flex-start;font:inherit;font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.addg:hover{background:var(--accent-soft)}
+.addg.on{background:var(--accent);color:var(--on-accent)}
+.dt-add{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dt-add small{font-size:13px;color:var(--ink-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+/* 方案条 */
+.planbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:6px;padding:6px 6px 6px 18px;border-radius:999px;background:var(--ink);color:var(--bg);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);animation:pop .3s}
+.planbar[hidden]{display:none}
+.planbar .pb-l{font:inherit;display:flex;align-items:center;gap:8px;background:none;border:0;color:inherit;font-size:14px;font-weight:700;cursor:pointer;padding:6px 8px 6px 0}
+.planbar .pb-l i{font-style:normal;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:12px;font-family:var(--f-mono)}
+.planbar .pb-l span{opacity:.65;font-weight:500;font-size:12px}
+.planbar .pb-go{font:inherit;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);cursor:pointer;white-space:nowrap}
+.planlist{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:45;width:min(420px,calc(100vw - 32px));max-height:60vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 60px -24px rgba(0,0,0,.5);padding:8px 0;animation:pop .25s}
+.planlist[hidden]{display:none}
+.planlist h4{margin:0;line-height:1.4;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--accent);padding:12px 18px 4px}
+.planlist .it{display:flex;align-items:center;gap:10px;padding:6px 18px;font-size:14px;line-height:1.45}
+.planlist .it div{flex:1;min-width:0}
+.planlist .it small{display:block;font-size:12px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.planlist .it button{font:inherit;font-size:12px;border:0;background:none;color:var(--ink-2);cursor:pointer;padding:4px 6px;border-radius:6px}
+.planlist .it button:hover{background:var(--bg);color:var(--ink)}
+/* 配置弹窗 */
+.win.sm{width:min(560px,100%);height:auto;max-height:88vh;background:var(--surface)}
+.cfg{padding:26px 28px 8px}
+.cfg .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.cfg h2{font-size:22px;font-weight:900;margin-top:6px;line-height:1.35}
+.cfg .w{font-size:13px;color:var(--ink-2);margin-top:4px}
+.cfg h3{font-size:14px;font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+.cfg h3 em{font-style:normal;font-size:12px;font-weight:500;color:var(--ink-2)}
+.cfg .base{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cfg .base span{display:flex;align-items:center;gap:8px;font-size:14px;padding:9px 12px;border-radius:10px;background:var(--accent-soft)}
+.cfg .base span::before{content:"✓";color:var(--accent);font-weight:900}
+.cfg label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
+.cfg label:hover{border-color:var(--accent)}
+.cfg label:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--surface))}
+.cfg input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.cfg label b{display:block;font-size:14px}
+.cfg label small{font-size:13px;color:var(--ink-2)}
+.cfg label .sub{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:var(--green);background:color-mix(in srgb,var(--green) 12%,transparent);padding:1px 7px;border-radius:5px;vertical-align:1px}
+.cfg-ft{flex:none;display:flex;gap:10px;justify-content:flex-end;padding:14px 22px;border-top:1px solid var(--line);background:var(--surface)}
+.cfg-ft .rm{margin-right:auto}
+@media (max-width:600px){.cfg .base{grid-template-columns:1fr}.win.sm{height:auto}}
+/* 预估单 */
+.est .tbl{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px;line-height:1.6}
+.est .tbl td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.est .tbl td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px;padding-left:16px}
+.est .tbl td small{display:block;color:var(--ink-2);font-size:12.5px}
+.est .tbl tr.op td{padding:5px 0 5px 16px;border-bottom:1px dashed var(--line);font-size:13px;color:var(--ink-2)}
+.est .tbl tr.op td:first-child::before{content:"+ ";color:var(--accent)}
+.est .tbl tr.tbd td:last-child{font-family:var(--f-body);color:var(--warn);font-weight:700}
+.est h2.g{margin-top:30px;font-size:16px;display:flex;align-items:baseline;gap:10px}
+.est h2.g span{font-family:var(--f-mono);font-size:12px;color:var(--accent);font-weight:500}
+.est .sum{margin-top:30px;border-top:2px solid var(--ink);padding-top:12px;font-size:14px}
+.est .sum div{display:flex;justify-content:space-between;padding:5px 0;font-variant-numeric:tabular-nums}
+.est .sum .dc{color:var(--green)}
+.est .sum .tot{margin-top:10px;padding:16px 18px;border-radius:12px;background:var(--accent-soft);align-items:baseline}
+.est .sum .tot b{font-size:15px}
+.est .sum .tot strong{font-family:var(--f-display);font-size:clamp(24px,3.4vw,32px);font-weight:900;color:var(--accent)}
+@media (max-width:600px){.est .sum .tot{flex-direction:column;align-items:flex-start;gap:4px}}
+.est .nt{margin-top:22px;font-size:12.5px;color:var(--ink-2);line-height:1.8}
+.est .nt li{margin-left:18px}
+.est .ct{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;display:flex;flex-wrap:wrap;gap:6px 22px}
+.est .ct b{color:var(--accent)}
+@media print{
+  body>*:not(#estModal){display:none!important}
+  #estModal{position:static;display:block;padding:0}
+  #estModal .bk,#estModal .win-bar{display:none}
+  #estModal .win{width:auto;height:auto;box-shadow:none;border-radius:0;background:none;animation:none}
+  #estModal .win-body{overflow:visible;padding:0}
+  #estModal .sheet{box-shadow:none;padding:0;max-width:none}
+  body.lock{overflow:visible}
+}
 </style>
 </head>
 <body>
@@ -574,6 +662,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       </div>
       <div class="stages" role="list" aria-label="GMA 服务链路">
         <a class="sg core link" role="listitem" href="#before">
+          <span class="addc" role="button" tabindex="0" data-add="before">＋ 加入方案</span>
           <span class="en" data-n="01">BEFORE</span>
           <h3>测试前<small>把方向判断清楚</small></h3>
           <ul><li>海外市场对标报告</li><li>本地用户线上实测</li><li>本地 Founder 1v1</li></ul>
@@ -588,9 +677,10 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
             <div><img src="assets/orchard.jpg" alt=""><span>闪卖店</span></div>
             <div><img src="assets/festival.jpg" alt=""><span>节庆</span></div>
           </div>
-          <div class="yd"><span>5 种方式 · 另有 3 天空间</span><span>查看 →</span></div>
+          <div class="yd"><span>5 种方式</span><span>查看 →</span></div>
         </a>
         <a class="sg core link" role="listitem" href="#after">
+          <span class="addc" role="button" tabindex="0" data-add="after">＋ 加入方案</span>
           <span class="en" data-n="03">AFTER</span>
           <h3>测试后<small>把数据变成决定</small></h3>
           <ul><li>本地专家落地诊断</li><li>当地品牌交流会</li><li>渠道对接 · 资源库</li></ul>
@@ -657,8 +747,9 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       <div>
         <p class="crumb"><a href="#home">服务链路</a> / 测试前</p>
         <h1>测试前，<em>把方向判断清楚</em></h1>
-        <p class="r">下场之前，从数据、本地用户、本地同行三个来源看清市场，三项服务可单独选，也可组合。</p>
+        <p class="r">下场之前，从数据、本地用户、本地同行三个来源看清市场，三项服务打包提供。</p>
       </div>
+      <div class="hero-add"><button class="btn add" type="button" data-add="before">＋ 加入方案</button><small>三项服务打包</small></div>
     </section>
 
     <div class="bento">
@@ -715,6 +806,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
         <h1>测试后，<em>把数据变成决定</em></h1>
         <p class="r">测试结束后，本地专家把数据变成可落地的计划，接上当地品牌、买手与推广资源，并长期为你对接团队资源。</p>
       </div>
+      <div class="hero-add"><button class="btn add" type="button" data-add="after">＋ 加入方案</button><small>四项服务打包</small></div>
     </section>
 
     <div class="bento after-bento">
@@ -805,6 +897,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <p class="q">想在当地有一家自己的店，从哪开始？</p>
           <div class="mk mk-v"><div><b>选址</b><p><span>商圈评估</span><span>客流分析</span><span>租金区间</span><span>同类店分布</span></p></div><div><b>空间合作</b><p><span>商场合作</span><span>快闪转常驻</span><span>共享店铺</span><span>联合空间</span></p></div><div><b>开业落地</b><p><span>装修与陈列</span><span>证照办理</span><span>开业活动</span><span>门店人员</span></p></div></div>
           <div class="out"><span>你拿到</span><b>一家在当地开得起来的店</b></div>
+          <button class="addg" type="button" data-add-grow="g1">＋ 加入方案</button>
         </div>
       </article>
 
@@ -816,6 +909,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <p class="q">先进成熟的店卖起来，风险更小。</p>
           <div class="mk mk-v"><div><b>入驻渠道</b><p><span>精品买手店</span><span>Lifestyle Store</span><span>百货专柜</span><span>概念店</span></p></div><div><b>我们来做</b><p><span>匹配店铺</span><span>提案与样品</span><span>谈寄售 / 批发</span><span>补货跟进</span></p></div></div>
           <div class="out"><span>你拿到</span><b>稳定的线下销售点</b></div>
+          <button class="addg" type="button" data-add-grow="g2">＋ 加入方案</button>
         </div>
       </article>
 
@@ -827,6 +921,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <p class="q">人不在当地，生意也能转起来。</p>
           <div class="mk mk-v"><div><b>前台</b><p><span>巡店与陈列</span><span>库存与补货</span><span>客服与售后</span><span>销售周报</span></p></div><div><b>后台</b><p><span>物流清关</span><span>供应商协调</span><span>财税对接</span><span>合同与合规</span></p></div></div>
           <div class="out"><span>你拿到</span><b>一支不用自建的本地团队</b></div>
+          <button class="addg" type="button" data-add-grow="g3">＋ 加入方案</button>
         </div>
       </article>
     </div>
@@ -846,6 +941,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div><b>复购沉淀</b><p>会员体系、私域社群、复购活动与用户数据分析</p></div>
         </div>
         <div class="out"><span>你拿到</span><b>从曝光到复购的完整营销链路</b></div>
+          <button class="addg" type="button" data-add-grow="g4">＋ 加入方案</button>
       </div>
     </article>
 
@@ -856,6 +952,22 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
   </div>
 </main>
 
+
+<!-- ================= 我的方案 ================= -->
+<div class="planlist" id="planList" hidden></div>
+<div class="planbar" id="planBar" hidden><button class="pb-l" type="button" id="pbToggle">我的方案 <i id="pbN">0</i><span>查看已选 ▴</span></button><button class="pb-go" type="button" data-est>查看预估价格 →</button></div>
+<div class="modal" id="cfgModal" hidden role="dialog" aria-modal="true" aria-label="选择活动服务">
+  <div class="bk" data-cclose></div>
+  <div class="win sm"><div class="win-body" style="padding:0" id="cfgBody"></div><div class="cfg-ft" id="cfgFt"></div></div>
+</div>
+<div class="modal" id="estModal" hidden role="dialog" aria-modal="true" aria-label="方案预估">
+  <div class="bk" data-eclose></div>
+  <div class="win">
+    <div class="win-bar"><b>方案预估单</b><span class="sp"></span>
+      <button class="wbtn" type="button" id="btnPdf">下载 PDF</button><button class="wbtn" type="button" id="btnImg">保存图片</button><button class="wbtn x" type="button" data-eclose aria-label="关闭">×</button></div>
+    <div class="win-body" id="estBody"></div>
+  </div>
+</div>
 <!-- ================= 报告模板：弹窗 ================= -->
 <div class="modal" id="reportModal" hidden role="dialog" aria-modal="true" aria-label="海外市场对标报告模板">
   <div class="bk" data-close></div>
@@ -1115,6 +1227,35 @@ const grp=e=>e.statusText==="招募中"?"招募中":["按期安排","随时定�
 const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i class="snow"></i><div class="tree"><span></span><span></span><span></span><b></b></div><div class="xt"><small>CHRISTMAS</small><b>Merry<br>Market</b></div></div>`;
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
+const BUNDLE={
+  before:{k:"01 · 测试前",n:"测试前三项打包",d:"海外市场对标报告 · 本地用户线上实测 · 本地 Founder 1v1",lo:16800,hi:19800},
+  after:{k:"03 · 测试后",n:"测试后四项打包",d:"本地专家落地诊断 · 当地品牌交流会 · 渠道对接 · GMA 资源库",lo:12800,hi:15800}
+};
+const GROW={g1:"当地开店服务",g2:"入驻当地买手店",g3:"本地运营支持",g4:"本地营销"};
+const OPT={
+  build:{n:"定制布展升级",d:"按品牌调性设计搭建，替代标准陈列",lo:12000,hi:18000,sub:500,subN:"布展专项补贴"},
+  ship:{n:"跨境物流清关",d:"国内提货、清关、送达现场与回程",lo:6000,hi:9000,sub:500,subN:"跨境物流补贴"},
+  buyer:{n:"买手预约与 B2B 洽谈",d:"提前邀约本地买手、零售商到场洽谈",lo:6000,hi:8000},
+  space:{n:"3 天独立空间",d:"活动现场之外，另一处本地空间再开 3 天",lo:9800,hi:15000},
+  kol:{n:"社媒预热 / KOL",d:"活动前本地社媒预热，达人到场探店",lo:8000,hi:15000},
+  staff:{n:"加派驻场销售",d:"多一位懂产品的本地销售全程驻场",lo:4000,hi:6000},
+  ops:{n:"驻场运营",d:"慢闪期间日常运营、补货与销售周报",lo:8000,hi:12000}
+};
+const FEST={lo:18000,hi:28000,base:["节庆活动摊位","节日主题陈列","现场执行","现场数据采集"],opts:["build","ship","space","kol"]};
+const EVP={
+  "ev-sg-f1":{lo:38000,hi:45000,base:["9㎡ 标准展位","基础布展与陈列","2 人现场执行","现场数据采集"],opts:["build","ship","buyer","space","kol","staff"]},
+  "ev-carnival":{lo:15000,hi:20000,base:["嘉年华摊位","基础陈列","现场执行","现场数据采集"],opts:["build","ship","space","staff","kol"]},
+  "ev-invade":{lo:8000,hi:12000,base:["市集摊位（单期）","基础陈列","现场数据采集"],opts:["ship","space","staff"]},
+  "ev-orchard":{lo:35000,hi:60000,base:["乌节路商圈空间 7 天","基础陈列","现场执行","销售与客流数据"],opts:["build","ship","staff","kol"]},
+  "ev-space":{lo:25000,hi:40000,base:["零售空间 30 天","基础陈列","销售与客流数据"],opts:["ship","ops","kol"]},
+  "ev-xmas":FEST,"ev-cny":FEST
+};
+const EARLY_END=new Date(2026,9,30,23,59,59);
+let plan={before:false,after:false,ev:{},grow:[]};
+try{const v=JSON.parse(localStorage.getItem("gma-plan")||"null");if(v&&v.ev)plan={...plan,...v};for(const k in plan.ev)if(!EVP[k])delete plan.ev[k];}catch(e){}
+const savePlan=()=>{try{localStorage.setItem("gma-plan",JSON.stringify(plan))}catch(e){}};
+const planN=()=>(plan.before?1:0)+(plan.after?1:0)+Object.keys(plan.ev).length+plan.grow.length;
+const yuan=n=>"¥"+n.toLocaleString("en-US");
 function renderBoard(){
   const rank=e=>e.featured?0:e.pin?1:e.mystery?2:e.status==="done"?4:3;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
@@ -1122,9 +1263,10 @@ function renderBoard(){
     if(form!=="all"&&e.col!==form) return "";
     const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&grp(e)!==filter;
     const vals=`<div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div>`;
-    if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期火热</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="cta">查看活动详情 →</span></div></div></a>`;
-    return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy">`}<span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
+    if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期火热</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="addc" role="button" tabindex="0" data-add-ev="${id}">＋ 加入方案</span><span class="cta">查看活动详情 →</span></div></div></a>`;
+    return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy">`}<span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span>${EVP[id]?`<span class="addc" role="button" tabindex="0" data-add-ev="${id}">＋ 加入方案</span>`:""}</div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
   }).join("");
+  if(typeof syncAdd==="function")syncAdd();
 }
 function renderForms(){
   const n=id=>Object.values(EVENTS).filter(e=>id==="all"||e.col===id).length;
@@ -1150,6 +1292,7 @@ function renderDetail(id){
       <span class="st ${e.status}">${e.statusText}</span>
       <p class="sub" style="margin-top:12px">${e.sub}</p>
       <dl class="facts"><dt>地点</dt><dd>${e.city}</dd><dt>时间</dt><dd>${e.when}</dd>${e.facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join("")}</dl>
+      <div class="dt-add">${EVP[id]?`<button class="btn add" type="button" data-add-ev="${id}">＋ 加入方案</button><small>可选基础服务以外的加项</small>`:e.status==="done"?`<button class="btn" type="button" disabled>本场已结束</button>`:`<a class="btn add" href="#contact">申请邀请 ↓</a>`}</div>
     </div>
     <div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}">`}</div>
   </section>
@@ -1191,6 +1334,7 @@ function route(){
   document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",
     (page==="home"&&a.dataset.nav==="home")||(a.dataset.nav==="tests"&&(page==="tests"||page==="detail"))||(a.dataset.nav==="home"&&(page==="before"||page==="after"||page==="grow"))));
   window.scrollTo(0,0);
+  if(typeof syncAdd==="function")syncAdd();
 }
 renderBoard();
 const modal=$("#reportModal"),btnMax=$("#btnMax");
@@ -1203,6 +1347,106 @@ btnMax.addEventListener("click",()=>{const m=modal.classList.toggle("max");btnMa
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeReport();});
 document.querySelectorAll("#reportBody .toc a").forEach((t,i)=>t.addEventListener("click",ev=>{ev.preventDefault();document.querySelectorAll("#reportBody .sheet section")[i].scrollIntoView({behavior:"smooth"});}));
 window.addEventListener("hashchange",route);
+
+/* ===== 我的方案：价格只在预估单出现 ===== */
+function syncAdd(){
+  document.querySelectorAll("[data-add]").forEach(b=>{const on=plan[b.dataset.add];b.classList.toggle("on",on);b.textContent=on?"✓ 已加入方案":"＋ 加入方案";});
+  document.querySelectorAll("[data-add-grow]").forEach(b=>{const on=plan.grow.includes(b.dataset.addGrow);b.classList.toggle("on",on);b.textContent=on?"✓ 已加入":"＋ 加入方案";});
+  document.querySelectorAll("[data-add-ev]").forEach(b=>{const o=plan.ev[b.dataset.addEv];b.classList.toggle("on",!!o);b.textContent=o?(o.length?`✓ 已加入 · ${o.length} 项加选`:"✓ 已加入 · 修改"):"＋ 加入方案";});
+  const n=planN();$("#planBar").hidden=!n;$("#pbN").textContent=n;if(!n)$("#planList").hidden=true;
+  if(!$("#planList").hidden)renderPlanList();
+}
+function changed(){savePlan();syncAdd();}
+function renderPlanList(){
+  const it=(t,s,act)=>`<div class="it"><div>${t}${s?`<small>${s}</small>`:""}</div>${act}</div>`;
+  let h="";
+  if(plan.before)h+=`<h4>01 · 测试前</h4>`+it(BUNDLE.before.n,"三项服务",`<button data-rm="before">移除</button>`);
+  const ev=Object.keys(plan.ev);
+  if(ev.length)h+=`<h4>02 · 实地测试</h4>`+ev.map(id=>it(EVENTS[id].title,plan.ev[id].length?"加选："+plan.ev[id].map(o=>OPT[o].n).join("、"):"基础服务",`<button data-add-ev="${id}" data-edit>修改</button><button data-rm-ev="${id}">移除</button>`)).join("");
+  if(plan.after)h+=`<h4>03 · 测试后</h4>`+it(BUNDLE.after.n,"四项服务",`<button data-rm="after">移除</button>`);
+  if(plan.grow.length)h+=`<h4>04 · 进入 · 增长</h4>`+plan.grow.map(g=>it(GROW[g],"按需定制",`<button data-rm-grow="${g}">移除</button>`)).join("");
+  $("#planList").innerHTML=h;
+}
+$("#pbToggle").addEventListener("click",()=>{const l=$("#planList");l.hidden=!l.hidden;if(!l.hidden)renderPlanList();});
+
+const cfgM=$("#cfgModal");let cfgId=null;
+function openCfg(id){
+  cfgId=id;const e=EVENTS[id],p=EVP[id],cur=plan.ev[id];
+  $("#cfgBody").innerHTML=`<div class="cfg"><div class="k">ON-SITE · 实地测试</div><h2>${e.title}</h2><p class="w">${e.city} · ${e.when}</p>
+    <h3>基础服务 <em>已包含</em></h3><div class="base">${p.base.map(b=>`<span>${b}</span>`).join("")}</div>
+    <h3>其他服务 <em>按需勾选</em></h3>${p.opts.map(o=>`<label><input type="checkbox" value="${o}"${cur&&cur.includes(o)?" checked":""}><div><b>${OPT[o].n}${OPT[o].sub?`<span class="sub">可抵 ${OPT[o].sub} 元补贴</span>`:""}</b><small>${OPT[o].d}</small></div></label>`).join("")}</div>`;
+  $("#cfgFt").innerHTML=`${cur?`<button class="btn ghost rm" type="button" data-cfg-rm>移出方案</button>`:""}<button class="btn ghost" type="button" data-cclose>取消</button><button class="btn add" type="button" data-cfg-ok>${cur?"更新方案":"加入方案"}</button>`;
+  cfgM.hidden=false;document.body.classList.add("lock");
+}
+function closeCfg(){cfgM.hidden=true;if($("#estModal").hidden&&modal.hidden)document.body.classList.remove("lock");}
+cfgM.addEventListener("click",ev=>{
+  if(ev.target.closest("[data-cclose]"))return closeCfg();
+  if(ev.target.closest("[data-cfg-ok]")){plan.ev[cfgId]=[...cfgM.querySelectorAll("input:checked")].map(i=>i.value);changed();closeCfg();}
+  if(ev.target.closest("[data-cfg-rm]")){delete plan.ev[cfgId];changed();closeCfg();}
+});
+
+document.addEventListener("click",ev=>{
+  const t=ev.target.closest("[data-add],[data-add-ev],[data-add-grow],[data-rm],[data-rm-ev],[data-rm-grow],[data-est]");
+  if(!t)return;
+  ev.preventDefault();ev.stopPropagation();
+  const d=t.dataset;
+  if(d.add){plan[d.add]=!plan[d.add];changed();}
+  else if(d.addEv){openCfg(d.addEv);}
+  else if(d.addGrow){const i=plan.grow.indexOf(d.addGrow);i<0?plan.grow.push(d.addGrow):plan.grow.splice(i,1);changed();}
+  else if(d.rm){plan[d.rm]=false;changed();}
+  else if(d.rmEv){delete plan.ev[d.rmEv];changed();}
+  else if(d.rmGrow){plan.grow=plan.grow.filter(g=>g!==d.rmGrow);changed();}
+  else if("est" in d){openEst();}
+},true);
+document.addEventListener("keydown",ev=>{if(ev.key==="Enter"&&ev.target.matches?.(".addc[role=button]")){ev.preventDefault();ev.target.click();}});
+
+function calc(){
+  const rows=[];let lo=0,hi=0;const subs={};
+  const add=r=>{rows.push(r);if(r.lo!=null){lo+=r.lo;hi+=r.hi;}};
+  if(plan.before)add({g:"before",...BUNDLE.before});
+  for(const id in plan.ev){const p=EVP[id];add({g:"ev",n:EVENTS[id].title,d:"基础服务："+p.base.join("、"),lo:p.lo,hi:p.hi});
+    plan.ev[id].forEach(o=>{const x=OPT[o];add({g:"ev",op:1,n:x.n,lo:x.lo,hi:x.hi});if(x.sub)subs[x.subN]=x.sub;});}
+  if(plan.after)add({g:"after",...BUNDLE.after});
+  plan.grow.forEach(g=>add({g:"grow",n:GROW[g],tbd:1}));
+  const dc=[];
+  if(lo>0&&new Date()<=EARLY_END)dc.push(["早鸟金（10 月 30 日前下单）",1000]);
+  for(const k in subs)dc.push([k,subs[k]]);
+  const off=dc.reduce((a,b)=>a+b[1],0);
+  return {rows,lo,hi,dc,tlo:Math.max(0,lo-off),thi:Math.max(0,hi-off)};
+}
+const estM=$("#estModal");
+function openEst(){
+  $("#planList").hidden=true;
+  const c=calc(),now=new Date(),pad=n=>String(n).padStart(2,"0");
+  const no=`GMA-${String(now.getFullYear()).slice(2)}${pad(now.getMonth()+1)}${pad(now.getDate())}-${String(Math.floor(Math.random()*9000)+1000)}`;
+  const G=[["before","01","测试前"],["ev","02","实地测试"],["after","03","测试后"],["grow","04","进入 · 增长"]];
+  const tr=r=>r.tbd?`<tr class="tbd"><td>${r.n}</td><td>按需定制估价</td></tr>`:r.op?`<tr class="op"><td>${r.n}</td><td>${yuan(r.lo)} – ${yuan(r.hi)}</td></tr>`:`<tr><td>${r.n}${r.d?`<small>${r.d}</small>`:""}</td><td>${yuan(r.lo)} – ${yuan(r.hi)}</td></tr>`;
+  const body=G.map(([g,n,t])=>{const rs=c.rows.filter(r=>r.g===g);return rs.length?`<h2 class="g"><span>${n}</span>${t}</h2><table class="tbl">${rs.map(tr).join("")}</table>`:""}).join("");
+  const hasTbd=plan.grow.length>0;
+  $("#estBody").innerHTML=`<article class="sheet est" id="estSheet">
+    <div class="run"><span>GMA · GLOBAL MARKET ACCELERATOR</span><span>${no}</span></div>
+    <div class="ttl"><small>ESTIMATE · 方案预估</small><h1>你的出海验证方案预估</h1><p>生成日期 ${now.getFullYear()} 年 ${now.getMonth()+1} 月 ${now.getDate()} 日 · 共 ${planN()} 项</p></div>
+    ${body}
+    <div class="sum">
+      <div><span>服务小计</span><span>${yuan(c.lo)} – ${yuan(c.hi)}</span></div>
+      ${c.dc.map(d=>`<div class="dc"><span>− ${d[0]}</span><span>− ${yuan(d[1])}</span></div>`).join("")}
+      <div class="tot"><b>预估总价${hasTbd?"（不含按需定制项）":""}</b><strong>${yuan(c.tlo)} – ${yuan(c.thi)}</strong></div>
+    </div>
+    <ul class="nt"><li>本预估仅供参考，以 GMA 正式报价为准；价格为人民币，展位、场地等境外费用按 1 新币 ≈ 5.4 元折算。</li>${hasTbd?"<li>进入 · 增长服务按你的阶段、周期与范围单独估价。</li>":""}<li>早鸟金限 2026 年 10 月 30 日前下单；物流、布展补贴在勾选对应服务时抵扣，每项限一次。</li></ul>
+    <div class="ct"><span><b>联系我们</b></span><span>Jade · 1205226717@qq.com</span><span>Carrie · yt1253082426@163.com</span><span>微信 · GMA品牌出海</span></div>
+  </article>`;
+  estM.hidden=false;document.body.classList.add("lock");$("#estBody").scrollTop=0;
+}
+function closeEst(){estM.hidden=true;if(cfgM.hidden&&modal.hidden)document.body.classList.remove("lock");}
+estM.querySelectorAll("[data-eclose]").forEach(b=>b.addEventListener("click",closeEst));
+$("#btnPdf").addEventListener("click",()=>window.print());
+$("#btnImg").addEventListener("click",()=>{
+  const b=$("#btnImg"),go=()=>html2canvas($("#estSheet"),{scale:2,backgroundColor:getComputedStyle(document.body).backgroundColor}).then(cv=>{const a=document.createElement("a");a.download="GMA方案预估.png";a.href=cv.toDataURL("image/png");a.click();b.textContent="保存图片";}).catch(()=>{b.textContent="保存失败，请用 PDF";});
+  b.textContent="生成中…";
+  if(window.html2canvas)return go();
+  const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";sc.onload=go;sc.onerror=()=>{b.textContent="需联网，请用 PDF";};document.head.appendChild(sc);
+});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(!cfgM.hidden)closeCfg();else if(!estM.hidden)closeEst();else $("#planList").hidden=true;});
 route();
 </script>
 </body>
