@@ -1232,8 +1232,8 @@ const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i cla
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 const BUNDLE={
-  before:{k:"01 · 测试前",n:"测试前三项打包",d:"海外市场对标报告 · 本地用户线上实测 · 本地 Founder 1v1",lo:6800,hi:8800},
-  after:{k:"03 · 测试后",n:"测试后四项打包",d:"本地专家落地诊断 · 当地品牌交流会 · 渠道对接 · GMA 资源库",lo:5800,hi:7800}
+  before:{k:"01 · 测试前",n:"测试前三项打包",d:"海外市场对标报告 · 本地用户线上实测 · 本地 Founder 1v1",lo:1800,hi:1800},
+  after:{k:"03 · 测试后",n:"测试后四项打包",d:"本地专家落地诊断 · 当地品牌交流会 · 渠道对接 · GMA 资源库",lo:2000,hi:2000}
 };
 const GROW={g1:"当地开店服务",g2:"入驻当地买手店",g3:"本地运营支持",g4:"本地营销"};
 const OPT={
@@ -1260,6 +1260,7 @@ try{const v=JSON.parse(localStorage.getItem("gma-plan")||"null");if(v&&v.ev)plan
 const savePlan=()=>{try{localStorage.setItem("gma-plan",JSON.stringify(plan))}catch(e){}};
 const planN=()=>(plan.before?1:0)+(plan.after?1:0)+Object.keys(plan.ev).length+plan.grow.length;
 const yuan=n=>"¥"+n.toLocaleString("en-US");
+const rng=(a,b)=>a===b?yuan(a):`${yuan(a)} – ${yuan(b)}`;
 function renderBoard(){
   const rank=e=>e.featured?0:e.pin?1:e.mystery?2:e.status==="done"?4:3;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
@@ -1424,7 +1425,7 @@ function openEst(){
   const c=calc(),now=new Date(),pad=n=>String(n).padStart(2,"0");
   const no=`GMA-${String(now.getFullYear()).slice(2)}${pad(now.getMonth()+1)}${pad(now.getDate())}-${String(Math.floor(Math.random()*9000)+1000)}`;
   const G=[["before","01","测试前"],["ev","02","实地测试"],["after","03","测试后"],["grow","04","进入 · 增长"]];
-  const tr=r=>r.tbd?`<tr class="tbd"><td>${r.n}</td><td>按需定制估价</td></tr>`:r.op?`<tr class="op"><td>${r.n}</td><td>${yuan(r.lo)} – ${yuan(r.hi)}</td></tr>`:`<tr><td>${r.n}${r.d?`<small>${r.d}</small>`:""}</td><td>${yuan(r.lo)} – ${yuan(r.hi)}</td></tr>`;
+  const tr=r=>r.tbd?`<tr class="tbd"><td>${r.n}</td><td>按需定制估价</td></tr>`:r.op?`<tr class="op"><td>${r.n}</td><td>${rng(r.lo,r.hi)}</td></tr>`:`<tr><td>${r.n}${r.d?`<small>${r.d}</small>`:""}</td><td>${rng(r.lo,r.hi)}</td></tr>`;
   const body=G.map(([g,n,t])=>{const rs=c.rows.filter(r=>r.g===g);return rs.length?`<h2 class="g"><span>${n}</span>${t}</h2><table class="tbl">${rs.map(tr).join("")}</table>`:""}).join("");
   const hasTbd=plan.grow.length>0;
   $("#estBody").innerHTML=`<article class="sheet est" id="estSheet">
@@ -1432,9 +1433,9 @@ function openEst(){
     <div class="ttl"><small>ESTIMATE · 方案预估</small><h1>你的出海验证方案预估</h1><p>生成日期 ${now.getFullYear()} 年 ${now.getMonth()+1} 月 ${now.getDate()} 日 · 共 ${planN()} 项</p></div>
     ${body}
     <div class="sum">
-      <div><span>服务小计</span><span>${yuan(c.lo)} – ${yuan(c.hi)}</span></div>
+      <div><span>服务小计</span><span>${rng(c.lo,c.hi)}</span></div>
       ${c.dc.map(d=>`<div class="dc"><span>− ${d[0]}</span><span>− ${yuan(d[1])}</span></div>`).join("")}
-      <div class="tot"><b>预估总价${hasTbd?"（不含按需定制项）":""}</b><strong>${yuan(c.tlo)} – ${yuan(c.thi)}</strong></div>
+      <div class="tot"><b>预估总价${hasTbd?"（不含按需定制项）":""}</b><strong>${rng(c.tlo,c.thi)}</strong></div>
     </div>
     <ul class="nt"><li>本预估仅供参考，以 GMA 正式报价为准；价格为人民币，展位、场地等境外费用按 1 新币 ≈ 5.4 元折算。</li>${hasTbd?"<li>进入 · 增长服务按你的阶段、周期与范围单独估价。</li>":""}<li>早鸟金限 2026 年 10 月 30 日前下单；物流、布展补贴在勾选对应服务时抵扣，每项限一次。</li></ul>
     <div class="ct"><ul><li><b>联系我们</b></li><li>Jade · 1205226717@qq.com</li><li>Carrie · yt1253082426@163.com</li></ul><figure><figcaption><strong>微信 GMA品牌出海</strong>扫码备注「品牌名 + 目标市场」</figcaption><img src="${document.querySelector('#contact img[alt*="微信"]').src}" alt="GMA 品牌出海微信二维码"></figure></div>
