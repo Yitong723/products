@@ -124,18 +124,6 @@ p{margin:0}
 
 .bento{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px}
 .bx{background:var(--surface);border:1px solid var(--line);border-radius:26px;overflow:hidden;min-width:0;position:relative}
-.bx.big{grid-row:span 2;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--surface) 0%,var(--surface) 46%,var(--bg) 100%)}
-.bx.big .txt{padding:24px 28px 0}
-.peek{position:relative;flex:1;min-height:170px;margin:18px 28px 0;cursor:zoom-in;border:0;padding:0;background:none;font:inherit;text-align:left;display:block}
-.peek .pg{position:absolute;left:0;right:0;top:0;bottom:0;border-radius:12px 12px 0 0;overflow:hidden;background:#fff;box-shadow:0 -10px 40px -18px rgba(0,0,0,.35);transition:transform .35s}
-.peek .pg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,transparent,var(--bg))}
-.peek .pg>div{transform:scale(.46);transform-origin:top left;width:217%;pointer-events:none}
-.peek .pg .sheet{box-shadow:none;border-radius:0;max-width:none;padding:56px 64px}
-.peek:hover .pg{transform:translateY(-8px)}
-.peek .cta{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px;background:var(--ink);color:var(--bg);box-shadow:0 12px 24px -10px rgba(0,0,0,.45)}
-.peek:hover .cta{background:var(--accent);color:var(--on-accent)}
-@media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
-@media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
 .bx .lab{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;letter-spacing:.06em;color:var(--green)}
 .bx .lab i{font-family:var(--f-mono);font-size:15px}
 .bx .lab i{font-style:normal;font-weight:700}
@@ -152,6 +140,16 @@ p{margin:0}
 .bx .out b{font-family:var(--f-display);font-size:20px;font-weight:900;line-height:1.3;color:var(--ink);padding:0 2px;background:linear-gradient(transparent 66%,var(--hl) 66%,var(--hl) 94%,transparent 94%)}
 
 /* 大卡：对标报告 */
+.bx.big{grid-row:span 2;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--surface) 0%,var(--surface) 46%,var(--bg) 100%)}
+.bx.big .txt{padding:24px 28px 0}
+.peek{position:relative;flex:1;min-height:170px;margin:18px 28px 0;cursor:zoom-in;border:0;padding:0;background:none;font:inherit;text-align:left;display:block}
+.peek .pg{position:absolute;left:0;right:0;top:0;bottom:0;border-radius:12px 12px 0 0;overflow:hidden;background:#fff;box-shadow:0 -10px 40px -18px rgba(0,0,0,.35);transition:transform .35s}
+.peek .pg::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,transparent,var(--bg))}
+.peek .pg>div{transform:scale(.46);transform-origin:top left;width:217%;pointer-events:none}
+.peek .pg .sheet{box-shadow:none;border-radius:0;max-width:none;padding:56px 64px}
+.peek:hover .pg{transform:translateY(-8px)}
+.peek .cta{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:11px 20px;border-radius:999px;background:var(--ink);color:var(--bg);box-shadow:0 12px 24px -10px rgba(0,0,0,.45)}
+.peek:hover .cta{background:var(--accent);color:var(--on-accent)}
 
 /* 横卡：照片 + 文字 */
 .bx.side{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1fr)}
@@ -172,6 +170,8 @@ p{margin:0}
 .dim2 li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink-2);opacity:.6}
 .bx.side .out{margin-top:auto}
 .bx.side .txt>*:nth-last-child(2){margin-bottom:12px}
+@media (max-width:980px){.bento{grid-template-columns:1fr;grid-template-rows:auto}.bx.big{grid-row:auto}.peek{min-height:320px}}
+@media (max-width:600px){.bx.side{grid-template-columns:1fr}.bx.side .ph{min-height:180px}.bx.big .txt{padding:24px 22px 0}.peek{margin:22px 22px 0}}
 
 .bx.side.full{grid-column:1 / -1;grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}
 .bx.side.full .ph{min-height:200px}
@@ -184,10 +184,13 @@ p{margin:0}
 .mk{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .mk div{padding:12px 14px;border-radius:12px;background:var(--bg)}
 .mk.mk-v{grid-template-columns:1fr;gap:8px}
+.ex-grid{margin-top:12px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px;align-items:start}
+.ex-grid .mk{margin-top:0}
+.ex .decide-v{margin:0;gap:8px}
+.ex .dv-h{margin:0 0 2px}
+.after-trio{margin-top:16px;margin-bottom:0}
+@media (max-width:900px){.ex-grid{grid-template-columns:1fr}}
 .mk.mk-v div{padding:10px 14px}
-.mk.mk-v .verdict p{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:baseline;gap:8px;font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:3px}
-.mk.mk-v .verdict i{font-style:normal;font-family:var(--f-mono);font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;color:#fff;min-width:54px;text-align:center}
-.verdict .vg{background:var(--ok)}.verdict .va{background:var(--warn)}.verdict .vs{background:var(--stop)}
 .mk.mk-v p{display:flex;flex-wrap:wrap;gap:3px 14px}
 .mk.mk-v p span{white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
 .mk.mk-v p span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--green);opacity:.7}
@@ -199,6 +202,15 @@ p{margin:0}
 .sg.next .more{color:var(--accent)}
 .dim2 ul.one{grid-template-columns:1fr}
 .dim2 ul.one li{white-space:normal}
+.bx.big.plan{background:var(--surface)}
+.decide-v{flex:1;display:grid;gap:12px;margin:18px 28px 26px;align-content:end}
+.dv{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto;column-gap:14px;align-items:center;padding:14px 18px;border-radius:16px;background:var(--bg);border-left:4px solid var(--c)}
+.dv-go{--c:var(--ok)}.dv-ad{--c:var(--warn)}.dv-st{--c:var(--stop)}
+.dv b{grid-row:span 2;font-family:var(--f-mono);font-size:20px;letter-spacing:.06em;color:var(--c)}
+.dv span{font-size:15px;font-weight:700}
+.dv p{font-size:13px;color:var(--ink-2);line-height:1.6}
+.dv p em{display:block;font-style:normal;color:var(--ink);font-weight:500}
+.dv-h{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:-2px}
 .bf-more{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;padding:6px 4px 0}
 .bf-more p{font-size:14px;color:var(--ink-2)}
 .bf-more p b{color:var(--ink)}
@@ -631,17 +643,26 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       </div>
     </section>
 
-    <div class="trio">
-      <article class="bx side v">
-        <div class="ph"><img src="assets/sukoon.jpg" alt="当地零售门店" loading="lazy"></div>
-        <div class="txt">
-          <span class="lab"><i>01</i>定方向</span>
-          <h2>本地专家落地诊断</h2>
-          <p class="q">这个市场要不要继续？计划在当地走得通吗？</p>
-          <div class="mk mk-v"><div><b>谁来看</b><p><span>零售运营</span><span>资深买手</span><span>品牌营销</span><span>物流合规</span></p></div><div><b>看什么</b><p><span>核心人群与主推 SKU</span><span>定价与渠道选择</span><span>成本、周期与风险</span><span>投入节奏与优先级</span></p></div><div class="verdict"><b>报告结论</b><p><i class="vg">GO</i>人群、主推款、价格都站得住 → 接渠道与推广</p><p><i class="va">ADJUST</i>有人买，但产品或卖点要改 → 调整后再测</p><p><i class="vs">STOP</i>需求或利润撑不起 → 暂停投入</p></div></div>
-          <div class="out"><span>你拿到</span><b>一份可落地计划报告</b></div>
+    <article class="bx side full mkt ex">
+      <div class="ph"><img src="assets/sukoon.jpg" alt="当地零售门店" loading="lazy"></div>
+      <div class="txt">
+        <span class="lab"><i>01</i>定方向</span>
+        <h2>本地专家落地诊断</h2>
+        <p class="q">这个市场要不要继续？计划在当地走得通吗？</p>
+        <div class="ex-grid">
+          <div class="mk mk-v"><div><b>谁来看</b><p><span>零售运营</span><span>资深买手</span><span>品牌营销</span><span>物流合规</span></p></div><div><b>看什么</b><p><span>核心人群与主推 SKU</span><span>定价与渠道选择</span><span>成本、周期与风险</span><span>投入节奏与优先级</span></p></div></div>
+          <div class="decide-v">
+            <p class="dv-h">报告最后给出一个明确结论</p>
+            <div class="dv dv-go"><b>GO</b><span>继续进入</span><p>人群清楚、主推款卖得动、价格站得住<em>→ 下一步：渠道对接与本地推广</em></p></div>
+            <div class="dv dv-ad"><b>ADJUST</b><span>调整后再测</span><p>有人买，但产品、价格或卖点还要改<em>→ 下一步：按报告调整，再测一轮</em></p></div>
+            <div class="dv dv-st"><b>STOP</b><span>暂不进入</span><p>需求或利润撑不起这个市场<em>→ 下一步：暂停投入，把预算留给更合适的市场</em></p></div>
+          </div>
         </div>
-      </article>
+        <div class="out"><span>你拿到</span><b>一份可落地计划报告</b></div>
+      </div>
+    </article>
+
+    <div class="trio after-trio">
       <article class="bx side v">
         <div class="ph"><img src="assets/exchange.jpg" alt="GMA 中外品牌交流会现场" loading="lazy"></div>
         <div class="txt">
@@ -652,6 +673,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div class="out"><span>你拿到</span><b>当地品牌人脉</b></div>
         </div>
       </article>
+
       <article class="bx side v">
         <div class="ph"><img src="assets/buyer.jpg" alt="买手现场洽谈" loading="lazy"></div>
         <div class="txt">
@@ -662,25 +684,18 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
           <div class="out"><span>你拿到</span><b>可跟进的渠道机会</b></div>
         </div>
       </article>
-    </div>
 
-    <article class="bx side full mkt">
-      <div class="ph"><img src="assets/th-fair.jpg" alt="品牌墙展陈" loading="lazy"></div>
-      <div class="txt">
-        <span class="lab"><i>04</i>长期连接</span>
-        <h2>GMA 品牌资源库</h2>
-        <p class="q">测试结束，连接不结束。</p>
-        <div class="mk">
-          <div><b>品牌入库</b><p>品牌档案、测试数据与偏好归档，团队随时调取</p></div>
-          <div><b>新渠道机会</b><p>有匹配的买手店、商场或分销商时，第一时间推荐给你</p></div>
-          <div><b>买手需求</b><p>买手在找什么品类、什么价位，定向推送给你</p></div>
-          <div><b>合作活动</b><p>联名、快闪、品牌交流会等活动优先邀请</p></div>
-          <div><b>下一站席位</b><p>新市场与下一站测试，优先获得入驻资格</p></div>
-          <div><b>团队资源</b><p>GMA 团队手上的人脉与合作资源，持续对接给品牌</p></div>
+      <article class="bx side v">
+        <div class="ph"><img src="assets/th-fair.jpg" alt="品牌墙展陈" loading="lazy"></div>
+        <div class="txt">
+          <span class="lab"><i>04</i>长期连接</span>
+          <h2>GMA 品牌资源库</h2>
+          <p class="q">测试结束，连接不结束。</p>
+          <div class="mk mk-v"><div><b>入库</b><p><span>品牌档案、测试数据与偏好归档</span></p></div><div><b>持续推送</b><p><span>新渠道机会</span><span>买手需求</span><span>合作活动</span><span>下一站席位</span></p></div></div>
+          <div class="out"><span>你拿到</span><b>团队资源持续对接</b></div>
         </div>
-        <div class="out"><span>你拿到</span><b>团队资源持续对接</b></div>
-      </div>
-    </article>
+      </article>
+    </div>
 
     <div class="bf-more">
       <p>结论是 GO 的品牌，可以继续进入 <b>渠道落地</b> 与 <b>本地运营</b> 阶段。</p>
