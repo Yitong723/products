@@ -1237,12 +1237,12 @@ const BUNDLE={
 };
 const GROW={g1:"当地开店服务",g2:"入驻当地买手店",g3:"本地运营支持",g4:"本地营销"};
 const OPT={
-  build:{n:"定制布展升级",d:"按品牌调性设计搭建，替代标准陈列",lo:4000,hi:6000,sub:500,subN:"布展专项补贴"},
-  ship:{n:"跨境物流清关",d:"国内提货、清关、送达现场与回程",lo:2000,hi:3500,sub:500,subN:"跨境物流补贴"},
-  buyer:{n:"买手预约与 B2B 洽谈",d:"提前邀约本地买手、零售商到场洽谈",lo:2000,hi:3000},
-  space:{n:"3 天独立空间",d:"活动现场之外，另一处本地空间再开 3 天",lo:3800,hi:6800},
-  kol:{n:"社媒预热 / KOL",d:"活动前本地社媒预热，达人到场探店",lo:3000,hi:6000},
-  staff:{n:"加派驻场销售",d:"多一位懂产品的本地销售全程驻场",lo:1500,hi:2500},
+  build:{n:"定制布展升级",d:"按品牌调性设计搭建，替代标准陈列",tbd:1,sub:500,subN:"布展专项补贴"},
+  ship:{n:"跨境物流清关",d:"国内提货、清关、送达现场与回程",lo:1000,hi:1000,sub:500,subN:"跨境物流补贴"},
+  buyer:{n:"买手预约与 B2B 洽谈",d:"提前邀约本地买手、零售商到场洽谈",lo:500,hi:500},
+  space:{n:"3 天独立空间",d:"活动现场之外，另一处本地空间再开 3 天",lo:2000,hi:2000},
+  kol:{n:"社媒预热 / KOL",d:"活动前本地社媒预热，达人到场探店",lo:1000,hi:1000},
+  staff:{n:"加派驻场销售",d:"多一位懂产品的本地销售驻场 3 天",lo:1500,hi:1500},
   ops:{n:"驻场运营",d:"慢闪期间日常运营、补货与销售周报",lo:3000,hi:5000}
 };
 const FEST={lo:8800,hi:12800,base:["节庆活动摊位","节日主题陈列","现场执行","现场数据采集"],opts:["build","ship","space","kol"]};
@@ -1410,7 +1410,7 @@ function calc(){
   const add=r=>{rows.push(r);if(r.lo!=null){lo+=r.lo;hi+=r.hi;}};
   if(plan.before)add({g:"before",...BUNDLE.before});
   for(const id in plan.ev){const p=EVP[id];add({g:"ev",n:EVENTS[id].title,d:"基础服务："+p.base.join("、"),lo:p.lo,hi:p.hi});
-    plan.ev[id].forEach(o=>{const x=OPT[o];add({g:"ev",op:1,n:x.n,lo:x.lo,hi:x.hi});if(x.sub)subs[x.subN]=x.sub;});}
+    plan.ev[id].forEach(o=>{const x=OPT[o];if(x.tbd){add({g:"ev",op:1,tbd:1,n:x.n});return;}add({g:"ev",op:1,n:x.n,lo:x.lo,hi:x.hi});if(x.sub)subs[x.subN]=x.sub;});}
   if(plan.after)add({g:"after",...BUNDLE.after});
   plan.grow.forEach(g=>add({g:"grow",n:GROW[g],tbd:1}));
   const dc=[];
@@ -1425,9 +1425,9 @@ function openEst(){
   const c=calc(),now=new Date(),pad=n=>String(n).padStart(2,"0");
   const no=`GMA-${String(now.getFullYear()).slice(2)}${pad(now.getMonth()+1)}${pad(now.getDate())}-${String(Math.floor(Math.random()*9000)+1000)}`;
   const G=[["before","01","测试前"],["ev","02","实地测试"],["after","03","测试后"],["grow","04","进入 · 增长"]];
-  const tr=r=>r.tbd?`<tr class="tbd"><td>${r.n}</td><td>按需定制估价</td></tr>`:r.op?`<tr class="op"><td>${r.n}</td><td>${rng(r.lo,r.hi)}</td></tr>`:`<tr><td>${r.n}${r.d?`<small>${r.d}</small>`:""}</td><td>${rng(r.lo,r.hi)}</td></tr>`;
+  const tr=r=>r.tbd?`<tr class="tbd${r.op?" op":""}"><td>${r.n}</td><td>按需定制估价</td></tr>`:r.op?`<tr class="op"><td>${r.n}</td><td>${rng(r.lo,r.hi)}</td></tr>`:`<tr><td>${r.n}${r.d?`<small>${r.d}</small>`:""}</td><td>${rng(r.lo,r.hi)}</td></tr>`;
   const body=G.map(([g,n,t])=>{const rs=c.rows.filter(r=>r.g===g);return rs.length?`<h2 class="g"><span>${n}</span>${t}</h2><table class="tbl">${rs.map(tr).join("")}</table>`:""}).join("");
-  const hasTbd=plan.grow.length>0;
+  const hasTbd=c.rows.some(r=>r.tbd);
   $("#estBody").innerHTML=`<article class="sheet est" id="estSheet">
     <div class="run"><span>GMA · GLOBAL MARKET ACCELERATOR</span><span>${no}</span></div>
     <div class="ttl"><small>ESTIMATE · 方案预估</small><h1>你的出海验证方案预估</h1><p>生成日期 ${now.getFullYear()} 年 ${now.getMonth()+1} 月 ${now.getDate()} 日 · 共 ${planN()} 项</p></div>
@@ -1437,7 +1437,7 @@ function openEst(){
       ${c.dc.map(d=>`<div class="dc"><span>− ${d[0]}</span><span>− ${yuan(d[1])}</span></div>`).join("")}
       <div class="tot"><b>预估总价${hasTbd?"（不含按需定制项）":""}</b><strong>${rng(c.tlo,c.thi)}</strong></div>
     </div>
-    <ul class="nt"><li>本预估仅供参考，以 GMA 正式报价为准；价格为人民币，展位、场地等境外费用按 1 新币 ≈ 5.4 元折算。</li>${hasTbd?"<li>进入 · 增长服务按你的阶段、周期与范围单独估价。</li>":""}<li>早鸟金限 2026 年 10 月 30 日前下单；物流、布展补贴在勾选对应服务时抵扣，每项限一次。</li></ul>
+    <ul class="nt"><li>本预估仅供参考，以 GMA 正式报价为准；价格为人民币，展位、场地等境外费用按 1 新币 ≈ 5.4 元折算。</li>${hasTbd?"<li>标注「按需定制估价」的项目按你的需求、周期与范围单独报价，未计入总价。</li>":""}<li>早鸟金限 2026 年 10 月 30 日前下单；物流补贴在勾选跨境物流清关时抵扣，布展补贴在定制布展报价中抵扣，每项限一次。</li></ul>
     <div class="ct"><ul><li><b>联系我们</b></li><li>Jade · 1205226717@qq.com</li><li>Carrie · yt1253082426@163.com</li></ul><figure><figcaption><strong>微信 GMA品牌出海</strong>扫码备注「品牌名 + 目标市场」</figcaption><img src="${document.querySelector('#contact img[alt*="微信"]').src}" alt="GMA 品牌出海微信二维码"></figure></div>
   </article>`;
   estM.hidden=false;document.body.classList.add("lock");$("#estBody").scrollTop=0;
