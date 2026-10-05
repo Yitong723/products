@@ -538,16 +538,15 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
 <main class="page" id="p-tests">
   <section class="wrap board-h">
     <p class="crumb"><a href="#home">服务链路</a> / 实地测试方式</p>
-    <div class="eyebrow t" style="margin-top:14px">On-site testing board</div>
-    <h1>实地测试方式</h1>
+    <h1 style="margin-top:14px">实地测试方式</h1>
     <p class="one">每个场景能测的东西不同，先看你想验证什么再选场景；不确定的话，我们在测试前帮你选。点开卡片看活动详情。</p>
     <div class="ctl">
       <div class="forms" role="group" aria-label="按测试方式筛选" id="forms"></div>
-      <div class="filters" role="group" aria-label="按验证目标筛选"><span class="flab">验证目标：</span>
+      <div class="filters" role="group" aria-label="按状态筛选"><span class="flab">状态：</span>
       <button class="on" data-f="all">不限</button>
-      <button data-f="消费者">测消费者</button>
-      <button data-f="价格">测价格</button>
-      <button data-f="买手">见买手</button>
+      <button data-f="招募中">招募中</button>
+      <button data-f="按需定制">按需定制</button>
+      <button data-f="已结束">已结束</button>
       
     </div>
     </div>
@@ -1004,6 +1003,7 @@ const EVENTS={
 
 const $=s=>document.querySelector(s);
 let filter="all",form="all";
+const grp=e=>e.statusText==="招募中"?"招募中":["按期安排","随时定制"].includes(e.statusText)?"按需定制":e.status==="done"?"已结束":"";
 const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i class="snow"></i><div class="tree"><span></span><span></span><span></span><b></b></div><div class="xt"><small>CHRISTMAS</small><b>Merry<br>Market</b></div></div>`;
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
@@ -1012,7 +1012,7 @@ function renderBoard(){
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
   $("#board").innerHTML=list.map(([id,e])=>{
     if(form!=="all"&&e.col!==form) return "";
-    const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&!e.vals.includes(filter);
+    const c=COLS.find(x=>x.id===e.col),dim=filter!=="all"&&grp(e)!==filter;
     const vals=`<div class="vals">${e.vals.map(v=>`<span>${v}</span>`).join("")}</div>`;
     if(e.featured) return `<a class="ev feat ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph"><img src="assets/${e.img2||e.img}.jpg" alt="${e.short}"><span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><span class="hot">近期火热</span><h3>${e.title}</h3><p class="sub">${e.sub}</p><div class="meta">${e.when}</div><div class="ft">${vals}<span class="cta">查看活动详情 →</span></div></div></a>`;
     return `<a class="ev ${e.col}${dim?" dim":""}" href="#${id}"><div class="ph">${artOf(e)||`<img src="assets/${e.img}.jpg" alt="${e.short}" loading="lazy">`}<span class="scn">${c.name}</span><span class="st ${e.status}">${e.statusText}</span></div><div class="b"><h3>${e.short}</h3><div class="meta">${e.when}</div><div class="ft">${vals}<span class="go" aria-hidden="true">→</span></div></div></a>`;
