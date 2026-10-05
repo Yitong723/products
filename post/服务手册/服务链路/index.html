@@ -546,6 +546,7 @@ footer{padding-block:28px 40px;font-size:12px;color:var(--ink-2);text-align:cent
       <button class="on" data-f="all">不限</button>
       <button data-f="招募中">招募中</button>
       <button data-f="按需定制">按需定制</button>
+      <button data-f="预报名">预报名</button>
       <button data-f="已结束">已结束</button>
       
     </div>
@@ -964,7 +965,7 @@ const EVENTS={
     onsite:["在核心商业场景建立线下品牌体验","比展会更长的观察周期","接触商场与商业地产方"],
     note:"空间、日期与时长按品牌需求随时定制。"},
   "ev-space":{col:"orchard",title:"本地零售空间 · 慢闪店",short:"新加坡 · 零售空间慢闪",img:"popup",
-    status:"plan",statusText:"筹备中",city:"新加坡 · 乌节路 / 武吉士等商圈",when:"按周期入驻，可接在展会或 Pop-up 之后",
+    status:"plan",statusText:"预报名",city:"新加坡 · 乌节路 / 武吉士等商圈",when:"按周期入驻，可接在展会或 Pop-up 之后",
     vals:["消费者","价格","买手"],
     sub:"把产品放进本地零售空间持续售卖。观察周期比展会和快闪更长，能看到真实动销、复购和店方反馈。",
     facts:[["空间","本地买手店、Lifestyle Store、商场零售空间"],["商圈","乌节路、武吉士（Bugis）等"],["形式","寄售入驻、店中店、展后空间接力"],["适合","已初步验证，想看持续动销和渠道合作可能的品牌"]],
@@ -973,7 +974,7 @@ const EVENTS={
     onsite:["持续销售，观察复购","拿到店方买手的一手反馈","为长期寄售或批发合作打基础"],
     note:"具体空间、入驻周期与结算方式按项目确认。"},
   "ev-xmas":{col:"xmas",art:"xmas",title:"圣诞节庆主题活动",short:"新加坡 · 圣诞节庆",img:"",
-    status:"plan",statusText:"筹备中",city:"新加坡",when:"2026 年 12 月，具体日期待公布",
+    status:"plan",statusText:"预报名",city:"新加坡",when:"2026 年 12 月，具体日期待公布",
     vals:["消费者","价格","品牌体验"],
     sub:"借年末送礼高峰进入圣诞消费场景，触达节日人群与游客。适合礼品属性强的品类：香氛、饰品、家居、文创。",
     facts:[["时段","圣诞至年末消费季"],["形式","圣诞市集、商场主题活动、联合快闪"],["适合品类","礼盒、香氛、饰品、家居、文创等送礼类产品"],["可测","礼品包装、节日定价、组合装接受度"]],
@@ -982,7 +983,7 @@ const EVENTS={
     onsite:["进入高流量节庆场景","结合主题活动提升品牌记忆度","测试礼品装与节日定价"],
     note:"场地与日期待公布。"},
   "ev-cny":{col:"xmas",title:"农历新年节庆活动",short:"新加坡 / 泰国 · 新春节庆",img:"festival",
-    status:"plan",statusText:"筹备中",city:"新加坡 / 泰国",when:"2027 年春节前后，具体日期待公布",
+    status:"plan",statusText:"预报名",city:"新加坡 / 泰国",when:"2027 年春节前后，具体日期待公布",
     vals:["消费者","价格","品牌体验"],
     sub:"借新春年货与送礼高峰进入华人节庆消费场景。适合有中国文化元素、礼盒属性强的产品。",
     facts:[["时段","春节前后年货消费季"],["形式","新春市集、商场主题活动"],["适合品类","礼盒、茶饮、文创、手工艺、家居"],["可测","新春礼盒、节日定价、文化元素接受度"]],
@@ -1003,7 +1004,7 @@ const EVENTS={
 
 const $=s=>document.querySelector(s);
 let filter="all",form="all";
-const grp=e=>e.statusText==="招募中"?"招募中":["按期安排","随时定制"].includes(e.statusText)?"按需定制":e.status==="done"?"已结束":"";
+const grp=e=>e.statusText==="招募中"?"招募中":["按期安排","随时定制"].includes(e.statusText)?"按需定制":e.status==="done"?"已结束":e.statusText==="预报名"?"预报名":"";
 const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i class="snow"></i><div class="tree"><span></span><span></span><span></span><b></b></div><div class="xt"><small>CHRISTMAS</small><b>Merry<br>Market</b></div></div>`;
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
