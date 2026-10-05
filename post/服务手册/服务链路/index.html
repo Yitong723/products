@@ -981,6 +981,15 @@ const EVENTS={
     timeline:[["7.22 – 7.26","5 天展期，含 B2B / VIP / 媒体专场"]],
     onsite:["现场零售与消费者观察","买手与零售集团对接","本地媒体曝光"],
     note:"本届已结束，可作为下一届曼谷站的参考。表现好的新加坡站品牌可优先进入后续曼谷站。"},
+  "ev-carnival":{col:"invade",pin:true,title:"INVADE 创意嘉年华",short:"新加坡 · INVADE 创意嘉年华",img:"consumer",
+    status:"open",statusText:"招募中",city:"新加坡",when:"2027 年 3 月底",
+    vals:["消费者","价格","品牌体验"],
+    sub:"INVADE 旗下标志性的大型创意嘉年华，单场近 5 万付费入场人群，新锐品牌、设计师与手作同场。适合想在短时间内接触大量本地消费者的品牌。",
+    facts:[["运营方","INVADE.co，深耕新加坡零售激活 15 年以上"],["规模","单场近 5 万付费入场人群"],["品类","设计、手作、生活方式、文创、餐饮"],["状态","招募中，具体日期与场地以官方公布为准"]],
+    people:["新加坡本地年轻客群与家庭","喜欢设计、手作、小众品牌的消费者","本地品牌主理人与媒体"],
+    timeline:[["现在","报名招募中，提交品牌资料"],["测试前","确定测试 SKU、定价与摊位陈列"],["2027 年 3 月底","嘉年华现场售卖与观察"],["测试后","交付消费者反馈与销售数据分析"]],
+    onsite:["大客流下快速测款测价","直接面对本地年轻消费者","接触本地品牌、主理人与媒体"],
+    note:"具体日期与场地以官方公布为准。"},
   "ev-invade":{col:"invade",title:"INVADE 本地创意市集",short:"新加坡 · 多个市集品牌",img:"invade-market",img2:"consumer",
     status:"open",statusText:"按期安排",city:"新加坡 · 多个场地",when:"全年多场，按品牌测试目标匹配场次",
     vals:["消费者","价格"],
@@ -1044,7 +1053,7 @@ const xmasArt=()=>`<div class="xart" role="img" aria-label="圣诞节庆"><i cla
 const artOf=e=>e.mystery?mysBox(e):e.art==="xmas"?xmasArt():"";
 const mysBox=e=>`<div class="mys" role="img" aria-label="GMA 限定主题，仅限邀请">${e.hints.map(h=>`<span class="hint">${h}</span>`).join("")}<div class="box"><span>?</span></div>${e.invite?`<div class="seal">INVITE ONLY · 会员专享</div>`:""}</div>`;
 function renderBoard(){
-  const rank=e=>e.featured?0:e.mystery?1:e.status==="done"?3:2;
+  const rank=e=>e.featured?0:e.pin?1:e.mystery?2:e.status==="done"?4:3;
   const list=Object.entries(EVENTS).sort((x,y)=>rank(x[1])-rank(y[1]));
   $("#board").innerHTML=list.map(([id,e])=>{
     if(form!=="all"&&e.col!==form) return "";
