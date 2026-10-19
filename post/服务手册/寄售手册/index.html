@@ -121,6 +121,7 @@ a{color:var(--goods)}
   <a href="#agent">4 找出口代理</a>
   <a href="#todo">5 待确认</a>
   <a href="#brand-contract">6 品牌合同</a>
+  <a href="#send">7 发给品牌</a>
 </nav>
 
 <!-- 总览 -->
@@ -539,7 +540,7 @@ a{color:var(--goods)}
 
 <!-- 6 品牌合同 -->
 <section id="brand-contract">
-  <div class="sec-head"><span class="eyebrow">清单 6</span><h2>给品牌的合同：KADA 集合店寄售服务协议</h2></div>
+  <div class="sec-head"><span class="eyebrow">清单 6</span><h2>给品牌的合同：新加坡集合店服务协议</h2></div>
   <p class="lede">GMA 和每个品牌签一份。主协议 21 条，另有 4 个附件，每个品牌各填一份。完整合同是 Word 文件，可以直接改、直接签，存放在 <code>collect/post/服务手册/寄售手册/新加坡KADA寄售服务协议.docx</code>。</p>
 
   <div class="block">
@@ -547,7 +548,7 @@ a{color:var(--goods)}
     <div class="tbl"><table>
       <thead><tr><th>项目</th><th>金额</th><th>怎么付</th></tr></thead>
       <tbody>
-        <tr><td><b>租金</b></td><td class="money">S$1,200 / 月</td><td>3 个月起，最长 6 个月；不含 GST，KADA 如果加收 GST 由品牌承担</td></tr>
+        <tr><td><b>租金</b></td><td class="money">S$1,200 / 月</td><td>3 个月起，续期每次至少 3 个月，提交续期申请后 5 个工作日内付款；不含 GST，KADA 如果加收 GST 由品牌承担</td></tr>
         <tr><td><b>押金</b></td><td class="money">S$600</td><td>寄售结束、清完货、对完账后 <span class="hl">15 天内</span>退还余额，附扣款明细</td></tr>
         <tr><td><b>签约后应付</b></td><td class="money">S$4,200</td><td>签约后 5 个工作日内，一次性付给 GMA（3 个月租金加押金），再由 GMA 付给 KADA</td></tr>
         <tr><td><b>销售佣金</b></td><td>0</td><td>GMA 和 KADA 都不抽成</td></tr>
@@ -560,10 +561,10 @@ a{color:var(--goods)}
     <div class="panel">
       <h4>主协议 21 条</h4>
       <div class="clauses">
-        <div class="clause"><span class="n">01–03</span><b>定义、服务内容、寄售期</b>GMA 负责对接、审资料、转报表、对账；寄售 3 个月，可以按月续，最长 6 个月</div>
-        <div class="clause"><span class="n">04–05</span><b>费用和押金</b>见上表；押金可以抵扣欠费、货品处理费、陈列物料损坏</div>
+        <div class="clause"><span class="n">01–03</span><b>定义、服务内容、寄售期</b>GMA 负责选品调研、对接、审资料、转报表和销售数据分析、对账、协调售后；寄售 3 个月，续期每次至少 3 个月</div>
+        <div class="clause"><span class="n">04–05</span><b>费用和押金</b>见上表；押金可以抵扣欠费、货品处理费、售后赔偿中回款不够扣的部分、陈列物料损坏；扣售后赔偿前要先通知品牌并附凭证，品牌 3 个工作日内可以提出异议</div>
         <div class="clause"><span class="n">06</span><b class="hl">解除和退款</b>KADA 或 GMA 的原因：全额退；品牌上架前退出：扣 1 个月租金，其余和押金都退；上架后退出：租金不退</div>
-        <div class="clause"><span class="n">07</span><b>出口方式和货权</b>A 自营出口或 B 委托代理；卖出前货还是品牌的</div>
+        <div class="clause"><span class="n">07</span><b>出口方式和货权</b>出口报关、收汇、退税都由品牌自己负责，GMA 不承担责任；品牌选 A 自营出口或 B 委托代理；货卖出去之前还是品牌的</div>
         <div class="clause"><span class="n">08–09</span><b>定价、物流、准入</b>不低于最低价，打折要品牌同意；没完成 HSA 等准入不能上架</div>
         <div class="clause"><span class="n">10</span><b class="money">回款</b>KADA 按月把货款直接汇给品牌（A）或出口代理（B），GMA 不代收，只核对水单</div>
         <div class="clause"><span class="n">11–12</span><b>未售货品、风险</b>结束后 7 天内盘点；运输途中的风险由品牌承担，店内的由 KADA 承担</div>
@@ -590,6 +591,178 @@ a{color:var(--goods)}
   </div>
   <div class="callout ok">这份合同没有写禁止绕开条款，第 16 条只约定保密。正式发给品牌之前，建议请律师看一遍。</div>
 </section>
+
+<!-- 7 发给品牌 -->
+<style>
+.send-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{font:inherit;font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn:hover,.btn:focus-visible{background:var(--goods);border-color:var(--goods);outline:none}
+.letter{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:10px;padding:22px 24px;display:flex;flex-direction:column;gap:22px;max-width:760px}
+.letter h4{font-size:16px}
+.letter .part{display:flex;flex-direction:column;gap:10px}
+.mini-flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}
+.mini-flow span.s{border:2px solid var(--ink);border-radius:6px;padding:3px 9px;background:var(--bg);font-weight:500}
+.mini-flow span.ar{color:var(--goods);font-weight:700}
+ul.check{list-style:none;padding-left:0;gap:7px}
+ul.check>li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+ul.check>li::before{content:"☐";color:var(--goods);font-size:16px;line-height:1.6}
+.ph{background:var(--hl);color:var(--ink);padding:0 5px;border-radius:4px;font-weight:700}
+.sub-h{font-weight:700;color:var(--goods)}
+</style>
+<section id="send">
+  <div class="sec-head"><span class="eyebrow">清单 7</span><h2>发给品牌：准备事项清单</h2></div>
+  <div class="send-bar">
+    <p class="lede">招募品牌时直接发这一段，只讲品牌发货前要准备的事。黄色处换成实际信息后再发。</p>
+    <button class="btn" id="copy7" type="button">复制全文</button>
+  </div>
+
+  <div class="letter" id="letter7">
+    <div class="part">
+      <p>您好！参加新加坡寄售前，请按下面的清单准备，于 <span class="ph">【日期】</span> 前发给 GMA。</p>
+    </div>
+
+    <div class="part">
+      <h4>准备顺序</h4>
+      <div class="mini-flow"><span class="s">① 发产品目录</span><span class="ar">→</span><span class="s">② 选品，确定上架货品</span><span class="ar">→</span><span class="s">③ 填 SKU 表</span><span class="ar">→</span><span class="s">④ 备证书、英文标签</span><span class="ar">→</span><span class="s">⑤ 定出口方式</span><span class="ar">→</span><span class="s">⑥ 汇款给 KADA、备收款账户</span><span class="ar">→</span><span class="s">⑦ 装箱、出口报关</span><span class="ar">→</span><span class="s">⑧ 其他准备</span></div>
+    </div>
+
+    <div class="part">
+      <h4>一、发产品目录</h4>
+      <ul class="check">
+        <li><div>品牌介绍（中英文各一段）</div></li>
+        <li><div>产品目录或画册（PDF），标出想拿去新加坡的款</div></li>
+        <li><div>产品图片：白底主图，有场景图更好</div></li>
+        <li><div>商标注册证或品牌授权书</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>二、选品，确定上架货品</h4>
+      <ul class="check">
+        <li><div>GMA 和 KADA 根据目录选款，回复上架清单</div></li>
+        <li><div>您确认清单里每款能供的数量和最早发货时间</div></li>
+        <li><div>化妆品、保健品、食品、电器、无线产品要先拿准入，选品时就标出来，看时间来不来得及</div></li>
+      </ul>
+      <p>上架清单确定后，SKU 表只填清单里的款。</p>
+    </div>
+
+    <div class="part">
+      <h4>三、填 SKU 表（每个 SKU 一行，GMA 提供模板）</h4>
+      <ul class="check">
+        <li><div>中英文品名、型号/规格、材质或成分、用途、原产地</div></li>
+        <li><div>寄售数量、报关单价、建议零售价、最低可接受售价</div></li>
+        <li><div>单件毛重/净重、每箱件数、外箱尺寸</div></li>
+        <li><div>注明是否带电池、液体、粉末、喷雾</div></li>
+      </ul>
+      <p>SKU 表里的报关单价，要和之后报关单上申报的一致。</p>
+    </div>
+
+    <div class="part">
+      <h4>四、证书和标签（只准备您涉及的品类）</h4>
+      <ul class="check">
+        <li><div>带电池：UN38.3 测试报告、MSDS</div></li>
+        <li><div>化妆品、护肤品：全成分表（INCI 英文名）、生产许可、检测报告</div></li>
+        <li><div>食品：配料表、保质期、生产许可、检测报告</div></li>
+        <li><div>电器：安规测试报告（CB/CE 等）</div></li>
+        <li><div>无线产品（蓝牙、WiFi）：无线认证报告（CE/FCC 等）</div></li>
+        <li><div>所有产品：英文标签，或同意在当地贴英文贴标</div></li>
+      </ul>
+      <p>化妆品、保健品、食品、电器、无线产品在新加坡要先拿准入才能上架，要几周时间，这几类的资料请尽早发。</p>
+    </div>
+
+    <div class="part">
+      <h4>五、定出口方式</h4>
+      <ul class="check">
+        <li><div><b>A 自己出口：</b>已在海关备案、开通电子口岸、有公司外币账户，自己能报关或有合作的报关行</div></li>
+        <li><div><b>B 走出口代理：</b>只需营业执照，由 GMA 对接的出口代理报关、收汇</div></li>
+        <li><div>告诉 GMA 选哪种，以及是否一般纳税人（关系到能否退税）</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>六、汇款给 KADA，备好收款账户</h4>
+      <p class="sub-h">汇款给 KADA（新加坡）</p>
+      <ul class="check">
+        <li><div>用公司对公账户汇，先问开户行能不能做境外汇款、几天到账</div></li>
+        <li><div>按 KADA 开的 invoice 金额汇款；银行付汇时一般要看合同和 invoice</div></li>
+        <li><div>手续费选 OUR（全部由汇款方承担），否则 KADA 实收会少，变成欠款</div></li>
+        <li><div>汇款附言写品牌名 + invoice 号，汇完把水单发给 GMA</div></li>
+        <li><div>付境外费用可能涉及代扣税，单笔超过等值 5 万美元还要做税务备案，请先问您的财务或开户行</div></li>
+      </ul>
+      <p class="sub-h">收款账户（选 A 的品牌，收卖货的钱）</p>
+      <ul class="check">
+        <li><div>公司外币账户（SGD 或 USD），不能用个人账户</div></li>
+        <li><div>英文户名（和营业执照一致）、银行英文名称、SWIFT 码、账号</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>七、装箱和出口报关</h4>
+      <p class="sub-h">装箱</p>
+      <ul class="check">
+        <li><div>按 SKU 表的数量装箱，外箱标品牌名、箱号、SKU、件数</div></li>
+        <li><div>带电池、液体、粉末、喷雾的单独说明，空运可能受限</div></li>
+        <li><div>按 GMA 通知的时间送到指定货代，统一拼柜</div></li>
+      </ul>
+      <p class="sub-h">选 A 的报关注意事项</p>
+      <ul class="check">
+        <li><div>监管方式选 1616（寄售代销），收货人填新加坡寄卖方，按预估价申报</div></li>
+        <li><div>查 HS 编码，确认是否需要出口法检</div></li>
+        <li><div>预计超过 90 天才收款的，报关后 30 天内向外汇局做延期收款报告（寄售基本都会碰到）</div></li>
+        <li><div>货款只能收进公司外币账户，不能用个人账户</div></li>
+        <li><div>出口退税先问主管税务局，寄售能不能退、什么时候退</div></li>
+        <li><div>报关单、装箱单、发票留好，没卖完的货退运回国时要用（按 4561 报关，1 年内原样退回免税）</div></li>
+      </ul>
+      <p class="sub-h">选 B 的注意事项</p>
+      <ul class="check">
+        <li><div>和出口代理签委托出口协议，按代理要求提供开票、退税资料</div></li>
+        <li><div>报关、收汇、90 天报告都由代理办</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>八、其他准备</h4>
+      <ul class="check">
+        <li><div><b>英文主体信息：</b>公司英文名、英文地址、联系人和邮箱，开发票、装箱单、付汇都要用</div></li>
+        <li><div><b>商业发票和装箱单：</b>新加坡清关要用，SKU、数量、单价和报关单一致</div></li>
+        <li><div><b>条码：</b>每个 SKU 的 EAN/UPC 条码，店里收银要扫；没有的告诉 GMA</div></li>
+        <li><div><b>新加坡售价：</b>建议零售价（SGD），或让 GMA 帮忙换算</div></li>
+        <li><div><b>陈列和销售物料：</b>价签、展示道具、试用装/样品，一份英文卖点介绍给店员用</div></li>
+        <li><div><b>运输保险：</b>运输途中的风险由品牌承担，发货前买好货运险</div></li>
+        <li><div><b>售后联系人：</b>新加坡消费者退换货、投诉时，品牌这边谁来对接</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <p>有任何问题请联系 GMA：<span class="ph">【联系人 · 微信/电话】</span>。谢谢！</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('copy7'),el=document.getElementById('letter7');
+  if(!b||!el)return;
+  function text(){
+    var out=[];
+    el.querySelectorAll('.part').forEach(function(p){
+      p.querySelectorAll('h4,p,.mini-flow,li').forEach(function(n){
+        var t=n.innerText.replace(/\s*\n\s*/g,' ').trim();
+        if(!t)return;
+        if(n.tagName==='H4')out.push('\n'+t);
+        else if(n.classList.contains('mini-flow'))out.push(t.replace(/\s*→\s*/g,' → '));
+        else if(n.tagName==='LI')out.push(n.closest('ul.check')?'☐ '+t:'· '+t);
+        else out.push(t);
+      });
+    });
+    return out.join('\n').trim();
+  }
+  b.addEventListener('click',function(){
+    var t=text(),done=function(){b.textContent='已复制';setTimeout(function(){b.textContent='复制全文'},1600)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fallback)}else fallback();
+    function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){b.textContent='复制失败，请手动选中'}a.remove()}
+  });
+})();
+</script>
 
 <footer>本手册是常规操作框架，不构成法律或税务意见。GST 税率、品类准入要求、90 天延期收款报告、寄售退税等具体规则，以执行时监管机构的最新口径和代理、律师的答复为准。整理日期：2026-10-13。</footer>
 </div>
