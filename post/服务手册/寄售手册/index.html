@@ -1,0 +1,597 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>GMA 新加坡寄售手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 布局：单列工作手册，顶部吸附目录；蓝=货流，红=钱流，贯穿全页 */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#15212c; --ink-2:#34434f;
+  --line:#d3dae1; --goods:#1d5c8a; --goods-soft:#e3eef7;
+  --money:#c3132f; --hl:#ffe14d; --money-soft:#fbe7ea; --ok:#1f7a4d; --ok-soft:#e2f3ea;
+  --f-display:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --surface:#16202a; --ink:#e7edf3; --ink-2:#c3cfda;
+  --line:#2b3a48; --goods:#6db2e6; --goods-soft:#172d3f;
+  --money:#ff6378; --hl:#7a6400; --money-soft:#3a1a21; --ok:#5fcf95; --ok-soft:#14321f;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --surface:#16202a; --ink:#e7edf3; --ink-2:#c3cfda;
+  --line:#2b3a48; --goods:#6db2e6; --goods-soft:#172d3f;
+  --money:#ff6378; --hl:#7a6400; --money-soft:#3a1a21; --ok:#5fcf95; --ok-soft:#14321f;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.75;padding-inline:16px}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(26px,4.4vw,38px);font-weight:900;letter-spacing:.01em}
+h2{font-size:clamp(21px,3vw,26px);font-weight:900}
+h3{font-size:18px;font-weight:700}
+h4{font-size:15px;font-weight:700}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px}
+li::marker{color:var(--goods)}
+code,.mono{font-family:var(--f-mono);font-size:.92em;font-weight:600;background:var(--goods-soft);color:var(--goods);padding:1px 6px;border-radius:4px;white-space:nowrap}
+b{font-weight:700}
+.money{color:var(--money);font-weight:700}
+.hl{background:var(--hl);color:var(--ink);padding:1px 6px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.goods{color:var(--goods);font-weight:700}
+
+header.top{display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--goods)}
+.lede{max-width:65ch;color:var(--ink-2)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{flex:none;color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--goods);color:var(--goods);outline:none}
+
+section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:14px}
+.sec-head .eyebrow{color:var(--ink-2)}
+.block{display:flex;flex-direction:column;gap:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.05em;padding:2px 9px;border-radius:999px;border:1px solid currentColor}
+.tag.a{color:var(--goods)} .tag.b{color:var(--money)} .tag.g{color:var(--ok)}
+.panel.a{border-top:4px solid var(--goods)} .panel.b{border-top:4px solid var(--money)} .panel.g{border-top:4px solid var(--ok)}
+
+/* 链路图 */
+.flow-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.flow{min-width:720px;display:flex;flex-direction:column;gap:22px}
+.gma-bar{border:2px dashed var(--ink);border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.gma-bar b{font-size:16px}
+.lane{display:grid;grid-template-columns:150px 1fr 150px 1fr 170px;align-items:center;gap:0}
+.lane-label{grid-column:1/-1;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;margin-bottom:6px}
+.node{border:2px solid var(--ink);border-radius:8px;padding:8px 10px;background:var(--bg);font-size:13px;line-height:1.45;text-align:center}
+.node b{display:block;font-size:15px}
+.node.sg{border-color:var(--goods)}
+.arrow{display:flex;flex-direction:column;gap:6px;padding-inline:6px;font-size:12px;line-height:1.3}
+.arrow .r,.arrow .l{position:relative;text-align:center;padding-bottom:6px}
+.arrow .r{color:var(--goods);border-bottom:2px solid var(--goods)}
+.arrow .l{color:var(--money);border-bottom:2px dashed var(--money)}
+.arrow .r::after{content:"";position:absolute;right:-1px;bottom:-6px;border:5px solid transparent;border-left:8px solid var(--goods);border-right:0}
+.arrow .l::after{content:"";position:absolute;left:-1px;bottom:-6px;border:5px solid transparent;border-right:8px solid var(--money);border-left:0}
+.span3{grid-column:2/5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.rule{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--money);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:700;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+
+ol.steps{counter-reset:s;list-style:none;padding-left:0;gap:10px}
+ol.steps>li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px}
+ol.steps>li::before{content:counter(s);font-family:var(--f-mono);font-weight:600;font-size:13px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;margin-top:1px}
+
+.phase{display:flex;flex-direction:column;gap:8px}
+.phase h4{display:flex;gap:8px;align-items:center}
+.phase h4 .mono{background:var(--ink);color:var(--bg)}
+
+.clauses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.clause{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface);display:flex;flex-direction:column;gap:4px}
+.clause .n{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--goods)}
+.callout{background:var(--money-soft);border:1px solid var(--money);border-radius:8px;padding:12px 14px}
+.callout.ok{background:var(--ok-soft);border-color:var(--ok)}
+.quote{font-family:var(--f-mono);font-size:13px;font-weight:600;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink-2)}
+a{color:var(--goods)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <span class="eyebrow">GMA · 中国品牌 → 新加坡寄售 · 3–6 个月</span>
+  <h1>新加坡寄售出海手册</h1>
+  <p class="lede">GMA（个体户）作为中间方，带中国品牌到新加坡寄卖空间寄售。这份手册把四件事列成清单：给品牌的出口须知、GMA 自己要做的事、寄卖方要做的事、各方怎么签约。品牌和寄卖方不直接接触，全部经过 GMA。</p>
+</header>
+
+<nav class="toc" aria-label="目录">
+  <a href="#overview">总览</a>
+  <a href="#brands">1 给品牌</a>
+  <a href="#gma">1b GMA 要做</a>
+  <a href="#consignee">2 寄卖方</a>
+  <a href="#contracts">3 签约</a>
+  <a href="#agent">4 找出口代理</a>
+  <a href="#todo">5 待确认</a>
+  <a href="#brand-contract">6 品牌合同</a>
+</nav>
+
+<!-- 总览 -->
+<section id="overview">
+  <div class="sec-head"><span class="eyebrow">总览</span><h2>整体链路：货怎么走，钱怎么回</h2></div>
+
+  <div class="flow-scroll">
+    <div class="flow">
+      <div class="gma-bar"><b>GMA</b><span>以"代理人"身份代所有品牌和寄卖方签一份框架合同</span><span>·</span><span>负责对接、审资料、对账、分账</span><span>·</span><span class="money">不经手货物和货款</span></div>
+
+      <div class="lane">
+        <div class="lane-label goods">A 类 · 品牌自营出口</div>
+        <div class="node"><b>品牌 A</b>自己报关出口</div>
+        <div class="arrow span3"><div class="r">货：品牌自己报关（寄售代销 1616），直接发给寄卖方</div><div class="l">钱：寄卖方扣佣金后，直接汇到品牌公司外币账户</div></div>
+        <div class="node sg"><b>寄卖方（新加坡）</b>做进口商 · 缴 GST · 卖货</div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-label money">B 类 · 小品牌走出口代理</div>
+        <div class="node"><b>品牌 B</b>委托代理出口</div>
+        <div class="arrow"><div class="r">货交给代理</div><div class="l">结汇后付给品牌</div></div>
+        <div class="node"><b>出口代理</b>以自己名义报关、收汇</div>
+        <div class="arrow"><div class="r">代理报关（1616）</div><div class="l">扣佣金后汇给代理</div></div>
+        <div class="node sg"><b>寄卖方（新加坡）</b>做进口商 · 缴 GST · 卖货</div>
+      </div>
+
+      <div class="legend"><span class="goods">━━ 货流</span><span class="money">╍╍ 钱流</span><span>没卖完的货：退运回国（报关方式 4561），或者在当地处理</span><span>服务费：品牌回款后，用人民币付给 GMA</span></div>
+    </div>
+  </div>
+
+  <div class="rules">
+    <div class="rule"><h4><span class="hl">三方一致</span></h4><p>合同上的卖方、报关单上的发货人、收外汇的主体，必须是同一家。A 类是品牌自己，B 类是出口代理。</p></div>
+    <div class="rule"><h4><span class="hl">GMA 不碰货和钱</span></h4><p>个体户承担无限责任。不买断货物，不用自己或个人账户代收货款。</p></div>
+    <div class="rule"><h4><span class="hl">签字写明代理人身份</span></h4><p>签名处必须写 "as authorized agent for and on behalf of 品牌名"。漏写的话，法律上可能被认定为 GMA 自己签的。</p></div>
+    <div class="rule"><h4><span class="hl">防绕开靠合同</span></h4><p>寄卖方一定会知道品牌是谁（包装、授权书上都有）。所以寄卖方和品牌两头都要签禁止绕开条款。</p></div>
+  </div>
+</section>
+
+<!-- 1 品牌 -->
+<section id="brands">
+  <div class="sec-head"><span class="eyebrow">清单 1a</span><h2>告诉品牌：出口须知和出口方式</h2></div>
+
+  <div class="block">
+    <h3>所有品牌都要知道的事</h3>
+    <div class="panel">
+      <ol class="steps">
+        <li><div><b>寄售不是卖断。</b>东西卖出去之前，货还是品牌的；卖多少结多少。从卖出到回款大概要 1–2 个月，前期会占用一部分资金。</div></li>
+        <li><div><b>回款会比报关金额少，这是正常的。</b>佣金、没卖完的货、退运都会造成差额。合同、销售报表、退运单据都要留着，银行问起来能解释。</div></li>
+        <li><div><b class="hl">有些品类要先拿准入才能卖，要几周时间：</b>化妆品要做 HSA 通报；保健品、医疗器械归 HSA 管；食品归 SFA 管；受控电器要有 CPS Safety Mark；蓝牙、WiFi 产品要在 IMDA 注册。</div></li>
+        <li><div><b>运输限制：</b>带电池的产品要 UN38.3 测试报告和 MSDS。液体、粉末、喷雾可能算危险品，空运受限。</div></li>
+        <li><div><b>标签要有英文。</b>食品和化妆品的标签有强制要求的项目。</div></li>
+        <li><div><b>建议在新加坡注册商标。</b>新加坡是先申请先得，可以向 IPOS 直接申请，或者走马德里体系。</div></li>
+        <li><div><b>产品质量和合规由品牌负责。</b>按新加坡消费者保护法（CPFTA），消费者买到有问题的产品，可以要求维修、换货或退款。</div></li>
+        <li><div><b>出发前就要选好没卖完的货怎么处理：</b>退运回国、当地折价清掉、或者当地销毁/捐赠。</div></li>
+        <li><div><b>品牌不能绕开 GMA</b>，不能私下和寄卖方直接合作。</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>请品牌二选一：自己出口，还是一起找代理</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th><span class="tag a">A 自营出口</span></th><th><span class="tag b">B 一起找代理</span></th></tr></thead>
+      <tbody>
+        <tr><td><b>适合谁</b></td><td>已经在做外贸，有报关经验的品牌</td><td>没有进出口资质，或者货量小的品牌</td></tr>
+        <tr><td><b>前提条件</b></td><td>已在海关做收发货人备案、开通电子口岸；有外币账户；自己能报关，或者有合作的报关行</td><td>有营业执照即可；需要和出口代理签委托出口协议</td></tr>
+        <tr><td><b>谁来报关、收钱</b></td><td>品牌自己</td><td>出口代理</td></tr>
+        <tr><td><b>回款路径</b></td><td>寄卖方直接汇给品牌，最快</td><td>寄卖方先汇给代理，代理结汇后再付给品牌，多一步</td></tr>
+        <tr><td><b>出口退税</b></td><td>品牌自己办，先问主管税务局寄售能不能退</td><td>由代理代办，按代理的要求提供资料</td></tr>
+        <tr><td><b>额外费用</b></td><td>报关、货代费</td><td>代理费，加上报关和货代费</td></tr>
+        <tr><td><b>品牌的工作量</b></td><td>大：90 天延期收款报告、退运都要自己办</td><td>小：提供资料、签协议就行</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel a">
+      <span class="tag a">A 自营出口 · 品牌要做的事</span>
+      <ol class="steps">
+        <li><div>确认海关备案、电子口岸、外币账户都没问题。</div></li>
+        <li><div>报关时监管方式选 <code>1616</code> 寄售代销，收货人填寄卖方，按预估价申报。</div></li>
+        <li><div>查一下 HS 编码，看是不是要出口检验的商品（法检）。</div></li>
+        <li><div><span class="hl">预计超过 90 天才收到钱的</span>，出口报关后 30 天内要向外汇局做延期收款报告。寄售 3–6 个月基本都会碰到。</div></li>
+        <li><div>钱只能收进<b>公司</b>外币账户，不能用个人账户收。</div></li>
+        <li><div>出口退税：先问主管税务局寄售能不能退、什么时候退。如果货退回来了，已经退的税要补缴。</div></li>
+        <li><div>没卖完要退运回国的，报关方式填 <code>4561</code> 退运。出口后 1 年内、货物原样退回的，免税。</div></li>
+        <li><div>收到每笔回款后，把汇款水单发给 GMA，并按协议支付服务费。</div></li>
+        <li><div>保存好 GMA 提供的合同签字页、本品牌附件和授权书，银行收汇时可能要看。</div></li>
+      </ol>
+    </div>
+    <div class="panel b">
+      <span class="tag b">B 走代理 · 品牌要做的事</span>
+      <ol class="steps">
+        <li><div>和 GMA 指定的出口代理签委托出口协议。</div></li>
+        <li><div>按代理的要求提供资料，比如开票资料和退税资料。</div></li>
+        <li><div>确认代理费标准，以及代理结汇后多少天内付款给品牌。</div></li>
+        <li><div>如果采用"代理结汇时先扣 GMA 服务费"的方式，要签三方确认书。</div></li>
+        <li><div>没卖完需要退运的，配合代理办理；退回来的货原样验收。</div></li>
+        <li><div>报关、收汇、90 天报告都由代理负责，品牌不用自己办。</div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>两类品牌都要提供的资料</h3>
+    <div class="grid2">
+      <div class="panel">
+        <h4>主体资料</h4>
+        <ul>
+          <li>营业执照</li>
+          <li>选 A 还是 B；选 A 的附上海关编码</li>
+          <li>是不是一般纳税人（关系到能不能退税）</li>
+          <li>收款主体和外币账户（只有 A 类需要）</li>
+          <li>商标注册证或品牌授权书</li>
+        </ul>
+        <h4>产品清单（每个 SKU 一行）</h4>
+        <ul>
+          <li>中英文品名、品牌、型号/规格</li>
+          <li>材质或成分、用途、原产地</li>
+          <li>数量、报关单价、建议零售价、最低可接受售价</li>
+          <li>单件毛重/净重、每箱几件、外箱尺寸</li>
+          <li>产品图片；是否带电池、液体、粉末、喷雾</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h4>证书（按品类提供）</h4>
+        <ul>
+          <li><b>带电池：</b>UN38.3 测试报告、MSDS</li>
+          <li><b>化妆品、护肤品：</b>全成分表（INCI 英文名）、生产许可、检测报告</li>
+          <li><b>食品：</b>配料表、保质期、生产许可、检测报告</li>
+          <li><b>电器：</b>安规测试报告（CB/CE 等）</li>
+          <li><b>无线产品：</b>无线认证报告（CE/FCC 等）</li>
+          <li><b>所有品牌：</b>英文标签，或者同意在当地贴英文贴标</li>
+        </ul>
+        <h4>商业条款（品牌确认）</h4>
+        <ul>
+          <li>接受的佣金比例和结算周期</li>
+          <li>没卖完的货怎么处理</li>
+          <li>寄售期间货损风险由谁承担</li>
+          <li>GMA 服务费的标准</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1b GMA -->
+<section id="gma">
+  <div class="sec-head"><span class="eyebrow">清单 1b</span><h2>GMA 这边要做的事</h2></div>
+  <div class="grid2">
+    <div class="panel">
+      <div class="phase"><h4><span class="mono">阶段 1</span>招募品牌</h4>
+        <ul>
+          <li>把"出口须知 + 资料清单"发给品牌</li>
+          <li>收回每个品牌的选择（A 还是 B），并统计两类各有几家</li>
+          <li>按品类分组，把化妆品、食品、电器、无线这几类需要准入的品牌单独标出来</li>
+          <li>找一家出口代理统一承接所有 B 类品牌</li>
+        </ul></div>
+      <div class="phase"><h4><span class="mono">阶段 2</span>签约</h4>
+        <ul>
+          <li>每个品牌签：服务协议 + 授权书</li>
+          <li>B 类品牌和出口代理签委托出口协议；GMA 和代理签合作协议</li>
+          <li>GMA 以代理人身份和寄卖方签框架合同，每个品牌一个附件，写明出口方式和收款方</li>
+        </ul></div>
+      <div class="phase"><h4><span class="mono">阶段 3</span>发货前</h4>
+        <ul>
+          <li>审核资料：SKU 表、证书、英文标签</li>
+          <li>把办准入需要的资料转给寄卖方</li>
+          <li>用同一家货代拼柜，每个品牌各自报关</li>
+          <li>核对每个品牌的报关价和 SKU 表是否一致</li>
+          <li>再跟 A 类品牌确认一遍：报关选 1616，记得做 90 天延期收款报告</li>
+        </ul></div>
+    </div>
+    <div class="panel">
+      <div class="phase"><h4><span class="mono">阶段 4</span>在售期间（每月）</h4>
+        <ul>
+          <li>收寄卖方的销售报表，按品牌拆分后发给各品牌</li>
+          <li>B 类：做分账表交给出口代理</li>
+          <li>跟踪每笔汇款水单，核对回款金额</li>
+          <li>收取服务费，逾期的催收</li>
+        </ul></div>
+      <div class="phase"><h4><span class="mono">阶段 5</span>寄售期结束</h4>
+        <ul>
+          <li>和寄卖方一起盘点库存</li>
+          <li>按约定处理没卖完的货（退运、折价或销毁），并拿到对应单据</li>
+          <li>结清尾款和服务费</li>
+          <li>把合同、报表、水单、退运单全部归档</li>
+        </ul></div>
+      <div class="callout"><h4><span class="hl">GMA 的四条红线</span></h4>
+        <ul>
+          <li>不经手货物和货款</li>
+          <li>不用个人账户收款</li>
+          <li>签字一律写明代理人身份</li>
+          <li>不替品牌保证合规结果，品类准入能不能通过以监管机构为准</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 寄卖方 -->
+<section id="consignee">
+  <div class="sec-head"><span class="eyebrow">清单 2</span><h2>新加坡寄卖方要做的事</h2></div>
+  <div class="grid2">
+    <div class="panel">
+      <h4>进口和税</h4>
+      <ul>
+        <li>做所有货物的进口商（IOR）：要有 UEN、开通海关账户，通过 TradeNet 申请进口许可</li>
+        <li>统一清关，A、B 两类品牌的货都由他们来清</li>
+        <li>按 CIF + 关税的金额缴 9% GST；一般商品零关税</li>
+      </ul>
+      <h4>品类准入</h4>
+      <ul>
+        <li>化妆品：向 HSA 做通报（需要本地责任公司）</li>
+        <li>食品：SFA 进口执照和相关许可</li>
+        <li>电器：CPS 注册供应商，取得 Safety Mark</li>
+        <li>无线产品：IMDA 注册或登记</li>
+        <li>要明确谁来办、费用谁出、多久能办好</li>
+      </ul>
+      <h4>运营</h4>
+      <ul>
+        <li>收货后几天内验货，出入库报告发给 GMA</li>
+        <li>负责仓储和店内保管，购买保险</li>
+        <li>按约定价格销售，打折要 GMA 书面同意</li>
+        <li>处理消费者退换货</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4>结算</h4>
+      <ul>
+        <li>每月按品牌出销售报表</li>
+        <li>扣除佣金和约定的费用</li>
+        <li><span class="money">按附件写明的收款方，分品牌汇款</span>：A 类汇给品牌，B 类汇给出口代理</li>
+        <li>每笔汇款的水单都抄送 GMA</li>
+        <li>收款账户只有 GMA 书面通知才能改</li>
+      </ul>
+      <h4>寄售期结束</h4>
+      <ul>
+        <li>和 GMA 一起盘点</li>
+        <li>按约定处理没卖完的货：配合退运出口，或者出具销毁/捐赠证明</li>
+      </ul>
+      <h4>义务</h4>
+      <ul>
+        <li>不绕开 GMA，不直接联系品牌</li>
+        <li>不对外透露品牌的商业条款</li>
+        <li>提供合同模板，或者接受 GMA 的模板；说明授权书的格式要求，以及要不要公证</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 签约 -->
+<section id="contracts">
+  <div class="sec-head"><span class="eyebrow">清单 3</span><h2>各方怎么签约</h2></div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>合同</th><th>谁和谁签</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><b>服务协议 + 授权书</b></td><td>GMA × 每个品牌</td><td>写清服务内容和收费，品牌授权 GMA 代签合同</td></tr>
+      <tr><td><b>委托出口协议</b></td><td>B 类品牌 × 出口代理</td><td>代理以自己名义报关、收汇的法律依据</td></tr>
+      <tr><td><b>合作协议</b>（加三方扣费确认书）</td><td>GMA × 出口代理</td><td>统一对接、按品牌分账、代扣 GMA 服务费</td></tr>
+      <tr><td><b>框架寄售合同 + 分品牌附件</b></td><td>GMA（代理品牌）× 寄卖方</td><td>寄售主合同，品牌不露面</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="block">
+    <h3>3a · GMA 和品牌</h3>
+    <div class="grid2">
+      <div class="panel">
+        <h4>服务协议的条款</h4>
+        <div class="clauses">
+          <div class="clause"><span class="n">01</span><b>服务内容</b>选品、对接、审资料、协调物流、对账</div>
+          <div class="clause"><span class="n">02</span><b>服务费</b>签约时预收固定费用，加回款佣金的一定比例；写清付款时间和逾期违约金</div>
+          <div class="clause"><span class="n">03</span><b>和寄售合同保持一致</b>佣金、结算周期、定价权限、未售处理、货损风险，都和寄卖方合同一样</div>
+          <div class="clause"><span class="n">04</span><b>出口方式</b>写明品牌选 A 还是 B，以及各自的责任</div>
+          <div class="clause"><span class="n">05</span><b>品牌保证</b>产品质量、合规、知识产权、资料真实都由品牌负责，出了问题赔偿 GMA 的损失</div>
+          <div class="clause"><span class="n">06</span><b>GMA 免责</b>GMA 不经手货物和货款，不保证销量</div>
+          <div class="clause"><span class="n">07</span><b>对账透明</b>品牌收到回款后若干天内，告知 GMA 金额并提供水单</div>
+          <div class="clause"><span class="n">08</span><b class="hl">禁止绕开</b>合同期内及结束后 12–24 个月内，不得和寄卖方直接合作</div>
+          <div class="clause"><span class="n">09</span><b>保密</b>不得透露寄卖方信息和商业条款</div>
+          <div class="clause"><span class="n">10</span><b>期限、解除、争议</b>适用中国法律，约定由哪里的法院或仲裁机构管辖</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h4>授权书要写的内容</h4>
+        <ul>
+          <li><b>授权方：</b>品牌公司全称、营业执照号、法定代表人</li>
+          <li><b>被授权方：</b>GMA（个体户名称和经营者姓名）</li>
+          <li><b>授权范围：</b>在新加坡寄售销售，包括签订寄售合同、使用商标、处理收货/退货/销毁、对账结算</li>
+          <li><b>价格权限：</b>GMA 能不能自己决定售价和折扣，最低价是多少</li>
+          <li><b>授权期限：</b>寄售期再加 3 个月，用来处理退货和尾款</li>
+          <li><b>商品范围：</b>附 SKU 清单</li>
+          <li>不得转授权</li>
+          <li>中英双语；盖公章，法定代表人签字</li>
+          <li>附营业执照和商标注册证复印件</li>
+          <li>要不要公证，以寄卖方的要求为准</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>3b · GMA 和出口代理</h3>
+    <div class="callout">签之前先确认一件事：寄售合同是 GMA 代品牌签的，报关和收汇却在代理名下，代理能不能接受这种结构，能不能正常收汇和退税。如果代理要求寄售合同必须由它自己签，就改成"代理 × 寄卖方"签，或者三方一起签。</div>
+    <div class="panel">
+      <div class="clauses">
+        <div class="clause"><span class="n">01</span><b>服务范围</b>报关（1616）、收汇、90 天延期收款报告、代办退税、退运（4561）</div>
+        <div class="clause"><span class="n">02</span><b>统一对接</b>所有 B 类品牌的业务都由 GMA 统一对接</div>
+        <div class="clause"><span class="n">03</span><b>按品牌拆分</b>每个品牌单独报关、单独结汇，账目分开</div>
+        <div class="clause"><span class="n">04</span><b>按分账表付款</b>收到汇款后，按 GMA 出的分账表在若干个工作日内付给各品牌</div>
+        <div class="clause"><span class="n">05</span><b>代扣服务费</b>品牌、代理、GMA 三方书面同意后，结汇时先扣 GMA 服务费</div>
+        <div class="clause"><span class="n">06</span><b>费用</b>代理费标准，以及由谁支付</div>
+        <div class="clause"><span class="n">07</span><b>责任划分</b>报关出错由代理负责；资料不实由品牌负责</div>
+        <div class="clause"><span class="n">08</span><b>保密和禁止绕开</b>不得绕开 GMA 直接和品牌、寄卖方合作</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>3c · GMA（代表品牌）和寄卖方：框架寄售合同</h3>
+    <p><span class="hl">签名处的标准写法：</span></p>
+    <div class="quote">GMA, as authorized agent for and on behalf of the Brands listed in Schedule 1</div>
+    <div class="clauses">
+      <div class="clause"><span class="n">01 签约主体</span>GMA 以代理人身份代表附件所列品牌签约，附各品牌授权书</div>
+      <div class="clause"><span class="n">02 合同结构</span>主合同加分品牌附件；以后新增品牌，签补充附件即可</div>
+      <div class="clause"><span class="n">03 附件内容</span>品牌、授权书编号、出口方式（A/B）、收款方及账户、SKU、数量、零售价、最低价</div>
+      <div class="clause"><span class="n">04 货权</span>货卖出去之前，所有权归品牌</div>
+      <div class="clause"><span class="n">05 进口和税</span>寄卖方做进口商（IOR），负责清关、缴 GST</div>
+      <div class="clause"><span class="n">06 品类准入</span>HSA、SFA、CPS、IMDA 分别由谁办，费用由谁出</div>
+      <div class="clause"><span class="n">07 风险和保险</span>从收货开始，到卖出或退回为止，货损由寄卖方承担并投保</div>
+      <div class="clause"><span class="n">08 交付和验收</span>收货后若干天内验货，有差异书面报告</div>
+      <div class="clause"><span class="n">09 定价和促销</span>按约定价格卖，不低于最低价，打折要 GMA 书面同意</div>
+      <div class="clause"><span class="n">10 佣金和费用</span>佣金比例，上架、仓储等费用写成清单，清单外不收</div>
+      <div class="clause"><span class="n">11 结算</span>按月结算；按品牌出报表；写清汇款时间、币种（SGD/USD）、手续费由谁出</div>
+      <div class="clause"><span class="n"><span class="hl">12 收款方</span></span><span class="money">按附件汇到指定收款方</span>，水单抄送 GMA；账户只有 GMA 书面通知才能改</div>
+      <div class="clause"><span class="n">13 库存</span>定期出库存报告，GMA 有权盘点</div>
+      <div class="clause"><span class="n">14 期限</span>寄售 3–6 个月，写清续约条件</div>
+      <div class="clause"><span class="n">15 没卖完的货</span>退运、折价或销毁怎么选、费用谁出、出具哪些单据</div>
+      <div class="clause"><span class="n">16 退换货和产品责任</span>产品质量由品牌负责；保管和销售行为由寄卖方负责</div>
+      <div class="clause"><span class="n">17 知识产权</span>商标只能用于本合同下的销售</div>
+      <div class="clause"><span class="n"><span class="hl">18 禁止绕开</span></span>合同期内及结束后 12–24 个月内，不得直接联系或合作 GMA 引荐的品牌；违约要赔偿，或照付 GMA 应得的佣金</div>
+      <div class="clause"><span class="n">19 保密</span>不得对外透露品牌和商业条款</div>
+      <div class="clause"><span class="n">20 终止</span>什么情况下可以提前终止，终止后怎么清货、怎么结算</div>
+      <div class="clause"><span class="n">21 法律和争议</span>适用新加坡法律，争议提交 SIAC 仲裁</div>
+      <div class="clause"><span class="n">22 语言</span>中英双语，写明两个版本不一致时以哪个为准</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 找出口代理 -->
+<section id="agent">
+  <div class="sec-head"><span class="eyebrow">清单 4</span><h2>找出口代理：去哪找、怎么筛、怎么核实</h2></div>
+
+  <div class="block">
+    <h3>去哪里找</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>渠道</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><b>外贸综合服务平台（外综服）</b></td><td>比较知名的有阿里巴巴旗下的一达通，各地也有地方性的外综服企业。优点是流程标准化，报关、收汇、退税一站式。要注意的是，这类平台主做一般贸易，<span class="hl">不一定接寄售代销（1616）</span>，一定要先问清楚。</td></tr>
+        <tr><td><b>品牌所在城市的报关行或货代</b></td><td>很多报关行或货代同时做代理出口，小批量、非标准的业务反而更灵活，寄售这种情况更容易谈。</td></tr>
+        <tr><td><b>熟人推荐</b></td><td>问做过东南亚出口或展会的品牌、展会圈的同行，或者新加坡寄卖方有没有合作过的中国货代。这往往是最靠谱的渠道。</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h4>用这几个问题筛选（能答清楚的才考虑）</h4>
+      <ol class="steps">
+        <li><div>能不能做寄售代销（<code>1616</code>）？做过新加坡吗？</div></li>
+        <li><div>多个品牌，能不能分品牌报关、统一收汇再按品牌分账？</div></li>
+        <li><div>90 天延期收款报告是不是由他们来办？</div></li>
+        <li><div>未售货品的退运复进口（<code>4561</code>）能不能做？</div></li>
+        <li><div>能不能退税？退税款多久到账？</div></li>
+        <li><div>收费怎么算：按票、按货值比例，还是另收服务费？</div></li>
+        <li><div>寄售合同要求由谁签：品牌、GMA 代签，还是他们来签？GMA 代签、他们报关收汇的结构，能不能正常收汇？</div></li>
+        <li><div>能不能拼柜，和新加坡寄卖方的清关怎么对接？</div></li>
+        <li><div>能不能按 GMA 出的分账表付款给各品牌？三方书面同意后，能不能结汇时先扣 GMA 服务费？</div></li>
+        <li><div>结汇后多少个工作日付款给品牌？</div></li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h4>核实资质</h4>
+      <ul>
+        <li>营业执照，以及成立年限</li>
+        <li>海关备案，最好有 AEO 认证（海关信用等级）</li>
+        <li>如果对方自称"外综服"，看是否有当地商务部门认定的外综服资质</li>
+        <li>请对方提供 1–2 个做过的东南亚案例，能联系上对方客户更好</li>
+      </ul>
+      <div class="callout ok">筛选和核实都通过后，再按清单 3b 签合作协议。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 待确认 -->
+<section id="todo">
+  <div class="sec-head"><span class="eyebrow">清单 5</span><h2>动手之前要问清楚的事</h2></div>
+  <div class="grid2">
+    <div class="panel">
+      <h4>问出口代理</h4>
+      <p>见<a href="#agent">清单 4</a>的 10 个筛选问题，逐条问清楚，最好让对方书面回复。</p>
+    </div>
+    <div class="panel">
+      <h4>问寄卖方</h4>
+      <ol class="steps">
+        <li><div>是否担任所有货物的进口商，负责清关和 GST？</div></li>
+        <li><div>化妆品、食品、电器、无线产品的准入谁来办，费用多少，要多久？</div></li>
+        <li><div>佣金比例、上架和仓储费用、有没有最低销量要求？</div></li>
+        <li><div>能不能按品牌分别汇款给不同的收款方？</div></li>
+        <li><div>没卖完的货怎么处理，费用谁出？</div></li>
+        <li><div>合同模板用谁的？授权书有什么格式要求，要不要公证？</div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="callout ok">建议顺序：先问出口代理和寄卖方，两边都确认结构可行后，再让品牌签授权书和服务协议。正式签约前，请律师过一遍合同。</div>
+</section>
+
+<!-- 6 品牌合同 -->
+<section id="brand-contract">
+  <div class="sec-head"><span class="eyebrow">清单 6</span><h2>给品牌的合同：KADA 集合店寄售服务协议</h2></div>
+  <p class="lede">GMA 和每个品牌签一份。主协议 21 条，另有 4 个附件，每个品牌各填一份。完整合同是 Word 文件，可以直接改、直接签，存放在 <code>collect/post/服务手册/寄售手册/新加坡KADA寄售服务协议.docx</code>。</p>
+
+  <div class="block">
+    <h3>费用：只收租金和押金</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>项目</th><th>金额</th><th>怎么付</th></tr></thead>
+      <tbody>
+        <tr><td><b>租金</b></td><td class="money">S$1,200 / 月</td><td>3 个月起，最长 6 个月；不含 GST，KADA 如果加收 GST 由品牌承担</td></tr>
+        <tr><td><b>押金</b></td><td class="money">S$600</td><td>寄售结束、清完货、对完账后 <span class="hl">15 天内</span>退还余额，附扣款明细</td></tr>
+        <tr><td><b>签约后应付</b></td><td class="money">S$4,200</td><td>签约后 5 个工作日内，一次性付给 GMA（3 个月租金加押金），再由 GMA 付给 KADA</td></tr>
+        <tr><td><b>销售佣金</b></td><td>0</td><td>GMA 和 KADA 都不抽成</td></tr>
+        <tr><td><b>另外计费</b></td><td>按报价</td><td>物流、清关、进口 GST 和关税、HSA 等准入、保险、退运、出口代理费。品牌可以委托 GMA 代办</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h4>主协议 21 条</h4>
+      <div class="clauses">
+        <div class="clause"><span class="n">01–03</span><b>定义、服务内容、寄售期</b>GMA 负责对接、审资料、转报表、对账；寄售 3 个月，可以按月续，最长 6 个月</div>
+        <div class="clause"><span class="n">04–05</span><b>费用和押金</b>见上表；押金可以抵扣欠费、货品处理费、陈列物料损坏</div>
+        <div class="clause"><span class="n">06</span><b class="hl">解除和退款</b>KADA 或 GMA 的原因：全额退；品牌上架前退出：扣 1 个月租金，其余和押金都退；上架后退出：租金不退</div>
+        <div class="clause"><span class="n">07</span><b>出口方式和货权</b>A 自营出口或 B 委托代理；卖出前货还是品牌的</div>
+        <div class="clause"><span class="n">08–09</span><b>定价、物流、准入</b>不低于最低价，打折要品牌同意；没完成 HSA 等准入不能上架</div>
+        <div class="clause"><span class="n">10</span><b class="money">回款</b>KADA 按月把货款直接汇给品牌（A）或出口代理（B），GMA 不代收，只核对水单</div>
+        <div class="clause"><span class="n">11–12</span><b>未售货品、风险</b>结束后 7 天内盘点；运输途中的风险由品牌承担，店内的由 KADA 承担</div>
+        <div class="clause"><span class="n">13–15</span><b>双方保证、授权</b>质量、合规、知识产权由品牌负责；GMA 不保证销量，赔偿以已收款为上限；GMA 以代理人身份签字</div>
+        <div class="clause"><span class="n">16–21</span><b>保密、违约、不可抗力、争议</b>逾期每天按万分之五计违约金；适用中国法律，由 GMA 住所地的法院管辖</div>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>4 个附件</h4>
+      <ol class="steps">
+        <li><div><b>授权书</b>（中英双语）：授权 GMA 签 KADA 寄售附件、使用商标、处理收货退货和对账；不得转授权</div></li>
+        <li><div><b>SKU 清单</b>：品名、规格、成分、数量、报关单价、建议零售价、最低售价</div></li>
+        <li><div><b>费用明细</b>：租金、押金、付款节点</div></li>
+        <li><div><b>出口方式和收款信息</b>：勾选 A 或 B，填收款主体和外币账户，选择没卖完的货怎么处理</div></li>
+      </ol>
+      <div class="callout"><h4>签之前要填的空</h4>
+        <ul>
+          <li>GMA 个体户名称、经营者、统一社会信用代码、地址、收款账户、通知邮箱</li>
+          <li>KADA 运营主体的公司全称</li>
+          <li>预计上架日、货品送达截止日</li>
+          <li>品牌的主体信息和附件内容（由品牌填）</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="callout ok">这份合同没有写禁止绕开条款，第 16 条只约定保密。正式发给品牌之前，建议请律师看一遍。</div>
+</section>
+
+<footer>本手册是常规操作框架，不构成法律或税务意见。GST 税率、品类准入要求、90 天延期收款报告、寄售退税等具体规则，以执行时监管机构的最新口径和代理、律师的答复为准。整理日期：2026-10-13。</footer>
+</div>
+
+</body></html>
