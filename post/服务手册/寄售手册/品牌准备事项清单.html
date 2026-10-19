@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>品牌准备事项清单</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 布局：单列工作手册，顶部吸附目录；蓝=货流，红=钱流，贯穿全页 */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#15212c; --ink-2:#34434f;
+  --line:#d3dae1; --goods:#1d5c8a; --goods-soft:#e3eef7;
+  --money:#c3132f; --hl:#ffe14d; --money-soft:#fbe7ea; --ok:#1f7a4d; --ok-soft:#e2f3ea;
+  --f-display:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --surface:#16202a; --ink:#e7edf3; --ink-2:#c3cfda;
+  --line:#2b3a48; --goods:#6db2e6; --goods-soft:#172d3f;
+  --money:#ff6378; --hl:#7a6400; --money-soft:#3a1a21; --ok:#5fcf95; --ok-soft:#14321f;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --surface:#16202a; --ink:#e7edf3; --ink-2:#c3cfda;
+  --line:#2b3a48; --goods:#6db2e6; --goods-soft:#172d3f;
+  --money:#ff6378; --hl:#7a6400; --money-soft:#3a1a21; --ok:#5fcf95; --ok-soft:#14321f;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.75;padding-inline:16px}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(26px,4.4vw,38px);font-weight:900;letter-spacing:.01em}
+h2{font-size:clamp(21px,3vw,26px);font-weight:900}
+h3{font-size:18px;font-weight:700}
+h4{font-size:15px;font-weight:700}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px}
+li::marker{color:var(--goods)}
+code,.mono{font-family:var(--f-mono);font-size:.92em;font-weight:600;background:var(--goods-soft);color:var(--goods);padding:1px 6px;border-radius:4px;white-space:nowrap}
+b{font-weight:700}
+.money{color:var(--money);font-weight:700}
+.hl{background:var(--hl);color:var(--ink);padding:1px 6px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.goods{color:var(--goods);font-weight:700}
+
+header.top{display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--goods)}
+.lede{max-width:65ch;color:var(--ink-2)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;display:flex;gap:6px;overflow-x:auto}
+nav.toc a{flex:none;color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--goods);color:var(--goods);outline:none}
+
+section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:14px}
+.sec-head .eyebrow{color:var(--ink-2)}
+.block{display:flex;flex-direction:column;gap:12px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.05em;padding:2px 9px;border-radius:999px;border:1px solid currentColor}
+.tag.a{color:var(--goods)} .tag.b{color:var(--money)} .tag.g{color:var(--ok)}
+.panel.a{border-top:4px solid var(--goods)} .panel.b{border-top:4px solid var(--money)} .panel.g{border-top:4px solid var(--ok)}
+
+/* 链路图 */
+.flow-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.flow{min-width:720px;display:flex;flex-direction:column;gap:22px}
+.gma-bar{border:2px dashed var(--ink);border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.gma-bar b{font-size:16px}
+.lane{display:grid;grid-template-columns:150px 1fr 150px 1fr 170px;align-items:center;gap:0}
+.lane-label{grid-column:1/-1;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.08em;margin-bottom:6px}
+.node{border:2px solid var(--ink);border-radius:8px;padding:8px 10px;background:var(--bg);font-size:13px;line-height:1.45;text-align:center}
+.node b{display:block;font-size:15px}
+.node.sg{border-color:var(--goods)}
+.arrow{display:flex;flex-direction:column;gap:6px;padding-inline:6px;font-size:12px;line-height:1.3}
+.arrow .r,.arrow .l{position:relative;text-align:center;padding-bottom:6px}
+.arrow .r{color:var(--goods);border-bottom:2px solid var(--goods)}
+.arrow .l{color:var(--money);border-bottom:2px dashed var(--money)}
+.arrow .r::after{content:"";position:absolute;right:-1px;bottom:-6px;border:5px solid transparent;border-left:8px solid var(--goods);border-right:0}
+.arrow .l::after{content:"";position:absolute;left:-1px;bottom:-6px;border:5px solid transparent;border-right:8px solid var(--money);border-left:0}
+.span3{grid-column:2/5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.rule{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--money);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:700;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+
+ol.steps{counter-reset:s;list-style:none;padding-left:0;gap:10px}
+ol.steps>li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:10px}
+ol.steps>li::before{content:counter(s);font-family:var(--f-mono);font-weight:600;font-size:13px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;margin-top:1px}
+
+.phase{display:flex;flex-direction:column;gap:8px}
+.phase h4{display:flex;gap:8px;align-items:center}
+.phase h4 .mono{background:var(--ink);color:var(--bg)}
+
+.clauses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.clause{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--surface);display:flex;flex-direction:column;gap:4px}
+.clause .n{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--goods)}
+.callout{background:var(--money-soft);border:1px solid var(--money);border-radius:8px;padding:12px 14px}
+.callout.ok{background:var(--ok-soft);border-color:var(--ok)}
+.quote{font-family:var(--f-mono);font-size:13px;font-weight:600;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;white-space:nowrap}
+footer{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink-2)}
+a{color:var(--goods)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head><body>
+<div class="wrap">
+<!-- 7 发给品牌 -->
+<style>
+.send-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.btn{font:inherit;font-weight:700;font-size:14px;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn:hover,.btn:focus-visible{background:var(--goods);border-color:var(--goods);outline:none}
+.letter{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--ink);border-radius:10px;padding:22px 24px;display:flex;flex-direction:column;gap:22px;max-width:760px}
+.letter h4{font-size:16px}
+.letter .part{display:flex;flex-direction:column;gap:10px}
+.mini-flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}
+.mini-flow span.s{border:2px solid var(--ink);border-radius:6px;padding:3px 9px;background:var(--bg);font-weight:500}
+.mini-flow span.ar{color:var(--goods);font-weight:700}
+ul.check{list-style:none;padding-left:0;gap:7px}
+ul.check>li{display:grid;grid-template-columns:22px 1fr;gap:6px}
+ul.check>li::before{content:"☐";color:var(--goods);font-size:16px;line-height:1.6}
+.ph{background:var(--hl);color:var(--ink);padding:0 5px;border-radius:4px;font-weight:700}
+.sub-h{font-weight:700;color:var(--goods)}
+</style>
+<section id="send">
+  <div class="sec-head"><span class="eyebrow">清单 7</span><h2>发给品牌：准备事项清单</h2></div>
+  <div class="send-bar">
+    <p class="lede">黄色处换成实际信息后再发。</p>
+    <button class="btn" id="copy7" type="button">复制全文</button>
+  </div>
+
+  <div class="letter" id="letter7">
+    <div class="part">
+      <p>您好！参加新加坡寄售前，请按下面的清单准备，于 <span class="ph">【日期】</span> 前发给 GMA。</p>
+    </div>
+
+    <div class="part">
+      <h4>准备顺序</h4>
+      <div class="mini-flow"><span class="s">① 发产品目录</span><span class="ar">→</span><span class="s">② 汇款、备收款账户</span><span class="ar">→</span><span class="s">③ 选品，确定上架货品</span><span class="ar">→</span><span class="s">④ 填 SKU 表</span><span class="ar">→</span><span class="s">⑤ 备证书、英文标签</span><span class="ar">→</span><span class="s">⑥ 定出口方式</span><span class="ar">→</span><span class="s">⑦ 装箱、出口报关</span><span class="ar">→</span><span class="s">⑧ 其他准备</span></div>
+    </div>
+
+    <div class="part">
+      <h4>一、发产品目录</h4>
+      <ul class="check">
+        <li><div>品牌介绍（中英文各一段）</div></li>
+        <li><div>产品目录或画册（PDF），标出想拿去新加坡的款</div></li>
+        <li><div>产品图片：白底主图，有场景图更好</div></li>
+        <li><div>商标注册证或品牌授权书</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>二、汇款，备好收款账户</h4>
+      <p class="sub-h">汇款</p>
+      <ul class="check">
+        <li><div>用公司对公账户汇，先问开户行能不能做境外汇款、几天到账</div></li>
+      </ul>
+      <p class="sub-h">收款账户（选 A 的品牌，收卖货的钱）</p>
+      <ul class="check">
+        <li><div>公司外币账户（SGD 或 USD），不能用个人账户</div></li>
+        <li><div>英文户名（和营业执照一致）、银行英文名称、SWIFT 码、账号</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>三、选品，确定上架货品</h4>
+      <ul class="check">
+        <li><div>GMA 和您确认最终选品</div></li>
+        <li><div>您确认清单里每款能供的数量和最早发货时间</div></li>
+        <li><div>化妆品、保健品、食品、电器、无线产品要先拿准入，选品时就标出来，看时间来不来得及</div></li>
+      </ul>
+      <p>上架清单确定后，SKU 表只填清单里的款。</p>
+    </div>
+
+    <div class="part">
+      <h4>四、填 SKU 表（每个 SKU 一行，GMA 提供模板）</h4>
+      <ul class="check">
+        <li><div>中英文品名、型号/规格、材质或成分、用途、原产地</div></li>
+        <li><div>寄售数量、报关单价、建议零售价、最低可接受售价</div></li>
+        <li><div>单件毛重/净重、每箱件数、外箱尺寸</div></li>
+        <li><div>注明是否带电池、液体、粉末、喷雾</div></li>
+      </ul>
+      <p>SKU 表里的报关单价，要和之后报关单上申报的一致。</p>
+    </div>
+
+    <div class="part">
+      <h4>五、证书和标签（只准备您涉及的品类）</h4>
+      <ul class="check">
+        <li><div>带电池：UN38.3 测试报告、MSDS</div></li>
+        <li><div>化妆品、护肤品：全成分表（INCI 英文名）、生产许可、检测报告</div></li>
+        <li><div>食品：配料表、保质期、生产许可、检测报告</div></li>
+        <li><div>电器：安规测试报告（CB/CE 等）</div></li>
+        <li><div>无线产品（蓝牙、WiFi）：无线认证报告（CE/FCC 等）</div></li>
+        <li><div>所有产品：英文标签，或同意在当地贴英文贴标</div></li>
+      </ul>
+      <p>化妆品、保健品、食品、电器、无线产品在新加坡要先拿准入才能上架，要几周时间，这几类的资料请尽早发。</p>
+    </div>
+
+    <div class="part">
+      <h4>六、定出口方式</h4>
+      <ul class="check">
+        <li><div><b>A 自己出口：</b>已在海关备案、开通电子口岸、有公司外币账户，自己能报关或有合作的报关行</div></li>
+        <li><div><b>B 走出口代理：</b>只需营业执照，您自己委托出口代理报关、收汇；需要的话 GMA 可以推荐几家，由您自己联系、自己选</div></li>
+        <li><div>告诉 GMA 选哪种，以及是否一般纳税人（关系到能否退税）</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>七、装箱和出口报关</h4>
+      <p class="sub-h">装箱</p>
+      <ul class="check">
+        <li><div>带电池、液体、粉末、喷雾的单独说明，空运可能受限</div></li>
+        <li><div>物流由您自己联系；没有合适的物流服务商，GMA 可以推荐</div></li>
+      </ul>
+      <p class="sub-h">选 A 的报关注意事项</p>
+      <ul class="check">
+        <li><div>监管方式选 1616（寄售代销），收货人填新加坡寄卖方，按预估价申报</div></li>
+        <li><div>查 HS 编码，确认是否需要出口法检</div></li>
+        <li><div>预计超过 90 天才收款的，报关后 30 天内向外汇局做延期收款报告（寄售基本都会碰到）</div></li>
+        <li><div>货款只能收进公司外币账户，不能用个人账户</div></li>
+        <li><div>出口退税先问主管税务局，寄售能不能退、什么时候退</div></li>
+        <li><div>报关单、装箱单、发票留好，没卖完的货退运回国时要用（按 4561 报关，1 年内原样退回免税）</div></li>
+      </ul>
+      <p class="sub-h">选 B 的注意事项</p>
+      <ul class="check">
+        <li><div>由您和出口代理直接签委托出口协议，代理费、付款时间和您直接谈；按代理要求提供开票、退税资料</div></li>
+        <li><div>报关、收汇、90 天报告都由代理办</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h4>八、其他准备</h4>
+      <ul class="check">
+        <li><div><b>英文主体信息：</b>公司英文名、英文地址、联系人和邮箱，开发票、装箱单、付汇都要用</div></li>
+        <li><div><b>商业发票和装箱单：</b>新加坡清关要用，SKU、数量、单价和报关单一致</div></li>
+        <li><div><b>条码：</b>每个 SKU 的 EAN/UPC 条码，店里收银要扫；没有的告诉 GMA</div></li>
+        <li><div><b>新加坡售价：</b>建议零售价（SGD），由您自己定价</div></li>
+        <li><div><b>陈列和销售物料：</b>价签、展示道具（如有）、试用装/样品（如有），一份英文卖点介绍给店员用</div></li>
+        <li><div><b>运输保险：</b>运输途中的风险由品牌承担，发货前买好货运险</div></li>
+        <li><div><b>售后联系人：</b>新加坡消费者退换货、投诉时，品牌这边谁来对接</div></li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <p>有任何问题请联系 GMA，谢谢！</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var b=document.getElementById('copy7'),el=document.getElementById('letter7');
+  if(!b||!el)return;
+  function text(){
+    var out=[];
+    el.querySelectorAll('.part').forEach(function(p){
+      p.querySelectorAll('h4,p,.mini-flow,li').forEach(function(n){
+        var t=n.innerText.replace(/\s*\n\s*/g,' ').trim();
+        if(!t)return;
+        if(n.tagName==='H4')out.push('\n'+t);
+        else if(n.classList.contains('mini-flow'))out.push(t.replace(/\s*→\s*/g,' → '));
+        else if(n.tagName==='LI')out.push(n.closest('ul.check')?'☐ '+t:'· '+t);
+        else out.push(t);
+      });
+    });
+    return out.join('\n').trim();
+  }
+  b.addEventListener('click',function(){
+    var t=text(),done=function(){b.textContent='已复制';setTimeout(function(){b.textContent='复制全文'},1600)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fallback)}else fallback();
+    function fallback(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){b.textContent='复制失败，请手动选中'}a.remove()}
+  });
+})();
+</script>
+</div>
+</body></html>
