@@ -71,7 +71,10 @@
   strong{color:var(--ink); font-weight:700;}
 
   /* 链路：三行标题 + 说明，细箭头连接，不加框 */
-  ol.chain{list-style:none; margin-top:48px; display:grid; gap:0;}
+  .belief{margin-top:22px; color:var(--ink-soft);}
+  .belief .en{display:block; margin-top:6px; color:var(--muted); font-size:15px;}
+  body.lang-en .belief .en{color:var(--ink-soft); margin-top:0;}
+  ol.chain{list-style:none; margin-top:32px; display:grid; gap:0;}
   .chain li{padding-left:22px; border-left:1px solid var(--rule); position:relative; padding-bottom:30px;}
   .chain li:last-child{padding-bottom:0; border-left-color:transparent;}
   .chain li::before{content:""; position:absolute; left:-4px; top:11px; width:7px; height:7px; border-radius:50%;
@@ -138,6 +141,8 @@
     <div class="title-row"><h1 class="title-zh"><b>GMA</b><span class="full">｜Global Market Accelerator</span></h1><img class="logo" src="assets/gma-logo.png" alt="GMA"></div>
     <p class="positioning"><span class="zh">GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。</span>
       <span class="en" style="display:block; margin-top:6px; color:var(--muted)">GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time.</span></p>
+    <p class="belief"><span class="zh">我们相信，进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商，而是一条完整的路径：</span>
+      <span class="en">We believe entering a new market takes more than marketing campaigns, a social media account or a distributor. It is a complete path:</span></p>
 
     <ol class="chain">
       <li><h3>Market Understanding<span class="zh">市场理解</span></h3>
@@ -152,15 +157,9 @@
     </ol>
   </header>
 
-  <section>
-    <div class="no">01</div>
-    <h2><span class="zh">我们的理念</span><span class="en">What we believe</span></h2>
-    <p class="zh">进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商。</p>
-    <p class="en">Entering a new market takes more than marketing campaigns, a social media account or a distributor.</p>
-  </section>
 
   <section>
-    <div class="no">02</div>
+    <div class="no">01</div>
     <h2><span class="zh">团队</span><span class="en">The team</span></h2>
 
     <div class="person">
@@ -180,7 +179,7 @@
   </section>
 
   <section>
-    <div class="no">03</div>
+    <div class="no">02</div>
     <h2><span class="zh">新加坡合作伙伴：KADA Collective</span><span class="en">Singapore partner: KADA Collective</span></h2>
     <p class="zh">KADA Collective 是我们在新加坡的线下集合店合作伙伴。<span class="date">2026 年 11 月 15 日</span>，我们与 KADA 完成第一次合作，中国品牌产品在 KADA 空间正式上线，这也是品牌出海新加坡的第一站。</p>
     <p class="en">KADA Collective is our multi-brand retail partner in Singapore. On 15 November 2026 we completed our first launch together: Chinese brand products went live in the KADA space, the brands' first step into Singapore.</p>
