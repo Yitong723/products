@@ -66,13 +66,18 @@
   section > p + p.zh{margin-top:18px;}
   strong{color:var(--ink); font-weight:700;}
 
-  /* 列表：只用序号和缩进 */
-  ol.list, ul.list{list-style:none; margin-top:24px; display:grid; gap:18px;}
-  .list li{display:grid; grid-template-columns:34px 1fr; color:var(--ink-soft);}
-  .list li > span:first-child{font-family:var(--display); color:var(--accent); font-size:15px; line-height:1.85;}
-  .list li > div{min-width:0;}
-  .list li b{color:var(--ink); font-weight:700;}
-  ul.list li > span:first-child{font-family:var(--sans);}
+  /* 链路：三行标题 + 说明，细箭头连接，不加框 */
+  ol.chain{list-style:none; margin-top:48px; display:grid; gap:0;}
+  .chain li{padding-left:22px; border-left:1px solid var(--rule); position:relative; padding-bottom:30px;}
+  .chain li:last-child{padding-bottom:0; border-left-color:transparent;}
+  .chain li::before{content:""; position:absolute; left:-4px; top:11px; width:7px; height:7px; border-radius:50%;
+    background:var(--accent);}
+  .chain li:not(:last-child)::after{content:"↓"; position:absolute; left:-6px; bottom:4px; font-size:11px;
+    line-height:1; color:var(--accent); background:var(--bg);}
+  .chain h3{font-family:var(--display); font-weight:600; font-size:20px; line-height:1.4; color:var(--ink);}
+  .chain h3 .zh{font-family:var(--serif); font-weight:600; font-size:14px; color:var(--muted); margin-left:10px;}
+  .chain p{color:var(--ink-soft); font-size:15px; margin-top:2px;}
+  .chain p.en{font-size:14px; margin-top:2px;}
 
   /* 人物 */
   .person{margin-top:44px;}
@@ -131,19 +136,25 @@
     <p class="tagline">A cross-market development platform connecting brands with local markets, channels and commercial ecosystems.</p>
     <p class="positioning"><span class="zh">GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。</span>
       <span class="en" style="display:block; margin-top:6px; color:var(--muted)">GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time.</span></p>
+
+    <ol class="chain">
+      <li><h3>Market Understanding<span class="zh">市场理解</span></h3>
+        <p class="zh">理解市场、消费者、品牌定位与进入机会</p>
+        <p class="en">Understand the market, its consumers, the brand's positioning and the way in</p></li>
+      <li><h3>Ecosystem Entry<span class="zh">生态进入</span></h3>
+        <p class="zh">连接本地消费者、社交媒体、零售渠道、商业伙伴及行业资源</p>
+        <p class="en">Connect with local consumers, social media, retail channels, business partners and industry resources</p></li>
+      <li><h3>Market Development<span class="zh">市场发展</span></h3>
+        <p class="zh">通过实际运营、市场验证与商业拓展，逐步建立长期发展路径</p>
+        <p class="en">Build a long-term path through real operations, market testing and business expansion</p></li>
+    </ol>
   </header>
 
   <section>
     <div class="no">01</div>
     <h2><span class="zh">我们的理念</span><span class="en">What we believe</span></h2>
-    <p class="zh">进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商。我们认为需要做到四件事：</p>
-    <p class="en">Entering a new market takes more than campaigns, social media or a distributor. We believe it takes four things:</p>
-    <ol class="list">
-      <li><span>1</span><div><span class="zh"><b>理解当地市场</b></span><span class="en">Understand the local market</span></div></li>
-      <li><span>2</span><div><span class="zh"><b>找到适合品牌的发展机会</b></span><span class="en">Find the opportunity that fits the brand</span></div></li>
-      <li><span>3</span><div><span class="zh"><b>建立有效的本地连接</b></span><span class="en">Build effective local connections</span></div></li>
-      <li><span>4</span><div><span class="zh"><b>逐步形成可持续的商业发展路径</b></span><span class="en">Grow step by step into a lasting business</span></div></li>
-    </ol>
+    <p class="zh">进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商。</p>
+    <p class="en">Entering a new market takes more than marketing campaigns, a social media account or a distributor.</p>
   </section>
 
   <section>
