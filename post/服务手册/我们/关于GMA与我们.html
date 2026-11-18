@@ -81,8 +81,9 @@
     background:var(--accent);}
   .chain li:not(:last-child)::after{content:"↓"; position:absolute; left:-6px; bottom:4px; font-size:11px;
     line-height:1; color:var(--accent); background:var(--bg);}
-  .chain h3{font-family:var(--display); font-weight:600; font-size:20px; line-height:1.4; color:var(--ink);}
-  .chain h3 .zh{font-family:var(--serif); font-weight:600; font-size:14px; color:var(--muted); margin-left:10px;}
+  .chain h3{font-family:var(--serif); font-weight:600; font-size:19px; line-height:1.4; color:var(--ink);}
+  .chain h3 .en{font-family:var(--display); font-weight:400; font-style:italic; font-size:14px; color:var(--muted); margin-left:10px;}
+  body.lang-en .chain h3 .en{font-style:normal; font-weight:600; font-size:19px; color:var(--ink); margin-left:0;}
   .chain p{color:var(--ink-soft); font-size:15px; margin-top:2px;}
   .chain p.en{font-size:14px; margin-top:2px;}
 
@@ -145,13 +146,13 @@
       <span class="en">We believe entering a new market takes more than marketing campaigns, a social media account or a distributor. It is a complete path:</span></p>
 
     <ol class="chain">
-      <li><h3>Market Understanding<span class="zh">市场理解</span></h3>
+      <li><h3><span class="zh">市场理解</span><span class="en">Market Understanding</span></h3>
         <p class="zh">理解市场、消费者、品牌定位与进入机会</p>
         <p class="en">Understand the market, its consumers, the brand's positioning and the way in</p></li>
-      <li><h3>Ecosystem Entry<span class="zh">生态进入</span></h3>
+      <li><h3><span class="zh">生态进入</span><span class="en">Ecosystem Entry</span></h3>
         <p class="zh">连接本地消费者、社交媒体、零售渠道、商业伙伴及行业资源</p>
         <p class="en">Connect with local consumers, social media, retail channels, business partners and industry resources</p></li>
-      <li><h3>Market Development<span class="zh">市场发展</span></h3>
+      <li><h3><span class="zh">市场发展</span><span class="en">Market Development</span></h3>
         <p class="zh">通过实际运营、市场验证与商业拓展，逐步建立长期发展路径</p>
         <p class="en">Build a long-term path through real operations, market testing and business expansion</p></li>
     </ol>
