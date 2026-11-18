@@ -2,518 +2,217 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
-  /* Layout: GMA 册子家族的米色纸本杂志版式，单栏 A4 竖版，中英双语并排，可切换只看中文 / 只看英文 */
+  /* Layout: 文档式单栏，像飞书原文一样标题加段落往下排；不用卡片和边框，只靠字体、字号和留白分层 */
   :root{
-    --bg:#f3ebdd; --bg2:#efe4d2; --paper:#fffdf8; --ink:#221c14; --ink-soft:#4a4034;
-    --muted:#8c7f6c; --rule:#e2d6c0; --line:#d8c9ad;
-    --accent:#bd3c1e; --accent-deep:#992c12; --accent-soft:#fbe6da;
-    --gold:#a8772e; --gold-deep:#7a5410; --gold-soft:#f4e9d3; --gold-line:#e3cd9e;
-    --on-accent:#ffffff;
-    --shadow:0 1px 2px rgba(70,45,20,.05), 0 12px 28px -14px rgba(90,55,25,.22);
-    --shadow-lift:0 2px 6px rgba(70,45,20,.07), 0 30px 56px -22px rgba(120,65,25,.32);
+    --bg:#f7f2e9; --ink:#1f1a14; --ink-soft:#4a4136; --muted:#8a7d6a; --rule:#ddd2bf;
+    --accent:#b23a1c;
     --serif:"Noto Serif SC","Songti SC",serif;
     --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
     --display:"Fraunces","Noto Serif SC",Georgia,serif;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#1b1712; --bg2:#231e17; --paper:#28221a; --ink:#f1e8da; --ink-soft:#d3c7b4;
-      --muted:#a3967f; --rule:#3a3227; --line:#4a4033;
-      --accent:#e2633f; --accent-deep:#f08a68; --accent-soft:#4a2518;
-      --gold:#d2a258; --gold-deep:#e8c07e; --gold-soft:#33291a; --gold-line:#5a4728;
-      --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
-      --shadow-lift:0 2px 6px rgba(0,0,0,.35), 0 30px 56px -22px rgba(0,0,0,.7);
-      color-scheme:dark;
+      --bg:#1a1611; --ink:#f0e8db; --ink-soft:#cfc3b0; --muted:#9d907b; --rule:#3d352a;
+      --accent:#e4704c; color-scheme:dark;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#1b1712; --bg2:#231e17; --paper:#28221a; --ink:#f1e8da; --ink-soft:#d3c7b4;
-    --muted:#a3967f; --rule:#3a3227; --line:#4a4033;
-    --accent:#e2633f; --accent-deep:#f08a68; --accent-soft:#4a2518;
-    --gold:#d2a258; --gold-deep:#e8c07e; --gold-soft:#33291a; --gold-line:#5a4728;
-    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.6);
-    --shadow-lift:0 2px 6px rgba(0,0,0,.35), 0 30px 56px -22px rgba(0,0,0,.7);
-    color-scheme:dark;
+    --bg:#1a1611; --ink:#f0e8db; --ink-soft:#cfc3b0; --muted:#9d907b; --rule:#3d352a;
+    --accent:#e4704c; color-scheme:dark;
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.75;
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.85;
     -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:880px; margin:0 auto; padding-block:0 96px;
+  .doc{max-width:720px; margin:0 auto; padding-block:72px 120px;
     padding-left:max(16px, env(safe-area-inset-left, 0px));
     padding-right:max(16px, env(safe-area-inset-right, 0px));}
 
-  /* ---------- 顶部语言切换 ---------- */
-  .bar{position:sticky; top:env(safe-area-inset-top, 0px); z-index:20; background:var(--bg);
-    border-bottom:1px solid var(--rule);}
-  body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px);
-    z-index:10; background:var(--bg);}
-  .bar-in{max-width:880px; margin:0 auto; display:flex; align-items:center; gap:12px;
-    padding-block:10px; padding-left:max(16px, env(safe-area-inset-left, 0px));
-    padding-right:max(16px, env(safe-area-inset-right, 0px));}
-  .bar .brand{display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--muted);
-    font-weight:500; min-width:0; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
-  .bar .brand img{width:24px; height:24px; border-radius:50%; flex:none;}
-  .seg{margin-left:auto; display:flex; background:var(--paper); border:1px solid var(--line);
-    border-radius:30px; padding:3px; flex:none;}
-  .seg button{font:inherit; font-size:12.5px; font-weight:500; border:0; background:transparent;
-    color:var(--ink-soft); padding:5px 13px; border-radius:30px; cursor:pointer;}
-  .seg button[aria-pressed="true"]{background:var(--accent); color:var(--on-accent);}
-  .seg button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
-
-  /* ---------- 双语显示 ---------- */
-  .en{font-family:var(--display);}
+  /* 语言切换：右上角一行小字 */
+  .lang{display:flex; justify-content:flex-end; gap:16px; margin-bottom:56px; font-size:13px;}
+  .lang button{font:inherit; background:none; border:0; color:var(--muted); cursor:pointer; padding:2px 0;}
+  .lang button[aria-pressed="true"]{color:var(--ink); text-decoration:underline; text-underline-offset:5px;
+    text-decoration-color:var(--accent);}
+  .lang button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
   body.lang-zh .en{display:none !important;}
   body.lang-en .zh{display:none !important;}
-  p.en, li .en, .en-block{font-family:var(--display); font-size:.94em; color:var(--muted);
-    line-height:1.65; margin-top:4px; letter-spacing:.005em;}
-  body.lang-en p.en, body.lang-en li .en, body.lang-en .en-block{color:var(--ink-soft); font-size:1em; margin-top:0;}
-  .zh-just{text-align:justify; text-justify:inter-ideograph;}
 
-  /* ---------- 封面 ---------- */
-  .cover{padding-block:56px 44px; display:grid; grid-template-columns:1.25fr .75fr; gap:40px;
-    align-items:center; border-bottom:1px solid var(--line);}
-  .cover > *{min-width:0;}
-  .kick{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
-  .kick .lbl{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px; color:var(--accent);}
-  .kick .ln{flex:1; height:1px; background:var(--line);}
-  .cover h1{font-family:var(--serif); font-weight:900; font-size:clamp(34px,6.4vw,58px);
-    line-height:1.1; letter-spacing:-.015em; text-wrap:balance;}
-  .cover h1 .gma{color:var(--accent);}
-  .cover .h1-en{font-family:var(--display); font-weight:400; font-style:italic;
-    font-size:clamp(18px,2.6vw,23px); color:var(--muted); line-height:1.4; margin-top:16px;
-    max-width:34ch; text-wrap:balance;}
-  body.lang-en .cover .h1-en{color:var(--ink-soft);}
-  .cover .sub{font-size:17px; color:var(--ink-soft); margin-top:22px; max-width:46ch;}
-  .cover .sub b{color:var(--accent-deep);}
-  .cover .not{margin-top:18px; display:inline-flex; flex-wrap:wrap; gap:6px 10px; align-items:baseline;
-    font-size:13px; color:var(--muted);}
-  .cover .not s{text-decoration-color:var(--accent); text-decoration-thickness:1.5px;}
-  .cover-art{display:flex; justify-content:center;}
-  .cover-art img{width:min(100%,260px); height:auto; border-radius:50%; box-shadow:var(--shadow-lift);}
+  .en{font-family:var(--display);}
+  p.en, li .en{display:block; color:var(--muted); font-size:15px; line-height:1.7; margin-top:6px;}
+  body.lang-en p.en, body.lang-en li .en{color:var(--ink-soft); font-size:16px; margin-top:0;}
 
-  /* ---------- section ---------- */
-  .section{padding-block:52px 8px;}
-  .sec-kicker{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
-  .sec-no{font-family:var(--display); font-style:italic; font-weight:600; font-size:14px; color:var(--accent);}
-  .sec-kicker .ln{flex:1; height:1px; background:var(--line);}
-  .sec-kicker .tag{font-family:var(--display); font-style:italic; font-size:13px; color:var(--muted);}
-  h2{font-family:var(--serif); font-weight:900; font-size:clamp(24px,3.8vw,33px); line-height:1.2;
-    letter-spacing:-.01em; text-wrap:balance;}
-  h2 em{font-style:normal; color:var(--accent);}
-  h2 .en{display:block; font-weight:500; font-style:italic; font-size:.6em; color:var(--muted);
-    margin-top:6px; letter-spacing:0;}
-  body.lang-en h2 .en{font-style:normal; font-weight:600; font-size:1em; color:var(--ink); margin-top:0;}
-  .lead{margin-top:18px; max-width:66ch; font-size:15.5px; color:var(--ink-soft);}
-  .lead + .lead{margin-top:12px;}
+  /* 标题区 */
+  .title-zh{font-family:var(--serif); font-weight:900; font-size:clamp(34px,6vw,52px); line-height:1.15;
+    letter-spacing:-.01em;}
+  .title-zh b{color:var(--accent); font-weight:900;}
+  .tagline{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,21px); color:var(--ink-soft);
+    line-height:1.5; margin-top:18px; max-width:36ch; text-wrap:balance;}
+  .positioning{margin-top:28px; font-size:17px; color:var(--ink);}
+  .positioning .en{font-size:15.5px;}
+
+  /* 小节 */
+  section{margin-top:84px;}
+  .no{font-family:var(--display); font-size:14px; color:var(--accent); letter-spacing:.04em;}
+  h2{font-family:var(--serif); font-weight:900; font-size:clamp(23px,3.4vw,28px); line-height:1.3; margin-top:6px;
+    text-wrap:balance;}
+  h2 .en{display:block; font-family:var(--display); font-weight:400; font-style:italic; font-size:17px;
+    color:var(--muted); margin-top:2px;}
+  body.lang-en h2 .en{font-style:normal; font-weight:600; font-size:clamp(23px,3.4vw,28px); color:var(--ink); margin-top:0;}
+  section > p{margin-top:22px; color:var(--ink-soft); text-align:justify; text-justify:inter-ideograph;}
+  section > p.en{text-align:left;}
+  section > p + p.zh{margin-top:18px;}
   strong{color:var(--ink); font-weight:700;}
 
-  /* ---------- 01 我们是谁 ---------- */
-  .intro{margin-top:22px; display:grid; grid-template-columns:1fr; gap:14px;
-    background:var(--paper); border:1px solid var(--rule); border-radius:18px; padding:26px 28px;
-    box-shadow:var(--shadow);}
-  .intro p.zh{font-size:16px; color:var(--ink);}
-  .intro .sig{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;}
-  .pill{display:inline-flex; gap:6px; align-items:center; font-size:12.5px; color:var(--ink-soft);
-    border:1px solid var(--line); border-radius:30px; padding:5px 13px; background:var(--bg2);}
-  .pill b{color:var(--accent-deep); font-weight:700;}
+  /* 列表：只用序号和缩进 */
+  ol.list, ul.list{list-style:none; margin-top:24px; display:grid; gap:18px;}
+  .list li{display:grid; grid-template-columns:34px 1fr; color:var(--ink-soft);}
+  .list li > span:first-child{font-family:var(--display); color:var(--accent); font-size:15px; line-height:1.85;}
+  .list li > div{min-width:0;}
+  .list li b{color:var(--ink); font-weight:700;}
+  ul.list li > span:first-child{font-family:var(--sans);}
 
-  /* ---------- 02 理念：不是 / 而是 ---------- */
-  .belief{margin-top:24px; display:grid; grid-template-columns:.8fr 1.2fr; gap:16px;}
-  .belief > *{min-width:0;}
-  .b-not{border:1px dashed var(--line); border-radius:18px; padding:22px 22px;}
-  .b-not .t, .b-is .t{font-family:var(--serif); font-weight:700; font-size:14px; color:var(--muted); margin-bottom:12px;}
-  .b-not .t .en, .b-is .t .en{font-weight:400; font-style:italic; margin-left:6px;}
-  .b-not ul{list-style:none; display:grid; gap:10px;}
-  .b-not li{font-size:14px; color:var(--muted); padding-left:22px; position:relative;}
-  .b-not li::before{content:"×"; position:absolute; left:2px; top:-1px; color:var(--accent); font-weight:700;}
-  .b-not li .en{display:block; font-size:12.5px;}
-  .b-is{background:var(--paper); border:1px solid var(--rule); border-radius:18px; padding:22px 24px;
-    box-shadow:var(--shadow-lift);}
-  .b-is .t{color:var(--accent-deep);}
-  .path{list-style:none; display:grid; gap:0; counter-reset:p;}
-  .path li{display:grid; grid-template-columns:34px 1fr; gap:12px; padding:11px 0;
-    border-bottom:1px dashed var(--rule); align-items:start;}
-  .path li:last-child{border-bottom:0;}
-  .path li::before{counter-increment:p; content:counter(p); width:26px; height:26px; border-radius:8px;
-    background:var(--accent-soft); color:var(--accent-deep); font-family:var(--display); font-weight:600;
-    font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:2px;}
-  .path li > div{min-width:0;}
-  .path h4{font-family:var(--serif); font-weight:700; font-size:15.5px; color:var(--ink);}
-  .path h4 .en{font-weight:400; font-style:italic; font-size:13px; color:var(--muted); margin-left:6px;}
-  body.lang-en .path h4 .en{font-style:normal; font-weight:600; font-size:15.5px; color:var(--ink); margin-left:0;}
-  .path p{font-size:13.5px; color:var(--ink-soft); margin-top:2px;}
-  .path p.en{font-size:12.5px;}
-
-  /* ---------- 03 团队 ---------- */
-  .team{margin-top:24px; display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
-  .person{background:var(--paper); border:1px solid var(--rule); border-radius:18px; overflow:hidden;
-    box-shadow:var(--shadow); display:flex; flex-direction:column; min-width:0;}
-  .person .head{padding:22px 24px 16px; background:linear-gradient(180deg,var(--bg2),transparent);
-    border-bottom:1px solid var(--rule); display:flex; align-items:center; gap:14px;}
-  .mono{flex:none; width:48px; height:48px; border-radius:50%; display:flex; align-items:center;
-    justify-content:center; font-family:var(--display); font-weight:600; font-style:italic; font-size:22px;
-    color:var(--on-accent); background:var(--accent);}
-  .person.c .mono{background:var(--gold);}
-  .person .name{font-family:var(--serif); font-weight:900; font-size:21px; line-height:1.2;}
-  .person .route{font-family:var(--display); font-style:italic; font-size:13px; color:var(--accent);}
-  .person.c .route{color:var(--gold);}
-  .person .body{padding:16px 24px 22px; display:grid; gap:14px;}
-  .person .body p.zh{font-size:14px; color:var(--ink-soft);}
-  .person .body p.en{font-size:12.8px;}
-  .facts{display:flex; flex-wrap:wrap; gap:8px;}
-  .fact{font-size:12px; background:var(--bg2); border:1px solid var(--line); border-radius:9px;
-    padding:5px 10px; color:var(--ink-soft);}
-  .fact b{color:var(--ink);}
-  .metric{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
-  .metric div{background:var(--gold-soft); border:1px solid var(--gold-line); border-radius:12px; padding:12px 14px; min-width:0;}
-  .metric .n{font-family:var(--serif); font-weight:900; font-size:23px; color:var(--gold-deep); line-height:1.15;
+  /* 人物 */
+  .person{margin-top:44px;}
+  .person h3{font-family:var(--display); font-weight:600; font-size:24px; line-height:1.2;}
+  .person h3 small{font-style:italic; font-weight:400; font-size:15px; color:var(--accent); margin-left:10px;}
+  .person p{margin-top:12px; color:var(--ink-soft); text-align:justify; text-justify:inter-ideograph;}
+  .person p.en{text-align:left;}
+  .nums{display:flex; flex-wrap:wrap; gap:12px 44px; margin-top:20px;}
+  .nums div{min-width:0;}
+  .nums .n{font-family:var(--serif); font-weight:900; font-size:30px; line-height:1.1; color:var(--ink);
     font-variant-numeric:tabular-nums;}
-  .metric .n small{font-family:var(--sans); font-size:12px; font-weight:600; margin-left:2px;}
-  .metric .k{font-size:12px; color:var(--ink-soft); margin-top:3px; line-height:1.45;}
-  .metric .k .en{display:block; font-size:11.5px; margin-top:1px;}
-  .together{margin-top:16px; font-size:14.5px; color:var(--ink-soft); background:var(--accent-soft);
-    border-radius:14px; padding:16px 20px; line-height:1.75;}
-  .together .zh{color:var(--accent-deep); font-weight:500;}
+  .nums .n small{font-family:var(--sans); font-size:14px; font-weight:500; margin-left:2px;}
+  .nums .k{font-size:13.5px; color:var(--muted); margin-top:4px; max-width:24ch; line-height:1.55;}
+  .nums .k .en{display:block; font-size:12.5px;}
 
-  /* ---------- 04 KADA ---------- */
-  .kada{margin-top:24px; background:var(--paper); border:1px solid var(--rule); border-radius:20px;
-    overflow:hidden; box-shadow:var(--shadow-lift);}
-  .media{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:6px; background:var(--bg2);}
-  .media figure{position:relative; aspect-ratio:4/5; max-width:100%; overflow:hidden; border-radius:12px;
-    background:var(--rule); min-width:0;}
-  .media img, .media video, .collage img{width:100%; height:100%; object-fit:cover; display:block;}
-  .media figcaption{position:absolute; left:8px; bottom:8px; right:8px; font-size:11.5px; font-weight:500;
-    color:#fffdf8; text-shadow:0 1px 6px rgba(0,0,0,.55); line-height:1.35;}
-  .media figcaption .en{color:#fffdf8; font-size:11px; opacity:.85;}
-  .media .play{position:absolute; top:8px; right:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em;
-    background:rgba(34,28,20,.62); color:#fffdf8; border-radius:20px; padding:3px 8px;}
-  .kada-photo-cap{position:absolute; left:8px; top:8px; right:8px;}
-  .collage{border-radius:14px; overflow:hidden; aspect-ratio:906/1132; max-width:100%; background:var(--rule);}
-  .stack{display:grid; gap:14px; align-content:start;}
-  .kada-photo .stamp{background:rgba(255,253,248,.94); color:#221c14; font-size:12.5px; font-weight:700;
-    border-radius:30px; padding:6px 14px; letter-spacing:.02em;}
-  .kada-photo .stamp b{color:#bd3c1e;}
-  .kada-in{padding:24px 28px 26px; display:grid; gap:20px;}
-  .kada-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
-  .kada-head h3{font-family:var(--display); font-weight:600; font-size:30px; letter-spacing:.06em; color:var(--ink);}
-  .kada-head .role{font-size:14px; color:var(--muted);}
-  .kada-head .role .en{font-style:italic; margin-left:6px;}
+  /* 照片 */
+  .photos{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:30px;}
+  .photos figure{min-width:0;}
+  .photos img{width:100%; max-width:100%; aspect-ratio:4/5; object-fit:cover; display:block;}
+  .photos figcaption{font-size:13px; color:var(--muted); margin-top:8px; line-height:1.5;}
+  .photos figcaption .en{font-size:12.5px; margin-left:6px;}
 
-  .timeline{list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:0;
-    border-top:2px solid var(--line); margin-top:4px;}
-  .timeline li{position:relative; padding:18px 14px 0 0; min-width:0;}
-  .timeline li::before{content:""; position:absolute; top:-7px; left:0; width:12px; height:12px; border-radius:50%;
-    background:var(--paper); border:2px solid var(--accent);}
-  .timeline li.on::before{background:var(--accent);}
-  .timeline .d{font-family:var(--display); font-weight:600; font-size:15px; color:var(--accent-deep);
-    font-variant-numeric:tabular-nums;}
-  .timeline .w{font-size:12px; color:var(--muted);}
-  .timeline p{font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
-  .timeline p.en{font-size:12.3px;}
+  .date{font-family:var(--display); color:var(--ink); font-weight:600;}
 
-  .kada-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:14px; align-items:start;}
-  .kada-grid > div{min-width:0;}
-  .box{border:1px solid var(--rule); border-radius:14px; padding:16px 18px; background:var(--bg);}
-  .box .bt{font-family:var(--serif); font-weight:700; font-size:14.5px; color:var(--ink); margin-bottom:8px;}
-  .box .bt .en{font-weight:400; font-style:italic; font-size:12.5px; color:var(--muted); margin-left:6px;}
-  .box ul{list-style:none; display:grid; gap:8px;}
-  .box li{font-size:13.5px; color:var(--ink-soft); padding-left:15px; position:relative;}
-  .box li::before{content:""; position:absolute; left:1px; top:9px; width:6px; height:6px; border-radius:50%; background:var(--accent);}
-  .box li .en{display:block; font-size:12.3px;}
-  .sold{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px;}
-  .sold span{font-size:12px; border-radius:20px; padding:4px 11px; background:var(--accent-soft); color:var(--accent-deep); font-weight:500;}
-  .sold span.lt{background:var(--gold-soft); color:var(--gold-deep);}
-  .quote{font-family:var(--serif); font-size:15.5px; font-weight:600; color:var(--ink); line-height:1.7;
-    border-left:3px solid var(--accent); padding:2px 0 2px 16px;}
-  .quote .en{display:block; font-weight:400; font-style:italic; font-size:13.5px; color:var(--muted); margin-top:4px;}
-  body.lang-en .quote .en{font-style:normal; font-weight:600; color:var(--ink); font-size:15px; margin-top:0;}
+  /* 结尾 */
+  .end{margin-top:96px; padding-top:40px; border-top:1px solid var(--rule);}
+  .end .big{font-family:var(--serif); font-weight:900; font-size:clamp(22px,3.2vw,27px); line-height:1.4;}
+  .end .big .en{display:block; font-family:var(--display); font-style:italic; font-weight:400; font-size:17px;
+    color:var(--muted); margin-top:4px;}
+  .contact{margin-top:28px; display:grid; grid-template-columns:1fr auto; gap:28px; align-items:end;}
+  .contact dl{display:grid; grid-template-columns:auto 1fr; gap:8px 22px; font-size:15px; min-width:0;}
+  .contact dt{color:var(--muted);}
+  .contact dd{color:var(--ink); user-select:all; word-break:break-all;}
+  .contact img{width:112px; height:112px; display:block;}
+  footer{margin-top:64px; font-family:var(--display); font-style:italic; font-size:13px; color:var(--muted);}
 
-  /* ---------- 05 合作方式 ---------- */
-  .coop{margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
-  .coop > div{background:var(--paper); border:1px solid var(--rule); border-radius:16px; padding:18px 18px; min-width:0;}
-  .coop .who{font-family:var(--display); font-style:italic; font-weight:600; font-size:13px; color:var(--accent);}
-  .coop h3{font-family:var(--serif); font-weight:700; font-size:16px; margin:3px 0 6px; line-height:1.4;}
-  .coop h3 .en{display:block; font-weight:400; font-style:italic; font-size:13px; color:var(--muted);}
-  body.lang-en .coop h3 .en{font-style:normal; font-weight:600; font-size:16px; color:var(--ink);}
-  .coop p{font-size:13.3px; color:var(--ink-soft);}
-  .coop p.en{font-size:12.3px;}
-
-  /* ---------- 结尾 ---------- */
-  .close{margin-top:56px; background:var(--accent); color:var(--on-accent); border-radius:22px;
-    padding:34px 32px; display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center;
-    box-shadow:var(--shadow-lift);}
-  .close > *{min-width:0;}
-  .close h2{color:var(--on-accent); font-size:clamp(22px,3.2vw,29px);}
-  .close h2 .en{color:var(--on-accent); opacity:.78;}
-  body.lang-en .close h2 .en{opacity:1;}
-  .close p{margin-top:12px; font-size:14.5px; opacity:.92; max-width:52ch;}
-  .close p.en{color:var(--on-accent); opacity:.75; font-size:13px; margin-top:4px;}
-  .contact{margin-top:18px; display:grid; gap:6px; font-size:13.5px;}
-  .contact div{display:flex; gap:10px; flex-wrap:wrap;}
-  .contact .k{opacity:.75; min-width:76px;}
-  .contact .v{font-weight:600; user-select:all; word-break:break-all;}
-  .qr{background:#fffdf8; border-radius:16px; padding:12px; text-align:center; width:150px;}
-  .qr img{width:126px; height:126px; display:block;}
-  .qr span{display:block; font-size:11.5px; color:#4a4034; margin-top:6px; line-height:1.4;}
-  footer{margin-top:28px; text-align:center; font-family:var(--display); font-style:italic; font-size:13px; color:var(--muted);}
-
-  /* ---------- 响应式 ---------- */
-  @media (max-width:760px){
-    .cover{grid-template-columns:1fr; gap:26px; padding-block:36px 34px;}
-    .cover-art{order:-1; justify-content:flex-start;}
-    .cover-art img{width:120px;}
-    .belief, .team, .kada-grid, .coop{grid-template-columns:1fr;}
-    .timeline{grid-template-columns:1fr; border-top:0; border-left:2px solid var(--line); margin-left:6px;}
-    .timeline li{padding:0 0 16px 20px;}
-    .timeline li::before{top:4px; left:-7px;}
-    .media{grid-template-columns:repeat(2,1fr);}
-    .kada-in, .intro{padding:20px 18px;}
-    .close{grid-template-columns:1fr; padding:26px 22px;}
-    .bar .brand span{display:none;}
+  @media (max-width:560px){
+    .doc{padding-block:40px 80px;}
+    .lang{margin-bottom:40px;}
+    section{margin-top:64px;}
+    .contact{grid-template-columns:1fr;}
   }
-
-  /* ---------- 打印 ---------- */
-  @media print{
-    :root{--bg:#fff; --paper:#fff;}
-    .bar{display:none;}
-    .section, .kada, .person, .close{break-inside:avoid;}
-    body{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
-  }
-  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+  @media print{ .lang{display:none;} .doc{padding-block:0;} }
 </style>
 
-<div class="bar">
-  <div class="bar-in">
-    <div class="brand"><img src="assets/gma-logo.png" alt=""><span>Global Market Accelerator · 关于我们</span></div>
-    <div class="seg" role="group" aria-label="语言 / Language">
-      <button type="button" id="lang-both" data-lang="both" aria-pressed="true">中 / EN</button>
-      <button type="button" id="lang-zh" data-lang="zh" aria-pressed="false">中文</button>
-      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
-    </div>
+<main class="doc">
+  <div class="lang" role="group" aria-label="语言 / Language">
+    <button type="button" id="lang-both" data-lang="both" aria-pressed="true">中 / EN</button>
+    <button type="button" id="lang-zh" data-lang="zh" aria-pressed="false">中文</button>
+    <button type="button" id="lang-en" data-lang="en" aria-pressed="false">English</button>
   </div>
-</div>
 
-<div class="wrap">
-
-  <!-- ===== 封面 ===== -->
-  <header class="cover">
-    <div>
-      <div class="kick"><span class="lbl">About GMA &amp; Us</span><span class="ln"></span></div>
-      <h1><span class="gma">GMA</span>｜Global Market Accelerator</h1>
-      <p class="h1-en en">A cross-market development platform connecting brands with local markets, channels and commercial ecosystems.</p>
-      <p class="sub zh zh-just">GMA 帮助品牌<b>理解一个市场、建立本地连接</b>，并逐步实现商业落地和发展。</p>
-      <p class="sub en" style="margin-top:6px">GMA helps brands understand a market, build local connections, and grow step by step into real commercial presence.</p>
-      <div class="not">
-        <span class="zh">我们做的不只是</span><span class="en">More than</span>
-        <s class="zh">营销</s><s class="zh">找销售渠道</s>
-        <s class="en">marketing</s><s class="en">finding a distributor</s>
-      </div>
-    </div>
-    <div class="cover-art"><img src="assets/gma-logo.png" alt="GMA Global Market Accelerator 标志"></div>
+  <header>
+    <h1 class="title-zh"><b>GMA</b>｜Global Market Accelerator</h1>
+    <p class="tagline">A cross-market development platform connecting brands with local markets, channels and commercial ecosystems.</p>
+    <p class="positioning"><span class="zh">GMA 帮助品牌理解一个市场、建立本地连接，并逐步实现商业落地和发展。我们做的不只是营销，也不只是寻找销售渠道。</span>
+      <span class="en" style="display:block; margin-top:6px; color:var(--muted)">GMA helps brands understand a market, build local connections and grow into real commercial presence. It is more than marketing, and more than finding a sales channel.</span></p>
   </header>
 
-  <!-- ===== 01 我们是谁 ===== -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">01</span><span class="ln"></span><span class="tag">Who we are</span></div>
-    <h2><span class="zh">关于我们与 <em>GMA</em></span><span class="en">About us and GMA</span></h2>
-    <div class="intro">
-      <p class="zh zh-just">我们是 <strong>Jade</strong> 和 <strong>Carrie</strong>，目前共同推动 Global Market Accelerator（GMA）的发展。GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。</p>
-      <p class="en">We are Jade and Carrie, and together we lead Global Market Accelerator (GMA). GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time.</p>
-      <div class="sig">
-        <span class="pill"><b>中国</b><span class="zh">× 新加坡 × 英国</span><span class="en">× Singapore × UK</span></span>
-        <span class="pill"><span class="zh">当前重点市场</span><span class="en">Current focus</span><b class="zh">新加坡</b><b class="en">Singapore</b></span>
-      </div>
-    </div>
+  <section>
+    <div class="no">01</div>
+    <h2><span class="zh">关于我们与 GMA</span><span class="en">About us and GMA</span></h2>
+    <p class="zh">我们是 <strong>Jade</strong> 和 <strong>Carrie</strong>，目前共同推动 Global Market Accelerator（GMA）的发展。GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。</p>
+    <p class="en">We are Jade and Carrie, and together we lead Global Market Accelerator (GMA). GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time.</p>
   </section>
 
-  <!-- ===== 02 理念 ===== -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">02</span><span class="ln"></span><span class="tag">What we believe</span></div>
-    <h2><span class="zh">进入一个新市场，<em>不只是</em>做一场营销</span><span class="en">Entering a new market takes more than a campaign</span></h2>
-    <div class="belief">
-      <div class="b-not">
-        <div class="t"><span class="zh">很多人以为的出海</span><span class="en">What it is often taken for</span></div>
-        <ul>
-          <li><span class="zh">开展几场营销活动</span><span class="en">Running a few marketing campaigns</span></li>
-          <li><span class="zh">运营一个社交媒体账号</span><span class="en">Managing a social media account</span></li>
-          <li><span class="zh">找到一个分销商</span><span class="en">Finding a distributor</span></li>
-        </ul>
-      </div>
-      <div class="b-is">
-        <div class="t"><span class="zh">GMA 认为真正需要的</span><span class="en">What it actually takes</span></div>
-        <ol class="path">
-          <li><div><h4><span class="zh">理解当地市场</span><span class="en">Understand the market</span></h4>
-            <p class="zh">消费者、渠道、商业规则，先看清再行动。</p>
-            <p class="en">Consumers, channels and local rules, seen clearly before acting.</p></div></li>
-          <li><div><h4><span class="zh">找到适合品牌的发展机会</span><span class="en">Find the right opportunity</span></h4>
-            <p class="zh">结合品牌目标与资源，判断不同市场的机会与进入方式。</p>
-            <p class="en">Weigh each market's opportunity and entry route against the brand's goals and resources.</p></div></li>
-          <li><div><h4><span class="zh">建立有效的本地连接</span><span class="en">Build local connections</span></h4>
-            <p class="zh">对接当地消费者、零售空间、合作伙伴与商业资源。</p>
-            <p class="en">Connect with local consumers, retail spaces, partners and commercial resources.</p></div></li>
-          <li><div><h4><span class="zh">形成可持续的商业路径</span><span class="en">Grow a lasting business</span></h4>
-            <p class="zh">从第一次上架到持续经营，一步步把机会变成生意。</p>
-            <p class="en">From the first shelf to ongoing operations, turning opportunity into business step by step.</p></div></li>
-        </ol>
-      </div>
-    </div>
+  <section>
+    <div class="no">02</div>
+    <h2><span class="zh">我们的理念</span><span class="en">What we believe</span></h2>
+    <p class="zh">进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商。我们认为需要做到四件事：</p>
+    <p class="en">Entering a new market takes more than campaigns, social media or a distributor. We believe it takes four things:</p>
+    <ol class="list">
+      <li><span>1</span><div><span class="zh"><b>理解当地市场</b></span><span class="en">Understand the local market</span></div></li>
+      <li><span>2</span><div><span class="zh"><b>找到适合品牌的发展机会</b></span><span class="en">Find the opportunity that fits the brand</span></div></li>
+      <li><span>3</span><div><span class="zh"><b>建立有效的本地连接</b></span><span class="en">Build effective local connections</span></div></li>
+      <li><span>4</span><div><span class="zh"><b>逐步形成可持续的商业发展路径</b></span><span class="en">Grow step by step into a lasting business</span></div></li>
+    </ol>
   </section>
 
-  <!-- ===== 03 团队 ===== -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">03</span><span class="ln"></span><span class="tag">The team</span></div>
-    <h2><span class="zh">两位负责人，<em>两条市场经验</em></span><span class="en">Two founders, two market routes</span></h2>
-    <div class="team">
-      <article class="person j">
-        <div class="head"><span class="mono">J</span>
-          <div><div class="name">Jade</div><div class="route">China × Singapore</div></div></div>
-        <div class="body">
-          <p class="zh zh-just">曾在新加坡学习和工作，参与过当地电商品牌从 0 到 1 的发展，涉及供应链、本地化运营、业务增长及品牌合作等方面。</p>
-          <p class="en">Jade studied and worked in Singapore, where she helped take a local e-commerce brand from zero to one, covering supply chain, localized operations, business growth and brand partnerships.</p>
-          <p class="zh zh-just">回到中国后，持续参与跨境及中国本地化商业、品牌发展及文化 IP 项目，关注如何整合不同市场的资源，并将商业机会转化为实际可执行的路径。</p>
-          <p class="en">Back in China, she has worked on cross-border and China-localized business, brand development and cultural IP projects, focusing on how to combine resources across markets and turn commercial opportunities into workable plans.</p>
-          <div class="facts">
-            <span class="fact"><b class="zh">电商品牌 0→1</b><b class="en">E-commerce brand 0→1</b></span>
-            <span class="fact"><span class="zh">供应链 · 本地化运营</span><span class="en">Supply chain · Local ops</span></span>
-            <span class="fact"><span class="zh">品牌合作 · 文化 IP</span><span class="en">Partnerships · Cultural IP</span></span>
-          </div>
-        </div>
-      </article>
-      <article class="person c">
-        <div class="head"><span class="mono">C</span>
-          <div><div class="name">Carrie</div><div class="route">China × UK</div></div></div>
-        <div class="body">
-          <p class="zh zh-just">曾在英国学习和生活，具备跨文化沟通及中英市场拓展经验，了解英国本地的商业环境、消费者习惯与行业规则；参与过中国品牌进入英国市场的项目，协助完成市场调研、本地资源对接及落地执行。</p>
-          <p class="en">Carrie studied and lived in the UK. She brings cross-cultural communication and China–UK market development experience, and knows the UK's business environment, consumer habits and industry practice. She has worked on projects bringing Chinese brands into the UK, covering market research, local partner introductions and on-the-ground execution.</p>
-          <p class="zh zh-just">同时拥有中国社交媒体运营、内容增长和数字产品商业化的实践经验。</p>
-          <p class="en">She also has hands-on experience in Chinese social media, content growth and digital product monetization.</p>
-          <div class="metric">
-            <div><div class="n">近 20<small>万</small></div><div class="k"><span class="zh">语言学习账号粉丝，快速做起</span><span class="en">~200K followers on a language-learning account she grew</span></div></div>
-            <div><div class="n">60<small>万+ 元</small></div><div class="k"><span class="zh">单个数字产品首阶段单平台收入，同类目头部</span><span class="en">RMB 600K+ from one digital product, phase one, one platform; a top result in its category</span></div></div>
-          </div>
-        </div>
-      </article>
+  <section>
+    <div class="no">03</div>
+    <h2><span class="zh">团队</span><span class="en">The team</span></h2>
+
+    <div class="person">
+      <h3>Jade<small>China × Singapore</small></h3>
+      <p class="zh">曾在新加坡学习和工作，参与过当地电商品牌从 0 到 1 的发展，涉及供应链、本地化运营、业务增长及品牌合作等方面。回到中国后，持续参与跨境及中国本地化商业、品牌发展及文化 IP 项目，关注如何整合不同市场的资源，并将商业机会转化为实际可执行的路径。</p>
+      <p class="en">Jade studied and worked in Singapore, where she helped take a local e-commerce brand from zero to one, covering supply chain, localized operations, business growth and brand partnerships. Back in China, she has worked on cross-border and China-localized business, brand development and cultural IP projects, focusing on how to combine resources across markets and turn opportunities into workable plans.</p>
     </div>
-    <div class="together">
-      <p class="zh zh-just">我们希望结合双方对不同市场的理解，以及在内容增长、商业拓展和项目执行方面的经验，帮助品牌更好地连接原有市场与目标市场。</p>
-      <p class="en">We combine our understanding of different markets with experience in content growth, business development and project delivery, to help brands connect their home market with the market they want to enter.</p>
-    </div>
-  </section>
 
-  <!-- ===== 04 KADA ===== -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">04</span><span class="ln"></span><span class="tag">Local partner · Singapore</span></div>
-    <h2><span class="zh">新加坡第一站：<em>KADA</em></span><span class="en">First stop in Singapore: KADA</span></h2>
-    <p class="lead zh zh-just">KADA Collective 是 GMA 在新加坡的线下零售合作伙伴。我们与 KADA 合作，把中国品牌的产品带进新加坡本地的集合店空间，让品牌直接面对当地消费者，拿到真实的销售与反馈。</p>
-    <p class="lead en">KADA Collective is GMA's retail partner in Singapore. Together we bring Chinese brands into KADA's multi-brand store, where they meet local shoppers in person and get real sales and feedback.</p>
-
-    <div class="kada">
-      <div class="media">
-        <figure><img src="assets/kada/web/storefront.jpg" alt="KADA Collective 门店，开业当天店内有顾客">
-          <div class="kada-photo-cap"><span class="stamp"><b>2026.11.15</b> · <span class="zh">正式上线</span><span class="en">Launch</span></span></div>
-          <figcaption><span class="zh">开业当天的 KADA Collective</span><span class="en">KADA Collective on launch day</span></figcaption></figure>
-        <figure><video src="assets/kada/web/footfall-1.mp4" poster="assets/kada/web/footfall-1.jpg" autoplay muted loop playsinline preload="metadata" aria-label="开业当天店内人流视频一"></video>
-          <span class="play">VIDEO</span>
-          <figcaption><span class="zh">上线当天下午的店内人流</span><span class="en">Launch-day afternoon in store</span></figcaption></figure>
-        <figure><video src="assets/kada/web/footfall-2.mp4" poster="assets/kada/web/footfall-2.jpg" autoplay muted loop playsinline preload="metadata" aria-label="开业当天店内人流视频二"></video>
-          <span class="play">VIDEO</span>
-          <figcaption><span class="zh">顾客在中国品牌陈列区挑选</span><span class="en">Shoppers browsing Chinese brands</span></figcaption></figure>
-        <figure><img src="assets/kada/web/team.jpg" alt="GMA 与 KADA 团队在门口合影">
-          <figcaption><span class="zh">GMA × KADA 现场团队</span><span class="en">GMA × KADA team on site</span></figcaption></figure>
-      </div>
-      <div class="kada-in">
-        <div class="kada-head"><h3>KADA Collective</h3>
-          <span class="role"><span class="zh">新加坡集合店 · 首次合作已落地</span><span class="en">Multi-brand store, Singapore · First launch completed</span></span></div>
-
-        <ol class="timeline">
-          <li class="on"><div class="d">11.15</div><div class="w"><span class="zh">周日 · 上线首日</span><span class="en">Sun · Launch day</span></div>
-            <p class="zh">中国品牌产品在 KADA 空间正式上线，当天下午现场人流气氛很好。</p>
-            <p class="en">Chinese brand products go live at KADA. The store is busy through the afternoon.</p></li>
-          <li class="on"><div class="d">11.17</div><div class="w"><span class="zh">周二</span><span class="en">Tue</span></div>
-            <p class="zh">生意延续良好（门店每周一休息）。</p>
-            <p class="en">Sales stay strong (the store closes on Mondays).</p></li>
-          <li><div class="d"><span class="zh">跟进</span><span class="en">Next</span></div><div class="w"><span class="zh">团队到店</span><span class="en">Team on site</span></div>
-            <p class="zh">GMA 团队到新加坡现场，与品牌同步沟通、调整陈列与选品。</p>
-            <p class="en">The GMA team is in Singapore to review the store with brands and adjust display and range.</p></li>
-        </ol>
-
-        <div class="kada-grid">
-          <div class="collage"><img src="assets/kada/web/collage.jpg" alt="KADA 店内各品牌陈列拼贴：陶瓷、鞋履、手袋、服饰与个护"></div>
-          <div class="stack">
-          <div class="box">
-            <div class="bt"><span class="zh">首批现场反馈</span><span class="en">Early feedback</span></div>
-            <ul>
-              <li><span class="zh">不少顾客对中国品牌的系列产品感兴趣</span><span class="en">Many shoppers were drawn to the Chinese brands' ranges</span></li>
-              <li><span class="zh">目前销售主要来自鞋子和手袋，个人用品也有一定销售</span><span class="en">Shoes and handbags lead sales so far, with steady sales of personal items</span></li>
-            </ul>
-            <div class="sold">
-              <span class="zh">鞋子</span><span class="en">Shoes</span>
-              <span class="zh">手袋</span><span class="en">Handbags</span>
-              <span class="lt zh">艺术随行杯</span><span class="lt en">Art tumblers</span>
-              <span class="lt zh">梳妆镜</span><span class="lt en">Vanity mirrors</span>
-            </div>
-          </div>
-          <div class="box">
-            <div class="bt"><span class="zh">GMA 在这次合作中做的事</span><span class="en">What GMA handled</span></div>
-            <ul>
-              <li><span class="zh">选品调研，与 KADA 共同确定上架货品</span><span class="en">Range research and selection with KADA</span></li>
-              <li><span class="zh">对接品牌与门店，审核上架资料</span><span class="en">Brand–store coordination and listing checks</span></li>
-              <li><span class="zh">现场照片、人流视频与销售情况反馈给品牌</span><span class="en">On-site photos, footfall video and sales updates for brands</span></li>
-              <li><span class="zh">销售数据分析、对账与售后协调</span><span class="en">Sales analysis, reconciliation and after-sales support</span></li>
-            </ul>
-          </div>
-          </div>
-        </div>
-
-        <p class="quote"><span class="zh">这是品牌出海的新加坡第一站。接下来我们会继续在现场跟进，把每一次反馈变成下一步调整。</span><span class="en">This is the brands' first stop in Singapore. We will keep following up on the ground and turn each round of feedback into the next adjustment.</span></p>
+    <div class="person">
+      <h3>Carrie<small>China × UK</small></h3>
+      <p class="zh">曾在英国学习和生活，具备跨文化沟通及中英市场拓展经验，了解英国本地的商业环境、消费者习惯与行业规则，参与过中国品牌进入英国市场的项目，协助完成市场调研、本地资源对接及落地执行。同时拥有中国社交媒体运营、内容增长和数字产品商业化的实践经验。</p>
+      <p class="en">Carrie studied and lived in the UK. She brings cross-cultural communication and China–UK market development experience, knows the UK's business environment, consumer habits and industry practice, and has worked on projects bringing Chinese brands into the UK, from market research to local partner introductions and execution. She also has hands-on experience in Chinese social media, content growth and digital product monetization.</p>
+      <div class="nums">
+        <div><div class="n">近 20<small>万</small></div><div class="k"><span class="zh">语言学习账号粉丝</span><span class="en">followers on a language-learning account</span></div></div>
+        <div><div class="n">60<small>万+ 元</small></div><div class="k"><span class="zh">单个数字产品首阶段单平台收入，同类目头部成绩</span><span class="en">from one digital product, phase one, one platform</span></div></div>
       </div>
     </div>
+
+    <p class="zh" style="margin-top:40px">我们希望结合双方对不同市场的理解，以及在内容增长、商业拓展和项目执行方面的经验，帮助品牌更好地连接原有市场与目标市场。</p>
+    <p class="en">We combine our understanding of different markets with experience in content growth, business development and project delivery, to help brands connect their home market with the market they want to enter.</p>
   </section>
 
-  <!-- ===== 05 合作方式 ===== -->
-  <section class="section">
-    <div class="sec-kicker"><span class="sec-no">05</span><span class="ln"></span><span class="tag">How we connect</span></div>
-    <h2><span class="zh">GMA 连接的<em>三方</em></span><span class="en">The three sides GMA connects</span></h2>
-    <div class="coop">
-      <div><div class="who">Brands</div>
-        <h3><span class="zh">中国品牌</span><span class="en">Chinese brands</span></h3>
-        <p class="zh zh-just">想进入新市场、需要真实反馈和可执行路径的品牌。</p>
-        <p class="en">Brands that want to enter a new market and need real feedback and a workable plan.</p></div>
-      <div><div class="who">GMA</div>
-        <h3><span class="zh">判断 · 连接 · 落地</span><span class="en">Assess · Connect · Deliver</span></h3>
-        <p class="zh zh-just">理解品牌与市场，完成选品、对接、执行与持续跟进。</p>
-        <p class="en">We understand both sides and handle selection, introductions, execution and follow-up.</p></div>
-      <div><div class="who">Local partners</div>
-        <h3><span class="zh">本地零售与商业伙伴</span><span class="en">Local retail &amp; business partners</span></h3>
-        <p class="zh zh-just">像 KADA 这样的零售空间，获得更多元、有特色的品牌与产品。</p>
-        <p class="en">Retail spaces like KADA gain a wider, more distinctive range of brands and products.</p></div>
+  <section>
+    <div class="no">04</div>
+    <h2><span class="zh">新加坡合作伙伴：KADA Collective</span><span class="en">Singapore partner: KADA Collective</span></h2>
+    <p class="zh">KADA Collective 是我们在新加坡的线下集合店合作伙伴。<span class="date">2026 年 11 月 15 日</span>，我们与 KADA 完成第一次合作，中国品牌产品在 KADA 空间正式上线，这也是品牌出海新加坡的第一站。</p>
+    <p class="en">KADA Collective is our multi-brand retail partner in Singapore. On 15 November 2026 we completed our first launch together: Chinese brand products went live in the KADA space, the brands' first step into Singapore.</p>
+
+    <div class="photos">
+      <figure><img src="assets/kada/web/storefront.jpg" alt="KADA Collective 门店，开业当天店内有顾客">
+        <figcaption><span class="zh">开业当天</span><span class="en">Launch day</span></figcaption></figure>
+      <figure><img src="assets/kada/web/team.jpg" alt="GMA 与 KADA 团队在门口合影">
+        <figcaption><span class="zh">GMA × KADA 团队</span><span class="en">The GMA × KADA team</span></figcaption></figure>
     </div>
+
+    <ul class="list">
+      <li><span>—</span><div><span class="zh">开业首日为周日，现场人流和气氛很好，周二生意也不错</span><span class="en">Launch day (a Sunday) was busy, and Tuesday trade was good too</span></div></li>
+      <li><span>—</span><div><span class="zh">不少顾客对中国品牌的系列产品感兴趣，销售主要来自鞋子和手袋，艺术随行杯、梳妆镜等个人用品也有一定销售</span><span class="en">Many shoppers were drawn to the Chinese brands; shoes and handbags led sales, with steady sales of art tumblers and vanity mirrors</span></div></li>
+      <li><span>—</span><div><span class="zh">GMA 负责选品、品牌与门店对接、现场反馈与销售数据整理，团队也会到新加坡现场跟进调整</span><span class="en">GMA handles range selection, brand–store coordination and sales reporting, and the team follows up on site in Singapore</span></div></li>
+    </ul>
   </section>
 
-  <!-- ===== 结尾 ===== -->
-  <section class="close">
-    <div>
-      <h2><span class="zh">期待与你一起，推进下一站市场</span><span class="en">Let's build the next market together</span></h2>
-      <p class="zh">无论你是品牌、零售空间还是商业伙伴，都欢迎与我们聊聊合作的可能。</p>
-      <p class="en">Whether you are a brand, a retail space or a business partner, we would be glad to talk.</p>
-      <div class="contact">
-        <div><span class="k"><span class="zh">GMA 微信</span><span class="en">WeChat</span></span><span class="v">good1205226715</span></div>
-        <div><span class="k">Jade</span><span class="v">1205226715@qq.com</span></div>
-        <div><span class="k">Carrie</span><span class="v">yt1253082426@163.com</span></div>
-      </div>
+  <div class="end">
+    <p class="big"><span class="zh">期待与你一起，推进下一站市场。</span><span class="en">Let's build the next market together.</span></p>
+    <div class="contact">
+      <dl>
+        <dt><span class="zh">GMA 微信</span><span class="en">WeChat</span></dt><dd>good1205226715</dd>
+        <dt>Jade</dt><dd>1205226715@qq.com</dd>
+        <dt>Carrie</dt><dd>yt1253082426@163.com</dd>
+      </dl>
+      <img src="assets/wechat-gma.png" alt="GMA 微信二维码">
     </div>
-    <div class="qr"><img src="assets/wechat-gma.png" alt="GMA 微信二维码"><span class="zh">扫码添加 GMA</span><span class="en">Scan to add GMA</span></div>
-  </section>
+  </div>
 
-  <footer>Global Market Accelerator · Connecting brands with local markets</footer>
-</div>
+  <footer>Global Market Accelerator</footer>
+</main>
 
 <script>
 (function(){
-  var btns = document.querySelectorAll('.seg button');
+  var btns = document.querySelectorAll('.lang button');
   function set(lang){
     document.body.classList.remove('lang-zh','lang-en','lang-both');
     document.body.classList.add('lang-' + lang);
