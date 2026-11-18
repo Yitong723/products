@@ -85,7 +85,10 @@
   .chain p.en{font-size:14px; margin-top:2px;}
 
   /* 人物 */
-  .person{margin-top:44px;}
+  .person{margin-top:44px; display:grid; grid-template-columns:96px 1fr; gap:24px; align-items:start;}
+  .person .bio{min-width:0;}
+  .person .avatar{width:96px; max-width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:6px; display:block; margin-top:4px;}
+  @media (max-width:560px){ .person{grid-template-columns:72px 1fr; gap:16px;} .person .avatar{width:72px;} }
   .person h3{font-family:var(--display); font-weight:600; font-size:24px; line-height:1.2;}
   .person h3 small{font-style:italic; font-weight:400; font-size:15px; color:var(--accent); margin-left:10px;}
   .person p{margin-top:12px; color:var(--ink-soft); text-align:justify; text-justify:inter-ideograph;}
@@ -158,17 +161,17 @@
     <div class="no">01</div>
     <h2><span class="zh">团队</span><span class="en">The team</span></h2>
 
-    <div class="person">
+    <div class="person"><img class="avatar" src="assets/team/jade.jpg" alt="Jade"><div class="bio">
       <h3>Jade<small>China × Singapore</small></h3>
       <p class="zh">曾在新加坡学习和工作，参与过当地电商品牌从 0 到 1 的发展，涉及供应链、本地化运营、业务增长及品牌合作等方面，推动品牌获《联合早报》报道，并促成与新加坡航空、万豪酒店、DBS 银行等头部品牌的合作。回到中国后，持续参与跨境及中国本地化商业、品牌发展及文化 IP 项目，关注如何整合不同市场的资源，并将商业机会转化为实际可执行的路径。</p>
       <p class="en">Jade studied and worked in Singapore, where she helped take a local e-commerce brand from zero to one, covering supply chain, localized operations, business growth and brand partnerships. She secured coverage in Lianhe Zaobao and brokered partnerships with Singapore Airlines, Marriott and DBS Bank. Back in China, she has worked on cross-border and China-localized business, brand development and cultural IP projects, focusing on how to combine resources across markets and turn opportunities into workable plans.</p>
-    </div>
+    </div></div>
 
-    <div class="person">
+    <div class="person"><img class="avatar" src="assets/team/carrie.jpg" alt="Carrie"><div class="bio">
       <h3>Carrie<small>China × UK</small></h3>
       <p class="zh">曾在英国学习和生活，具备跨文化沟通及中英市场拓展经验，了解英国本地的商业环境、消费者习惯与行业规则，参与过中国品牌进入英国市场的项目，协助完成市场调研、本地资源对接及落地执行。同时拥有中国社交媒体运营、内容增长和数字产品商业化的实践经验。</p>
       <p class="en">Carrie studied and lived in the UK. She brings cross-cultural communication and China–UK market development experience, knows the UK's business environment, consumer habits and industry practice, and has worked on projects bringing Chinese brands into the UK, from market research to local partner introductions and execution. She also has hands-on experience in Chinese social media, content growth and digital product monetization.</p>
-    </div>
+    </div></div>
 
     <p class="zh" style="margin-top:40px">我们希望结合双方对不同市场的理解，以及在内容增长、商业拓展和项目执行方面的经验，帮助品牌更好地连接原有市场与目标市场；同时，也为本地零售与商业伙伴带来更多元、有特色的中国品牌与产品。</p>
     <p class="en">We combine our understanding of different markets with experience in content growth, business development and project delivery, to help brands connect their home market with the market they want to enter, while bringing local retail and business partners a wider, more distinctive range of Chinese brands and products.</p>
