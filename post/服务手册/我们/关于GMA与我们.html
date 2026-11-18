@@ -32,7 +32,9 @@
 
   /* 语言切换：右上角一行小字 */
   .lang{display:flex; justify-content:flex-end; align-items:center; gap:16px; margin-bottom:48px; font-size:13px;}
-  .lang .logo{width:40px; height:40px; border-radius:50%; margin-right:auto; display:block;}
+  .title-row{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .title-row h1{min-width:0;}
+  .title-row .logo{width:clamp(40px,7vw,56px); height:auto; aspect-ratio:1; border-radius:50%; flex:none; display:block;}
   .lang button{font:inherit; background:none; border:0; color:var(--muted); cursor:pointer; padding:2px 0;}
   .lang button[aria-pressed="true"]{color:var(--ink); text-decoration:underline; text-underline-offset:5px;
     text-decoration-color:var(--accent);}
@@ -127,14 +129,13 @@
 
 <main class="doc">
   <div class="lang" role="group" aria-label="语言 / Language">
-    <img class="logo" src="assets/gma-logo.png" alt="GMA">
     <button type="button" id="lang-both" data-lang="both" aria-pressed="true">中 / EN</button>
     <button type="button" id="lang-zh" data-lang="zh" aria-pressed="false">中文</button>
     <button type="button" id="lang-en" data-lang="en" aria-pressed="false">English</button>
   </div>
 
   <header>
-    <h1 class="title-zh"><b>GMA</b><span class="full">｜Global Market Accelerator</span></h1>
+    <div class="title-row"><h1 class="title-zh"><b>GMA</b><span class="full">｜Global Market Accelerator</span></h1><img class="logo" src="assets/gma-logo.png" alt="GMA"></div>
     <p class="positioning"><span class="zh">GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。</span>
       <span class="en" style="display:block; margin-top:6px; color:var(--muted)">GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time.</span></p>
 
