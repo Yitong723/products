@@ -181,10 +181,18 @@
   /* ---------- 04 KADA ---------- */
   .kada{margin-top:24px; background:var(--paper); border:1px solid var(--rule); border-radius:20px;
     overflow:hidden; box-shadow:var(--shadow-lift);}
-  .kada-photo{position:relative; aspect-ratio:21/8; max-width:100%; overflow:hidden; background:var(--bg2);}
-  .kada-photo img{width:100%; height:100%; object-fit:cover; display:block;}
-  .kada-photo .cap{position:absolute; left:16px; bottom:14px; right:16px; display:flex; flex-wrap:wrap;
-    gap:8px; align-items:center;}
+  .media{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:6px; background:var(--bg2);}
+  .media figure{position:relative; aspect-ratio:4/5; max-width:100%; overflow:hidden; border-radius:12px;
+    background:var(--rule); min-width:0;}
+  .media img, .media video, .collage img{width:100%; height:100%; object-fit:cover; display:block;}
+  .media figcaption{position:absolute; left:8px; bottom:8px; right:8px; font-size:11.5px; font-weight:500;
+    color:#fffdf8; text-shadow:0 1px 6px rgba(0,0,0,.55); line-height:1.35;}
+  .media figcaption .en{color:#fffdf8; font-size:11px; opacity:.85;}
+  .media .play{position:absolute; top:8px; right:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em;
+    background:rgba(34,28,20,.62); color:#fffdf8; border-radius:20px; padding:3px 8px;}
+  .kada-photo-cap{position:absolute; left:8px; top:8px; right:8px;}
+  .collage{border-radius:14px; overflow:hidden; aspect-ratio:906/1132; max-width:100%; background:var(--rule);}
+  .stack{display:grid; gap:14px; align-content:start;}
   .kada-photo .stamp{background:rgba(255,253,248,.94); color:#221c14; font-size:12.5px; font-weight:700;
     border-radius:30px; padding:6px 14px; letter-spacing:.02em;}
   .kada-photo .stamp b{color:#bd3c1e;}
@@ -206,7 +214,7 @@
   .timeline p{font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
   .timeline p.en{font-size:12.3px;}
 
-  .kada-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .kada-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:14px; align-items:start;}
   .kada-grid > div{min-width:0;}
   .box{border:1px solid var(--rule); border-radius:14px; padding:16px 18px; background:var(--bg);}
   .box .bt{font-family:var(--serif); font-weight:700; font-size:14.5px; color:var(--ink); margin-bottom:8px;}
@@ -261,7 +269,7 @@
     .timeline{grid-template-columns:1fr; border-top:0; border-left:2px solid var(--line); margin-left:6px;}
     .timeline li{padding:0 0 16px 20px;}
     .timeline li::before{top:4px; left:-7px;}
-    .kada-photo{aspect-ratio:16/9;}
+    .media{grid-template-columns:repeat(2,1fr);}
     .kada-in, .intro{padding:20px 18px;}
     .close{grid-template-columns:1fr; padding:26px 22px;}
     .bar .brand span{display:none;}
@@ -399,16 +407,25 @@
   <section class="section">
     <div class="sec-kicker"><span class="sec-no">04</span><span class="ln"></span><span class="tag">Local partner · Singapore</span></div>
     <h2><span class="zh">新加坡第一站：<em>KADA</em></span><span class="en">First stop in Singapore: KADA</span></h2>
-    <p class="lead zh zh-just">KADA 是 GMA 在新加坡的线下零售合作伙伴。我们与 KADA 合作，把中国品牌的产品带进新加坡本地的集合店空间，让品牌直接面对当地消费者，拿到真实的销售与反馈。</p>
-    <p class="lead en">KADA is GMA's retail partner in Singapore. Together we bring Chinese brands into KADA's multi-brand store, where they meet local shoppers in person and get real sales and feedback.</p>
+    <p class="lead zh zh-just">KADA Collective 是 GMA 在新加坡的线下零售合作伙伴。我们与 KADA 合作，把中国品牌的产品带进新加坡本地的集合店空间，让品牌直接面对当地消费者，拿到真实的销售与反馈。</p>
+    <p class="lead en">KADA Collective is GMA's retail partner in Singapore. Together we bring Chinese brands into KADA's multi-brand store, where they meet local shoppers in person and get real sales and feedback.</p>
 
     <div class="kada">
-      <div class="kada-photo">
-        <img src="assets/sg-bay.jpg" alt="新加坡滨海湾夜景">
-        <div class="cap"><span class="stamp"><b>2026.11.15</b> · <span class="zh">KADA 空间正式上线</span><span class="en">Live at KADA</span></span></div>
+      <div class="media">
+        <figure><img src="assets/kada/web/storefront.jpg" alt="KADA Collective 门店，开业当天店内有顾客">
+          <div class="kada-photo-cap"><span class="stamp"><b>2026.11.15</b> · <span class="zh">正式上线</span><span class="en">Launch</span></span></div>
+          <figcaption><span class="zh">开业当天的 KADA Collective</span><span class="en">KADA Collective on launch day</span></figcaption></figure>
+        <figure><video src="assets/kada/web/footfall-1.mp4" poster="assets/kada/web/footfall-1.jpg" autoplay muted loop playsinline preload="metadata" aria-label="开业当天店内人流视频一"></video>
+          <span class="play">VIDEO</span>
+          <figcaption><span class="zh">上线当天下午的店内人流</span><span class="en">Launch-day afternoon in store</span></figcaption></figure>
+        <figure><video src="assets/kada/web/footfall-2.mp4" poster="assets/kada/web/footfall-2.jpg" autoplay muted loop playsinline preload="metadata" aria-label="开业当天店内人流视频二"></video>
+          <span class="play">VIDEO</span>
+          <figcaption><span class="zh">顾客在中国品牌陈列区挑选</span><span class="en">Shoppers browsing Chinese brands</span></figcaption></figure>
+        <figure><img src="assets/kada/web/team.jpg" alt="GMA 与 KADA 团队在门口合影">
+          <figcaption><span class="zh">GMA × KADA 现场团队</span><span class="en">GMA × KADA team on site</span></figcaption></figure>
       </div>
       <div class="kada-in">
-        <div class="kada-head"><h3>KADA</h3>
+        <div class="kada-head"><h3>KADA Collective</h3>
           <span class="role"><span class="zh">新加坡集合店 · 首次合作已落地</span><span class="en">Multi-brand store, Singapore · First launch completed</span></span></div>
 
         <ol class="timeline">
@@ -424,10 +441,12 @@
         </ol>
 
         <div class="kada-grid">
+          <div class="collage"><img src="assets/kada/web/collage.jpg" alt="KADA 店内各品牌陈列拼贴：陶瓷、鞋履、手袋、服饰与个护"></div>
+          <div class="stack">
           <div class="box">
             <div class="bt"><span class="zh">首批现场反馈</span><span class="en">Early feedback</span></div>
             <ul>
-              <li><span class="zh">不少顾客对中国品牌 Bai Tu Bai Wu（百土百物）系列感兴趣</span><span class="en">Many shoppers were drawn to the Bai Tu Bai Wu range</span></li>
+              <li><span class="zh">不少顾客对中国品牌的系列产品感兴趣</span><span class="en">Many shoppers were drawn to the Chinese brands' ranges</span></li>
               <li><span class="zh">目前销售主要来自鞋子和手袋，个人用品也有一定销售</span><span class="en">Shoes and handbags lead sales so far, with steady sales of personal items</span></li>
             </ul>
             <div class="sold">
@@ -445,6 +464,7 @@
               <li><span class="zh">现场照片、人流视频与销售情况反馈给品牌</span><span class="en">On-site photos, footfall video and sales updates for brands</span></li>
               <li><span class="zh">销售数据分析、对账与售后协调</span><span class="en">Sales analysis, reconciliation and after-sales support</span></li>
             </ul>
+          </div>
           </div>
         </div>
 
