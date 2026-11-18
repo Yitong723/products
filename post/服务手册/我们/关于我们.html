@@ -1,4 +1,4 @@
-<title>关于 GMA 与我们</title>
+<title>关于我们</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,6 +45,8 @@
   .en{font-family:var(--display);}
   p.en, li .en{display:block; color:var(--muted); font-size:16.5px; line-height:1.7; margin-top:6px;}
   body.lang-en p.en, body.lang-en li .en{color:var(--ink-soft); font-size:17.5px; margin-top:0;}
+  body.lang-en section > p.en{margin-top:22px;}
+  body.lang-en .person p.en{margin-top:12px;}
 
   /* 标题区 */
   .title-zh{font-family:var(--serif); font-weight:900; font-size:clamp(38px,6.6vw,58px); line-height:1.15;
@@ -55,7 +57,8 @@
   .tagline{font-family:var(--display); font-style:italic; font-size:clamp(18px,2.4vw,21px); color:var(--ink-soft);
     line-height:1.5; margin-top:18px; max-width:36ch; text-wrap:balance;}
   .positioning{margin-top:28px; font-size:19px; color:var(--ink);}
-  .positioning .en{font-size:17px;}
+  .positioning .en{display:block; margin-top:6px; color:var(--muted); font-size:17px;}
+  body.lang-en .positioning .en{color:var(--ink); margin-top:0;}
 
   /* 小节 */
   section{margin-top:84px;}
@@ -108,6 +111,7 @@
   .end .big{font-family:var(--serif); font-weight:900; font-size:clamp(24px,3.6vw,30px); line-height:1.4;}
   .end .big .en{display:block; font-family:var(--display); font-style:italic; font-weight:400; font-size:18.5px;
     color:var(--muted); margin-top:4px;}
+  body.lang-en .end .big .en{font-family:var(--serif); font-style:normal; font-weight:900; font-size:inherit; color:var(--ink); margin-top:0;}
   .contact{margin-top:28px; display:grid; grid-template-columns:1fr auto; gap:28px; align-items:end;}
   .contact dl{display:grid; grid-template-columns:auto 1fr; gap:8px 22px; font-size:16.5px; min-width:0;}
   .contact dt{color:var(--muted);}
@@ -121,7 +125,16 @@
     section{margin-top:64px;}
     .contact{grid-template-columns:1fr;}
   }
-  @media print{ .lang{display:none;} .doc{padding-block:0;} }
+  @page{size:A4; margin:18mm 0 16mm;}
+  @media print{
+    .lang{display:none;} .doc{padding-block:0;}
+    body{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+    .chain li, .person, .photos, .end, h2{break-inside:avoid;}
+    h2, .no{break-after:avoid;}
+    footer{display:none;}
+    p{orphans:3; widows:3;}
+    .photos{max-width:540px;}
+  }
 </style>
 
 <main class="doc">
@@ -134,7 +147,7 @@
   <header>
     <div class="title-row"><h1 class="title-zh"><b>GMA</b><span class="full">｜Global Market Accelerator</span></h1><img class="logo" src="assets/gma-logo.png" alt="GMA"></div>
     <p class="positioning"><span class="zh">GMA 专注于帮助品牌探索并进入新的市场，通过连接当地消费者、销售渠道、合作伙伴及商业资源，协助品牌建立适合当地市场的进入路径，并逐步实现商业发展。我们相信，进入一个新市场，不只是开展营销活动、运营社交媒体或寻找一个分销商，而是一条完整的路径：</span>
-      <span class="en" style="display:block; margin-top:6px; color:var(--muted)">GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time. We believe entering a new market takes more than marketing campaigns, a social media account or a distributor. It is a complete path:</span></p>
+      <span class="en">GMA helps brands explore and enter new markets. By connecting them with local consumers, sales channels, partners and commercial resources, we help each brand build an entry path that fits the local market and grow its business there over time. We believe entering a new market takes more than marketing campaigns, a social media account or a distributor. It is a complete path:</span></p>
 
     <ol class="chain">
       <li><h3><span class="zh">市场理解</span><span class="en">Market Understanding</span></h3>
