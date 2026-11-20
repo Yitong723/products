@@ -7,18 +7,18 @@
 
 | 文件 | 谁用 | 作用 |
 |------|------|------|
-| `index.html` | 发给**厂商** | 展示全部品牌，厂商勾选保留/去掉，生成结果链接 |
-| `result.html` | **你自己**看 | 打开厂商发来的链接 → 自动收录；汇总查看所有厂商、导出 |
+| `厂商品牌挑选页.html` | 发给**厂商** | 展示全部品牌，厂商勾选保留/去掉，生成结果链接 |
+| `挑选结果汇总页.html` | **你自己**看 | 打开厂商发来的链接 → 自动收录；汇总查看所有厂商、导出 |
 | `data/brands.js` | 你维护 | 品牌数据（替换成你的真实品牌） |
 
 ## 工作流程
 
 1. **填数据**：照着 `品牌清单填写模板.csv` 填好你的品牌，图片放进 `assets/logos/`、`assets/products/`，
    再把内容整理进 `data/brands.js`（或发给我代填）。
-2. **发链接给厂商**：把 `index.html` 的网址发给厂商（建议用 GitHub Pages 在线访问）。
+2. **发链接给厂商**：把 `厂商品牌挑选页.html` 的网址发给厂商（建议用 GitHub Pages 在线访问）。
 3. **厂商勾选**：厂商点保留/去掉 → 填自己名称 → 点「生成结果」→ 复制链接发回给你。
-4. **你查看**：你在浏览器打开厂商发来的链接 → 自动收录到 `result.html`。
-   之后随时打开 `result.html` 就能看到**所有厂商**的选择、切换查看、导出 CSV/JSON。
+4. **你查看**：你在浏览器打开厂商发来的链接 → 自动收录到 `挑选结果汇总页.html`。
+   之后随时打开 `挑选结果汇总页.html` 就能看到**所有厂商**的选择、切换查看、导出 CSV/JSON。
 
 ## 重要说明
 
@@ -29,7 +29,7 @@
 ## 部署（推荐 GitHub Pages）
 
 push 到 GitHub → 仓库 Settings → Pages → 选分支根目录。
-厂商访问 `https://yitong723.github.io/products/index.html`，
-你访问 `https://yitong723.github.io/products/result.html`。
+厂商访问 `https://yitong723.github.io/products/products/厂商品牌挑选页.html`，
+你访问 `https://yitong723.github.io/products/products/挑选结果汇总页.html`。
 
-> 也可以本地直接双击 `index.html` 打开使用（用了 `.js` 数据文件，无需起服务器）。
+> 也可以本地直接双击 `厂商品牌挑选页.html` 打开使用（用了 `.js` 数据文件，无需起服务器）。

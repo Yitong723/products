@@ -129,5 +129,45 @@ window.BRANDS = [
     descEn: "A high-end pet luxury fashion brand dedicated to giving pets a wardrobe \"as rich as their humans'\". The name Bonenanza combines \"Bone\", standing for pets, with \"Bonanza\", meaning fortune and abundance, wishing furry kids good luck, plenty and an elegant life. Its Chinese name \"Gu Le Heng\" echoes the sound naturally and conveys a spirit of joy and indulgent living.",
     link: "https://bonenanza.com/",
     products: ["assets/products/b12-1.jpg","assets/products/b12-2.jpg","assets/products/b12-3.jpg","assets/products/b12-4.jpg","assets/products/b12-5.jpg","assets/products/b12-6.jpg","assets/products/b12-7.jpg"]
+  },
+  {
+    id: "b13",
+    name: "其里",
+    category: "气味香氛", categoryEn: "Fragrance",
+    location: "上海", locationEn: "Shanghai",
+    desc: "国内新生代艺术香氛品牌。它的设计风格偏向童趣、治愈和自然，颜值与实力并存。热门产品：包括“小恐龙的诞生”香氛蜡烛（圆滚滚的恐龙蛋造型，非常出片）、秋日农场系列塔香、自在生长系列香水（如“珑”和“春眠”）以及各类动物画框香挂和护手霜。\n香味特点：主打自然风物与治愈感，比如“棉花与羊”的奶油木质奶香、“野草莓”的还原果香，以及“雾与莲”的清冽水生调。\n品牌荣誉：多款产品曾入围或斩获香蘭奖、金桂奖等行业奖项，在线上线下平台口碑不错。",
+    descEn: "A new-generation Chinese art-fragrance brand whose design leans playful, healing and close to nature, as good-looking as it is well made. Bestsellers include the \"Birth of a Little Dinosaur\" scented candle, shaped like a round, photogenic dinosaur egg, the Autumn Farm incense cones, the Grow Freely perfume line (such as \"Long\" and \"Spring Slumber\"), animal-frame hanging diffusers and hand creams. Its scents celebrate nature and comfort, from the creamy woody milkiness of \"Cotton & Sheep\" and the true-to-life fruitiness of \"Wild Strawberry\" to the crisp aquatic notes of \"Mist & Lotus\". Several products have been shortlisted for or won industry awards such as the Xianglan and Jingui Awards, and the brand enjoys a strong reputation both online and offline.",
+    link: "",
+    products: ["assets/products/b13-1.jpg","assets/products/b13-2.jpg","assets/products/b13-3.jpg","assets/products/b13-4.jpg","assets/products/b13-5.jpg","assets/products/b13-6.jpg","assets/products/b13-7.jpg"]
+  },
+  {
+    id: "b14",
+    name: "至外",
+    category: "香氛 洗护", categoryEn: "Fragrance & Body Care",
+    location: "", locationEn: "",
+    desc: "运动香氛品牌\n这是一个主打户外运动生活方式的香氛洗护品牌，风格偏向自然、清冷和户外感。\n核心产品：包括香氛沐浴露、沐浴油、身体乳、护手霜等。\n热门香型：比如黑色瓶的“旷野独行”（木质调，清冷感）、绿色瓶的“茶生空野”（茶香，清冽治愈）、白色瓶的“山野游弋”（果香花香，舒缓祛痘）。\n品牌特色：包装多为简约磨砂风，带有户外挂绳设计，气味偏向自然木质调或花果香，很多户外爱好者和喜欢“伪体香”的女生比较喜欢。",
+    descEn: "A sports-fragrance brand built around the outdoor lifestyle, with a natural, cool and open-air character. Its core range covers scented body wash, shower oil, body lotion and hand cream. Signature scents include \"Lone Wilderness\" in the black bottle, a cool woody scent; \"Tea in the Open Field\" in the green bottle, a crisp, soothing tea note; and \"Roaming the Hills\" in the white bottle, a calming fruity-floral blend that helps with breakouts. Packaging is minimal and frosted, with an outdoor lanyard design, and the woody or fruity-floral scents are loved by outdoor enthusiasts and anyone after a subtle \"natural skin scent\".",
+    link: "",
+    products: ["assets/products/b14-1.jpg","assets/products/b14-2.jpg","assets/products/b14-3.jpg","assets/products/b14-4.jpg","assets/products/b14-5.jpg","assets/products/b14-6.jpg","assets/products/b14-7.jpg","assets/products/b14-8.jpg","assets/products/b14-9.jpg"]
+  },
+  {
+    id: "b15",
+    name: "MISTUM",
+    category: "气味香氛", categoryEn: "Fragrance",
+    location: "香港", locationEn: "Hong Kong",
+    desc: "一个融合未来主义、时尚与艺术的当代香氛品牌，以鲜明的创造态度，挑战传统香水对优雅与美的既定定义。新兴小众香水品牌。\n2026年推出，以「Future Humans（未来人类）」的嗅觉肖像为核心理念。品牌受香港这座东西方文化交汇之城启发（香港原名「香」港），通过香气描绘游走在现实与数字、本能与算法、记忆与可能性之间的新兴身份。\n品牌特点\n首个系列：Seven Scents. Seven Portraits. Vol 1（七种香气，七幅肖像）\n全部为中性香水（Unisex）的淡香精（Eau de Parfum）\n瓶身设计极具辨识度：带有尖锐刺状的瓶盖，未来感、赛博风格强烈，颜色与材质随香调变化",
+    descEn: "A contemporary fragrance brand fusing futurism, fashion and art, challenging perfumery's established ideas of elegance and beauty with a bold creative attitude. Launched in 2026 as an emerging niche house, it is built around olfactory portraits of \"Future Humans\". Inspired by Hong Kong, the city where East meets West and whose name literally means \"fragrant harbour\", MISTUM uses scent to portray new identities moving between the real and the digital, instinct and algorithm, memory and possibility. Its debut collection, Seven Scents. Seven Portraits. Vol 1, is made up entirely of unisex Eau de Parfum, in instantly recognisable bottles crowned with spiky caps that feel futuristic and cyber, their colours and materials shifting with each scent.",
+    link: "",
+    products: ["assets/products/b15-1.jpg","assets/products/b15-2.jpg","assets/products/b15-3.jpg","assets/products/b15-4.jpg","assets/products/b15-5.jpg"]
+  },
+  {
+    id: "b16",
+    name: "Ons and Oud",
+    category: "香氛 精油", categoryEn: "Fragrance & Essential Oils",
+    location: "迪拜", locationEn: "Dubai",
+    desc: "品牌诞生于迪拜与阿姆斯特丹之间。以古老的阿拉伯香氛传统，融入现代的审美，承载仪式与温度，带来别样的气息。推出香水、纯精油、香薰蜡烛和扩香产品。强调使用高品质天然原料，追求持久、层次丰富的香气体验，适合喜欢沉香浓郁木质、烟熏、皮革与树脂感的用户。",
+    descEn: "Born between Dubai and Amsterdam, the brand blends ancient Arabian perfumery traditions with a modern aesthetic, carrying a sense of ritual and warmth for a scent experience unlike any other. Its range includes perfumes, pure essential oils, scented candles and diffusers. Using high-quality natural ingredients, it pursues long-lasting, richly layered fragrances, ideal for lovers of deep oud, woody, smoky, leather and resinous notes.",
+    link: "",
+    products: ["assets/products/b16-1.jpg","assets/products/b16-2.jpg","assets/products/b16-3.jpg","assets/products/b16-4.jpg","assets/products/b16-5.jpg","assets/products/b16-6.jpg"]
   }
 ];

@@ -373,7 +373,7 @@
   let pending = {};   // id -> {choice:Boolean, reason:String} 正在编辑、未确认（不持久化）
   const PROD_CAP = 4;         // 每卡固定显示的产品图格数（一行）
   const BYID = {}; BRANDS.forEach(b=>BYID[b.id]=b);  // 供画廊按 id 取全部图
-  // 用 …/index.html?reset=1 打开 → 自动清空本机草稿，恢复默认全彩（演示/检查用）
+  // 用 …/厂商品牌挑选页.html?reset=1 打开 → 自动清空本机草稿，恢复默认全彩（演示/检查用）
   if(/(?:[?&#])reset=1\b/.test(location.search + location.hash)){
     try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}
   }
@@ -609,8 +609,8 @@
     return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;}
   function encodePayload(o){ return btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
   function resultUrl(){
-    const base=location.href.replace(/index\.html.*$/,'').replace(/[#?].*$/,'');
-    return base.replace(/\/?$/,'/')+'result.html#d='+encodePayload(buildPayload());
+    const base=location.href.replace(/[#?].*$/,'').replace(/[^\/]*$/,'');
+    return base+encodeURIComponent('挑选结果汇总页.html')+'#d='+encodePayload(buildPayload());
   }
 
   const ov=document.getElementById('ov');
